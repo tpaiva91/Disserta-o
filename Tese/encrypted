@@ -1,0 +1,277 @@
+Content-Type: multipart/alternative;
+ boundary="------------050101080903090209050209"
+
+This is a multi-part message in MIME format.
+--------------050101080903090209050209
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Bom dia Tiago
+
+J=C3=A1 coloquei a chave na conta mydiabetes.
+
+Para o acesso =C3=A0 m=C3=A1quina deves fazer:
+
+> Acesso por rede externa:
+> ssh mydiabetes@ssh.dcc.fc.up.pt -p 38137
+>
+> Acesso por rede interna (dentro da rede do DCC, pode ser s=C3=B3 na red=
+e
+> dos docentes e por isso n=C3=A3o necessitares de usar)
+> ssh mydiabetes@mydiabetes-be.dcc.fc.up.pt
+
+N=C3=A3o esquecer que deves usar a chave ssh que criaste.
+
+O acesso ao email:
+conta: mydiabetes
+2015_mydiabetes_2015
+
+Servidor:
+imap.dcc.fc.up.pt:993
+smtp.dcc.fc.up.pt:25
+
+Cumprimentos,
+
+Pedro Brand=C3=A3o
+
+
+On 22/10/2015 19:30, Tiago Alexandre Costa Paiva wrote:
+>
+>
+> Boa tarde professor,
+> =20
+> em anexo envio a chave p=C3=BAblica ssh (id_rsa.pub) e a PGP (public.tx=
+t).
+> =20
+> Cumprimentos,
+> =20
+> ---
+> Tiago Alexandre Costa Paiva
+>
+>
+> A 2015-10-22 16:43, Pedro Brand=C3=A3o escreveu:
+>
+>> Boa tarde Tiago,
+>>
+>> Em anexo os ficheiros para falar com os pacientes.
+>>
+>> Para:
+>>
+>>   * acesso ao website: precisas de me enviar uma chave p=C3=BAblica ss=
+h
+>>     <https://help.github.com/articles/generating-ssh-keys/>. Tamb=C3=A9=
+m
+>>     podes criar em windows com o putty
+>>     <https://docs.joyent.com/public-cloud/getting-started/ssh-keys/gen=
+erating-an-ssh-key-manually/manually-generating-your-ssh-key-in-windows>.=
+
+>>   * para o acesso ao email: envia-me a chave PGP que usas
+>>
+>>
+>> Bom trabalho,
+>>
+>> --=20
+>> Pedro Brand=C3=A3o
+>> **********************************************************************=
+
+>> "Don't lower your expectations to meet your performance. Raise your
+>> level of performance to meet your expectations. Expect thet best of
+>> yourself, and then do what is necessary to make it a reality."
+>> ** Ralph Marston
+>> **********************************************************************=
+
+>> **********************************************************************=
+
+>> Computer Science Department / Departamento de Ci=C3=AAncia de Computad=
+ores
+>> College of Science          / Faculdade de Ci=C3=AAncias
+>> University of Porto         / Universidade do Porto
+>> Gab./Room 1.38
+>> R. do Campo Alegre, 1021/1055
+>> 4169-007 Porto
+>>                  http://www.dcc.fc.up.pt/~pbrandao/
+>> **********************************************************************=
+
+>>          Tel.: (+351) 220 402 938 Fax: (+351) 220 402 950
+>> **********************************************************************=
+
+>>         Instituto de Telecomunica=C3=A7=C3=B5es http://www.it.up.pt/
+>> **********************************************************************=
+
+>
+> --=20
+> Pedro Brand=C3=A3o
+> **********************************************************************
+> "A man has made at least a start on discovering the meaning of human
+> life when he plants trees under which he knows full well he will
+> never sit."
+> ** D. Elton Trueblood
+> **********************************************************************
+> **********************************************************************
+> Computer Science Department / Departamento de Ci=C3=AAncia de Computado=
+res
+> College of Science          / Faculdade de Ci=C3=AAncias
+> University of Porto         / Universidade do Porto
+> Gab./Room 1.38
+> R. do Campo Alegre, 1021/1055
+> 4169-007 Porto
+>                  http://www.dcc.fc.up.pt/~pbrandao/
+> **********************************************************************
+>          Tel.: (+351) 220 402 938 Fax: (+351) 220 402 950
+> **********************************************************************
+>         Instituto de Telecomunica=C3=A7=C3=B5es http://www.it.up.pt/
+> **********************************************************************
+
+--------------050101080903090209050209
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta content=3D"text/html; charset=3Dutf-8" http-equiv=3D"Content-Ty=
+pe">
+  </head>
+  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
+    Bom dia Tiago<br>
+    <br>
+    J=C3=A1 coloquei a chave na conta mydiabetes.<br>
+    <br>
+    Para o acesso =C3=A0 m=C3=A1quina deves fazer:<br>
+    <br>
+    <blockquote type=3D"cite">Acesso por rede externa:
+      <br>
+      ssh <a class=3D"moz-txt-link-abbreviated"
+        href=3D"mailto:mydiabetes@ssh.dcc.fc.up.pt">mydiabetes@ssh.dcc.fc=
+=2Eup.pt</a>
+      -p 38137
+      <br>
+      <br>
+      Acesso por rede interna (dentro da rede do DCC, pode ser s=C3=B3 na=
+
+      rede dos docentes e por isso n=C3=A3o necessitares de usar)<br>
+      ssh <a class=3D"moz-txt-link-abbreviated"
+        href=3D"mailto:mydiabetes@mydiabetes-be.dcc.fc.up.pt">mydiabetes@=
+mydiabetes-be.dcc.fc.up.pt</a></blockquote>
+    <br>
+    <a class=3D"moz-txt-link-abbreviated"
+      href=3D"mailto:mydiabetes@mydiabetes-be.dcc.fc.up.pt"></a>N=C3=A3o
+    esquecer que deves usar a chave ssh que criaste.<br>
+    <br>
+    O acesso ao email:<br>
+    conta: mydiabetes<br>
+    2015_mydiabetes_2015<br>
+    <br>
+    Servidor:<br>
+    imap.dcc.fc.up.pt:993<br>
+    smtp.dcc.fc.up.pt:25<br>
+    <br>
+    Cumprimentos,<br>
+    <br>
+    Pedro Brand=C3=A3o<br>
+    <br>
+    <br>
+    <div class=3D"moz-cite-prefix">On 22/10/2015 19:30, Tiago Alexandre
+      Costa Paiva wrote:<br>
+    </div>
+    <blockquote cite=3D"mid:bf599b3660042a5b4a3fd58707fe138f@fc.up.pt"
+      type=3D"cite">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Du=
+tf-8">
+      <p><br>
+      </p>
+      <div>Boa tarde professor,</div>
+      <div>=C2=A0</div>
+      <div>em anexo envio a chave p=C3=BAblica ssh (id_rsa.pub) e a PGP
+        (public.txt).</div>
+      <div>=C2=A0</div>
+      <div>Cumprimentos,</div>
+      <div>=C2=A0</div>
+      <div>---<br>
+        <div class=3D"pre" style=3D"margin: 0; padding: 0; font-family:
+          monospace">Tiago Alexandre Costa Paiva</div>
+      </div>
+      <p><br>
+      </p>
+      <p>A 2015-10-22 16:43, Pedro Brand=C3=A3o escreveu:</p>
+      <blockquote type=3D"cite" style=3D"padding: 0 0.4em; border-left:
+        #1010ff 2px solid; margin: 0"><!-- html ignored --><!-- head igno=
+red --><!-- meta ignored -->Boa
+        tarde Tiago,<br>
+        <br>
+        Em anexo os ficheiros para falar com os pacientes.<br>
+        <br>
+        Para:<br>
+        <ul>
+          <li>acesso ao website: precisas de me enviar uma <a
+              moz-do-not-send=3D"true"
+              href=3D"https://help.github.com/articles/generating-ssh-key=
+s/">chave
+              p=C3=BAblica ssh</a>. Tamb=C3=A9m podes criar em <a
+              moz-do-not-send=3D"true"
+href=3D"https://docs.joyent.com/public-cloud/getting-started/ssh-keys/gen=
+erating-an-ssh-key-manually/manually-generating-your-ssh-key-in-windows">=
+windows
+              com o putty</a>.</li>
+          <li>para o acesso ao email: envia-me a chave PGP que usas</li>
+        </ul>
+        <p><br>
+          Bom trabalho,</p>
+        <pre class=3D"moz-signature">--=20
+Pedro Brand=C3=A3o
+**********************************************************************
+"Don't lower your expectations to meet your performance. Raise your
+level of performance to meet your expectations. Expect thet best of
+yourself, and then do what is necessary to make it a reality."
+** Ralph Marston
+**********************************************************************
+**********************************************************************
+Computer Science Department / Departamento de Ci=C3=AAncia de Computadore=
+s
+College of Science          / Faculdade de Ci=C3=AAncias
+University of Porto         / Universidade do Porto
+Gab./Room 1.38
+R. do Campo Alegre, 1021/1055
+4169-007 Porto
+                 <a moz-do-not-send=3D"true" class=3D"moz-txt-link-freete=
+xt" href=3D"http://www.dcc.fc.up.pt/%7Epbrandao/">http://www.dcc.fc.up.pt=
+/~pbrandao/</a>
+**********************************************************************
+         Tel.: (+351) 220 402 938 Fax: (+351) 220 402 950
+**********************************************************************
+        Instituto de Telecomunica=C3=A7=C3=B5es <a moz-do-not-send=3D"tru=
+e" class=3D"moz-txt-link-freetext" href=3D"http://www.it.up.pt/">http://w=
+ww.it.up.pt/</a>
+**********************************************************************
+</pre>
+      </blockquote>
+      <br>
+      <pre class=3D"moz-signature" cols=3D"72">--=20
+Pedro Brand=C3=A3o
+**********************************************************************
+"A man has made at least a start on discovering the meaning of human
+life when he plants trees under which he knows full well he will
+never sit."
+** D. Elton Trueblood
+**********************************************************************
+**********************************************************************
+Computer Science Department / Departamento de Ci=C3=AAncia de Computadore=
+s
+College of Science          / Faculdade de Ci=C3=AAncias
+University of Porto         / Universidade do Porto
+Gab./Room 1.38
+R. do Campo Alegre, 1021/1055
+4169-007 Porto
+                 <a class=3D"moz-txt-link-freetext" href=3D"http://www.dc=
+c.fc.up.pt/~pbrandao/">http://www.dcc.fc.up.pt/~pbrandao/</a>
+**********************************************************************
+         Tel.: (+351) 220 402 938 Fax: (+351) 220 402 950
+**********************************************************************
+        Instituto de Telecomunica=C3=A7=C3=B5es <a class=3D"moz-txt-link-=
+freetext" href=3D"http://www.it.up.pt/">http://www.it.up.pt/</a>
+**********************************************************************
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------050101080903090209050209--

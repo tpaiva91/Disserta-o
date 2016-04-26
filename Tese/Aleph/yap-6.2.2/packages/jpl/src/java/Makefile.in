@@ -1,0 +1,104 @@
+################################################################
+# Build jpl.jar
+################################################################
+
+.SUFFIXES: .java .class
+
+ifeq (@PROLOG_SYSTEM@,yap)
+srcdir=@srcdir@
+else
+srcdir=.
+endif
+
+JAVAC="@JAVAC@"
+JAR="@JAR@"
+JUNIT="@JUNIT@"
+JAVADOC="@JAVADOC@"
+JPLJAR=../../jpl.jar
+TSTJAR=../../jpltest.jar
+JPLDOC=../../docs/java_api/javadoc
+
+CLS=	$(srcdir)/jpl/Atom.java \
+	$(srcdir)/jpl/Compound.java \
+	$(srcdir)/jpl/Float.java \
+	$(srcdir)/jpl/Integer.java \
+	$(srcdir)/jpl/JRef.java \
+	$(srcdir)/jpl/JPLException.java \
+	$(srcdir)/jpl/JPL.java \
+	$(srcdir)/jpl/PrologException.java \
+	$(srcdir)/jpl/Query.java \
+	$(srcdir)/jpl/Term.java \
+	$(srcdir)/jpl/Util.java \
+	$(srcdir)/jpl/Variable.java \
+	$(srcdir)/jpl/Version.java
+
+FLI=	$(srcdir)/jpl/fli/atom_t.java \
+	$(srcdir)/jpl/fli/BooleanHolder.java \
+	$(srcdir)/jpl/fli/DoubleHolder.java \
+	$(srcdir)/jpl/fli/engine_t.java \
+	$(srcdir)/jpl/fli/fid_t.java \
+	$(srcdir)/jpl/fli/functor_t.java \
+	$(srcdir)/jpl/fli/IntHolder.java \
+	$(srcdir)/jpl/fli/Int64Holder.java \
+	$(srcdir)/jpl/fli/LongHolder.java \
+	$(srcdir)/jpl/fli/module_t.java \
+	$(srcdir)/jpl/fli/ObjectHolder.java \
+	$(srcdir)/jpl/fli/PointerHolder.java \
+	$(srcdir)/jpl/fli/predicate_t.java \
+	$(srcdir)/jpl/fli/Prolog.java \
+	$(srcdir)/jpl/fli/qid_t.java \
+	$(srcdir)/jpl/fli/StringHolder.java \
+	$(srcdir)/jpl/fli/term_t.java
+
+TEST=	$(srcdir)/jpl/test/Family.java \
+	$(srcdir)/jpl/test/FetchBigTree.java \
+	$(srcdir)/jpl/test/FetchLongList.java \
+	$(srcdir)/jpl/test/Ga2.java \
+	$(srcdir)/jpl/test/Ga.java \
+	$(srcdir)/jpl/test/Garbo.java \
+	$(srcdir)/jpl/test/Masstest.java \
+	$(srcdir)/jpl/test/MaxObjects.java \
+	$(srcdir)/jpl/test/ShadowA.java \
+	$(srcdir)/jpl/test/ShadowB.java \
+	$(srcdir)/jpl/test/SyntaxError.java \
+	$(srcdir)/jpl/test/Test.java \
+	$(srcdir)/jpl/test/TestJUnit.java \
+	$(srcdir)/jpl/test/TestOLD.java
+
+JPLJAVA=$(CLS) $(FLI)
+TSTJAVA=$(TEST)
+
+all:	$(JPLJAR) $(TSTJAR) $(JPLDOC)
+
+jpl_jar:	$(JPLJAR)
+test_jar:	$(TSTJAR)
+jpl_doc:	$(JPLDOC)
+
+ifeq (@PROLOG_SYSTEM@,yap)
+$(JPLJAR):	$(JPLJAVA)
+		$(JAVAC) $(JPLJAVA) -d .
+		$(JAR) cf $(JPLJAR) jpl
+else
+$(JPLJAR):	$(JPLJAVA)
+		$(JAVAC) $(JPLJAVA)
+		$(JAR) cf $(JPLJAR) $(JPLJAVA:.java=.class)
+endif
+
+ifneq ($(JUNIT),)
+$(TSTJAR):	$(JPLJAR) $(TSTJAVA)
+		$(JAVAC) -classpath $(JPLJAR):$(JUNIT) $(TSTJAVA)
+		$(JAR) cf $(TSTJAR) $(TSTJAVA:.java=.class)
+else
+$(TSTJAR)::
+endif
+
+$(JPLDOC):	$(JPLJAVA)
+		$(JAVADOC) -public -d $(JPLDOC) $(JPLJAVA)
+
+clean::
+	rm -f *~ jpl/*.class jpl/test/*.class jpl/fli/*.class
+
+distclean: clean
+	rm -f $(JPLJAR) $(TSTJAR)
+	rm -rf $(JPLDOC)
+

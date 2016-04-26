@@ -1,0 +1,4 @@
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user16
+Password: mydiauser1634

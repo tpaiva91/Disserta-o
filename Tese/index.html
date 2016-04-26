@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Cenas</title>
+    <style>
+      body{ background-color: #226666;}
+      #main{width: 550px; display: block; margin-left: auto; margin-right: auto; margin-top: 70px; color: white; font-size: 30pt;}
+      #ole{ width: 60px; margin-left: auto; margin-right: auto; font-weight: bold; white;}
+      #ole:hover{color: #263333; cursor: pointer;}
+      .perguntas{ width: 550px; margin-left: auto; margin-right: auto; color: #83A6A6; font-size: 20pt; }
+      .respostas{ width: 550px; margin-left: auto; margin-right: auto; font-size: 13pt;}
+      .avancar{width: 100px; margin-left: auto; margin-right: auto; color: white; font-size: 13pt;}
+      .avancar:hover{cursor: pointer; color: #263333}
+      #resultadoFinal{ width: 1000px; margin-left: auto; margin-right: auto; color: white; font-weight: bold;}
+      
+    </style>
+    <script language="javascript" type="text/javascript" src="java.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  </head>
+  
+  <body>
+    <div id="main">Que personagem da RUCA és tu?</div>
+    <p id="ole" onclick="comecar();">Começar</p>
+    <div id="1" style="display:none">
+      <p class="perguntas">Como achas que trabalhas?</p>
+      <form class="respostas" action="">
+	<br>
+	<input type="radio" name="choice" id="a">Faço tudo rápido apesar de ficar uma merda.</input><br>
+	<input type="radio" name="choice" id="b">Trabalho bem, elas não se queixam. <br>
+	<input type="radio" name="choice" id="c">Trabalho? Não gosto.<br>
+	<input type="radio" name="choice" id="d">Dou sempre tudo.</input><br>
+	<br>
+	<p class="avancar" onclick="avançar2();">Avançar</p>
+      </form>
+    </div>
+    <div id="2" style="display:none">
+      <p class="perguntas">Qual a tua atividade preferida?</p>
+      <form class="respostas" action="">
+	<br>
+	<input type="radio" name="choice" id="e">Estar deitada a ver TV.</input><br>
+	<input type="radio" name="choice" id="f">Ir a aniversários... adoro ânus.</input><br>
+	<input type="radio" name="choice" id="g">Ver gajas.</input><br>
+	<input type="radio" name="choice" id="h"> Brincar com os meus cães.</input><br>
+	<br>
+	<p class="avancar" onclick="avançar3();">Avançar</p>
+      </form>
+    </div>
+
+    <div id="3" style="display:none">
+      <p class="perguntas">Qual a tua opinião sobre quebrar regras?</p>
+      <form class="respostas" action="">
+	<br>
+	<input type="radio" name="choice" id="i">Ai adoro que me quebrem as regras.</input><br>
+	<input type="radio" name="choice" id="j">Não sei ler as regras. </input><br>
+	<input type="radio" name="choice" id="k">Eu não gosto de fazer nada, independentemente de cumprir ou não regras.</input><br>
+	<input type="radio" name="choice" id="l">Quero que se fodam as regras.</input><br>
+	<br>
+	<p class="avancar" onclick="avançar4();">Avançar</p>
+      </form>
+    </div>
+
+    <div id="4" style="display:none">
+      <p class="perguntas">Qual o tipo de rapaz/rapariga que achas atraente?</p>
+      <form class="respostas" action="">
+	<br>
+	<input type="radio" name="choice" id="m">Qualquer rapaz.</input><br>
+	<input type="radio" name="choice" id="n">Qualquer vaca. </input><br>
+	<input type="radio" name="choice" id="o">Sou assexuado/a.</input><br>
+	<input type="radio" name="choice" id="p">Isso dá muito trabalho.</input><br>
+	<br>
+	<p class="avancar" onclick="avançar5();">Avançar</p>
+	
+      </form>
+    </div>
+    <div id="5" style="display:none">
+      <p class="perguntas">Última pergunta: qual a tua série preferida?</p>
+      <form class="respostas" action="">
+	<br>
+	<input type="radio" name="choice" id="q">Não gosto de séries, prefiro filmes porno.</input><br>
+	<input type="radio" name="choice" id="r">Gosto de ver televisão, não importa o quê.</input><br>
+	<input type="radio" name="choice" id="s">Não gosto de séries, prefiro novelas.</input><br>
+	<input type="radio" name="choice" id="t">O Jardim da Celeste</input><br>
+	<br>
+	<p class="avancar" onclick="acabar();">Acabar o teste</p>
+      </form>
+    </div>
+    <div id="resultadoFinal" style="display:none">
+    </div>
+    
+    
+  </body>
+
+  
+</html>
+
+

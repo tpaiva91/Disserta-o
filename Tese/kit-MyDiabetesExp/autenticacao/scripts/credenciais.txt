@@ -1,0 +1,84 @@
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user21
+Password: mydiauser2132
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user22
+Password: mydiauser2245
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user23
+Password: mydiauser2379
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user24
+Password: mydiauser2421
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user25
+Password: mydiauser2543
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user26
+Password: mydiauser2672
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user27
+Password: mydiauser2794
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user28
+Password: mydiauser2812
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user29
+Password: mydiauser2902
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user30
+Password: mydiauser3056
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user31
+Password: mydiauser3145
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user32
+Password: mydiauser3223
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user33
+Password: mydiauser3387
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user34
+Password: mydiauser3412
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user35
+Password: mydiauser3548
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user36
+Password: mydiauser3698
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user37
+Password: mydiauser3734
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user38
+Password: mydiauser3890
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user39
+Password: mydiauser3912
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user40
+Password: mydiauser4065
+Url: mydiabetes.dcc.fc.up.pt
+
+Utilizador: user41
+Password: mydiauser4128

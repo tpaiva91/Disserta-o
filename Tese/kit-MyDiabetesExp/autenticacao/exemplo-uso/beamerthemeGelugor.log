@@ -1,0 +1,29 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.11.22)  2 DEC 2015 18:24
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**/home/tiago/Tese/kit-MyDiabetesExp/autenticacao/exemplo-uso/beamerthemeGelugo
+r.sty
+
+(/home/tiago/Tese/kit-MyDiabetesExp/autenticacao/exemplo-uso/beamerthemeGelugor
+.sty
+LaTeX2e <2014/05/01>
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+
+LaTeX Warning: You have requested package `',
+               but the package provides `beamerthemeGelugor'.
+
+Package: beamerthemeGelugor 2011/09/20
+! Undefined control sequence.
+l.13 \definecolor
+                 {USMOrange}{RGB}{5,29,34} 
+Here is how much of TeX's memory you used:
+ 8 strings out of 493105
+ 372 string characters out of 6137071
+ 52508 words of memory out of 5000000
+ 3571 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 7i,0n,4p,152b,10s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+!  ==> Fatal error occurred, no output PDF file produced!
