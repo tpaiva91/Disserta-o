@@ -1,0 +1,30 @@
+\chapter{Desenvolvimento}\label{chap:dese}
+
+\begin{lstlisting}[numbers=none,language=java,caption={[CommandDaemonCallsItf]
+   {CommandDaemon} callback interfaces},label=lis:commandDCallsItfs,float=htb]
+public interface CallBackCmdMeasurements { // comment
+	public abstract void newMeasure(MeasurementBasic measure, int reqId);
+	public abstract void newMeasuresAggSimp(MeasurementBasic[] measuresAggSimp, 'A string');
+}
+\end{lstlisting}
+
+É possível como referir o código, por exemplo o bloco de código~\ref{lis:commandDCallsItfs}.
+
+Outro acrónimo pode ser \ac{TCP} (que deve estar expandido aqui, apesar de ter sido usado já no capítulo \ref{chap:syst}.
+
+Podem ver a figura \ref{fig:logoFCUP} muito bem. Notem que na lista de figuras nao aparece tudo o que está na caption, mas só o que está entre [].
+
+
+
+\begin{figure}[htb]
+   \centering % center the figure
+   \includegraphics[scale=.4]{pics/fc_logo}
+   \caption[FCUP logo velho]{O logo da FCUP antigo}\label{fig:logoFCUP}
+\end{figure}
+
+
+\lipsum[3-7]
+\section{Teste}
+\lipsum[1]
+E isto é o fim do cap. \ref{chap:dese}.
+

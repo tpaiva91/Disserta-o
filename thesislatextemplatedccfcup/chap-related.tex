@@ -1,0 +1,88 @@
+\chapter{Estado da Arte}\label{chap:stat}
+
+\begin{table}[htbp]
+   \caption[BSN vs WSN]{BSN versus WSN
+   (with input from  Latré  and Guang )}
+\label{tab:bsnvswsn}
+\centering
+{
+\footnotesize
+\begin{tabularx}{0.98\textwidth}{|>{\columncolor{gray-cell}}c|X|X|}
+   \hline
+   \rowcolor{gray-cell} 
+   &    \centering  \textbf{BSN} &  \centering \textbf{WSN}  \tabularnewline 
+   \hline
+   %%%% line
+   \begin{sideways} \hspace{-11em} \textbf{Distribution} \end{sideways}
+   &  
+   \begin{asparaenum}[\bfseries i)]
+      \item Existence of a \ac{BS};
+      \item \ac{BS} collects, maintains and processes the data;
+      \item Nodes will do minimal processing, sending all data to the \ac{BS};
+      \item Centralized system where \ac{BS} controls all nodes;
+      \item Node replacement is difficult in in-body sensor nodes;
+      \item Smaller number of nodes;
+      \item Nodes need to take biocompatibility, wearability into account.
+   \end{asparaenum}
+   & 
+   \begin{asparaenum}[\bfseries i)]
+
+      \item A \ac{BS} may or not exist or there may be several \acp{BS} (e.g. mobile nodes 
+         collect info, clustering);
+      \item As in \ac{BSN}, but also on-demand querying;
+      \item Nodes will do processing, aggregation to alleviate communication or 
+         correlate results;
+      \item Distributed system, nodes decide cooperatively;
+         %(form clusters, aggregate data, \etc);
+      \item Node replacement is difficult due to location, scale, etc.;
+      \item (usually) Wide areas covered by large number of nodes.
+      \item Nodes may need to be environment friendly, indiscernible from surroundings.
+     %    \vspace{-0.7em}
+   \end{asparaenum}
+   \tabularnewline \hline
+   %%%% line
+   \textbf{Comm.} 
+   & 
+   \begin{asparaenum}[\bfseries i)]
+      \item One hop to \ac{BS};
+      \item Close range but attenuated by body;
+      \item Data rates heterogeneous.
+    %\vspace{-0.7em}
+   \end{asparaenum}
+   & 
+   \begin{asparaenum}[\bfseries i)]
+      \item Multi hop through network of sensor nodes;
+      \item Long(er) range;
+      \item Data rates homogeneous.
+    %\vspace{-0.7em}
+   \end{asparaenum}
+   \tabularnewline \hline
+   %%%% line
+    \textbf{Data} 
+   & 
+   This is some text on this cell. The multirow package does not know the height of the cell and can not center the cell to the right. This is because of the X from tabularx.
+   & 
+   \multirow{ 2}{*}{This is on two rows of the table}
+
+ \tabularnewline \cline{1-2}\noalign{\vskip.3pt}% using the noaling vskip to show the line
+   %%%% line
+    \textbf{Energy} 
+   & 
+   Some more text just to show something
+   %      \vspace{-0.7em}
+   & 
+    \tabularnewline \hline
+\end{tabularx}
+}
+\end{table}
+
+%% vim: set tw=80 spl=en_gb spell: syntax spell toplevel  :
+
+
+
+\lipsum[4-9]
+
+
+
+
+
