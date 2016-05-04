@@ -174,3 +174,14 @@ axis.POSIXct(1, joaquim$Period, seq(from=as.POSIXct("2016-02-13 0:00"), to=as.PO
 abline(h=50, col="red")
 abline(h=190, col="blue")
 
+#média de glicose por dia
+mean(joaquim$Value_Glucose[joaquim$Day=="Domingo"])
+
+
+#todos os periodos no mesmo gráfico
+plot(joaquim$Value_Glucose[joaquim$Period==2], ylab="Valor de glicose", xlab="Manhã, tarde e noite", col="blue", ylim=c(50, 230))
+lines(joaquim$Value_Glucose[joaquim$Period==3], ylab="Valor de glicose", xlab="Período: noite", col="green", ylim=c(50, 230))
+points(joaquim$Value_Glucose[joaquim$Period==3], ylab="Valor de glicose", xlab="Período: noite", col="green", ylim=c(50, 230))
+points(joaquim$Value_Glucose[joaquim$Period==1], ylab="Valor de glicose", xlab="Período: tarde", col="red", ylim=c(50,230))
+lines(joaquim$Value_Glucose[joaquim$Period==2], ylab="Valor de glicose", xlab="Período: tarde", col="blue", ylim=c(50, 230))
+lines(joaquim$Value_Glucose[joaquim$Period==1], ylab="Valor de glicose", xlab="Período: manhã", col="red", ylim=c(50, 230))

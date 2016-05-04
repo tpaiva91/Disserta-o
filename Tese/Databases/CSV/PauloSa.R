@@ -5,13 +5,12 @@ joaquim <- read.csv("PauloSa.csv")
 
 
 
-joaquim$DateTime <- factor(joaquim$DateTime)
 joaquim[is.na(joaquim)] <-0
 joaquim$Day <- weekdays(as.Date(joaquim$DateTime))
-joaquim$Period <- as.POSIXct(joaquim$DateTime, tz="GMT")
-joaquim$Period <- (format(joaquim$Period, "%H:%M"))
+joaquim$Period <- format(as.POSIXlt(joaquim$DateTime), "%H:%M:%S")
 
 joaquim$DateTime <- NULL
+
 
 
 for(i in 1:nrow(joaquim)){
@@ -299,3 +298,16 @@ plot(joaquim$Period[joaquim$Day=="Sábado"], joaquim$Value_Glucose[joaquim$Day==
 axis.POSIXct(1, joaquim$Period, seq(from=as.POSIXct("2016-02-02 0:00"), to=as.POSIXct("2016-05-02 23:00"), by="hour"), format="%H:%M")
 abline(h=70, col="red")
 abline(h=180, col="blue")
+
+
+#média de glicose por dia
+mean(joaquim$Value_Glucose[joaquim$Day=="Domingo"])
+
+
+#todos os periodos no mesmo gráfico
+plot(joaquim$Value_Glucose[joaquim$Period==1], ylab="Valor de glicose", xlab="Manhã, tarde e noite", col="red", ylim=c(50, 230))
+lines(joaquim$Value_Glucose[joaquim$Period==1], ylab="Valor de glicose", xlab="Período: manhã", col="red", ylim=c(50, 230))
+lines(joaquim$Value_Glucose[joaquim$Period==3], ylab="Valor de glicose", xlab="Período: noite", col="green", ylim=c(50, 230))
+points(joaquim$Value_Glucose[joaquim$Period==3], ylab="Valor de glicose", xlab="Período: noite", col="green", ylim=c(50, 230))
+points(joaquim$Value_Glucose[joaquim$Period==2], ylab="Valor de glicose", xlab="Período: tarde", col="blue", ylim=c(50,230))
+lines(joaquim$Value_Glucose[joaquim$Period==2], ylab="Valor de glicose", xlab="Período: tarde", col="blue", ylim=c(50, 230))
