@@ -1,8 +1,22 @@
-\chapter{Desenho da Arquitetura}\label{chap:syst}
-E isto deve aparecer com acedido~\cite{urlLinkTest}.
+\chapter{MyDiabetes}\label{chap:syst}
 
-Vamos usar o acrónimo \ac{TCP} que deve estar expandido, assim como no capítulo \ref{chap:dese}.
+Neste capítulo vamos analisar com mais detalhe a aplicação utilizada neste projeto de dissertação. A aplicação chama-se \textit{MyDiabetes} e, além de ser utilizada para recolher os dados que posteriormente vão ser utilizados, é também nela que vai ser implementado o sistema definido nos objetivos desta dissertação. 
 
-\lipsum
+\section{Objetivo da aplicação}
+
+Esta aplicação tem como objetivo ajudar o doente diabético, ao disponibilizar uma ferramenta que permita registar e visualizar os vários parâmetros importantes, como glicose, insulinas e hidratos de carbono. A visualização pode ser feita através de gráficos ou de lista. A aplicação facilita o dia-a-dia do diabético pois permite ter um maior controlo sobre os seus registos, através de uma fácil visualização ou navegação para datas anteriores de forma a ver valores num determinado intervalo de tempo.
+
+\section{Arquitetura}
+
+[é o que exatamente??]
+
+A aplicação é bastante intuitiva: tem menus de registo, como registo de refeições, insulinas, exercício ou doenças. Esses registos são guardados no \textit{smartphone}, numa base de dados \textit{sqlite}. Tem também um menu para visualização dos registos efetuados, o "Logbook". 
+
+\section{Variáveis recolhidas}
+
+A aplicação permite recolher dados sobre doentes diabéticos através dos registos que estes vão efetuando. Além de valores de glicose, hidratos de carbono e insulina, como já mencionado anteriormente, permite também a recolha de outros dados como doença ou exercício. A data e hora de cada registo também são guardadas, isto porque pode ser útil descobrir padrões temporais, associados a um dia da semana ou hora do dia, por exemplo. Permite ainda recolher outras variáveis como pressão arterial, colesterol e peso. Estas variáveis não são tão relevantes, no entanto, por não haver uma relação direta entre estas e os valores de glicose. A recolha destas variáveis é feita através de uma funcionalidade presente na aplicação, que permite ao utilizador mandar a base de dados ao gestor do projeto. 
+
+
+
 
 

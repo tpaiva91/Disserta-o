@@ -91,6 +91,8 @@ Em [associationDiabetes.pdf], os autores aplicaram o algoritmo \textit{apriori} 
 Finalmente, em [SVMDiabetes.pdf], os autores usaram algoritmos de classificação para gerar um modelo de diagnóstico da diabetes. Neste caso, usam-se SVM's (\textit{support vector machines} e um \textit{data set} com 56 variáveis que foi dividido em duas partes: 90\% para o conjunto de treino e 10\% para conjunto de teste. Foi usada \textit{10 fold cross-validation} como método de treino para obter os parâmetros ideais para os modelos. Depois deste processo, a melhor \textit{fold} é escolhida para gerar conjuntos de regras e para ser usada na classificação do conjunto de teste. Contudo, SVM's têm uma natureza \textit{black-box}, são capazes de classificar dados mas não são capazes de explicar o porquê dessa mesma classificação. Isto significa que, usando apenas SVM's, não é possível extrair regras. Face a este inconveniente, os autores decidiram combinar SVM's com outros dois algoritmos: \textit{Random Forests} (RF) e C4.5, um algoritmo para árvores de decisão. A combinação de SVM's com outros algoritmos \textit{white-box} já vem sendo utilizada noutros estudos. [svm1.pdf][svm2.pdf] Neste caso, conseguiram-se gerar regras que ajudam a classificar dados como pertencendo a pacientes diabéticos ou não-diabéticos. Uma das regras geradas é, por exemplo,  "If HBA1C > 7.15 and HDL > 1.57 and CHOL > 5.9 and AGE>77, then diabetic". 
 Outra é "If HBA1C > 7.25, then diabetic". Os dois algoritmos usados, SVM + RF e SVM + C4.5 conseguiram, respetivamente, 89.6\% e 86.3\% de precisão.
 
+No próximo capítulo vamos abordar a aplicação utilizada nesta dissertação, a \textit{MyDiabetes}.
+
 
 
 

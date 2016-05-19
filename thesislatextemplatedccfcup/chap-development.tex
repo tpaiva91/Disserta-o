@@ -1,30 +1,18 @@
-\chapter{Desenvolvimento}\label{chap:dese}
+\chapter{Análise de dados}\label{chap:dese}
 
-\begin{lstlisting}[numbers=none,language=java,caption={[CommandDaemonCallsItf]
-   {CommandDaemon} callback interfaces},label=lis:commandDCallsItfs,float=htb]
-public interface CallBackCmdMeasurements { // comment
-	public abstract void newMeasure(MeasurementBasic measure, int reqId);
-	public abstract void newMeasuresAggSimp(MeasurementBasic[] measuresAggSimp, 'A string');
-}
-\end{lstlisting}
+Este capítulo foca a análise de dados obtidos. Será feita uma descrição do estudo, desde o processo de recolha de dados até ao tratamento desses mesmos dados para uma análise posterior. Serão também descritos os vários passos efetuados na análise desses dados, bem como os diferentes métodos ou algoritmos utilizados.
 
-É possível como referir o código, por exemplo o bloco de código~\ref{lis:commandDCallsItfs}.
+\section{Descrição do estudo}
 
-Outro acrónimo pode ser \ac{TCP} (que deve estar expandido aqui, apesar de ter sido usado já no capítulo \ref{chap:syst}.
+O objetivo da dissertação é integrar, na aplicação \textit{MyDiabetes}, um sistema que seja capaz de analisar, em tempo real, os dados inseridos pelo utilizador, para que se possam detetar anormalidades. Essas anormalidades serão apresentadas na forma de regras, que serão obtidas a partir de algoritmos de associação. No entanto, estes algoritmos geram todo o tipo de regras: algumas relevantes e outras não. Para que o sistema saiba quais as regras relevantes e quais as regras descartáveis é preciso saber que tipo de regras vão ser obtidas. Para isso, o primeiro passo seria aplicar as diferentes técnicas a dados já existentes para fazer uma filtragem de regras úteis. Neste caso, o tipo de dados necessários seriam medições contínuas dos vários parâmetros ao longo de algumas semanas, para que se possam detetar padrões temporais. Por exemplo, um padrão deste tipo poderia ser "Um dado utilizador pratica exercício às terças à noite. Às quartas de manhã costuma ter hipoglicemia". 
 
-Podem ver a figura \ref{fig:logoFCUP} muito bem. Notem que na lista de figuras nao aparece tudo o que está na caption, mas só o que está entre [].
+No entanto, os \textit{data sets} disponíveis \textit{online} relativamente a dados de pacientes diabéticos são escassos e não estão no formato pretendido. Por exemplo, um \textit{data set} disponível tem dados relativos a uma tribo indígena norte-americana com algumas variáveis, entre as quais idade, indíce de massa corporal e pressão arterial, em que cada registo pertence a um paciente. Este tipo de dados é para classificação de cada paciente como diabético ou não-diabético, e portanto não corresponde ao que se pretende nesta dissertação. 
 
+O tipo de \textit{data set} ideal para este projeto seria com dados de vários doentes ao longo do tempo, em vez de dados pontuais. Assim seria possível analisar cada paciente de forma individual, ou seja, aplicar o conceito de medicina personalizada. Face à falta de \textit{data sets} com estas condições, a solução encontrada foi recolhermos os nossos próprios dados. Para o conseguirmos, contámos com a ajuda do serviço de endocrinologia do Hospital de S. João, através do Dr. Celestino Neves, que serviu de intermediário entre a faculdade e o hospital. O objetivo nesta fase foi de apresentar a aplicação aos pacientes do hospital, mostrando o que a aplicação permite fazer e explicando que, a longo prazo, os pacientes seriam os principais beneficiários. A apresentação da aplicação passava por mostrar as funcionalidades mais importantes e explicar que o objetivo seria fazer com que a aplicação fosse capaz de detetar anormalidades e mostrar alertas ou conselhos para esses casos. Os pacientes eram também informados que os dados por eles registados seriam usados para fins de investigação e, caso aceitassem usar a aplicação de forma voluntária, assinavam um consentimento informado. 
 
+Este processo era feito depois de o Dr. Celestino dar a conhecer, de forma resumida, do que se tratava. Desta forma, como era o médico a fazer uma primeira abordagem ao projeto, o paciente sentia-se mais seguro em falar connosco e mais recetivo a um diálogo. Quando o paciente aceitava participar, a aplicação era instalada na hora, para que pudesse começar a usá-la o mais rapidamente possível. 
 
-\begin{figure}[htb]
-   \centering % center the figure
-   \includegraphics[scale=.4]{pics/fc_logo}
-   \caption[FCUP logo velho]{O logo da FCUP antigo}\label{fig:logoFCUP}
-\end{figure}
+Este processo foi feito ao longo de sensivelmente três meses, duas vezes por semana. Ao longo deste tempo, falámos com várias dezenas de pacientes. Praticamente todos acharam a aplicação bastante interessante e importante e o \textit{feedback} foi bastante positivo. Apesar disto, nem todos os pacientes com quem falámos participaram no estudo, por variadas razões: ou impedimentos técnicos (não ter um \textit{smartphone} Android, sendo que neste caso podíamos emprestar um telemóvel), ou por não querer ou por não poder (por exemplo, pacientes com idade mais avançada ou com outros problemas de saúde). Ainda assim, conseguimos angariar 31 voluntários, o que seria suficiente para o que se pretendia. 
 
-
-\lipsum[3-7]
-\section{Teste}
-\lipsum[1]
-E isto é o fim do cap. \ref{chap:dese}.
+Infelizmente, como viemos a comprovar, a percentagem de utilizadores que de facto usaram a aplicação e enviaram os dados foi bastante pequena: apenas 7 pacientes enviaram dados, sendo que apenas 4 enviaram dados relativamente a mais de uma semana. Foram feitas algumas tentativas para incentivar os outros utilizadores a enviar os dados, como mostrarmos algumas atualizações da aplicação e consequentemente novas funcionalidades, sem sucesso, no entanto. Esta pouca adesão no envio de dados foi o principal problema encontrado para se fazer o projeto nos moldes desejados. 
 
