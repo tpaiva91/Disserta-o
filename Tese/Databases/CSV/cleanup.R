@@ -12,6 +12,15 @@ joaquim$Day <- weekdays(as.Date(joaquim$DateTime))
 joaquim$Period <- format(as.POSIXlt(joaquim$DateTime), "%H:%M:%S")
 
 joaquim$DateTime <- NULL
+joaquim$Had_Exercise <- NULL
+joaquim$Variation <- NULL
+
+
+for(i in 1:nrow(joaquim)){
+  
+  joaquim$Calculated_Insulin[i] = joaquim$Value_Carbs[i]/10 + ((joaquim$Value_Glucose[i] - 120)/40)
+  
+}
 
 
 for(i in 1:nrow(joaquim)){
@@ -48,17 +57,17 @@ for(i in 1:nrow(joaquim)){
 
 for(i in 1:nrow(joaquim)){
   
-  if(joaquim$Value_Insulin[i]<3.0){
+  if(joaquim$Value_Insulin[i]<1.0){
     
     joaquim$Value_Insulin[i]=1
   } else
-    if(joaquim$Value_Insulin[i] >=3.0 & joaquim$Value_Insulin[i]<5.0){
+    if(joaquim$Value_Insulin[i] >=1.0 & joaquim$Value_Insulin[i]<4.0){
       joaquim$Value_Insulin[i]=2
-    } else if(joaquim$Value_Insulin[i] >= 5.0 & joaquim$Value_Insulin[i]<7.0){
+    } else if(joaquim$Value_Insulin[i] >= 4.0 & joaquim$Value_Insulin[i]<6.5){
       joaquim$Value_Insulin[i]=3
-    } else if(joaquim$Value_Insulin[i] >=7.0 & joaquim$Value_Insulin[i]<10.0){
+    } else if(joaquim$Value_Insulin[i] >=6.5 & joaquim$Value_Insulin[i]<8.5){
       joaquim$Value_Insulin[i]=4
-    } else if(joaquim$Value_Insulin[i]>=10.0){
+    } else if(joaquim$Value_Insulin[i]>=8.5){
       joaquim$Value_Insulin[i]=5
     }
 }
@@ -70,11 +79,11 @@ for(i in 1:nrow(joaquim)){
   } else
     if(joaquim$Value_Carbs[i] >=20 & joaquim$Value_Carbs[i]<40){
       joaquim$Value_Carbs[i]=2
-    } else if(joaquim$Value_Carbs[i] >=40 & joaquim$Value_Carbs[i]<70){
+    } else if(joaquim$Value_Carbs[i] >=40 & joaquim$Value_Carbs[i]<60){
       joaquim$Value_Carbs[i]=3
-    } else if(joaquim$Value_Carbs[i] >=70 & joaquim$Value_Carbs[i]<100){
+    } else if(joaquim$Value_Carbs[i] >=60 & joaquim$Value_Carbs[i]<90){
       joaquim$Value_Carbs[i]=4
-    } else if(joaquim$Value_Carbs[i]>=100){
+    } else if(joaquim$Value_Carbs[i]>=90){
       joaquim$Value_Carbs[i]=5
     }
 }
@@ -120,12 +129,15 @@ joaquim$Variation <- as.factor(joaquim$Variation)
 
 
 
+joaquim$Calculated_Insulin <- NULL
+joaquim$Had_Exercise <- NULL
+joaquim$Exercise <- NULL
 
 
 
 
-rules <- apriori(joaquim, parameter=list(confidence=0.6, support=0.01))
-rules.sub <- subset(rules, subset = rhs %in% "Value_Glucose=1")
+rules <- apriori(joaquim, parameter=list(confidence=0.6, support=0.05))
+rules.sub <- subset(rules, subset = rhs %in% "Value_Glucose=5")
 rules.sub <- subset(rules, subset = rhs %in% "Hyperglycemia=1")
 write(rules.sub, file="RulesJoaquim")
 

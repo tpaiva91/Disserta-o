@@ -1,10 +1,30 @@
 \chapter{Estado da Arte}\label{chap:stat}
 
-Neste capítulo, pretende-se analisar com algum nível de detalhe duas vertentes: aplicações para Android para registo de diabetes e o uso de técnicas de \textit{Data Mining} em medicina personalizada. Medicina personalizada é a prática de tratar cada doente de forma individualizada, de acordo com as suas características, necessidades e preferências a cada momento, em vez de um tratamento generalizado para todos os pacientes.  [PersMed.pdf]
+Neste capítulo, pretende-se analisar as tecnologias existentes utilizadas na diabetes. Vamos dividir este capítulo em dois grupos: dispositivos utilizados para monitorizar e registar os vários parâmetros existentes e o uso de medicina personalizada para controlar a diabetes, através de técnicas de \textit{data mining}. Medicina personalizada é a prática de tratar cada doente de forma individualizada, de acordo com as suas características, necessidades e preferências a cada momento, em vez de um tratamento generalizado para todos os pacientes.  [PersMed.pdf]
 
 
-\section{Aplicações para registo de diabetes}
-Quanto a aplicações para Android de registo de diabetes, existem várias alternativas. Foram escolhidas as cinco aplicações mais populares (ou seja, com mais \textit{downloads}) na \textit{Google Play}. Estas aplicações foram instaladas e testadas afim de perceber aquilo que cada uma oferece ao utilizador. De salientar que foram escolhidas apenas aplicações disponíveis de forma gratuita. 
+\section{Dispositivos para monitorizar a diabetes}
+
+Quanto a dispositivos para monitorizar a glicose, há várias soluções: bombas infusoras de insulina, monitores contínuos de glicose e glicosímetros. Com a constante evolução da tecnologia, nomeadamente dos telemóveis, os \textit{smartphones} tornaram-se também uma ferramenta que pode ajudar nesta doença. De seguida, vamos comparar os diferentes dispositivos, com especial ênfase nas aplicações para \textit{smartphone}, uma vez que este projeto se assenta numa aplicação. 
+
+\subsection{Bombas infusoras de insulina}
+
+Uma bomba infusora de insulina é um pequeno dispositivo liberta insulina de ação rápida 24 horas por dia. A quantidade de insulina libertada é ajustada de acordo com as necessidades do utilizador. Existem várias marcas e modelos no mercado, e, apesar de todas terem o mesmo objetivo fundamental, têm algumas diferenças nas funcionalidades que oferecem. Um exemplo de bomba é a Accu-Chek Combo: é composta pela bomba e por um monitor de glicemia, que comunicam entre si através de \textit{bluetooth} para que a insulina injetada seja de acordo com os níveis de glicemia. [akku]
+
+\subsection{Glicosímetros}
+
+O glicosímetro é o dispositivo base para qualquer diabético: permite medir os níveis de glicemia a qualquer instante, através de uma pequena quantidade de sangue. São uma importante ferramenta pois permitem ao doente saber qual o seu nível de glicose no sangue a dada altura para que possa assim ajustar a insulina a tomar.
+
+\subsection{Monitor contínuo de glicose}
+
+É um pequeno aparelho que o utilizador usa a toda a hora e que está constantemente a medir os níveis de glicemia. Assim, quando estes valores forem demasiado altos ou baixos, emite um aviso para que o utilizador possa tomar a medida mais adequada. Um exemplo de um dispositivo deste tipo é o da Dexcom. [continuous]
+
+\section{Aplicações para smartphones Android}
+
+Estima-se que em 2016 o número de utilizadores de \textit{smartphones} seja, em todo o mundo, de 2.08 mil milhões. Por outro lado, os \textit{smartphones} têm cada vez mais poder de processamento, o que os torna úteis para inúmeras atividades, como a saúde, nomeadamente a diabetes. Uma parte importante do controlo da doença passa pela monitorização dos níveis de glicemia e do seu registo, para que se possa manter um controlo mais rigoroso. Torna-se, portanto, relevante analisar o que existe no mercado em termos de aplicações que possam ser úteis no controlo da diabetes.
+
+Para esta comparação foram tidas em conta apenas aplicações para Android, por ser o sistema operativo móvel mais usado no mundo [mercadomovel] e porque a aplicação na qual este projeto se baseia é também para Android. Foram escolhidas cinco aplicações da \textit{Google Play}. Estas aplicações foram escolhidas com base no número de \textit{downloads} e número de \textit{ratings}. Cada aplicação foi instalada e testada com o intuito de perceber aquilo que oferece ao utilizador. Todas as aplicações escolhidas são grátis para \textit{download}.
+
 
 \subsection{Diário da Diabetes mySugr}
 
@@ -55,16 +75,23 @@ A aplicação oferece ainda um alarme que pode ser ativado para uma determinada 
 Como se pode perceber, as aplicações não diferem muito entre si e todas elas oferecem praticamente as mesmas funcionalidades. 
 
 
-\section{Data Mining na saúde}
+\section{Medicina personalizada e data mining na saúde}
 
 
 Nesta secção pretende-se abordar de que forma a área de \textit{Data Mining} pode ser útil para a saúde. Vamos analisar algum trabalho feito na área da saúde utilizando técnicas de \textit{Data Mining}, de uma forma geral, e também o que já foi feito em específico para a diabetes. 
 
 Estas técnicas podem ser utilizadas para fins diferentes: fazer aprendizagem analisando dados já existentes para que se possam criar modelos, que por sua vez irão classificar novos dados; encontrar relações entre variáveis e causas; detetar padrões.
 
-Em [tiago.pdf], os autores usaram diferentes algoritmos para tentar prever a sobrevivência ao cancro da mama. Neste caso, define-se por sobrevivência o paciente estar vivo pelo menos 5 anos após o diagnóstico do cancro. Foram usados três algoritmos de classificação diferentes: redes neuronais artificiais, árvores de decisão e regressão logística. Os autores usaram um \textit{dataset} já existente e, depois de todo o pré-processamento, como limpeza de dados, obtiveram um \textit{dataset} com 17 variáveis (16 variáveis de previsão e 1 variável de classe, isto é, a variável a ser prevista). Gerando modelos através dos três algoritmos utilizados, conseguiram classificar, com alta percentagem de precisão, se um dado paciente teria sobrevivido ou não. Além disso, conseguiram também descobrir quais as variáveis mais importantes para a classificação, e, portanto, atribuir importâncias diferentes a diferentes variáveis.
+Em [tiago.pdf], os autores usaram diferentes algoritmos para tentar prever a sobrevivência ao cancro da mama. Neste caso, define-se por sobrevivência o paciente estar vivo pelo menos 5 anos após o diagnóstico do cancro. Foram usados três algoritmos de classificação diferentes: redes neuronais artificiais, árvores de decisão e regressão logística. Os autores usaram um \textit{data set} já existente e, depois de todo o pré-processamento, como limpeza de dados, obtiveram um \textit{data set} com 17 variáveis (16 variáveis de previsão e 1 variável de classe, isto é, a variável a ser prevista). Gerando modelos através dos três algoritmos utilizados, conseguiram classificar, com alta percentagem de precisão, se um dado paciente teria sobrevivido ou não. Além disso, conseguiram também descobrir quais as variáveis mais importantes para a classificação, e, portanto, atribuir importâncias diferentes a diferentes variáveis. Os diferentes algoritmos conseguiram diferentes precisões: a rede neuronal teve uma precisão de 0.9121; a regressão logística teve uma precisão de 0.8920 e a árvore de decisão teve uma precisão de 0.9362. De notar que estes resultados foram obtidos usando \textit{cross-validation}. \textit{Cross-validation} é um método que divide um \textit{data set} em duas partes: treino e teste. Neste caso, foi usada \textit{10 fold cross-validation} o que significa que o \textit{data set} foi dividido em 10 partes, ou seja, nove partes são usadas para treino e gerar um modelo. Esse modelo vai ser usado na parte restante para classificação e este processo é repetido dez vezes. Em cada repetição, o conjunto de teste é diferente. A precisão obtida nestes testes foram a média das dez repetições.
 
-Num outro estudo, conduzido por Soni \textit{et. al.} [soni.pdf]
+Em [palaniappan2008.pdf], os autores criaram uma aplicação web para prever o risco de um dado paciente ter doença cardíaca. A partir de um \textit{data set} com 909 registos, com 15 varíaveis, usaram três algoritmos diferentes para calcular a probabilidade de um dado paciente ter uma doença cardíaca: Árvores de Decisão, \textit{Naive Bayes} e Redes neuronais. Os registos foram dividos, em igual proporção, num conjunto de treino (455 registos) e conjunto de teste (454 registos). Obteram diferentes precisões para os modelos: \textit{Naive Bayes} foi o modelo com maior precisão, 86.12\%, seguido da rede neuronal com 85.68\% e Árvores de decisão com 80.4\%. Neste estudo, os autores conseguiram também encontrar relações entre variáveis. Por exemplo, conseguiram concluir que a variável "Tipo de dor no peito" é a mais influente relativamente a uma doença cardíaca. Conseguiram também obter algumas regras que ajudam a prever, com alta percentagem de correção, se um dado paciente tem doença cardíaca ou não. Uma das regras geradas foi "Chest Pain Type = 4 and CA = 0 and Exang = 0 and Trest Blood Pressure >= 146.362 and < 158.036", que diz que 99.61\% dos doentes cardíacos cumprem estes requisitos. 
+
+Em [associationDiabetes.pdf], os autores aplicaram o algoritmo \textit{apriori} num \textit{data set} com 100 registos de pacientes diabéticos, para tentar gerar regras de associação. Uma das regras geradas é "IF diabetes mellitus type = 2 AND special condition = no AND target = good AND unstable diabetes = no THEN regime = 2". Neste caso, regime é a proposta de insulina por dia, sendo que "2" corresponde a duas injeções de insulina mista, com ação curta e intermédia, uma ao pequeno-almoço e uma à tarde. 
+
+Finalmente, em [SVMDiabetes.pdf], os autores usaram algoritmos de classificação para gerar um modelo de diagnóstico da diabetes. Neste caso, usam-se SVM's (\textit{support vector machines} e um \textit{data set} com 56 variáveis que foi dividido em duas partes: 90\% para o conjunto de treino e 10\% para conjunto de teste. Foi usada \textit{10 fold cross-validation} como método de treino para obter os parâmetros ideais para os modelos. Depois deste processo, a melhor \textit{fold} é escolhida para gerar conjuntos de regras e para ser usada na classificação do conjunto de teste. Contudo, SVM's têm uma natureza \textit{black-box}, são capazes de classificar dados mas não são capazes de explicar o porquê dessa mesma classificação. Isto significa que, usando apenas SVM's, não é possível extrair regras. Face a este inconveniente, os autores decidiram combinar SVM's com outros dois algoritmos: \textit{Random Forests} (RF) e C4.5, um algoritmo para árvores de decisão. A combinação de SVM's com outros algoritmos \textit{white-box} já vem sendo utilizada noutros estudos. [svm1.pdf][svm2.pdf] Neste caso, conseguiram-se gerar regras que ajudam a classificar dados como pertencendo a pacientes diabéticos ou não-diabéticos. Uma das regras geradas é, por exemplo,  "If HBA1C > 7.15 and HDL > 1.57 and CHOL > 5.9 and AGE>77, then diabetic". 
+Outra é "If HBA1C > 7.25, then diabetic". Os dois algoritmos usados, SVM + RF e SVM + C4.5 conseguiram, respetivamente, 89.6\% e 86.3\% de precisão.
+
+
 
 
 
