@@ -1,0 +1,27 @@
+Vitor Ferreira:
+
+{Day=Terça}                  => {Value_Glucose=5} 0.09933775 0.6000000  1.415625
+{Period=3}                   => {Value_Glucose=5} 0.23178808 0.6603774  1.558078
+{Day=Terça,Period=3}         => {Value_Glucose=5} 0.05960265 1.0000000  2.359375
+{Day=Quinta,Period=3}        => {Value_Glucose=5} 0.05298013 0.8000000  1.887500
+
+
+Joaquim:
+
+{Day=Sábado}          => {Value_Glucose=5} 0.07734807 0.7567568  1.472828
+{Day=Sábado,Period=1} => {Value_Glucose=5} 0.03867403 0.7368421  1.434069
+{Day=Terça,Period=2}  => {Value_Glucose=5} 0.03867403 0.6363636  1.238514
+{Day=Quarta,Period=1} => {Value_Glucose=5} 0.03867403 0.6363636  1.238514
+
+
+Catarina Vale:
+
+{Day=Quinta,Period=3}         => {Value_Glucose=4} 0.02439024 1.0000000  4.555556
+{Day=Quinta,Period=1}         => {Value_Glucose=4} 0.02439024 1.0000000  4.555556
+
+
+Rita Leite:
+
+{Day=Terça}                   => {Value_Glucose=4} 0.07142857 0.6666667  1.244444
+{Day=Segunda}                 => {Value_Glucose=4} 0.10714286 0.7500000  1.400000
+{Day=Quinta}                  => {Value_Glucose=4} 0.10714286 0.7500000  1.400000

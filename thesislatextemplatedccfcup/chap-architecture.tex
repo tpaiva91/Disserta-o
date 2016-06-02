@@ -1,14 +1,21 @@
 \chapter{MyDiabetes}\label{chap:syst}
 
-Neste capítulo vamos analisar com mais detalhe a aplicação utilizada neste projeto de dissertação. A aplicação chama-se \textit{MyDiabetes} e, além de ser utilizada para recolher os dados que posteriormente vão ser utilizados, é também nela que vai ser implementado o sistema definido nos objetivos desta dissertação. 
+Neste capítulo vamos analisar com mais detalhe a aplicação utilizada neste projeto de dissertação. A aplicação chama-se \textit{MyDiabetes} e foi desenvolvida no âmbito do mesmo projeto em que esta dissertação se insere. 
+Por não haver \textit{data sets} existentes com o formato e tipo de dados pretendidos, tornou-se necessário recolhê-los. Para tal, disponibilizámos a aplicação para ser utilizada de forma voluntário por alguns utilizadores diabéticos. Este processo será explicado no próximo capítulo.
+Esta aplicação foi a escolhida para disponibilizar aos voluntários não só por ter sido desenvolvida neste mesmo projeto mas também pelo maior controlo que permite ter ao permitir registar todos os dados que possam ser relevantes para esta dissertação. 
+Outra característica que a torna relevante é o facto de ter um sistema que permite o envio dos dados dos utilizadores para o projeto, para que estes possam ser utilizados. Sendo então esta a aplicação utilizada, vamos descrever alguns aspetos importantes.
+
 
 \section{Objetivo da aplicação}
 
-Esta aplicação tem como objetivo ajudar o doente diabético, ao disponibilizar uma ferramenta que permita registar e visualizar os vários parâmetros importantes, como glicose, insulinas e hidratos de carbono. A visualização pode ser feita através de gráficos ou de lista. A aplicação facilita o dia-a-dia do diabético pois permite ter um maior controlo sobre os seus registos, através de uma fácil visualização ou navegação para datas anteriores de forma a ver valores num determinado intervalo de tempo.
+O objetivo desta aplicação já foi mencionado anteriormente: ajudar o doente diabético, ao oferecer uma ferramenta alternativa que permita registar e visualizar todos os parâmetros importantes, como glicose, insulina e hidratos de carbono. O \textit{smartphone} é um dispositivo bastante interessante para ter aplicações como esta: a maioria das pessoas tem um e portanto, se tiver uma aplicação pode registar a glicemia a qualquer hora e em qualquer lugar.
+Além da função de registo, a aplicação permite também a visualização dos registos efetuados em forma de gráfico. Assim torna-se mais fácil detetar hiperglicemias, por exemplo. Ou visualizar registos de meses anteriores ou até mesmo mostrar ao médico, durante a consulta, os valores de glicemia no período entre as consultas.
+No futuro, a aplicação será mais interativa com o utilizador ao mostrar diferentes avisos ou conselhos. Tudo isto contribui para o objetivo principal: tornar mais simples e eficaz o controlo da glicemia. 
+
+Para esta dissertação, o objetivo foi o de familiarizar os utilizadores com a aplicação e também servir de ferramenta para enviar os dados necessários.
 
 \section{Arquitetura}
 
-[é o que exatamente??]
 
 A aplicação é bastante intuitiva: tem menus de registo, como registo de refeições, insulinas, exercício ou doenças. Esses registos são guardados no \textit{smartphone}, numa base de dados \textit{sqlite}. Tem também um menu para visualização dos registos efetuados, o "Logbook". 
 

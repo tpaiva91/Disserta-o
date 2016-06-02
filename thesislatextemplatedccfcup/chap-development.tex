@@ -4,6 +4,13 @@ Este capítulo foca a análise de dados obtidos. Será feita uma descrição do 
 
 \section{Descrição do estudo}
 
+
+Para que este estudo pudesse ser feito, era necessário ter um \textit{data set} com os diferentes parâmetros que pudessem ser relevantes, como glicemia, insulina, hidratos de carbono e exercício. 
+
+
+Este \textit{data set} tinha que ter algumas características: ter vários registos ao longo do tempo, para que se possam detetar comportamentos rotineiros, e pertencer a um mesmo paciente. O primeiro passo seria então pesquisar por \textit{data sets} existentes na \textit{web} com registos de pacientes diabéticos. Apesar de haverem alguns, eles não tinham o formato pretendido: ou só tinham um registo por cada pessoa, como idade, peso, tipo de diabetes, etc. que não permitia fazer uma análise como a pretendida; ou, como é o caso deste \textit{data set}, apesar de haver vários registos por pessoa num período do tempo, os dados apenas incluem a glicemia, o que o torna incompleto.
+
+
 O objetivo da dissertação é integrar, na aplicação \textit{MyDiabetes}, um sistema que seja capaz de analisar, em tempo real, os dados inseridos pelo utilizador, para que se possam detetar anormalidades. Essas anormalidades serão apresentadas na forma de regras, que serão obtidas a partir de algoritmos de associação. No entanto, estes algoritmos geram todo o tipo de regras: algumas relevantes e outras não. Para que o sistema saiba quais as regras relevantes e quais as regras descartáveis é preciso saber que tipo de regras vão ser obtidas. Para isso, o primeiro passo seria aplicar as diferentes técnicas a dados já existentes para fazer uma filtragem de regras úteis. Neste caso, o tipo de dados necessários seriam medições contínuas dos vários parâmetros ao longo de algumas semanas, para que se possam detetar padrões temporais. Por exemplo, um padrão deste tipo poderia ser "Um dado utilizador pratica exercício às terças à noite. Às quartas de manhã costuma ter hipoglicemia". 
 
 No entanto, os \textit{data sets} disponíveis \textit{online} relativamente a dados de pacientes diabéticos são escassos e não estão no formato pretendido. Por exemplo, um \textit{data set} disponível tem dados relativos a uma tribo indígena norte-americana com algumas variáveis, entre as quais idade, indíce de massa corporal e pressão arterial, em que cada registo pertence a um paciente. Este tipo de dados é para classificação de cada paciente como diabético ou não-diabético, e portanto não corresponde ao que se pretende nesta dissertação. 

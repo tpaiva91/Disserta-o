@@ -322,3 +322,71 @@ lines(joaquim$Value_Glucose[joaquim$Period==3], ylab="Valor de glicose", xlab="P
 points(joaquim$Value_Glucose[joaquim$Period==3], ylab="Valor de glicose", xlab="Período: noite", col="green", ylim=c(50, 230))
 points(joaquim$Value_Glucose[joaquim$Period==2], ylab="Valor de glicose", xlab="Período: tarde", col="blue", ylim=c(50,230))
 lines(joaquim$Value_Glucose[joaquim$Period==2], ylab="Valor de glicose", xlab="Período: tarde", col="blue", ylim=c(50, 230))
+
+
+
+
+##################################################################################
+#Regras apenas com glicemia
+setwd("~/Tese/Tese/Databases/CSV/Data")
+
+
+joaquim <- read.csv("PauloSa.csv")
+
+
+
+joaquim[is.na(joaquim)] <-0
+joaquim$Day <- weekdays(as.Date(joaquim$DateTime))
+joaquim$Period <- format(as.POSIXlt(joaquim$DateTime), "%H:%M:%S")
+
+joaquim$DateTime <- NULL
+
+for(i in 1:nrow(joaquim)){
+  
+  if(joaquim$Value_Glucose[i]<70){
+    
+    joaquim$Value_Glucose[i]=1
+    
+  } else
+    if(joaquim$Value_Glucose[i] >70 & joaquim$Value_Glucose[i]<80){
+      joaquim$Value_Glucose[i]=2
+      
+    } else if(joaquim$Value_Glucose[i] >= 80 & joaquim$Value_Glucose[i]<130){
+      joaquim$Value_Glucose[i]=3
+      
+    } else if(joaquim$Value_Glucose[i] >=130 & joaquim$Value_Glucose[i]<180){
+      joaquim$Value_Glucose[i]=4
+      
+    } else if(joaquim$Value_Glucose[i]>=180){
+      joaquim$Value_Glucose[i]=5
+      
+    }
+}
+
+for(i in 1:nrow(joaquim)){
+  if(strptime(joaquim$Period[i], "%H:%M:%S") >= strptime("06:00:00", "%H:%M:%S") & strptime(joaquim$Period[i], "%H:%M:%S") < strptime("12:00:00", "%H:%M:%S"))
+  {
+    joaquim$Period[i] = 1
+  } else if(strptime(joaquim$Period[i], "%H:%M:%S") >= strptime("12:00:00", "%H:%M:%S") & strptime(joaquim$Period[i], "%H:%M:%S") < strptime("20:00:00", "%H:%M:%S")){
+    joaquim$Period[i] = 2
+  } else{
+    joaquim$Period[i] = 3
+  }
+}
+
+joaquim$Value_Carbs <- NULL
+joaquim$Value_Insulin <- NULL
+joaquim$Exercise <- NULL
+joaquim$Variation <- NULL
+joaquim$Had_Exercise <- NULL
+
+
+joaquim$Day <- as.factor(joaquim$Day)
+joaquim$Period <- as.factor(joaquim$Period)
+joaquim$Value_Glucose <- as.factor(joaquim$Value_Glucose)
+
+library(arules)
+rules <- apriori(joaquim, parameter=list(confidence=0.6, support=0.01))
+
+rules.sub <- subset(rules, subset = rhs %in% "Value_Glucose=5")
+
