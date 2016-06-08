@@ -1,3 +1,12 @@
+Utilizador 1: Paulo Sá
+Utilizador 2: Rita Leite
+Utilizador 3: Catarina Vale
+Utilizador 4: Joaquim
+Utilizador 5: Vitor Ferreira
+Utilizador 6: Teresa Vieira
+
+
+
 Vitor Ferreira:
 
 {Day=Terça}                  => {Value_Glucose=5} 0.09933775 0.6000000  1.415625
@@ -25,3 +34,9 @@ Rita Leite:
 {Day=Terça}                   => {Value_Glucose=4} 0.07142857 0.6666667  1.244444
 {Day=Segunda}                 => {Value_Glucose=4} 0.10714286 0.7500000  1.400000
 {Day=Quinta}                  => {Value_Glucose=4} 0.10714286 0.7500000  1.400000
+
+
+Teresa Vieira:
+
+{Day=Segunda,Period=2} => {Value_Glucose=5} 0.03636364 0.6666667  2.365591
+{Day=Sábado,Period=1}  => {Value_Glucose=5} 0.02727273 0.7500000  2.661290
