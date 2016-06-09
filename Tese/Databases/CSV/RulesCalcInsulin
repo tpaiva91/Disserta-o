@@ -1,0 +1,11 @@
+Joaquim:
+
+{Period=1,Diferença_Insulin=2}        => {Value_Glucose=5} 0.05524862 0.7692308  1.497105
+{Diferença_Insulin=3}                 => {Value_Glucose=5} 0.08287293 0.6666667  1.297491
+{Diferença_Insulin=2}                 => {Value_Glucose=5} 0.10773481 0.6093750  1.185988
+
+
+VitorFerreira:
+
+{Period=3,Value_Carbs=3,Diferença_Insulin=3}                 => {Value_Glucose=5} 0.1328125 0.7727273  1.939394
+{Period=3,Value_Insulin=3,Diferença_Insulin=3}               => {Value_Glucose=5} 0.1250000 0.7619048  1.912232
