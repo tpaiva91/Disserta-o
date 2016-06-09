@@ -108,4 +108,63 @@ Uma primeira estatística poderia ser simplesmente a média de glicose para um d
 
 \textbf{Média de glicose}: 116
 
-Esta média é referente a vários registos ao longo de 5 semanas e portanto, indica que o utilizador tem um bom controlo geral da glicemia. No entanto isto não é suficiente: a média dá um indicador demasiado geral sobre os valores de glicemia e não permite detetar anomalias. Isto é, apesar de 116 ser um ótimo valor para média, pode não significar necessariamente que os valores de glicemia são estáveis. Se tivermos 2 registos em que um valor é 40 e o outro 200, a média será de 120 e no entanto ambos os valores são perigosos: o primeiro representa uma hipoglicemia e o segundo uma hiperglicemia. No entanto, olhando apenas para a média diríamos que os valores eram ótimos e o utilizador teria um bom controlo da glicemia. Torna-se portanto fazer uma análise mais aprofundada.
+Esta média é referente a vários registos ao longo de 5 semanas e portanto, indica que o utilizador tem um bom controlo geral da glicemia. No entanto isto não é suficiente: a média dá um indicador demasiado geral sobre os valores de glicemia e não permite detetar anomalias. Isto é, apesar de 116 ser um ótimo valor para média, pode não significar necessariamente que os valores de glicemia são estáveis. Se tivermos 2 registos em que um valor é 40 e o outro 200, a média será de 120 e no entanto ambos os valores são perigosos: o primeiro representa uma hipoglicemia e o segundo uma hiperglicemia. No entanto, olhando apenas para a média diríamos que os valores eram ótimos e o utilizador teria um bom controlo da glicemia. Torna-se portanto necessário fazer uma análise mais aprofundada.
+
+\subsection{Média de glicose por dia}
+
+Saber a média da glicemia por cada dia da semana já nos permite perceber de forma detalhada como é que os níveis de glicose no sangue vão oscilando. Em concreto, já nos dará a conhecer quais os dias em que a glicemia é mais elevada ou mais baixa. Ao fazer uma análise como esta já seria possível avisar o utilizador caso um ou mais dias tivesse uma média de glicemia bastante elevada. Eis os valores:
+
+\begin{itemize}
+\item Domingo: 125
+\item Segunda: 111
+\item Terça: 119
+\item Quarta: 126
+\item Quinta: 107
+\item Sexta: 111
+\item Sábado: 112
+\end{itemize}
+
+Ficámos a saber que os valores de Domingo e Quarta são, em média, consideravelmente mais altos que no resto dos dias. Ainda assim, são valores dentro do normal pelo que também não se pode concluir nada com esta análise para este utilizador específico. No entanto, analisando os valores de outro utilizador, obtemos:
+
+\begin{itemize}
+\item Domingo: 174
+\item Segunda: 140
+\item Terça: 154
+\item Quarta: 158
+\item Quinta: 148
+\item Sexta: 159
+\item Sábado: 179
+\item Média de todos os dias: 156
+\end{itemize}
+
+Aqui a situação é diferente: claramente uns dias têm, em média, valores mais altos de glicemia sendo que neste caso são valores já elevados que significam hiperglicemia. Sábado e Domingo são os dias em que os valores são mais elevados, que pode ter alguma razão para tal: o utilizador pode estar mais relaxado ao fim-de-semana e não controlar tantas vezes a glicemia, o que se traduz em valores mais elevados; ou pode também significar que o utilizador se descura mais na alimentação, o que explicaria os valores mais altos; pode ainda dever-se ao facto de o utilizador levar um estilo mais sedentário ao fim-de-semana, livre do \textit{stress} de um dia-a-dia de trabalho aproveitar o fim-de-semana para descansar. No entanto, mais importante que a causa dos valores mais altos, é o conhecimento de que isto acontece. No contexto da aplicação, e perante estes dados, a aplicação teria este conhecimento e portanto, ao fim-de-semana, poderia mostrar o aviso de que o utilizador tem tendência para valores mais elevados nestes dias e por isso tomar mais cuidados. 
+
+Com isto pode-se perceber que analisar por dia pode ser, em alguns casos, vantajoso. Mas dentro do próprio dia, pode-se analisar de forma mais detalhada.
+
+\subsection{Média de glicose por período do dia}
+
+Tal como já explicado, neste \textit{data set} dividiu-se o dia em três partes:
+
+\begin{itemize}
+\item Manhã: 06:00 - 11:59;
+\item Tarde: 12:00 - 19:59;
+\item Noite: 20:00 - 05:59;
+\end{itemize}
+
+Pode ser útil saber qual a parte do dia em que os valores de glicose no sangue são mais elevados ou mais baixos. Por exemplo, se um dado utilizador souber que costuma ter valores muito baixos pelo início da manhã, significa que os valores também possam ter sido baixos durante a noite e, por isso, passar a alimentar-se antes de ir dormir. Para o primeiro utilizador, temos as seguintes médias de glicemia:
+
+\begin{itemize}
+\item Manhã: 106
+\item Tarde: 111
+\item Noite: 128
+\end{itemize}
+
+Uma vez mais, esta análise por si só não permite descobrir oscilações. Estes valores estão dentro do intervalo normal mas tal não significa que não tenham ocorrido hipo ou hiperglicemias. Aliás, a probabilidade é que tenham mesmo ocorrido valores muito altos ou baixos. No entanto, esta análise mostra que geralmente, durante as manhãs, o utilizador tem valores mais baixos e à noite mais altos. Para o segundo paciente, os valores médios de glicemia são:
+
+\begin{itemize}
+\item Manhã: 165
+\item Tarde: 153
+\item Noite: 148
+\end{itemize}
+
+Tal como na subsecção anterior, para o segundo utilizador esta análise já nos dá algum conhecimento sobre as oscilações de glicemia. Neste caso, o utilizador tem valores mais altos pela manhã, que vão diminuindo durante o dia e aumentam durante a noite. O aumento da glicemia durante a noite pode ser explicado por vários fatores: insulina insuficiente durante a noite ou o consumo de hidratos de carbono antes de ir dormir. Pode também acontecer que o aumento não se deva a nenhuma das razões anteriores e que aconteça naturalmente. Isto pode ser explicado pelo \textit{dawn phenomenon}. Este fenómeno causa o aumento da quantidade de glicose no sangue durante a noite, devido a hormonas que o corpo produz durante a madrugada. Independentemente do motivo do aumento, obviamente que o utilizador de manhã apercebe-se que de manhã tem valores mais altos. O que pode não se aperceber é que esta situação é recorrente e portanto pode ser melhorada. Mais uma vez, no contexto da aplicação, neste caso surgiria um aviso nas manhãs a informar que tal acontecia, pelo que o utilizador poderia retificar a situação.

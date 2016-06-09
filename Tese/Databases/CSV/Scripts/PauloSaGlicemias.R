@@ -115,6 +115,7 @@ abline(h=180, col="blue")
 
 #média de glicose por dia
 mean(joaquim$Value_Glucose)
+mean(joaquim$Value_Glucose[joaquim$Day=="Domingo"])
 
 
 #todos os periodos no mesmo gráfico
