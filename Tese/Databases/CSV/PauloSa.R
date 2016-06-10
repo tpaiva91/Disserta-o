@@ -12,23 +12,36 @@ joaquim$Period <- format(as.POSIXlt(joaquim$DateTime), "%H:%M:%S")
 joaquim$DateTime <- NULL
 
 
-
 for(i in 1:nrow(joaquim)){
   
-  if(i==1){
+  if(i==0){
     joaquim$Calculated_Insulin = 0;
   } else {
-  joaquim$Calculated_Insulin[i] = joaquim$Value_Carbs[i-1]/10 + ((joaquim$Value_Glucose[i] - 120)/40)
+    joaquim$Calculated_Insulin[i] = joaquim$Value_Carbs[i]/28 + ((joaquim$Value_Glucose[i] - 120)/95)
+    joaquim$Calculated_Insulin[i] = round(joaquim$Calculated_Insulin[i] / 0.5)*0.5
   }
 }
 
 for(i in 1:nrow(joaquim)){
-  if(joaquim$Day[i]==joaquim$Day[i+1] & joaquim$Value_Glucose[i] > joaquim$Value_Glucose[i+1]){
-    joaquim$Variation[i+1]=1
-  } else if(joaquim$Day[i]==joaquim$Day[i+1] & joaquim$Value_Glucose[i] < joaquim$Value_Glucose[i+1]) {
-    joaquim$Variation[i+1]= 2
+  joaquim$Diferença_Insulin[i] = joaquim$Value_Insulin[i] - joaquim$Calculated_Insulin[i]
+  
+  if(joaquim$Diferença_Insulin[i] >=3.0) {
+    joaquim$Diferença_Insulin[i] = 5
+  } else if(joaquim$Diferença_Insulin[i] >= 0.5 && joaquim$Diferença_Insulin[i] < 3.0) {
+    joaquim$Diferença_Insulin[i] = 4
+  } else if(joaquim$Diferença_Insulin[i] == 0.0) {
+    joaquim$Diferença_Insulin[i] = 3
+  } else if(joaquim$Diferença_Insulin[i] <= - 0.5 && joaquim$Diferença_Insulin[i] > -3.0 ) {
+    joaquim$Diferença_Insulin[i] = 2
+  } else if(joaquim$Diferença_Insulin[i] <= -3.0) {
+    joaquim$Diferença_Insulin[i] = 1
   }
 }
+
+joaquim$Exercise <- NULL
+joaquim$Had_Exercise <- NULL
+joaquim$Variation <- NULL
+joaquim$Calculated_Insulin <- NULL
 
 
 
@@ -126,12 +139,7 @@ joaquim$Value_Carbs <- as.factor(joaquim$Value_Carbs)
 joaquim$Value_Insulin <- as.factor(joaquim$Value_Insulin)
 joaquim$Exercise <- as.factor(joaquim$Exercise)
 joaquim$Variation <- as.factor(joaquim$Variation)
-
-
-
-joaquim$Exercise <- NULL
-joaquim$Had_Exercise <- NULL
-joaquim$Calculated_Insulin <- NULL
+joaquim$Diferença_Insulin <- as.factor(joaquim$Diferença_Insulin)
 
 
 library(arules)

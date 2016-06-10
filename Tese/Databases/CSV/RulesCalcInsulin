@@ -9,3 +9,8 @@ VitorFerreira:
 
 {Period=3,Value_Carbs=3,Diferença_Insulin=3}                 => {Value_Glucose=5} 0.1328125 0.7727273  1.939394
 {Period=3,Value_Insulin=3,Diferença_Insulin=3}               => {Value_Glucose=5} 0.1250000 0.7619048  1.912232
+
+Paulo Sa:
+
+{Day=Domingo,Value_Carbs=5,Diferença_Insulin=2}                 => {Value_Glucose=5} 0.01052632 0.6666667   9.74359
+{Day=Domingo,Period=3,Diferença_Insulin=2}                      => {Value_Glucose=5} 0.01052632 0.6666667   9.74359

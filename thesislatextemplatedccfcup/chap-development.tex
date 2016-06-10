@@ -95,8 +95,58 @@ Isto garante também que as regras geradas não são enviesadas: se quisermos de
 No final deste passo, o conjunto de dados é consideravelmente mais pequeno, em termos de quantidade de variáveis, e portanto permite fazer uma análise mais objetiva, com menos informação desinteressante.
 
 \textbf{Transformação dos dados} - Por fim, este passo serve para transformar os valores existentes em valores que possam ser utilizados da forma mais conveniente. Ter uma variável "DateTime" no formato "AAAA-MM-DD HH:MM" não é tão útil visto que o dia e hora, que até podem ser variáveis interessantes, estão numa só variável e torna o seu uso mais difícil. Neste caso, seria mais vantajoso separar as duas variáveis e portanto, transformar "DateTime" em "Day" e "Hour". Ainda assim, ter um dia do ano e uma hora específica do dia não é exatamente o formato mais útil, pois são variáveis demasiado específicas e por isso pouco repetidas, ou até nunca repetidas, pelo que não irão contribuir para a descoberta de padrões. Para melhorar este detalhe, podia ainda fazer-se outra alteração: transformar o dia do ano em dias da semana e transformar a hora do dia em período do dia, como "manhã", "noite", ou "tarde". Assim, transformámos a variável "DateTime" em duas variáveis, "Day" e "Period".
-Sempre que um utilizador regista uma refeição, com base na glicemia, na glicemia que pretende atingir e nos hidratos de carbono que ingere, é calculada a insulina a tomar. Contudo, o utilizador pode optar por não seguir a dosagem recomendada e tomar mais ou menos. Tendo isto em conta, pode ser importante ver os efeitos que isto provoca e portanto criou-se uma nova variável "Insulin\textunderscore Difference". Com esta nova variável, se o utilizador optar por tomar uma quantidade de insulina diferente da sugerida com frequência, e isto tiver efeito negativo na glicemia, este padrão será detetado. 
+Sempre que um utilizador regista uma refeição, com base na glicemia, na glicemia que pretende atingir e nos hidratos de carbono que ingere, é calculada a insulina a tomar. Contudo, o utilizador pode optar por não seguir a dosagem recomendada e tomar mais ou menos. Tendo isto em conta, pode ser importante ver os efeitos que isto provoca e portanto criou-se uma nova variável "Insulin\textunderscore Difference". 
+A variável "Insulin\textunderscore Difference" é calculada com base na fórmula
+\begin{lstlisting}[caption=Fórmula para calcular insulina a ser tomada, label=form]
+Insulin_Difference = Value_Carbs / RH + ((Value_Glucose - OG)/FS)
+\end{lstlisting}
+
+
+em que "RH" é o rácio de hidratos de carbono, "OG"  é o objetivo de glicemia e "FS"  é o fator de sensibilidade. Estes valores são diferentes para cada utilizador e cada utilizador pode ter vários objetivos de glicemia por dia. 
+Com esta nova variável, se o utilizador optar por tomar uma quantidade de insulina diferente da sugerida com frequência, e isto tiver efeito negativo na glicemia, este padrão será detetado. 
 Neste momento o \textit{data set} era composto por 6 variáveis: "Day", "Period", "Value\textunderscore Carbs", "Value\textunderscore Glucose", "Value\textunderscore Insulin" e "Insulin\textunderscore Difference".
+
+Relembrando que "Day" e "Period" foram transformadas através da variável original, "DateTime". A variável "Day" foi obtida aplicando a função \textit{weekdays} [weekdays] do \textit{package "base"} do R. A variável "Period" tem como objetivo discretizar a hora do registo: "Period" não diz respeito a uma hora mas sim a um intervalo. Assim sendo, "Period" tem três valores possíveis:
+
+\begin{itemize}
+\item \textbf{1} - Manhã (06:00 - 11:59)
+\item \textbf{2} - Tarde (12:00 - 19:59)
+\item \textbf{3} - Noite (20:00 - 05:59)
+\end{itemize}
+
+o que garante que um dado registo vá pertencer a um dos períodos existentes. Se em vez de usar um intervalo de horas, fossem usadas as horas certas, isso faria com que fosse muito mais difícil encontrar padrões: por exemplo, um registo às 08:30 e outro às 09:30 pertencem ambos ao período 1 mas a horas diferentes. Para que haja um padrão, é necessário que haja repetição de valores. Neste exemplo, se fossem usadas as horas certas os valores seriam diferentes mas usando intervalos de tempo, ambos os registos pertencem ao mesmo período, o da "Manhã". Se pensarmos que um dia tem 24 horas e cada hora tem 60 minutos, usando uma variável "Hora" teríamos 1440 valores possíveis. Por outro lado, usando "Period" temos apenas 3 valores diferentes. 
+
+Quanto às variáveis "Value\textunderscore Glucose", "Value\textunderscore Insulin" e "Value\textunderscore Carbs", também tiveram que ser discretizadas, uma vez que se tratavam de variáveis contínuas, ainda que em diferentes intervalos. A glicemia de um paciente diabético pode osclinar entre 50mg/dL e 300mg/dL, por exemplo. Já a insulina e os hidratos também podem variar mas os intervalos são mais pequenos, principalmente na insulina. 
+Posto isto, a solução foi discretizar estras três variáveis em intervalos, tal como no período do dia. 
+Uma solução seria divir em três partes para cada um dos atributos mas visto que se tratam de variáveis importantes, o melhor foi dividir em mais intervalos, nomeadamente 5.
+Tome-se o exemplo da glicemia: para pessoas com diabetes, os valores recomendados de glicemia antes das refeições estão entre 70mg/dL e 130mg/dL e depois das refeições são entre 90mg/dL e 160mg/dL. [levels] Uma vez que esta doença costuma provocar oscilações na glicemia, é comum que os valores estejam no intervalo recomendado mas também estejam acima ou abaixo desse intervalo. Por vezes podem estar muito acima, tratando-se de uma hiperglicemia, ou muito abaixo, no caso de uma hipoglicemia. Sabendo apenas que um valor está acima do recomendado não dá muita informação. Depois de uma refeição, tanto 170mg/dL como 300mg/dL são valores acima do intervalo acima mostrado. A diferença é que o primeiro valor é um pouco acima e não é preocupante, enquanto que o segundo valor é muito mais preocupante e requer ação imediata. Isto para mostrar que, ao discretizarmos os valores de glicemia, é importante que o façamos com vários níveis: dizer que um valor está acima do recomendado não chega, é preciso diferenciar o quão acima está. Deste modo, tanto para a glicemia, como insulina e hidratos de carbono, decidiu-se discretizar os valores em cinco níveis:
+
+\begin{itemize}
+\item \textbf{1} - Valor muito abaixo do normal e possível hipoglicemia;
+\item \textbf{2} - Valor um pouco abaixo do normal;
+\item \textbf{3} - Valor normal;
+\item \textbf{4} - Valor um pouco acima do normal;
+\item \textbf{5} - Valor muito acima do normal e possível hiperglicemia;
+\end{itemize}
+
+Estes intervalos não são fixos, variando para cada utilizador. Os extremos são definidos pelo próprio utilizador, ao escolher na aplicação os limites para hipo e hiperglicemia. O valor 3 é definido tendo em conta a média de todas as glicemias do utilizador e os valores 2 e 4 são definidos através do 1º e 3º quartil de todos os valores, respetivamente. Além de ter isto em conta, é preciso também ter em conta os intervalos recomendados em cima definidos. Isto é, se a média dos valores de glicemia de um utilizador for acima do intervalo recomendado, então não fará tanto sentido definir o valor 3 como essa média. No entanto, sempre que a média das glicemias estiver dentro de um intervalo considerado normal, o valor 3 será definido como essa média.
+
+O processo de discretização para os hidratos de carbono e insulina é o mesmo: um valor 5 para hidratos de carbono mostra que o utilizador ingere uma quantidade bastante maior que a recomendada tal como um valor 5 para insulina mostra que o utilizador toma uma dose de insulina muito maior que a recomendada. Naturalmente que um extremo (1 ou 5) em qualquer variável é sempre algo indesejável: consumir demasiados hidratos de carbono pode levar a uma hiperglicemia assim como tomar demasiada insulina pode provocar uma hipoglicemia.
+
+Quanto ao valor da insulina calculada para cada registo, "Insulin\textunderscore Difference", o processo é ligeiramente diferente. A insulina é calculada com base na fórmula acima apresentada para calcular a insulina recomendada para cada registo, tendo em conta os valores de glicemia e hidratos de carbono desse mesmo registo. A insulina calculada é então subtraída à insulina tomada pelo utilizador e essa diferença será o valor da variável "Insulin\textunderscore Difference". Depois, tal como nas outras variáveis, esta é também dividida em 5 intervalos, que são:
+
+\begin{itemize}
+\item \textbf{1} - O valor de insulina tomado é muito menor que o valor calculado
+\item \textbf{2} - O valor de insulina tomado é ligeiramente menor que o valor calculado
+\item \textbf{3} - O valor de insulina tomado é o calculado
+\item \textbf{4} - O valor de insulina tomado é ligeiramente maior que o valor calculado
+\item \textbf{5} - O valor de insulina tomado é muito maior que o valor calculado
+\end{itemize}
+
+Desta forma será possível encontrar relações, se existirem, entre mudanças no valor da insulina a tomar que possam levar a valores de glicemia indesejados. 
+
+
+Depois deste processo, o \textit{data set} está num estado em que já pode ser utilizado para algumas análises. Na próxima secção serão mostradas algumas análises básicas de estatística envolvendo os dados referentes a alguns utilizadores. Noutras secções mais à frente, outro tipo de análises serão efetuadas. Algumas dessas análises requerem novas mudanças nos dados, principalmente questões técnicas associadas com algumas funções do R. Essas alterações serão descritas sempre que necessário.
 
 \section{Análise estatística básica}
 
@@ -167,4 +217,4 @@ Uma vez mais, esta análise por si só não permite descobrir oscilações. Este
 \item Noite: 148
 \end{itemize}
 
-Tal como na subsecção anterior, para o segundo utilizador esta análise já nos dá algum conhecimento sobre as oscilações de glicemia. Neste caso, o utilizador tem valores mais altos pela manhã, que vão diminuindo durante o dia e aumentam durante a noite. O aumento da glicemia durante a noite pode ser explicado por vários fatores: insulina insuficiente durante a noite ou o consumo de hidratos de carbono antes de ir dormir. Pode também acontecer que o aumento não se deva a nenhuma das razões anteriores e que aconteça naturalmente. Isto pode ser explicado pelo \textit{dawn phenomenon}. Este fenómeno causa o aumento da quantidade de glicose no sangue durante a noite, devido a hormonas que o corpo produz durante a madrugada. Independentemente do motivo do aumento, obviamente que o utilizador de manhã apercebe-se que de manhã tem valores mais altos. O que pode não se aperceber é que esta situação é recorrente e portanto pode ser melhorada. Mais uma vez, no contexto da aplicação, neste caso surgiria um aviso nas manhãs a informar que tal acontecia, pelo que o utilizador poderia retificar a situação.
+Tal como na subsecção anterior, para o segundo utilizador esta análise já nos dá algum conhecimento sobre as oscilações de glicemia. Neste caso, o utilizador tem valores mais altos pela manhã, que vão diminuindo durante o dia e aumentam durante a noite. O aumento da glicemia durante a noite pode ser explicado por vários fatores: insulina insuficiente durante a noite ou o consumo de hidratos de carbono antes de ir dormir. Pode também acontecer que o aumento não se deva a nenhuma das razões anteriores e que aconteça naturalmente. Isto pode ser explicado pelo \textit{dawn phenomenon}. Este fenómeno causa o aumento da quantidade de glicose no sangue durante a noite, devido a hormonas que o corpo produz nesse período. Independentemente do motivo do aumento, obviamente que o utilizador de manhã apercebe-se que de manhã tem valores mais altos. O que pode não se aperceber é que esta situação é recorrente e portanto pode ser melhorada. Mais uma vez, no contexto da aplicação, neste caso surgiria um aviso nas manhãs a informar que tal acontecia, pelo que o utilizador poderia retificar a situação.

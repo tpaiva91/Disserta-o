@@ -22,7 +22,7 @@ for(i in 1:nrow(joaquim)){
   if(i==0){
     joaquim$Calculated_Insulin = 0;
   } else {
-    joaquim$Calculated_Insulin[i] = joaquim$Value_Carbs[i]/10 + ((joaquim$Value_Glucose[i] - 120)/40)
+    joaquim$Calculated_Insulin[i] = joaquim$Value_Carbs[i]/10 + ((joaquim$Value_Glucose[i] - 120)/45)
     joaquim$Calculated_Insulin[i] = round(joaquim$Calculated_Insulin[i] / 0.5)*0.5
   }
 }
