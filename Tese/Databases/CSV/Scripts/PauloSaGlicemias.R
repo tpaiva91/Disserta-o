@@ -1,7 +1,7 @@
 setwd("~/Tese/Tese/Databases/CSV/Data")
 
 
-joaquim <- read.csv("PauloSa.csv")
+joaquim <- read.csv("Reg_BloodGlucose_Paulo.csv")
 
 
 

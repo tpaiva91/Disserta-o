@@ -1,7 +1,7 @@
 setwd("~/Tese/Tese/Databases/CSV/Data")
 
 
-joaquim <- read.csv("VictorFerreiraGlicemias.csv")
+joaquim <- read.csv("Reg_BloodGlucose_Vitor.csv")
 
 joaquim[is.na(joaquim)] <-0
 joaquim$Day <- weekdays(as.Date(joaquim$DateTime))

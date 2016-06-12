@@ -42,3 +42,7 @@ glicómetro iHealth bg5: https://ihealthlabs.com/glucometer/wireless-smart-gluco
 [base] - https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html
 
 [levels] - http://www.diabetes.co.uk/diabetes_care/blood-sugar-level-ranges.html
+
+[dataset2] - https://archive.ics.uci.edu/ml/datasets/Diabetes
+
+[dataset1] - https://archive.ics.uci.edu/ml/datasets/Pima+Indians+Diabetes

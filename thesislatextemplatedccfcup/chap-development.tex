@@ -51,7 +51,8 @@ Apesar de os dados serem poucos, a parte positiva é que estavam no formato pret
 
 \subsection{O \textit{data set}}
 
-Os registos dos utilizadores são armazenados no telemóvel numa base de dados \textit{sqlite}[sqlite] que é depois convertida para um ficheiro csv através de um \textit{script}. Os dados recebidos contêm alguns dados que são descartados, como os dados pessoais do utilizador, registo de peso ou medicação, que não são tão relevantes para a análise. Mesmo relativamente a algumas variáveis, como a glicemia por exemplo, só nos interessa saber o valor e a hora, e portanto todos os outros dados sobre a glicemia são apagados, como o "ID", "Tag" que é um valor opcional que pode associar a medição a um evento, como "pequeno-almoço" e "Note" que associa uma nota à medição. O mesmo é feito para as outras variáveis. Um \textit{data set} no estado inicial em formato csv tem a seguinte estrutura:
+Os registos dos utilizadores são armazenados no telemóvel numa base de dados \textit{sqlite}[sqlite] que é depois convertida para um ficheiro csv através de um \textit{script}.[script] O \textit{script} converte cada uma das tabelas num ficheiro csv e depois, os ficheiros csv que interessa manter são copiados para um único ficheiro através do comando \textit{copy}.
+ Os dados recebidos contêm alguns dados que são descartados, como os dados pessoais do utilizador, registo de peso ou medicação, que não são tão relevantes para a análise. Mesmo relativamente a algumas variáveis, como a glicemia por exemplo, só nos interessa saber o valor e a hora, e portanto todos os outros dados sobre a glicemia são apagados, como o "ID", "Tag" que é um valor opcional que pode associar a medição a um evento, como "pequeno-almoço" e "Note" que associa uma nota à medição. O mesmo é feito para as outras variáveis. Um \textit{data set} no estado inicial em formato csv tem a seguinte estrutura:
 
 \begin{table}[!h]
 \centering
@@ -150,15 +151,25 @@ Depois deste processo, o \textit{data set} está num estado em que já pode ser 
 
 \section{Análise estatística básica}
 
-Com o \textit{data set} pré-processado, estávamos em condições de começar a utilizá-lo para análise. Antes de começar a aplicar técnicas de \textit{data mining} começou-se por fazer algumas estatísticas com os valores de glicose dos utilizadores. Nas próximas subsecções vamos descrever algumas estatísticas feitas para um determinado utilizador e algumas possíveis conclusões a retirar. O utilizador escolhido foi um utilizador com uma quantidade considerável de dados, de forma a tornar a análise mais fidedigna.
+Com o \textit{data set} pré-processado, estávamos em condições de começar a utilizá-lo para análise. Antes de começar a aplicar técnicas de \textit{data mining} começou-se por fazer algumas estatísticas com os valores de glicose dos utilizadores. Nas próximas subsecções vamos descrever algumas estatísticas feitas para alguns utilizadores que enviaram registos. Para fazer uma análise minimamente fidedigna é necessário ter uma quantidade considerável de dados pelo que vamos analisar os dados de utilizadores que enviaram registos referentes a quatro ou mais semanas. Começaremos com algumas análises mais simples, fazendo algumas estatísticas que possam permitir observar algumas anormalias nos valores de glicemia. Serão então feitas as diferentes análises para cinco utilizadores de forma totalmente anónima.
+
 
 \subsection{Média de glicose}
 
-Uma primeira estatística poderia ser simplesmente a média de glicose para um determinado utilizador. Relembrando que o HbA1c é um parâmetro importante para verificar o controlo da diabetes num paciente visto que é possível determinar a média de glicose de algumas semanas ou meses. Portanto, de uma maneira mais ou menos semelhante, a média de glicose de um determinado paciente dá para ter uma idea do quão bem esse paciente controla a glicemia. Posto isto, escolheu-se um paciente com uma grande quantidade de registos e calculou-se a média da glicose. 
+Uma primeira estatística poderia ser simplesmente a média de glicose para um determinado utilizador. Relembrando que o HbA1c é um parâmetro importante para verificar o controlo da diabetes num paciente visto que é possível determinar a média de glicose de algumas semanas ou meses. Portanto, de uma maneira mais ou menos semelhante, a média de glicose de um determinado paciente dá para ter uma idea do quão bem esse paciente controla a glicemia. Apresentam-se de seguida as médias de glicose para os cinco utilizadores:
 
-\textbf{Média de glicose}: 116
+\begin{itemize}
+\item \textbf{Utilizador 1} - 119
+\item \textbf{Utilizador 2} - 150
+\item \textbf{Utilizador 3} - 170
+\item \textbf{Utilizador 4} - 144
+\item \textbf{Utilizador 5} - 154
 
-Esta média é referente a vários registos ao longo de 5 semanas e portanto, indica que o utilizador tem um bom controlo geral da glicemia. No entanto isto não é suficiente: a média dá um indicador demasiado geral sobre os valores de glicemia e não permite detetar anomalias. Isto é, apesar de 116 ser um ótimo valor para média, pode não significar necessariamente que os valores de glicemia são estáveis. Se tivermos 2 registos em que um valor é 40 e o outro 200, a média será de 120 e no entanto ambos os valores são perigosos: o primeiro representa uma hipoglicemia e o segundo uma hiperglicemia. No entanto, olhando apenas para a média diríamos que os valores eram ótimos e o utilizador teria um bom controlo da glicemia. Torna-se portanto necessário fazer uma análise mais aprofundada.
+\end{itemize}
+
+Como mencionado anteriormente, estas médias pertencem a diferentes utilizadores e dizem respeito a registos durante pelo menos quatro semanas, e portanto, são um indicador geral do controlo da glicemia por parte de cada utilizador. Pode perceber-se que alguns utilizadores têm uma média com um valor mais normal que outros o que pode ser um indicador de um bom controlo. No entanto, isto não é necessariamente verdade. Um bom controlo da glicemia passa não só por manter os valores em intervalos normais mas também em prevenir grandes oscilações. Neste caso, uma média de glicemia de 119 pode parecer melhor que uma média de glicemia de 170 mas pode não ser: o primeiro utilizador pode ter 2 registos em que um seja 60 e outro seja 180, o que dá uma média de 120; por outro lado, o terceiro utilizador pode ter ambos os valores a 170. Ou seja, embora a média de glicemia do primeiro utilizador seja mais baixa, não significa que os valores sejam estáveis, tal como no terceiro utilizador não significa que os valores não sejam estáveis. Medir apenas a média da glicemia é uma análise demasiado vaga: pode ser um indicativo de um bom ou mau controlo da glicemia mas não permite ter certezas. Torna-se portanto necessário fazer uma análise mais aprofundada.
+
+
 
 \subsection{Média de glicose por dia}
 
