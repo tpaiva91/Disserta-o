@@ -159,21 +159,23 @@ Com o \textit{data set} pré-processado, estávamos em condições de começar a
 Uma primeira estatística poderia ser simplesmente a média de glicose para um determinado utilizador. Relembrando que o HbA1c é um parâmetro importante para verificar o controlo da diabetes num paciente visto que é possível determinar a média de glicose de algumas semanas ou meses. Portanto, de uma maneira mais ou menos semelhante, a média de glicose de um determinado paciente dá para ter uma idea do quão bem esse paciente controla a glicemia. Apresentam-se de seguida as médias de glicose para os cinco utilizadores:
 
 \begin{itemize}
-\item \textbf{Utilizador 1} - 119
-\item \textbf{Utilizador 2} - 150
-\item \textbf{Utilizador 3} - 170
-\item \textbf{Utilizador 4} - 144
-\item \textbf{Utilizador 5} - 154
+\item \textbf{Utilizador 1} - 119mg/dL
+\item \textbf{Utilizador 2} - 150mg/dL
+\item \textbf{Utilizador 3} - 170mg/dL
+\item \textbf{Utilizador 4} - 144mg/dL
+\item \textbf{Utilizador 5} - 154mg/dL
 
 \end{itemize}
 
-Como mencionado anteriormente, estas médias pertencem a diferentes utilizadores e dizem respeito a registos durante pelo menos quatro semanas, e portanto, são um indicador geral do controlo da glicemia por parte de cada utilizador. Pode perceber-se que alguns utilizadores têm uma média com um valor mais normal que outros o que pode ser um indicador de um bom controlo. No entanto, isto não é necessariamente verdade. Um bom controlo da glicemia passa não só por manter os valores em intervalos normais mas também em prevenir grandes oscilações. Neste caso, uma média de glicemia de 119 pode parecer melhor que uma média de glicemia de 170 mas pode não ser: o primeiro utilizador pode ter 2 registos em que um seja 60 e outro seja 180, o que dá uma média de 120; por outro lado, o terceiro utilizador pode ter ambos os valores a 170. Ou seja, embora a média de glicemia do primeiro utilizador seja mais baixa, não significa que os valores sejam estáveis, tal como no terceiro utilizador não significa que os valores não sejam estáveis. Medir apenas a média da glicemia é uma análise demasiado vaga: pode ser um indicativo de um bom ou mau controlo da glicemia mas não permite ter certezas. Torna-se portanto necessário fazer uma análise mais aprofundada.
+Como mencionado anteriormente, estas médias pertencem a diferentes utilizadores e dizem respeito a registos durante pelo menos quatro semanas, e portanto, são um indicador geral do controlo da glicemia por parte de cada utilizador. Pode perceber-se que alguns utilizadores têm uma média com um valor mais normal que outros o que pode ser um indicador de um bom controlo. No entanto, isto não é necessariamente verdade. Um bom controlo da glicemia passa não só por manter os valores em intervalos normais mas também em prevenir grandes oscilações. Neste caso, uma média de glicemia de 119mg/dL pode parecer melhor que uma média de glicemia de 170mg/dL mas pode não ser: o primeiro utilizador pode ter 2 registos em que um seja 60mg/dL e outro seja 180mg/dL, o que dá uma média de 120mg/dL; por outro lado, o terceiro utilizador pode ter ambos os valores a 170mg/dL. Ou seja, embora a média de glicemia do primeiro utilizador seja mais baixa, não significa que os valores sejam estáveis, tal como no terceiro utilizador não significa que os valores não sejam estáveis. Medir apenas a média da glicemia é uma análise demasiado vaga: pode ser um indicativo de um bom ou mau controlo da glicemia mas não permite ter certezas. Torna-se portanto necessário fazer uma análise mais aprofundada.
 
 
 
 \subsection{Média de glicose por dia}
 
-Saber a média da glicemia por cada dia da semana já nos permite perceber de forma detalhada como é que os níveis de glicose no sangue vão oscilando. Em concreto, já nos dará a conhecer quais os dias em que a glicemia é mais elevada ou mais baixa. Ao fazer uma análise como esta já seria possível avisar o utilizador caso um ou mais dias tivesse uma média de glicemia bastante elevada. Eis os valores:
+Uma forma mais detalhada de tentar perceber alguns hábitos dos utilizadores é verificar como é que a sua glicemia oscila durante a semana. Tal pode ser feito obtendo a média de glicose para cada dia. Assim, é possível saber, por exemplo, quais os dias em que a glicemia é mais elevada ou mais baixa, sem esquecer que se trata de uma média, e que por isso não é possível ter conhecimento sobre eventuais hipo ou hiperglicemias. Ainda assim, ao saber a média de glicemia por cada dia, será possível avisar o utilizador de quais os dias a ter em atenção, isto é, se a segunda-feira for um dia com uma média elevada de glicemia, então o utilizador pode ser avisado deste facto para tomar as medidas necessárias ou, pelo menos, aumentar o controlo da glicemia neste dia. Portanto, embora este tipo de estatística não permita descobrir situações em particular, pode ainda assim ser útil. Eis os valores médios de glicemia para os utilizadores:
+
+
 
 \begin{itemize}
 \item Domingo: 125
@@ -198,6 +200,23 @@ Ficámos a saber que os valores de Domingo e Quarta são, em média, considerave
 \item Média de todos os dias: 156
 \end{itemize}
 
+
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\textbf{Dia \textbackslash Utilizador} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\ \hline
+\textbf{Segunda}                       & 117        & 131        & 162        & 170        & 153        \\ \hline
+\textbf{Terça}                         & 119        & 154        & 189        & 165        & 154        \\ \hline
+\textbf{Quarta}                        & 127        & 156        & 166        & 114        & 150        \\ \hline
+\textbf{Quinta}                        & 110        & 149        & 181        & 142        & 170        \\ \hline
+\textbf{Sexta}                         & 110        & 148        & 163        & 131        & 140        \\ \hline
+\textbf{Sábado}                        & 115        & 165        & 146        & 136        & -          \\ \hline
+\textbf{Domingo}                       & 132        & 161        & 182        & 149        & 182        \\ \hline
+\end{tabular}
+\end{table}
 Aqui a situação é diferente: claramente uns dias têm, em média, valores mais altos de glicemia sendo que neste caso são valores já elevados que significam hiperglicemia. Sábado e Domingo são os dias em que os valores são mais elevados, que pode ter alguma razão para tal: o utilizador pode estar mais relaxado ao fim-de-semana e não controlar tantas vezes a glicemia, o que se traduz em valores mais elevados; ou pode também significar que o utilizador se descura mais na alimentação, o que explicaria os valores mais altos; pode ainda dever-se ao facto de o utilizador levar um estilo mais sedentário ao fim-de-semana, livre do \textit{stress} de um dia-a-dia de trabalho aproveitar o fim-de-semana para descansar. No entanto, mais importante que a causa dos valores mais altos, é o conhecimento de que isto acontece. No contexto da aplicação, e perante estes dados, a aplicação teria este conhecimento e portanto, ao fim-de-semana, poderia mostrar o aviso de que o utilizador tem tendência para valores mais elevados nestes dias e por isso tomar mais cuidados. 
 
 Com isto pode-se perceber que analisar por dia pode ser, em alguns casos, vantajoso. Mas dentro do próprio dia, pode-se analisar de forma mais detalhada.

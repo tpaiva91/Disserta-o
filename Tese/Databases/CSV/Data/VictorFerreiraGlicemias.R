@@ -1,9 +1,9 @@
 setwd("~/Tese/Tese/Databases/CSV/Data")
 
 
-joaquim <- read.csv("Reg_BloodGlucose_Vitor.csv")
+joaquim <- read.csv("VitorFerreira.csv")
 
-joaquim[is.na(joaquim)] <-0
+#joaquim[is.na(joaquim)] <-0
 joaquim$Day <- weekdays(as.Date(joaquim$DateTime))
 joaquim$Period <- format(as.POSIXlt(joaquim$DateTime), "%H:%M:%S")
 
@@ -19,6 +19,11 @@ for(i in 1:nrow(joaquim)){
     joaquim$Period[i] = 3
   }
 }
+
+joaquim$Value_Carbs <- NULL
+joaquim$Value_Insulin <- NULL
+joaquim$Target_BG <- NULL
+joaquim$Exercise <- NULL
 ####
 #Linhas para a tarde
 plot(joaquim$Value_Glucose[joaquim$Period==2], ylab="Valor de glicose", xlab="Período: tarde", col="blue", ylim=c(50,340))

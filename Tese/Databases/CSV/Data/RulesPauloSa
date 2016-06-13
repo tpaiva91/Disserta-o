@@ -1,5 +1,0 @@
-"rules" "support" "confidence" "lift"
-"692" "{Day=Domingo,Value_Insulin=5,Variation=2} => {Value_Glucose=5}" 0.0157894736842105 0.6 8.76923076923077
-"697" "{Day=Sexta,Period=3,Variation=2} => {Value_Glucose=5}" 0.0105263157894737 0.666666666666667 9.74358974358974
-"1786" "{Day=Domingo,Value_Carbs=5,Value_Insulin=5,Variation=2} => {Value_Glucose=5}" 0.0105263157894737 0.666666666666667 9.74358974358974
-"1791" "{Day=Domingo,Period=3,Value_Insulin=5,Variation=2} => {Value_Glucose=5}" 0.0105263157894737 1 14.6153846153846

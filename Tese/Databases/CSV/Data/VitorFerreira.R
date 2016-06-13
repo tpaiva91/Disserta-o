@@ -1,18 +1,17 @@
 setwd("~/Tese/Tese/Databases/CSV/Data")
 
 
-joaquim <- read.csv("VictorFerreira.csv")
+joaquim <- read.csv("VitorFerreira.csv")
 
 
 
-joaquim[is.na(joaquim)] <-0
+#joaquim[is.na(joaquim)] <-0
 joaquim$Day <- weekdays(as.Date(joaquim$DateTime))
 joaquim$Period <- format(as.POSIXlt(joaquim$DateTime), "%H:%M:%S")
 
 joaquim$DateTime <- NULL
 joaquim$Calculated_Insulin = 1
 joaquim$Exercise <- NULL
-joaquim$Variation <- NULL
 
 for(i in 1:nrow(joaquim)){
   
@@ -70,7 +69,10 @@ for(i in 1:nrow(joaquim)){
 
 for(i in 1:nrow(joaquim)){
   
-  if(joaquim$Value_Insulin[i]<3.0){
+  if(is.na(joaquim$Value_Insulin[i]) || joaquim$Value_Carbs[i]==0) {
+    joaquim$Value_Insulin[i] <- 0
+  }
+  if(joaquim$Value_Insulin[i]<3.0 && joaquim$Value_Insulin[i]!=0){
     
     joaquim$Value_Insulin[i]=1
   } else
@@ -86,7 +88,9 @@ for(i in 1:nrow(joaquim)){
 }
 
 for(i in 1:nrow(joaquim)){
-  
+  if(is.na(joaquim$Value_Carbs[i]) || joaquim$Value_Carbs[i]==0) {
+    joaquim$Value_Carbs[i] <- 0
+  } else
   if(joaquim$Value_Carbs[i]<25){
     joaquim$Value_Carbs[i]=1
   } else
@@ -144,6 +148,7 @@ joaquim$Diferença_Insulin <- as.factor(joaquim$Diferença_Insulin)
 joaquim$Calculated_Insulin <- NULL
 joaquim$Had_Exercise <- NULL
 joaquim$Exercise <- NULL
+joaquim$Target_BG <- NULL
 
 
 
