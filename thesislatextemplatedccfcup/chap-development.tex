@@ -371,7 +371,7 @@ Pelos gráficos observados de todos os utilizadores, verifica-se que em todos el
 
 \subsection{Glicose por hora e por dia}
 
-Nas últimas subsecções fizemos uma análise que nos permite saber que, por exemplo, um determinado utilizador tem tendencialmente valores de glicemia mais elevados à terça-feira ou que um outro utilizador normalmente tem valores de glicose no sangue mais elevados à noite. Mas estas duas conclusões são independentes: saber que os valores são mais altos à terça-feira não nos permite saber como é que os valores variam durante a terça-feira ou saber que os valores são mais altos à noite não nos permite saber em que noites da semana é que os valores são de facto mais elevados. Face a este problema, fez-se uma análise ainda mais detalhada que as anteriores e relacionámos estas duas variáveis, dia da semana e período do dia, para tentar perceber de que forma é que a glicose varia durante o dia, para cada dia da semana. De seguida apresentaremos os gráficos para os cinco utilizadores.
+Nas últimas subsecções fizemos uma análise que nos permite saber que, por exemplo, um determinado utilizador tem tendencialmente valores de glicemia mais elevados à terça-feira ou que um outro utilizador normalmente tem valores de glicose no sangue mais elevados à noite. Mas estas duas conclusões são independentes: saber que os valores são mais altos à terça-feira não nos permite saber como é que os valores variam durante a terça-feira ou saber que os valores são mais altos à noite não nos permite saber em que noites da semana é que os valores são de facto mais elevados. Face a este problema, fez-se uma análise ainda mais detalhada que as anteriores e relacionámos estas duas variáveis, dia da semana e período do dia, para tentar perceber de que forma é que a glicose varia durante o dia, para cada dia da semana. De seguida apresentaremos os gráficos para os cinco utilizadores. 
 
 \textbf{Utilizador 1}
 
@@ -393,7 +393,7 @@ Analisando as figuras em cima, nota-se que o utilizador mantém grande parte das
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Dias.png}
+\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Days.png}
 \caption{Glicemia por horas do utilizador 2}
 \end{figure}
 
@@ -403,5 +403,23 @@ Analisando as figuras em cima, nota-se que o utilizador mantém grande parte das
 \caption{Glicemia por horas do utilizador 2}
 \end{figure}
 
+Observando as figuras verifica-se que o utilizador apresenta hiperglicemias todos os dias, maioritariamente durante a tarde. Ao Domingo apresenta menos hiperglicemias porque também tem menos registos. No resto dos dias apresenta uma distribuição semelhante entre valores normais e valores acima do limite de hiperglicemia, isto é, há mais ou menos quantidade de valores normais e valores demasiado altos. Contudo, ao Sábado o número de hiperglicemias é bastante maior em relação ao número de valores no intervalo normal.
 
 
+
+\textbf{Utilizador 3}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Dias.png}
+\caption{Glicemia por horas do utilizador 3}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Dias2.png}
+\caption{Glicemia por horas do utilizador 3}
+\end{figure}
+
+
+Neste utilizador é possível ver um padrão: tem tendência para ter hiperglicemias de manhã e ao fim da tarde ou início da noite. Uma vez mais, a causa pode estar relacionado com o trabalho, por exemplo, que pode ser mais desgastante à tarde, daí fazer com que os valores não subam tanto. Esta teoria seria ainda suportada pelo gráfico de Sábado, que mostra algumas hiperglicemias também a meio da tarde, o que faria sentido se de facto a causa dos valores durante a semana fosse o trabalho. 
