@@ -56,9 +56,9 @@ lines(joaquim$Value_Glucose[joaquim$Period==3], ylab="Valor de glicose", xlab="P
 ###################################################################################
 #Gráficos por hora
 
-joaquim <- read.csv("VictorFerreiraGlicemias.csv")
+joaquim <- read.csv("VitorFerreira.csv")
 
-joaquim[is.na(joaquim)] <-0
+#joaquim[is.na(joaquim)] <-0
 joaquim$Day <- weekdays(as.Date(joaquim$DateTime))
 joaquim$Period <- format(as.POSIXlt(joaquim$DateTime), "%H:%M:%S")
 
