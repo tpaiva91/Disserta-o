@@ -5,7 +5,7 @@ joaquim <- read.csv("PauloSa.csv")
 
 
 
-joaquim[is.na(joaquim)] <-0
+#joaquim[is.na(joaquim)] <-0
 joaquim$Day <- weekdays(as.Date(joaquim$DateTime))
 joaquim$Period <- format(as.POSIXlt(joaquim$DateTime), "%H:%M:%S")
 
@@ -140,12 +140,14 @@ joaquim$Value_Insulin <- as.factor(joaquim$Value_Insulin)
 joaquim$Exercise <- as.factor(joaquim$Exercise)
 joaquim$Variation <- as.factor(joaquim$Variation)
 joaquim$Diferença_Insulin <- as.factor(joaquim$Diferença_Insulin)
-
+joaquim$Target_BG <- NULL
 
 library(arules)
 rules <- apriori(joaquim, parameter=list(confidence=0.6, support=0.01))
-
+rules2 <- eclat(joaquim, parameter=list(supp=0.01))
+rules3 <- ruleInduction(rules2, confidence=0.6)
 rules.sub <- subset(rules, subset = rhs %in% "Value_Glucose=5")
+rules3.sub <- subset(rules3, subset = rhs %in% "Value_Glucose=5")
 write(rules.sub, file="RulesPauloSa")
 
 
