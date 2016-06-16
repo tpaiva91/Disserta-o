@@ -52,28 +52,37 @@ Apesar de os dados serem poucos, a parte positiva é que estavam no formato pret
 \subsection{O \textit{data set}}
 
 Os registos dos utilizadores são armazenados no telemóvel numa base de dados \textit{sqlite}[sqlite] que é depois convertida para um ficheiro csv através de um \textit{script}.[script] O \textit{script} converte cada uma das tabelas num ficheiro csv e depois, os ficheiros csv que interessa manter são copiados para um único ficheiro através do comando \textit{copy}.
- Os dados recebidos contêm alguns dados que são descartados, como os dados pessoais do utilizador, registo de peso ou medicação, que não são tão relevantes para a análise. Mesmo relativamente a algumas variáveis, como a glicemia por exemplo, só nos interessa saber o valor e a hora, e portanto todos os outros dados sobre a glicemia são apagados, como o "ID", "Tag" que é um valor opcional que pode associar a medição a um evento, como "pequeno-almoço" e "Note" que associa uma nota à medição. O mesmo é feito para as outras variáveis. Um \textit{data set} no estado inicial em formato csv tem a seguinte estrutura:
 
-\begin{table}[!h]
+Depois de selecionar as variáveis pretendidas e as juntar no mesmo ficheiro, o \textit{data set} fica com a estrutura a seguir apresentada:
+ 
+
+\begin{table}[H]
 \centering
 
 \label{my-label}
-\tabcolsep=0.11cm
-\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\begin{tabular}{|l|l|}
 \hline
-\textbf{Nome} & DateTime  & Value\_Carbs & Value\_Glucose & Value\_Insulin & Exercise \\ \hline
-\textbf{Tipo} & integer   & integer      & integer        & double         & double   \\ \hline
+\textbf{Variável} & \textbf{Tipo} \\ \hline
+DateTime          & Integer       \\ \hline
+Value\_Carbs      & Integer       \\ \hline
+Value\_Glucose    & Integer       \\ \hline
+Target\_BG        & Integer       \\ \hline
+Value\_Insulin    & Double        \\ \hline
+Exercise          & Integer       \\ \hline
 \end{tabular}
-\caption{\textit{Data set} original}
+\caption{My caption}
 \end{table}
 
-O \textbf{DateTime} diz respeito ao dia e hora exatos de cada registo;
+A variável \textbf{DateTime} diz respeito ao dia e hora exatos de cada registo;
 \textbf{Value\textunderscore Carbs} é a quantidade de hidratos de carbono;
 \textbf{Value\textunderscore Glucose} é o nível de glicemia à hora do registo;
+\textbf{Target\textunderscore BG} é o objetivo de glicemia para a hora do registo, pois o utilizador pode ter diferentes objetivos de glicemia para diferentes períodos do dia. Esta variável é importante para o cálculo da insulina a administrar.
 \textbf{Value\textunderscore Insulin} é a quantidade de insulina tomada pelo utilizador à hora do registo;
-\textbf{Exercise} corresponde ao exercício feito à hora do registo.
+\textbf{Exercise} corresponde ao exercício feito à hora do registo.\newline
 
-No entanto, os dados não estavam ainda prontos a ser utilizados e precisavam de ser pré-processados.
+Este \textit{data set} não representa, no entanto, todos os dados enviados pelos utilizadores, pois há alguns dados que não são relevantes para a análise e por isso são descartados. Alguns dos dados descartados são os dados pessoais do utilizador, que incluem, entre outros, nome, idade, peso ou altura; A forma como a aplicação funciona faz com que, a cada registo, sejam registados não só os valores dos parâmetros como outras informações: em cada registo são guardados outros dados como o ID do registo ou a "Tag", que é uma variável opcional que pode associar um registo a um evento. Por exemplo, ao registar uma refeição é possível escolher várias "Tags" como "pequeno-almoço" ou "almoço"; é também guardada uma variável "Note" que permite ao utilizador adicionar uma nota a uma medição. Por exemplo, se o utilizador fizer um registo de exercício, pode adicionar uma nota com "Corrida". Portanto, o registo de cada parâmetro faz com que estas variáveis também sejam guardadas, mesmo que o utilizador não as preencha. O facto de descartarmos estas variáveis não significam que não tenham importância: a variável "Note", por exemplo, pode ser importante se o utilizador quiser adicionar alguma informação extra que ache relevante para depois se lembrar ou até mostrar ao médico. Apenas não são relevantes para este tipo de análise: uma nota sobre uma refeição não pode ser utilizado por um algoritmo. Outras variáveis, como o ID de cada registo, também não são importantes para análise pelo que são descartadas. 
+
+Neste ponto, temos as variáveis com as quais iremos trabalhar, mas que ainda precisam de ser pré-processadas. O pré-processamento do \textit{data set} será descrito de seguida.
 
 \subsection{Pré-processamento dos dados}
 
@@ -95,19 +104,23 @@ Isto garante também que as regras geradas não são enviesadas: se quisermos de
 \textbf{Redução dos dados} - Num \textit{data set} nem todos os dados têm a mesma relevância: uns são importantes e outros são menos importantes ou até mesmo irrelevantes. É importante perceber quais os dados que não interessa ter, pois assim vamos reduzir a quantidade de regras irrelevantes que são geradas. Por isso mesmo, o segundo passo seria analisar todos os dados recolhidos e perceber quais os que valiam a pena manter e os que se podia remover. Um exemplo que ajuda a perceber melhor este passo é olharmos para os valores de glicose, insulina e hidratos de carbono: na aplicação, cada um destes parâmetros permite registar o valor em si mas também adicionar uma nota para acompanhar o registo. Essa nota poderá ser uma breve descrição feita pelo utilizador aquando de um registo. Existe também um outro atributo chamado "Tag" que permite, por exemplo, associar uma refeição a um período do dia. Se a "Tag" 1 for "pequeno-almoço", então sempre que o utilizador regista o pequeno-almoço, pode escolher essa fase do dia, e esse registo ficará com a "Tag" 1. Como se pode perceber, atributos como "Note" ou "Tag" podem ajudar a perceber o porquê de alguma alteração nos valores de glicose mas não têm qualquer uso para a descoberta de padrões e consequente geração de regras. Portanto, atributos como estes podem ser retirados do \textit{data set} de forma a reduzir a quantidade de informação não relevante. Existem outros atributos que foram retirados por não apresentarem qualquer utilidade para o resultado pretendido, tais como, "Idade", "Nome", "Altura" ou "Sexo". 
 No final deste passo, o conjunto de dados é consideravelmente mais pequeno, em termos de quantidade de variáveis, e portanto permite fazer uma análise mais objetiva, com menos informação desinteressante.
 
-\textbf{Transformação dos dados} - Por fim, este passo serve para transformar os valores existentes em valores que possam ser utilizados da forma mais conveniente. Ter uma variável "DateTime" no formato "AAAA-MM-DD HH:MM" não é tão útil visto que o dia e hora, que até podem ser variáveis interessantes, estão numa só variável e torna o seu uso mais difícil. Neste caso, seria mais vantajoso separar as duas variáveis e portanto, transformar "DateTime" em "Day" e "Hour". Ainda assim, ter um dia do ano e uma hora específica do dia não é exatamente o formato mais útil, pois são variáveis demasiado específicas e por isso pouco repetidas, ou até nunca repetidas, pelo que não irão contribuir para a descoberta de padrões. Para melhorar este detalhe, podia ainda fazer-se outra alteração: transformar o dia do ano em dias da semana e transformar a hora do dia em período do dia, como "manhã", "noite", ou "tarde". Assim, transformámos a variável "DateTime" em duas variáveis, "Day" e "Period".
-Sempre que um utilizador regista uma refeição, com base na glicemia, na glicemia que pretende atingir e nos hidratos de carbono que ingere, é calculada a insulina a tomar. Contudo, o utilizador pode optar por não seguir a dosagem recomendada e tomar mais ou menos. Tendo isto em conta, pode ser importante ver os efeitos que isto provoca e portanto criou-se uma nova variável "Insulin\textunderscore Difference". 
-A variável "Insulin\textunderscore Difference" é calculada com base na fórmula
+\textbf{Transformação dos dados} - Por fim, este passo serve para transformar os valores existentes em valores que possam ser utilizados da forma mais conveniente. Ter uma variável "DateTime" no formato ``AAAA-MM-DD HH:MM''  não é tão útil visto que o dia e hora, que até podem ser variáveis interessantes, estão numa só variável e torna o seu uso mais difícil. Neste caso, seria mais vantajoso separar as duas variáveis e portanto, transformar "DateTime" em "Day" e "Hour". Ainda assim, ter um dia do ano e uma hora específica do dia não é exatamente o formato mais útil, pois são variáveis demasiado específicas e por isso pouco repetidas, ou até nunca repetidas, pelo que não irão contribuir para a descoberta de padrões. Para melhorar este detalhe, podia ainda fazer-se outra alteração: transformar o dia do ano em dias da semana e transformar a hora do dia em período do dia, como "manhã", "noite", ou "tarde". Assim, transformámos a variável "DateTime" em duas variáveis, "Day" e "Period".
+Sempre que um utilizador regista uma refeição, com base na glicemia, na glicemia que pretende atingir e nos hidratos de carbono que ingere, é calculada a insulina a tomar. Contudo, o utilizador pode optar por não seguir a dosagem recomendada e tomar mais ou menos. Tendo isto em conta, pode ser importante ver os efeitos que isto provoca e portanto criou-se uma nova variável ``Insulin\textunderscore Difference''. 
+A variável ``Insulin\textunderscore Difference'' é calculada com base na fórmula\newline\newline
+
 \begin{lstlisting}[caption=Fórmula para calcular insulina a ser tomada, label=form]
 Insulin_Difference = Value_Carbs / RH + ((Value_Glucose - OG)/FS)
 \end{lstlisting}
 
 
-em que "RH" é o rácio de hidratos de carbono, "OG"  é o objetivo de glicemia e "FS"  é o fator de sensibilidade. Estes valores são diferentes para cada utilizador e cada utilizador pode ter vários objetivos de glicemia por dia. 
+em que ``RH'' é o rácio de hidratos de carbono, ``OG''  é o objetivo de glicemia e ``FS''  é o fator de sensibilidade. Estes valores são diferentes para cada utilizador e cada utilizador pode ter vários objetivos de glicemia por dia. 
 Com esta nova variável, se o utilizador optar por tomar uma quantidade de insulina diferente da sugerida com frequência, e isto tiver efeito negativo na glicemia, este padrão será detetado. 
-Neste momento o \textit{data set} era composto por 6 variáveis: "Day", "Period", "Value\textunderscore Carbs", "Value\textunderscore Glucose", "Value\textunderscore Insulin" e "Insulin\textunderscore Difference".
 
-Relembrando que "Day" e "Period" foram transformadas através da variável original, "DateTime". A variável "Day" foi obtida aplicando a função \textit{weekdays} [weekdays] do \textit{package "base"} do R. A variável "Period" tem como objetivo discretizar a hora do registo: "Period" não diz respeito a uma hora mas sim a um intervalo. Assim sendo, "Period" tem três valores possíveis:
+Neste momento o \textit{data set} era composto por 7 variáveis: ``Day'', ``Period'', ``Value\textunderscore Carbs'', ``Value\textunderscore Glucose'', ``Value\textunderscore Insulin'', ``Insulin\textunderscore Difference'' e ``Blood\textunderscore TG''.
+
+
+
+Relembrando que ``Day'' e ``Period'' foram transformadas através da variável original, ``DateTime''. A variável ``Day'' foi obtida aplicando a função \textit{weekdays} [weekdays] do \textit{package ``base''} do R. A variável ``Period'' tem como objetivo discretizar a hora do registo: ``Period'' não diz respeito a uma hora mas sim a um intervalo. Assim sendo, ``Period'' tem três valores possíveis:
 
 \begin{itemize}
 \item \textbf{1} - Manhã (06:00 - 11:59)
@@ -115,9 +128,9 @@ Relembrando que "Day" e "Period" foram transformadas através da variável origi
 \item \textbf{3} - Noite (20:00 - 05:59)
 \end{itemize}
 
-o que garante que um dado registo vá pertencer a um dos períodos existentes. Se em vez de usar um intervalo de horas, fossem usadas as horas certas, isso faria com que fosse muito mais difícil encontrar padrões: por exemplo, um registo às 08:30 e outro às 09:30 pertencem ambos ao período 1 mas a horas diferentes. Para que haja um padrão, é necessário que haja repetição de valores. Neste exemplo, se fossem usadas as horas certas os valores seriam diferentes mas usando intervalos de tempo, ambos os registos pertencem ao mesmo período, o da "Manhã". Se pensarmos que um dia tem 24 horas e cada hora tem 60 minutos, usando uma variável "Hora" teríamos 1440 valores possíveis. Por outro lado, usando "Period" temos apenas 3 valores diferentes. 
+o que garante que um dado registo vá pertencer a um dos períodos existentes. Se em vez de usar um intervalo de horas, fossem usadas as horas certas, isso faria com que fosse muito mais difícil encontrar padrões: por exemplo, um registo às 08:30 e outro às 09:30 pertencem ambos ao período 1 mas a horas diferentes. Para que haja um padrão, é necessário que haja repetição de valores. Neste exemplo, se fossem usadas as horas certas os valores seriam diferentes mas usando intervalos de tempo, ambos os registos pertencem ao mesmo período, o da ``Manhã''. Se pensarmos que um dia tem 24 horas e cada hora tem 60 minutos, usando uma variável ``Hora" teríamos 1440 valores possíveis. Por outro lado, usando ``Period'' temos apenas 3 valores diferentes. 
 
-Quanto às variáveis "Value\textunderscore Glucose", "Value\textunderscore Insulin" e "Value\textunderscore Carbs", também tiveram que ser discretizadas, uma vez que se tratavam de variáveis contínuas, ainda que em diferentes intervalos. A glicemia de um paciente diabético pode osclinar entre 50 mg/dL e 300 mg/dL, por exemplo. Já a insulina e os hidratos também podem variar mas os intervalos são mais pequenos, principalmente na insulina. 
+Quanto às variáveis ``Value\textunderscore Glucose'', ``Value\textunderscore Insulin'' e ``Value\textunderscore Carbs'', também tiveram que ser discretizadas, uma vez que se tratavam de variáveis contínuas, ainda que em diferentes intervalos. A glicemia de um paciente diabético pode osclinar entre 50 mg/dL e 300 mg/dL, por exemplo. Já a insulina e os hidratos também podem variar mas os intervalos são mais pequenos, principalmente na insulina. 
 Posto isto, a solução foi discretizar estras três variáveis em intervalos, tal como no período do dia. 
 Uma solução seria divir em três partes para cada um dos atributos mas visto que se tratam de variáveis importantes, o melhor foi dividir em mais intervalos, nomeadamente 5.
 Tome-se o exemplo da glicemia: para pessoas com diabetes, os valores recomendados de glicemia antes das refeições estão entre 70 mg/dL e 130 mg/dL e depois das refeições são entre 90 mg/dL e 160 mg/dL. [levels] Uma vez que esta doença costuma provocar oscilações na glicemia, é comum que os valores estejam no intervalo recomendado mas também estejam acima ou abaixo desse intervalo. Por vezes podem estar muito acima, tratando-se de uma hiperglicemia, ou muito abaixo, no caso de uma hipoglicemia. Sabendo apenas que um valor está acima do recomendado não dá muita informação. Depois de uma refeição, tanto 170 mg/dL como 300 mg/dL são valores acima do intervalo acima mostrado. A diferença é que o primeiro valor é um pouco acima e não é preocupante, enquanto que o segundo valor é muito mais preocupante e requer ação imediata. Isto para mostrar que, ao discretizarmos os valores de glicemia, é importante que o façamos com vários níveis: dizer que um valor está acima do recomendado não chega, é preciso diferenciar o quão acima está. Deste modo, tanto para a glicemia, como insulina e hidratos de carbono, decidiu-se discretizar os valores em cinco níveis:
@@ -134,7 +147,7 @@ Estes intervalos não são fixos, variando para cada utilizador. Os extremos sã
 
 O processo de discretização para os hidratos de carbono e insulina é o mesmo: um valor 5 para hidratos de carbono mostra que o utilizador ingere uma quantidade bastante maior que a recomendada tal como um valor 5 para insulina mostra que o utilizador toma uma dose de insulina muito maior que a recomendada. Naturalmente que um extremo (1 ou 5) em qualquer variável é sempre algo indesejável: consumir demasiados hidratos de carbono pode levar a uma hiperglicemia assim como tomar demasiada insulina pode provocar uma hipoglicemia.
 
-Quanto ao valor da insulina calculada para cada registo, "Insulin\textunderscore Difference", o processo é ligeiramente diferente. A insulina é calculada com base na fórmula acima apresentada para calcular a insulina recomendada para cada registo, tendo em conta os valores de glicemia e hidratos de carbono desse mesmo registo. A insulina calculada é então subtraída à insulina tomada pelo utilizador e essa diferença será o valor da variável "Insulin\textunderscore Difference". Depois, tal como nas outras variáveis, esta é também dividida em 5 intervalos, que são:
+Quanto ao valor da insulina calculada para cada registo, ``Insulin\textunderscore Difference'', o processo é ligeiramente diferente. A insulina é calculada com base na fórmula acima apresentada para calcular a insulina recomendada para cada registo, tendo em conta os valores de glicemia e hidratos de carbono desse mesmo registo. A insulina calculada é então subtraída à insulina tomada pelo utilizador e essa diferença será o valor da variável ``Insulin\textunderscore Difference''. Depois, tal como nas outras variáveis, esta é também dividida em 5 intervalos, que são:
 
 \begin{itemize}
 \item \textbf{1} - O valor de insulina tomado é muito menor que o valor calculado
@@ -147,7 +160,7 @@ Quanto ao valor da insulina calculada para cada registo, "Insulin\textunderscore
 Desta forma será possível encontrar relações, se existirem, entre mudanças no valor da insulina a tomar que possam levar a valores de glicemia indesejados. 
 
 
-Depois deste processo, o \textit{data set} está num estado em que já pode ser utilizado para algumas análises. Na próxima secção serão mostradas algumas análises básicas de estatística envolvendo os dados referentes a alguns utilizadores. Noutras secções mais à frente, outro tipo de análises serão efetuadas. Algumas dessas análises requerem novas mudanças nos dados, principalmente questões técnicas associadas com algumas funções do R. Essas alterações serão descritas sempre que necessário.
+Depois deste processo, o \textit{data set} está num estado em que já pode ser utilizado para algumas análises. Na próxima secção serão mostradas algumas análises básicas de estatística envolvendo os dados referentes a alguns utilizadores. Noutras secções mais à frente, outro tipo de análises serão efetuadas. Algumas dessas análises requerem novas mudanças nos dados, principalmente questões técnicas associadas com algumas funções do R. Essas alterações serão descritas sempre que necessário. De notar as variáveis discretizadas serão utilizadas apenas na parte de associação, pelo que na próxima secção serão feitas análises ainda com os valores exatos de glicemia. Também é importante referir que a varíavel ``Insulin \textunderscore Difference'' é calculada tendo em conta os valores exatos de glicemia e hidratos de carbono, pelo que essa variável é calculada antes da discretização das outras variáveis. 
 
 \section{Análise estatística básica}
 
@@ -451,4 +464,25 @@ Em vários dias da semana notam-se alguns valores muito próximos ou até abaixo
 \caption{Glicemia por horas do utilizador 5}
 \end{figure}
 
-Para este utilizador mostramos apenas gráficos referentes a três dias já que os outros não têm registos suficientes
+Para este utilizador mostramos apenas gráficos referentes a três dias já que os outros não têm registos suficientes.
+
+
+
+\section{Regras de associação}
+
+Para esta análise as funções que o R oferece não são suficientes pelo que foi necessário instalar um \textit{package} adicional, \textit{arules}, que oferece uma vasta quantidade de funções direcionadas para regras de associação. Ao contrário das secções anteriores, nesta secção usam-se os vários parâmatros com os seus valores já discretizados, para que o algoritmo utilizado seja mais eficiente. O processo de de procura de regras de associação é de fácil compreensão: o algoritmo vai percorrer o \textit{data set} e analisar cada ``transação'', que corresponde a cada linha do ficheiro csv. Dependendo da confiança e suporte escolhidos, vai gerar algumas regras que conseguir encontrar e que respeitem os limites escolhidos. As regras geradas podem ser de qualquer tipo, isto é, o consequente pode ser qualquer uma das variáveis analisadas, sendo que neste caso interessa-nos descobrir regras com a variável ``Value\textunderscore Glucose'' como consequente, ou seja, no lado direito. Contudo, o \textit{data set} ainda não está estruturado da melhor forma para a criação das regras. 
+Da forma que o \textit{data set} está feito, cada linha corresponde ao mesmo momento, ou seja, se uma linha tiver um valor de glicemia, hidratos de carbono e insulina, tudo isso corresponde a um registo feito à mesma hora. O mesmo acontece para o exercício. O tipo de conclusões que se pretende obter é de que forma estes parâmetros causam algum impacto no valor de glicemia, como por exemplo, descobrir de que forma o exercício vai alterar a quantidade de glucose no sangue ou de que forma a insulina tomada ou os hidratos de carbono vão fazer alterar este valor. Se todos esses parâmetros forem registados à mesma hora, não se consegue concluir nada: uma vez que o algoritmo Apriori vai analisar linha a linha de forma independente, no formato atual, o valor de glicemia só vai ser comparado com o valor de insulina e de hidratos de carbono registados ao mesmo tempo. No entanto, o importante é saber como é que a quantidade de hidratos de carbono ingerida e a insulina tomada vão afetar a glicemia no espaço de tempo a seguir, e não no mesmo espaço de tempo. Ou seja, como é que os valores de hidratos e de insulina num registo, vão afetar a glicemia no registo seguinte. A questão é que o valor de glicemia do registo seguinte vai pertencer a outra linha do csv e portanto não vai ser tido em conta para os valores de outra linha. Posto isto, a solução foi alterar a estrutura do ficheiro para que cada linha passe a ter o valor de glicemia seguinte, e não o atual. Assim, imaginando que a variável ``Value\textunderscore Glucose'' passe a chamar-se ``Next\textunderscore Glucose'', é possível ter uma regra como
+
+\begin{lstlisting}
+Se Value_Carbs==5 entao Next_Glucose==5
+\end{lstlisting} 
+
+ou seja, descobrir um padrão em que quando o utilizador ingere demasiados hidratos de carbono, então o valor seguinte de glicemia será demasiado elevado, mais precisamente uma hiperglicemia. Se esta alteração não fosse feita, as regras descobertas apenas dariam relações entre valores registados à mesma hora o que não tem qualquer utilidade. Embora este não seja o único tipo de regras a descobrir, certamente que é um dos tipos de conselhos que podem levar um utilizador a conseguir controlar a diabetes de forma mais eficiente. Convém relembrar que se uma regra é descoberta, é porque essa ação ocorre várias vezes, ou seja, trata-se de um padrão. Ao informar o utilizador de que este padrão existe, e que tem uma influência negativa nos seus valores de glicemia, o utilizador pode tomar a ação que achar mais apropriada de forma a evitar que aconteça. Na presença de uma regra como esta, a aplicação poderia mostrar um aviso quando o utilizador fosse fazer um registo de refeição e metesse um valor elevado de hidratos de carbono, em que o aviso poderia ser, por exemplo, ``Meteu um valor de hidratos de carbono elevado e, quando faz isso, normalmente tende a ter uma eventual hiperglicemia algum tempo depois da refeição''.
+
+Uma vez alterados os \textit{data sets} de cada utilizador, faltava ainda converter todas as variáveis para \textit{factor}. \textit{Factor} é um tipo em R que toma apenas um número limitado de valores diferentes; variáveis do tipo \textit{factor} são também chamadas de variáveis categóricas. Esta conversão é necessária para as variáveis poderem ser utilizadas no algoritmo de associação. Ainda assim, a fase de discretização feita na secção 5.2 é também necessária. Sem a discretização, as variáveis podem ser utilizadas pelo apriori desde que sejam do tipo \textit{factor} mas as regras geradas não são utilizáveis. Por exemplo, uma regra gerada sem fazer discretização das variáveis é
+
+\begin{lstlisting}
+{Value_Glucose=140,Value_Insulin=140} => {Value_Carbs=140}
+\end{lstlisting}
+
+que serve para ilustrar a ineficácia deste algoritmo para valores não discretizados. Feito então o passo de conversão das variáveis para \textit{factors}, o \textit{data set} está pronto a ser utilizado pelo apriori. De seguida apresentaremos algumas das regras mais relevantes descobertas para cada utilizador e verificaremos também se essas regras estão em concordância com os gráficos obtidos na secção anterior. 
