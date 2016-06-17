@@ -1,62 +1,7 @@
 \chapter{Estado da Arte}\label{chap:stat}
 
-Vimos anteriormente que a tecnologia pode ser útil ao serviço da medicina. Vimos que existem dispositivos para medir a glicose e para controlar a glicemia e percebemos também que os \textit{smartphones} também podem ser úteis para a diabetes. Neste capítulo pretende-se analisar de que forma é que a tecnologia já está a ser usada para ajudar pacientes diabéticos e vamos abordar duas vertentes: 1) aplicações para \textit{smartphones} e 2) uso de medicina personalizada para controlar a diabetes, através de técnicas de \textit{data mining}. 
-Medicina personalizada é a prática de tratar cada doente de forma individualizada, de acordo com as suas características, necessidades e preferências a cada momento, em vez de um tratamento generalizado para todos os pacientes. [PersMed.pdf]
-
-
-\section{Aplicações para \textit{smartphones} Android}
-
-Estima-se que em 2016 o número de utilizadores de \textit{smartphones} seja, em todo o mundo, de 2.08 mil milhões.[smartUsers] 
-Por outro lado, são ferramentas cada vez mais poderosas e tem havido um crescimento no desenvolvimento de aplicações para saúde e bem-estar. De seguida vamos analisar algumas das aplicações existentes para a diabetes. Para esta análise foram consideradas apenas aplicações para Android, pois é o sistema operativo móvel mais usado no mundo [mercadomovel] e porque a aplicação na qual este projeto se baseia também é para Android. Foram escolhidas cinco aplicações da \textit{Google Play} com base no número de \textit{downloads} e no número de \textit{ratings}. Cada aplicação foi instalada e testada com o intuito de perceber aquilo que oferece ao utilizador. Alguns dos parâmetros a testar são as variáveis que as aplicações permitem registar e o seu visual. Todas as aplicações escolhidas são grátis.
-
-\subsection{Diário da Diabetes mySugr}
-
-Esta aplicação permite ao utilizador adicionar registos e cada registo permite especificar alguns parâmetros, como o nível de glicemia, hidratos de carbono consumidos, tipo de insulina e tipo de refeição. Cada registo pode ser acompanhado para uma foto, caso seja uma refeição, e pode ser também escolhido um tipo para cada registo, como por exemplo "almoço", "jantar", "hipoglicemia", entre outros. Para cada registo é ainda possível escolher um outro tipo que dá mais informação, como "Stressado", "Doente", "Álcool", mas não só. De nota também que é possível especificar o tipo de alimentos caso o registo se trate de uma refeição. Entre os tipos de alimentos existem, entre outros, "Legumes", "Carne", "Peixe", "Ovos", etc.
-
-Esta aplicação permite a sincronização com um glicómetro, o "iHealth BG5". [ref] É ainda possível definir metas como limite para hipo e hiperglicemia, e metas de peso ou exercício. Uma característica interessante da aplicação é ter um sistema de pontos e de desafios. Os desafios são diversos, como por exemplo "Caminhada para a cura", que incentiva o utilizador a registar pelo menos 30 minutos de exercícios em 24 horas. Desafios completos desbloqueiam novos desafios. 
-
-Por cada registo efetuado ganha-se uma quantidade de pontos, que é maior quantos mais parâmetros forem preenchidos em cada registo. A aplicação tem um pequeno boneco animado que vai sendo desbloqueado com pontos. Estes dois sistemas são interessantes porque podem funcionar como um incentivo extra para o uso regular da aplicação. 
-
-Por ifm, a aplicação possibilita a exportação dos registos efetuados para três formatos possíveis: xls, pdf ou csv. Esta característica, no entanto, está disponível apenas na versão paga.
-
-\subsection{Diabetes:M}
-
-Esta aplicação permite o registo de glicose, hidratos de carbono consumidos, insulina de efeito rápido e longo, peso, colesterol, pressão arterial, atividade física e hemoglobina glicosilada (também conhecida por hemoglobina glicada ou HbA1c). À primeira vista, nota-se logo o ecrã principal que se pode tornar confuso pela grande quantidade de botões que oferece. As funções disponibilizadas são bastante semelhantes às da aplicação anterior. Uma função nova é a de alarme, que ajuda os utilizadores a não se esquecerem de medir a glicose. Em termos de visualização dos dados inseridos, a aplicação mostra os mesmos em forma de gráficos para se poder acompanhar os registos num determinado intervalo de tempo. É possível verificar que se podem usar unidades de medida diferentes para os vários parâmetros. Por exemplo, para a glicemia pode-se usar mg/dL ou mmol/L. Uma vantagem do ecrã principal é mostrar a quantidade de insulina ativa presente num dado momento. Isto é, se um utilizador tomar 5 doses de insulina, a aplicação mostra, ao longo do tempo, um valor denominado "Insulina Ativa", ou seja, a previsão da insulina que "sobra" desde a última toma.
-
-Uma outra característica interessante é a de possibilitar sincronizaçã com aplicações externas, como Dropbox, Google Drive e Google Fit. A aplicação permite ainda fazer \textit{backup} dos dados.
-
-É também possível exportar e importar dados nos formatos csv e xls, bem como importar dados de glicómetros de diferentes modelos, tais como OneTouch, Dexcom ou Accu-Chek.
-
-\subsection{OnTrack Diabetes}
-
-Esta aplicação permite registar glicose, refeições, exercício, medicação, peso, pressão arterial, pulsação e HbA1c. Tem uma interface bastante simples relativamente às outras aplicações experimentadas. Tem apenas três menus no ecrã principal, que permite ver relatórios, o histórico e alguns gráficos relativamente aos dados inseridos. O ecrã principal mostra também as médias dos níveis de glicose diários, semanais e mensais. Ao explorar a aplicação foi possível verificar que esta oferece vários gráficos. Por exemplo, é possível visualizar, através de gráficos, valores de glicose, média diária de glicose, glicose por hora do dia, exercício, etc.
-
-Ao consultar o menu "Histórico" os dados aparecem na forma de lista e por ordem de refeição, ou seja, para um mesmo dia, os dados relativamente ao pequeno almoço aparecem antes do jantar. Este menu apresenta, portanto, todos os dados registados em cada dia. 
-No menu "Relatórios", podemos observar médias de glicose, que são diárias, semanais, mensais ou trimestrais. Existe uma outra opção chamada "glicose por categoria", que mostra os valores médios da glicose registados em cada tipo de refeição.
-Uma outra funcionalidade, "Logbook", permite a visualização dos dados através de gráficos, permitindo ver qualquer parâmetro registado e partilhar esses mesmos gráficos por \textit{e-mail}.
-
-É possível exportar os dados para csv, xml ou html. É também possível criar \textit{backup} ou apagar todos os dados num determinado intervalo de tempo.
-
-\subsection{Diabetes - Diário Glucose}
-
-De todas as aplicações analisadas, esta é a mais simples. É a que menos funções oferece, permitindo registar apenas o peso e a glicose, que é feito no ecrã principal. A aplicação é composta por outros três separadores que permitem visualizar os níveis de glicose em lista e em gráfico. É possível exportar os dados registados para um ficheiro pdf ou partilhar por \textit{e-mail}.
-
-\subsection{Glucose Buddy: Diabetes Log}
-
-Esta aplicação permite registar o tipo de diabetes, peso, altura, pressão arterial, glicose, HbA1c, exercício, refeições e a atividade do registo (refeição, antes de exercício, depois de exercício, etc.).
-
-Pode-se observar os registos de glicose em forma de lista, utilizando o menu "Logs" ou em forma de gráfico usando o menu "Graphs". No gráfico pode-se visualizar apenas o parâmetro da glicose bem como a média de todos os valores registados por dia.
-
-A aplicação oferece ainda um alarme que pode ser ativado para uma determinada hora ou então pode ser coordenado com um evento. Por exemplo, o utilizador pode definir um alarme para 30 minutos depois do almoço, sendo que quando fizer um registo com o tipo de refeição "almoço", ativará o alarme para o tempo definido. 
-
-É possível exportar os registos selecionando intervalos pré-estabelecidos pela aplicação e enviar para o \textit{e-mail}.\newline
-
-
-
-
-
-Como se pode perceber, as aplicações não diferem muito entre si e todas elas oferecem praticamente as mesmas funcionalidades. 
-
+Vimos anteriormente que a tecnologia pode ser útil ao serviço da medicina. Vimos que existem dispositivos para medir a glicose e para controlar a glicemia e percebemos também que os \textit{smartphones} podem ser úteis para a diabetes. Neste capítulo pretende-se analisar de que forma é que a tecnologia já está a ser usada para ajudar pacientes diabéticos e vamos abordar duas vertentes: 1) uso da medicina personalizada para controlar a diabetes, através de técnicas de \textit{data mining} e 2) aplicações de registo de glicemias para \textit{smartphones}.
+Medicina personalizada é a prática de tratar cada doente de forma individualizada, de acordo com as suas características, necessidades e preferências a cada momento, em vez de um tratamento generalizado para todos os pacientes.~\cite{personalized}
 
 \section{Medicina personalizada e data mining na saúde}
 
@@ -65,24 +10,24 @@ Nesta secção pretende-se abordar de que forma a área de \textit{Data Mining} 
 
 Estas técnicas podem ser utilizadas para fins diferentes: fazer aprendizagem analisando dados já existentes para que se possam criar modelos, que por sua vez irão classificar novos dados; encontrar relações entre variáveis e causas; detetar padrões.
 
-Em [tiago.pdf], os autores usaram diferentes algoritmos para tentar prever a sobrevivência ao cancro da mama. Neste caso, define-se por sobrevivência o paciente estar vivo pelo menos 5 anos após o diagnóstico do cancro. Foram usados três algoritmos de classificação diferentes: redes neuronais artificiais, árvores de decisão e regressão logística. Os autores usaram um \textit{data set} já existente e, depois de todo o pré-processamento, como limpeza de dados, obtiveram um \textit{data set} com 17 variáveis (16 variáveis de previsão e 1 variável de classe, isto é, a variável a ser prevista). Gerando modelos através dos três algoritmos utilizados, conseguiram classificar, com alta percentagem de precisão, se um dado paciente teria sobrevivido ou não. Além disso, conseguiram também descobrir quais as variáveis mais importantes para a classificação, e, portanto, atribuir importâncias diferentes a diferentes variáveis. Os diferentes algoritmos conseguiram diferentes precisões: a rede neuronal teve uma precisão de 0.9121; a regressão logística teve uma precisão de 0.8920 e a árvore de decisão teve uma precisão de 0.9362. De notar que estes resultados foram obtidos usando \textit{cross-validation}. \textit{Cross-validation} é um método que divide um \textit{data set} em duas partes: treino e teste. Neste caso, foi usada \textit{10 fold cross-validation} o que significa que o \textit{data set} foi dividido em 10 partes, ou seja, nove partes são usadas para treino e gerar um modelo. Esse modelo vai ser usado na parte restante para classificação e este processo é repetido dez vezes. Em cada repetição, o conjunto de teste é diferente. A precisão obtida nestes testes foram a média das dez repetições.
+Em \cite{cancer}, os autores usaram diferentes algoritmos para tentar prever a sobrevivência ao cancro da mama. Neste caso, define-se por sobrevivência o paciente estar vivo pelo menos 5 anos após o diagnóstico do cancro. Foram usados três algoritmos de classificação diferentes: redes neuronais artificiais, árvores de decisão e regressão logística. Os autores usaram um \textit{data set} já existente e, depois de todo o pré-processamento, como limpeza de dados, obtiveram um \textit{data set} com 17 variáveis (16 variáveis de previsão e 1 variável de classe, isto é, a variável a ser prevista). Gerando modelos através dos três algoritmos utilizados, conseguiram classificar, com alta percentagem de precisão, se um dado paciente teria sobrevivido ou não. Além disso, conseguiram também descobrir quais as variáveis mais importantes para a classificação, e, portanto, atribuir importâncias diferentes a diferentes variáveis. Os diferentes algoritmos conseguiram diferentes precisões: a rede neuronal teve uma precisão de 0.9121; a regressão logística teve uma precisão de 0.8920 e a árvore de decisão teve uma precisão de 0.9362. De notar que estes resultados foram obtidos usando \textit{cross-validation}. \textit{Cross-validation} é um método que divide um \textit{data set} em duas partes: treino e teste. Neste caso, foi usada \textit{10 fold cross-validation} o que significa que o \textit{data set} foi dividido em 10 partes, ou seja, nove partes são usadas para treino e gerar um modelo. Esse modelo vai ser usado na parte restante para classificação e este processo é repetido dez vezes. Em cada repetição, o conjunto de teste é diferente. A precisão obtida nestes testes foram a média das dez repetições.
 
-Em [palaniappan2008.pdf], os autores criaram uma aplicação web para prever o risco de um dado paciente ter doença cardíaca. A partir de um \textit{data set} com 909 registos, com 15 varíaveis, usaram três algoritmos diferentes para calcular a probabilidade de um dado paciente ter uma doença cardíaca: Árvores de Decisão, \textit{Naive Bayes} e Redes neuronais. Os registos foram dividos, em igual proporção, num conjunto de treino (455 registos) e conjunto de teste (454 registos). Obteram diferentes precisões para os modelos: \textit{Naive Bayes} foi o modelo com maior precisão, 86.12\%, seguido da rede neuronal com 85.68\% e Árvores de decisão com 80.4\%. Neste estudo, os autores conseguiram também encontrar relações entre variáveis. Por exemplo, conseguiram concluir que a variável "Tipo de dor no peito" é a mais influente relativamente a uma doença cardíaca. Conseguiram também obter algumas regras que ajudam a prever, com alta percentagem de correção, se um dado paciente tem doença cardíaca ou não. Uma das regras geradas foi 
+Em \cite{sota2}, os autores criaram uma aplicação \textit{web} para prever o risco de um dado paciente ter doença cardíaca. A partir de um \textit{data set} com 909 registos, com 15 varíaveis, usaram três algoritmos diferentes para calcular a probabilidade de um dado paciente ter uma doença cardíaca: Árvores de Decisão, \textit{Naive Bayes} e Redes neuronais. Os registos foram dividos, em igual proporção, num conjunto de treino (455 registos) e conjunto de teste (454 registos). Obtiveram diferentes precisões para os modelos: \textit{Naive Bayes} foi o modelo com maior precisão, 86.12\%, seguido da rede neuronal com 85.68\% e Árvores de decisão com 80.4\%. Neste estudo, os autores conseguiram também encontrar relações entre variáveis. Por exemplo, conseguiram concluir que a variável ``Tipo de dor no peito'' é a mais influente relativamente a uma doença cardíaca. Conseguiram também obter algumas regras que ajudam a prever, com alta percentagem de correção, se um dado paciente tem doença cardíaca ou não. Uma das regras geradas foi 
 
 \begin{lstlisting}
 Chest Pain Type = 4 and CA = 0 and Exang = 0 and Trest Blood Pressure >= 146.362 and < 158.036
 \end{lstlisting}
 que diz que 99.61\% dos doentes cardíacos cumprem estes requisitos. 
 
-Em [associationDiabetes.pdf], os autores aplicaram o algoritmo \textit{apriori} num \textit{data set} com 100 registos de pacientes diabéticos, para tentar gerar regras de associação. Cada registo equivale a um paciente e tem variáveis como idade, regime de insulina, glicose objetivo, glicemia estável ou instável, entre outros. 
+Em \cite{association}, os autores aplicaram o algoritmo \textit{apriori} num \textit{data set} com 100 registos de pacientes diabéticos, para tentar gerar regras de associação. Cada registo equivale a um paciente e tem variáveis como idade, regime de insulina, glicose objetivo, glicemia estável ou instável, entre outros. 
 Neste estudo o objetivo era obter conhecimento sobre uma base de dados de pacientes diabéticos e gerar regras com o conhecimento obtido.
 Uma das regras geradas é 
 \begin{lstlisting}
 IF diabetes mellitus type = 2 AND special condition = no AND target = good AND unstable diabetes = no THEN regime = 2
 \end{lstlisting}
-Neste caso, regime é a proposta de insulina por dia, sendo que "2" corresponde a duas injeções de insulina mista, com ação curta e intermédia, uma ao pequeno-almoço e uma à tarde. 
+Neste caso, regime é a proposta de insulina por dia, sendo que ``2'' corresponde a duas injeções de insulina mista, com ação curta e intermédia, uma ao pequeno-almoço e uma à tarde. 
 
-Finalmente, em [SVMDiabetes.pdf], os autores usaram algoritmos de classificação para gerar um modelo de diagnóstico da diabetes. Neste caso, usam-se SVM's (\textit{support vector machines} e um \textit{data set} com 56 variáveis que foi dividido em duas partes: 90\% para o conjunto de treino e 10\% para conjunto de teste. Foi usada \textit{10 fold cross-validation} como método de treino para obter os parâmetros ideais para os modelos. Depois deste processo, a melhor \textit{fold} é escolhida para gerar conjuntos de regras e para ser usada na classificação do conjunto de teste. Contudo, SVM's têm uma natureza \textit{black-box}, são capazes de classificar dados mas não são capazes de explicar o porquê dessa mesma classificação. Isto significa que, usando apenas SVM's, não é possível extrair regras. Face a este inconveniente, os autores decidiram combinar SVM's com outros dois algoritmos: \textit{Random Forests} (RF) e C4.5, um algoritmo para árvores de decisão. A combinação de SVM's com outros algoritmos \textit{white-box} já vem sendo utilizada noutros estudos. [svm1.pdf][svm2.pdf] Neste caso, conseguiram-se gerar regras que ajudam a classificar dados como pertencendo a pacientes diabéticos ou não-diabéticos. Uma das regras geradas é, por exemplo, 
+Finalmente, em \cite{svm}, os autores usaram algoritmos de classificação para gerar um modelo de diagnóstico da diabetes. Neste caso, usam-se SVM's (\textit{support vector machines}) e um \textit{data set} com 56 variáveis que foi dividido em duas partes: 90\% para o conjunto de treino e 10\% para conjunto de teste. Foi usada \textit{10 fold cross-validation} como método de treino para obter os parâmetros ideais para os modelos. Depois deste processo, a melhor \textit{fold} é escolhida para gerar conjuntos de regras e para ser usada na classificação do conjunto de teste. Contudo, SVM's têm uma natureza \textit{black-box}, isto é, 	são capazes de classificar dados mas não são capazes de explicar o porquê dessa mesma classificação. Isto significa que, usando apenas SVM's, não é possível extrair regras. Face a este inconveniente, os autores decidiram combinar SVM's com outros dois algoritmos: \textit{Random Forests} (RF) e C4.5, um algoritmo para árvores de decisão. A combinação de SVM's com outros algoritmos \textit{white-box} já vem sendo utilizada noutros estudos. [svm1.pdf][svm2.pdf] Neste caso, conseguiram-se gerar regras que ajudam a classificar dados como pertencendo a pacientes diabéticos ou não-diabéticos. Uma das regras geradas é, por exemplo, 
 \begin{lstlisting}
 If HBA1C > 7.15 and HDL > 1.57 and CHOL > 5.9 and AGE>77, then diabetic
 \end{lstlisting}
@@ -97,7 +42,57 @@ Os dois algoritmos usados, SVM + RF e SVM + C4.5 conseguiram, respetivamente, 89
 Após a revisão bibliográfica acerca do uso do \textit{data mining} na medicina, observa-se que a maioria dos trabalhos são para efeitos de classificação. Na pesquisa efetuada sobre o uso de \textit{data mining} só se encontrou um estudo sobre regras de associação para a diabetes, que foi o estudo acima analisado. Esse estudo, apesar de usar um algoritmo de associação para gerar regras, não faz o que é pretendido nesta dissertação. 
 O que se pretende neste trabalho é aplicar esse mesmo algoritmo mas para cada paciente de forma individual, com vários registos ao longo do tempo. Desta forma geram-se regras personalizadas para cada paciente e que, portanto, serão regras específicas para que o paciente possa ter um melhor controlo sobre a sua glicemia. Da pesquisa efetuada não foi encontrado nenhum outro trabalho com uma análise personalizada para cada paciente o que torna este, neste aspeto, diferente do que já foi feito.
 
-Uma parte importante deste trabalho é a aplicação MyDiabetes, será a aplicação onde o sistema desenvolvido será integrado e que, até lá, serve de plataforma para os clientes registarem e enviarem os dados a serem utilizados no projeto. Assim, o próximo capítulo aborda de forma mais detalhada a aplicação.
+
+\section{Aplicações para \textit{smartphones} Android}
+
+Estima-se que em 2016 o número de utilizadores de \textit{smartphones} seja, em todo o mundo, de 2.08 mil milhões.~\cite{users}
+Por outro lado, são ferramentas cada vez mais poderosas e tem havido um crescimento no desenvolvimento de aplicações para saúde e bem-estar. De seguida vamos analisar algumas das aplicações existentes para a diabetes. Para esta análise foram consideradas apenas aplicações para Android, pois é o sistema operativo móvel mais usado no mundo~\cite{mercadomovel} e porque a aplicação na qual este projeto se baseia também é para Android. Foram escolhidas cinco aplicações da \textit{Google Play} com base no número de \textit{downloads} e no número de \textit{ratings}. Cada aplicação foi instalada e testada com o intuito de perceber aquilo que oferece ao utilizador. Alguns dos parâmetros a testar são as variáveis que as aplicações permitem registar e o seu visual. Todas as aplicações escolhidas são grátis.
+
+\subsection{Diário da Diabetes mySugr}
+
+Esta aplicação permite ao utilizador adicionar registos e cada registo permite especificar alguns parâmetros, como o nível de glicemia, hidratos de carbono consumidos, tipo de insulina e tipo de refeição. Cada registo pode ser acompanhado para uma foto, caso seja uma refeição, e pode ser também escolhido um tipo para cada registo, como por exemplo ``almoço'', ``jantar'', ``hipoglicemia'', entre outros. Para cada registo é ainda possível escolher um outro tipo que dá mais informação, como ``Stressado'', ``Doente'', ``Álcool'', mas não só. De nota também que é possível especificar o tipo de alimentos caso o registo se trate de uma refeição. Entre os tipos de alimentos existem, entre outros, ``Legumes'', ``Carne'', ``Peixe'', ``Ovos'', etc.
+
+Esta aplicação permite a sincronização com um glicómetro, o ``iHealth BG5''. [ref] É ainda possível definir metas como limite para hipo e hiperglicemia, e metas de peso ou exercício. Uma característica interessante da aplicação é ter um sistema de pontos e de desafios. Os desafios são diversos, como por exemplo ``Caminhada para a cura'', que incentiva o utilizador a registar pelo menos 30 minutos de exercícios em 24 horas. Desafios completos desbloqueiam novos desafios. 
+
+Por cada registo efetuado ganha-se uma quantidade de pontos, que é maior quantos mais parâmetros forem preenchidos em cada registo. A aplicação tem um pequeno boneco animado que vai sendo desbloqueado com pontos. Estes dois sistemas são interessantes porque podem funcionar como um incentivo extra para o uso regular da aplicação. 
+
+Por fim, a aplicação possibilita a exportação dos registos efetuados para três formatos possíveis: xls, pdf ou csv. Esta característica, no entanto, está disponível apenas na versão paga.
+
+\subsection{Diabetes:M}
+
+Esta aplicação permite o registo de glicose, hidratos de carbono consumidos, insulina de efeito rápido e longo, peso, colesterol, pressão arterial, atividade física e hemoglobina glicada. À primeira vista, nota-se logo o ecrã principal que se pode tornar confuso pela grande quantidade de botões que oferece. As funções disponibilizadas são bastante semelhantes às da aplicação anterior. Uma função nova é a de alarme, que ajuda os utilizadores a não se esquecerem de medir a glicose. Em termos de visualização dos dados inseridos, a aplicação mostra os mesmos em forma de gráficos para se poder acompanhar os registos num determinado intervalo de tempo. É possível verificar que se podem usar unidades de medida diferentes para os vários parâmetros. Por exemplo, para a glicemia pode-se usar mg/dL ou mmol/L. Uma vantagem do ecrã principal é mostrar a quantidade de insulina ativa presente num dado momento. Isto é, se um utilizador tomar 5 doses de insulina, a aplicação mostra, ao longo do tempo, um valor denominado ``Insulina Ativa'', ou seja, a previsão da insulina que ``sobra'' desde a última toma.
+
+Uma outra característica interessante é a de possibilitar sincronização com aplicações externas, como Dropbox, Google Drive e Google Fit. A aplicação permite ainda fazer \textit{backup} dos dados.
+
+É também possível exportar e importar dados nos formatos csv e xls, bem como importar dados de glicómetros de diferentes modelos, tais como OneTouch, Dexcom ou Accu-Chek.
+
+\subsection{OnTrack Diabetes}
+
+Esta aplicação permite registar glicose, refeições, exercício, medicação, peso, pressão arterial, pulsação e HbA1c. Tem uma interface bastante simples relativamente às outras aplicações experimentadas. Tem apenas três menus no ecrã principal, que permite ver relatórios, o histórico e alguns gráficos relativamente aos dados inseridos. O ecrã principal mostra também as médias dos níveis de glicose diários, semanais e mensais. Ao explorar a aplicação foi possível verificar que esta oferece vários gráficos. Por exemplo, é possível visualizar, através de gráficos, valores de glicose, média diária de glicose, glicose por hora do dia, exercício, etc.
+
+Ao consultar o menu ``Histórico'' os dados aparecem na forma de lista e por ordem de refeição, ou seja, para um mesmo dia, os dados relativamente ao pequeno almoço aparecem antes do jantar. Este menu apresenta, portanto, todos os dados registados em cada dia. 
+No menu ``Relatórios'', podemos observar médias de glicose, que são diárias, semanais, mensais ou trimestrais. Existe uma outra opção chamada ``glicose por categoria'', que mostra os valores médios da glicose registados em cada tipo de refeição.
+Uma outra funcionalidade, ``Logbook'', permite a visualização dos dados através de gráficos, permitindo ver qualquer parâmetro registado e partilhar esses mesmos gráficos por \textit{e-mail}.
+
+É possível exportar os dados para csv, xml ou html. É também possível criar \textit{backup} ou apagar todos os dados num determinado intervalo de tempo.
+
+\subsection{Diabetes - Diário Glucose}
+
+De todas as aplicações analisadas, esta é a mais simples. É a que menos funções oferece, permitindo registar apenas o peso e a glicose, que é feito no ecrã principal. A aplicação é composta por outros três separadores que permitem visualizar os níveis de glicose em lista e em gráfico. É possível exportar os dados registados para um ficheiro pdf ou partilhar por \textit{e-mail}.
+
+\subsection{Glucose Buddy: Diabetes Log}
+
+Esta aplicação permite registar o tipo de diabetes, peso, altura, pressão arterial, glicose, HbA1c, exercício, refeições e a atividade do registo (refeição, antes de exercício, depois de exercício, etc.).
+
+Pode-se observar os registos de glicose em forma de lista, utilizando o menu ``Logs'' ou em forma de gráfico usando o menu ``Graphs''. No gráfico pode-se visualizar apenas o parâmetro da glicose bem como a média de todos os valores registados por dia.
+
+A aplicação oferece ainda um alarme que pode ser ativado para uma determinada hora ou então pode ser coordenado com um evento. Por exemplo, o utilizador pode definir um alarme para 30 minutos depois do almoço, sendo que quando fizer um registo com o tipo de refeição ``almoço'', ativará o alarme para o tempo definido. 
+
+É possível exportar os registos selecionando intervalos pré-estabelecidos pela aplicação e enviar para o \textit{e-mail}.\newline
+
+
+Como se pode perceber, as aplicações não diferem muito entre si e todas elas oferecem praticamente as mesmas funcionalidades, que são de registo e visualização de dados. Desta forma, pode-se concluir que um sistema de aconselhamento numa aplicação para registo de glicemias será um aspeto inovador. 
+Para este trabalho vamos utilizar a aplicação MyDiabetes, que será também a aplicação onde o sistema desenvolvido será integrado. Uma vez que para este projeto poder ser feito, será necessário recolher dados de pacientes diabéticos, a aplicação MyDiabetes será também a plataforma para a recolha desses dados, através da utilização da aplicação por pacientes diabéticos. Os motivos para a necessidade de recolha dos dados serão explicados no capítulo 5. O próximo capítulo descreve de forma mais detalhada a aplicação MyDiabetes.
 
 
 
