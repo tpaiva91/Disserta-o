@@ -15,6 +15,9 @@ joaquim$Exercise <- NULL
 
 for(i in 1:nrow(joaquim)){
   
+  if(is.na(joaquim$Value_Insulin[i]) || is.na(joaquim$Value_Carbs[i])) {
+    joaquim$Calculated_Insulin <- NA
+  } else
   if(i==0){
     joaquim$Calculated_Insulin = 0;
   } else {
@@ -24,6 +27,10 @@ for(i in 1:nrow(joaquim)){
 }
 
 for(i in 1:nrow(joaquim)){
+  
+  if(is.na(joaquim$Calculated_Insulin[i])){
+    joaquim$Diferença_Insulin[i] <- NA
+  }
   joaquim$Diferença_Insulin[i] = joaquim$Value_Insulin[i] - joaquim$Calculated_Insulin[i]
   
   if(joaquim$Diferença_Insulin[i] >=3.0) {
@@ -46,6 +53,11 @@ joaquim$Calculated_Insulin <- NULL
 
 for(i in 1:nrow(joaquim)){
   
+  
+  
+  if(is.na(joaquim$Value_Glucose[i])) {
+    joaquim$Value_Glucose[i] <- NA
+  } else
   if(joaquim$Value_Glucose[i]<60){
     
     joaquim$Value_Glucose[i]=1
@@ -66,12 +78,39 @@ for(i in 1:nrow(joaquim)){
     }
 }
 
+for(i in 1:nrow(joaquim)){
+  
+  
+  
+  if(is.na(joaquim$Next_Glucose[i])) {
+    joaquim$Next_Glucose[i] <- NA
+  } else
+    if(joaquim$Next_Glucose[i]<60){
+      
+      joaquim$Next_Glucose[i]=1
+      
+    } else
+      if(joaquim$Next_Glucose[i] >60 & joaquim$Next_Glucose[i]<80){
+        joaquim$Next_Glucose[i]=2
+        
+      } else if(joaquim$Next_Glucose[i] >= 80 & joaquim$Next_Glucose[i]<130){
+        joaquim$Next_Glucose[i]=3
+        
+      } else if(joaquim$Next_Glucose[i] >=130 & joaquim$Next_Glucose[i]<180){
+        joaquim$Next_Glucose[i]=4
+        
+      } else if(joaquim$Next_Glucose[i]>=180){
+        joaquim$Next_Glucose[i]=5
+        
+      }
+}
+
 
 for(i in 1:nrow(joaquim)){
   
   if(is.na(joaquim$Value_Insulin[i]) || joaquim$Value_Carbs[i]==0) {
-    joaquim$Value_Insulin[i] <- 0
-  }
+    joaquim$Value_Insulin[i] <- NA
+  } else
   if(joaquim$Value_Insulin[i]<3.0 && joaquim$Value_Insulin[i]!=0){
     
     joaquim$Value_Insulin[i]=1
@@ -89,7 +128,7 @@ for(i in 1:nrow(joaquim)){
 
 for(i in 1:nrow(joaquim)){
   if(is.na(joaquim$Value_Carbs[i]) || joaquim$Value_Carbs[i]==0) {
-    joaquim$Value_Carbs[i] <- 0
+    joaquim$Value_Carbs[i] <- NA
   } else
   if(joaquim$Value_Carbs[i]<25){
     joaquim$Value_Carbs[i]=1
@@ -119,22 +158,6 @@ for(i in 1:nrow(joaquim)){
 
 
 
-
-for(i in 1:nrow(joaquim)){
-  if(joaquim$Exercise[i]!=0){
-    joaquim$Had_Exercise[i]=1
-  }
-}
-
-for(i in 1:nrow(joaquim)){
-  if(((joaquim$Day[i] == joaquim$Day[i+1]) & joaquim$Exercise[i]!=0) || (joaquim$Had_Exercise[i]==1 & joaquim$Day[i]==joaquim$Day[i+1])){
-    joaquim$Had_Exercise[i+1]=1
-  }
-}
-
-
-
-
 joaquim$Had_Exercise <- as.factor(joaquim$Had_Exercise)
 joaquim$Day <- as.factor(joaquim$Day)
 joaquim$Period <- as.factor(joaquim$Period)
@@ -144,15 +167,15 @@ joaquim$Value_Insulin <- as.factor(joaquim$Value_Insulin)
 joaquim$Exercise <- as.factor(joaquim$Exercise)
 joaquim$Variation <- as.factor(joaquim$Variation)
 joaquim$Diferença_Insulin <- as.factor(joaquim$Diferença_Insulin)
-
+joaquim$Next_Glucose <- as.factor(joaquim$Next_Glucose)
+joaquim$Value_Glucose <- NULL
 joaquim$Calculated_Insulin <- NULL
 joaquim$Had_Exercise <- NULL
-joaquim$Exercise <- NULL
 joaquim$Target_BG <- NULL
 
 
 
 library(arules)
-rules <- apriori(joaquim, parameter=list(confidence=0.6, support=0.05))
+rules <- apriori(joaquim, parameter=list(confidence=0.6, support=0.01))
 
-rules.sub <- subset(rules, subset = rhs %in% "Value_Glucose=5")
+rules.sub <- subset(rules, subset = rhs %in% "Next_Glucose=5")

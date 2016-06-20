@@ -13,16 +13,21 @@ joaquim$DateTime <- NULL
 
 
 for(i in 1:nrow(joaquim)){
-  
+  if(is.na(joaquim$Value_Carbs[i]) || is.na(joaquim$Value_Insulin[i])) {
+    joaquim$Calculated_Insulin[i] <- NA
+  } else
   if(i==0){
     joaquim$Calculated_Insulin = 0;
   } else {
-    joaquim$Calculated_Insulin[i] = joaquim$Value_Carbs[i]/28 + ((joaquim$Value_Glucose[i] - 120)/95)
+    joaquim$Calculated_Insulin[i] = joaquim$Value_Carbs[i]/28 + ((joaquim$Value_Glucose[i] - joaquim$Target_BG[i])/95)
     joaquim$Calculated_Insulin[i] = round(joaquim$Calculated_Insulin[i] / 0.5)*0.5
   }
 }
 
 for(i in 1:nrow(joaquim)){
+  if(is.na(joaquim$Calculated_Insulin[i])) {
+    joaquim$Diferença_Insulin[i] <- NA
+  } else {
   joaquim$Diferença_Insulin[i] = joaquim$Value_Insulin[i] - joaquim$Calculated_Insulin[i]
   
   if(joaquim$Diferença_Insulin[i] >=3.0) {
@@ -37,22 +42,23 @@ for(i in 1:nrow(joaquim)){
     joaquim$Diferença_Insulin[i] = 1
   }
 }
+}
 
-joaquim$Exercise <- NULL
-joaquim$Had_Exercise <- NULL
-joaquim$Variation <- NULL
 joaquim$Calculated_Insulin <- NULL
 
 
 
 for(i in 1:nrow(joaquim)){
   
+  if(is.na(joaquim$Value_Glucose[i])){
+    joaquim$Value_Glucose[i] <- NA
+    } else
   if(joaquim$Value_Glucose[i]<70){
     
     joaquim$Value_Glucose[i]=1
     
   } else
-    if(joaquim$Value_Glucose[i] >70 & joaquim$Value_Glucose[i]<80){
+    if(joaquim$Value_Glucose[i] >=70 & joaquim$Value_Glucose[i]<80){
       joaquim$Value_Glucose[i]=2
       
     } else if(joaquim$Value_Glucose[i] >= 80 & joaquim$Value_Glucose[i]<130){
@@ -67,9 +73,36 @@ for(i in 1:nrow(joaquim)){
     }
 }
 
+for(i in 1:nrow(joaquim)){
+  
+  if(is.na(joaquim$Next_Glucose[i])){
+    joaquim$Next_Glucose[i] <- NA
+  } else
+    if(joaquim$Next_Glucose[i]<70){
+      
+      joaquim$Next_Glucose[i]=1
+      
+    } else
+      if(joaquim$Next_Glucose[i] >=70 & joaquim$Next_Glucose[i]<80){
+        joaquim$Next_Glucose[i]=2
+        
+      } else if(joaquim$Next_Glucose[i] >= 80 & joaquim$Next_Glucose[i]<130){
+        joaquim$Next_Glucose[i]=3
+        
+      } else if(joaquim$Next_Glucose[i] >=130 & joaquim$Next_Glucose[i]<180){
+        joaquim$Next_Glucose[i]=4
+        
+      } else if(joaquim$Next_Glucose[i]>=180){
+        joaquim$Next_Glucose[i]=5
+        
+      }
+}
 
 for(i in 1:nrow(joaquim)){
   
+  if(is.na(joaquim$Value_Insulin[i])) {
+    joaquim$Value_Insulin[i] <- NA
+  } else
   if(joaquim$Value_Insulin[i]<1.0){
     
     joaquim$Value_Insulin[i]=1
@@ -87,6 +120,9 @@ for(i in 1:nrow(joaquim)){
 
 for(i in 1:nrow(joaquim)){
   
+  if(is.na(joaquim$Value_Carbs[i])) {
+    joaquim$Value_Carbs[i] <- NA
+  } else
   if(joaquim$Value_Carbs[i]<20){
     joaquim$Value_Carbs[i]=1
   } else
@@ -129,30 +165,31 @@ for(i in 1:nrow(joaquim)){
 }
 
 
-
-
-joaquim$Had_Exercise <- as.factor(joaquim$Had_Exercise)
 joaquim$Day <- as.factor(joaquim$Day)
 joaquim$Period <- as.factor(joaquim$Period)
 joaquim$Value_Glucose <- as.factor(joaquim$Value_Glucose)
 joaquim$Value_Carbs <- as.factor(joaquim$Value_Carbs)
 joaquim$Value_Insulin <- as.factor(joaquim$Value_Insulin)
 joaquim$Exercise <- as.factor(joaquim$Exercise)
-joaquim$Variation <- as.factor(joaquim$Variation)
 joaquim$Diferença_Insulin <- as.factor(joaquim$Diferença_Insulin)
+
+joaquim$Next_Glucose <- as.factor(joaquim$Next_Glucose)
+
+
+
+
+joaquim$Value_Glucose <- NULL
 joaquim$Target_BG <- NULL
 
 library(arules)
 rules <- apriori(joaquim, parameter=list(confidence=0.6, support=0.01))
-rules2 <- eclat(joaquim, parameter=list(supp=0.01))
-rules3 <- ruleInduction(rules2, confidence=0.6)
-rules.sub <- subset(rules, subset = rhs %in% "Value_Glucose=5")
+rules.sub <- subset(rules, subset = rhs %in% "Next_Glucose=3")
 rules3.sub <- subset(rules3, subset = rhs %in% "Value_Glucose=5")
 write(rules.sub, file="RulesPauloSa")
 
 
 
-joaquim$Disease <- NULL
+
 joaquim$Exercise = "No";
 hist(as.numeric(as.character(joaquimClean$Value)))
 
@@ -241,9 +278,9 @@ joaquim$Had_ExerciseDayBefore <- as.factor(joaquim$Had_ExerciseDayBefore)
 joaquim$Hyperglycemia <- as.factor(joaquim$Hyperglycemia)
 joaquim$Hypoglycemia <- as.factor(joaquim$Hypoglycemia)
 
-rules <- apriori(joaquim, parameter=list(confidence=0.7, support=0.03))
+rules <- apriori(joaquim, parameter=list(confidence=0.6, support=0.01))
 
-rules.sub <- subset(rules, subset = rhs %in% "Value_Glucose=5")
+rules.sub <- subset(rules, subset = rhs %in% "Next_Glucose=4")
 
 
 

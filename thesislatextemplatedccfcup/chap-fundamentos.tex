@@ -88,17 +88,29 @@ Isto é o que as regras de associação podem oferecer: ao analisar grandes quan
 
 No campo da associação existem alguns algoritmos populares: Apriori, Eclat e FB-Growth. Todos os algoritmos produzem o mesmo resultado final, sendo que as diferenças entre eles prendem-se com o método utilizado e tempos de computação. Nesta dissertação, optámos por usar o algoritmo Apriori, por ser o algoritmo mais importante e conhecido. O algoritmo Apriori vai produzir regras de associação, que são da forma
 
-$\{X\} \rightarrow Y $
+\begin{align*}
+\{X\} \rightarrow Y 
+\end{align*}
 
 sendo que $\{X\}$ é um conjunto de uma ou mais variáveis e Y é apenas uma variável. Também se pode chamar antecedente ao lado esquerdo e consequente ao lado direito. Cada regra de associação tem alguns parâmetros a ela associada, nomeadamente a confiança e o suporte.
 
 A confiança é a probabilidade condicional de o consequente ocorrer sabendo que o antecedente ocorre.~\cite{apriori} Por exemplo, uma confiança de 90\% numa regra 
 
-$\{X, Z\} \rightarrow Y  $ 
+\begin{align*}
+\{X, Z\} \rightarrow Y  
+\end{align*}
 
 significa que em 90\% das vezes que X e Z ocorrem, Y também ocorre. A confiança é útil para provar a fidedignidade de uma dada regra.
 
 Suporte indica a frequência do antecedente em todo o \textit{data set}. Isto é, se $ \{X, Z\} $ tiver um suporte de 20\%, significa que em 20\% das transações, ocorre $\{X, Z\}$.~\cite{apriori} O suporte serve para garantir que um dado antecedente pertence a um padrão, ao ocorrer frequentemente. Um antecedente com um suporte muito baixo pode não pertencer a um padrão e ser apenas uma ocorrência pontual.
+
+Um outro parâmetro útil para avaliar uma regra é o \textit{lift}. \textit{Lift} é um quociente que permite averiguar a independência de duas ou mais variáveis e é dado pela fórmula 
+
+\begin{align*}
+\frac{supp(X\cup Y)}{supp(X)\times supp(Y)}
+\end{align*}
+
+que relaciona o suporte das variáveis. Um \textit{lift} igual a 1 significa que a probabilidade de ocorrência do antecedente e a probabilidade de ocorrência do consequente são independentes e, portanto, não é possível gerar regras. Um \textit{lift} acima de 1 indica que há alguma dependência entre as variáveis, sendo que quanto maior for o \textit{lift} maior é a dependência. Este parâmetro é útil para ajudar a medir a utilidade de regras.
 
 Como mencionado, as funções nativas do R não são suficientes para gerar regras de associação. No entanto, uma das características que ajudou a tornar o R tão popular é o facto de esta linguagem ser facilmente expansível, ou seja, adicionar funções que originalmente não existem. Isto é possível através de \textit{packages}.
 Um \textit{package} é um conjunto de funções e/ou dados, que pode ser feito por qualquer pessoa e pode ser adicionado ao R.~\cite{packages} Ao adicionar um novo \textit{package} ao R, todas as suas funções passam a ficar disponíveis para utilização, bastando para isso carregar a extensão em cada sessão. Existe uma rede de servidores \textit{web} e ftp que guardam versões atualizadas de código e documentação para o R, chamada CRAN. O CRAN ("Comprehensive R Archive Network") tem atualmente mais de 8000 \textit{packages} disponíveis para \textit{download}, tornando o R altamente personalizável e poderoso.~\cite{cran}

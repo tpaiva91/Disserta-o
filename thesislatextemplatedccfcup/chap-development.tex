@@ -485,4 +485,102 @@ Uma vez alterados os \textit{data sets} de cada utilizador, faltava ainda conver
 {Value_Glucose=140,Value_Insulin=140} => {Value_Carbs=140}
 \end{lstlisting}
 
-que serve para ilustrar a ineficácia deste algoritmo para valores não discretizados. Feito então o passo de conversão das variáveis para \textit{factors}, o \textit{data set} está pronto a ser utilizado pelo apriori. De seguida apresentaremos algumas das regras mais relevantes descobertas para cada utilizador e verificaremos também se essas regras estão em concordância com os gráficos obtidos na secção anterior. 
+que serve para ilustrar a ineficácia deste algoritmo para valores não discretizados. Feito então o passo de conversão das variáveis para \textit{factors}, o \textit{data set} está pronto a ser utilizado pelo apriori. De seguida apresentaremos algumas das regras mais relevantes descobertas para cada utilizador e verificaremos também se essas regras estão em concordância com os gráficos obtidos na secção anterior. Todas as regras terão uma confiança mínima de 60\%.
+Para cada utilizador interessa-nos descobrir regras que levem a alterações do valor de glicemia, sendo que o valor normal, tal como definido na secção 5.1, é 3. Portanto, interessa descobrir regras em que o valor de glicose seja 1 ou 2 para valores baixos e 4 ou 5 para valores altos.
+
+O algoritmo \textit{apriori} vai analisar linha a linha dos dados e tentar descobrir relações entre as variáveis. Para obter as regras cujo consequente diga respeito aos valores anormais de glicemias, é preciso filtrar as regras geradas. Neste caso, vamos filtrar o conjunto de regras de forma a mostrar apenas regras com ``Next\textunderscore Glucose'' com valores 1, 2, 4 ou 5. 
+
+Para todos os utilizadores definimos uma confiança mínima de 0.6 e um suporte mínimo de 0.01. O suporte tem que ser bastante baixo uma vez que vamos aplicar o algoritmo num \textit{data set} pequeno. Isto porque estamos à procura de padrões que, embora recorrentes, sejam uma minoria dos dados. Naturalmente que num \textit{data set} com milhares de linhas esses padrões sejam mais óbvios, ou seja, mais frequentes, e portanto um suporte mais alto seja suficiente para encontrar. Por outro lado, para \textit{data sets} com dezenas ou poucas centenas de linhas, os padrões não são tão explícitos pelo que é necessário um suporte mais baixo para descobrir regras. Usar um suporte demasiado baixo pode fazer com que sejam descobertas regras que sejam um caso pontual, pelo que convém não usar um suporte demasiado baixo. Assim, foi escolhido o valor 0.01 que é um valor baixo mas não demasiado. 
+
+Para a confiança foi escolhido o valor mínimo de 0.6 o que significa que, para cada regra, se o antecedente acontece, então o consequente irá acontecer com 60\% de probabilidade, o que confere alguma segurança às regras. As regras que cumpram estes dois requisitos são chamadas de regras fortes.
+
+
+No R, o comando para a geração de regras através do algoritmo \textit{apriori} é
+
+\begin{lstlisting}
+rules <- apriori(dataset, parameter=list(confidence=0.6, support=0.01))
+\end{lstlisting}
+
+em que ``dataset'' é o ficheiro a ser analisado com os parâmetros confiança e suporte definidos com os valores já mencionados. Para mostrar apenas as regras com o valor de glicose pretendido, como por exemplo 5, o comando é
+
+\begin{lstlisting}
+rules.sub <- subset(rules, subset = rhs %in% "Next_Glucose=5")
+\end{lstlisting}
+
+que gerará então um subconjunto de regras em que o consequente será ``Next\textunderscore Glucose=5''.
+
+Existe um \textit{package} chamado \textit{arulesViz} que é uma ferramenta para visualizar as regras geradas. Este \textit{package} permite, por exemplo, ordenar as regras geradas por confiança ou \textit{lift} e assim filtrar quais as regras potencialmente mais úteis. Isto é feito de forma interativa: no gráfico é possível selecionar uma região com regras e todas as regras existentes nessa região serão mostradas.
+De seguida, apresentaremos algumas regras geradas para cada utilizador.
+
+\textbf{Utilizador 1}
+
+Para o utilizador foram geradas 1239 regras. Obviamente que se torna impossível de analisar todas as regras individualmente, pelo que o primeiro passo será então aplicar um filtro, de forma a ficar apenas com valores anormais de glicemia no consequente. Após este filtro, o conjunto de regras diminui bastante, para 25. Com o comando
+
+\begin{lstlisting}
+plot(rules.sub, method=NULL, measure="support", shading = "lift", interactive = TRUE, data = NULL, control = NULL)
+\end{lstlisting}
+
+obtém-se um gráfico
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Regras.pdf}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}
+
+
+
+\begin{lstlisting}
+{Day=Sexta,Insulin_Difference=2}    => {Next_Glucose=4} 
+{Day=Sabado,Value_Carbs=5,Insulin_Difference=3}   => {Next_Glucose=4}
+{Day=Quarta,Value_Carbs=4,Value_Insulin=5,Insulin_Difference=4} => {Next_Glucose=4}
+\end{lstlisting}
+
+As regras são bastante intuitivas: a primeira regra, por exemplo, mostra que houve algumas sextas-feiras em que o utilizador tomou menos insulina que o recomendado pelo que nesses dia teve valores de glicemia acima do desejável.
+
+Já a segunda, mostra que aos sábados é comum o utilizador ingerir uma quantidade de hidratos de carbono e por isso ter os níveis de glicose um pouco elevados. O facto de aparecer que a insulina tomada é a calculada pode levar a crer que o utilizador se possa ter enganado nos cálculos de insulina. 
+
+Por outro lado, se quisermos descobrir regras que levem a valores baixos, temos
+
+\begin{lstlisting}
+{Day=Sexta,Period=1,Value_Carbs=3} => {Next_Glucose=2}
+\end{lstlisting}
+
+que mostra que à sexta-feira de manhã o utilizador tende a ter valores mais baixos que nos outros dias. Para qual
+\textbf{Utilizador 2}
+
+Para o utilizador 2 é expectável que se consigam mais regras do que para o utilizador 1 visto que o utilizador 2 tinha valores de glicemia mais oscilatórios. 
+
+\begin{lstlisting}
+
+{Day=Quarta,Value_Insulin=2}     => {Next_Glucose=5}
+{Day=Quinta,Period=2,Insulin_Difference=3}     => {Next_Glucose=5}
+
+\end{lstlisting}
+
+Enquanto que para o primeiro utilizador não se descobriram regras para valores de glicose 5, para este já se descobriu, por exemplo, que às quartas-feiras o utilizador tende a tomar pouca insulina o que reflete um valor bastante alto de insulina. Por sua vez, às quintas-feiras durante a tarde os valores também costumam ser demasiado elevados. 
+
+
+
+
+
+
+\textbf{Utilizador 3}
+
+
+
+
+\textbf{Utilizador 4}
+
+\begin{lstlisting}
+
+{Day=Segunda,Value_Carbs=4}         => {Next_Glucose=5}
+{Day=Segunda,Period=3,Value_Carbs=3,Value_Insulin=3}   => {Next_Glucose=5}
+{Day=Sexta,Value_Carbs=3,Value_Insulin=3,Insulin_Difference=4} => {Next_Glucose=5}
+\end{lstlisting}
+
+Como se pode perceber, o utilizador 4 tende a ingerir uma quantidade de hidratos acima do seu normal à segunda-feira, que por sua vez origina valores de glicose demasiado altos. Para esse mesmo dia mas para o período da tarde, mesmo que ingira uma quantidade normal de hidratos de carbono, os valores de glicose são demasiado altos, mesmo tomando o valor de insulina calculado. Isto pode significar que há um erro no cálculo da insulina, por exemplo, que pode ser na contagem dos hidratos. O mesmo acontece para sexta-feira. 
+Como se percebe pela figura 5.4, de facto as segundas e sextas-feiras são os dias da semana com mais valores de hiperglicemia, o que mostra que as regras estão em concordância com os gráficos. No entanto, as regras dão-nos mais conhecimento sobre o que pode causar essas hiperglicemias.
+
+
+\textbf{Utilizador 5}
