@@ -490,7 +490,7 @@ Para cada utilizador interessa-nos descobrir regras que levem a alterações do 
 
 O algoritmo \textit{apriori} vai analisar linha a linha dos dados e tentar descobrir relações entre as variáveis. Para obter as regras cujo consequente diga respeito aos valores anormais de glicemias, é preciso filtrar as regras geradas. Neste caso, vamos filtrar o conjunto de regras de forma a mostrar apenas regras com ``Next\textunderscore Glucose'' com valores 1, 2, 4 ou 5. 
 
-Para todos os utilizadores definimos uma confiança mínima de 0.6 e um suporte mínimo de 0.01. O suporte tem que ser bastante baixo uma vez que vamos aplicar o algoritmo num \textit{data set} pequeno. Isto porque estamos à procura de padrões que, embora recorrentes, sejam uma minoria dos dados. Naturalmente que num \textit{data set} com milhares de linhas esses padrões sejam mais óbvios, ou seja, mais frequentes, e portanto um suporte mais alto seja suficiente para encontrar. Por outro lado, para \textit{data sets} com dezenas ou poucas centenas de linhas, os padrões não são tão explícitos pelo que é necessário um suporte mais baixo para descobrir regras. Usar um suporte demasiado baixo pode fazer com que sejam descobertas regras que sejam um caso pontual, pelo que convém não usar um suporte demasiado baixo. Assim, foi escolhido o valor 0.01 que é um valor baixo mas não demasiado. 
+Para todos os utilizadores definimos uma confiança mínima de 0.6 e um suporte mínimo de 0.01. O suporte tem que ser bastante baixo uma vez que vamos aplicar o algoritmo num \textit{data set} pequeno. Isto porque estamos à procura de padrões que, embora recorrentes, vão ser uma minoria dos dados. Naturalmente que num \textit{data set} com milhares de linhas esses padrões são mais óbvios, ou seja, mais frequentes, e portanto um suporte mais alto seja suficiente para encontrar. Por outro lado, para \textit{data sets} com dezenas ou poucas centenas de linhas, os padrões não são tão explícitos pelo que é necessário um suporte mais baixo para descobrir regras. Usar um suporte demasiado baixo pode fazer com que sejam descobertas regras que sejam um caso pontual, pelo que convém não usar um suporte demasiado baixo. Assim, foi escolhido o valor 0.01 que é um valor baixo mas não demasiado. 
 
 Para a confiança foi escolhido o valor mínimo de 0.6 o que significa que, para cada regra, se o antecedente acontece, então o consequente irá acontecer com 60\% de probabilidade, o que confere alguma segurança às regras. As regras que cumpram estes dois requisitos são chamadas de regras fortes.
 
@@ -520,41 +520,39 @@ Para o utilizador foram geradas 1239 regras. Obviamente que se torna impossível
 plot(rules.sub, method=NULL, measure="support", shading = "lift", interactive = TRUE, data = NULL, control = NULL)
 \end{lstlisting}
 
-obtém-se um gráfico
+obtém-se o gráfico
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.2]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Regras.pdf}
+\includegraphics[width=75mm, height=75mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Regras.pdf}
 \caption{Glicemia por horas do utilizador 5}
 \end{figure}
 
-
+e escolhe-se a região no canto inferior esquerdo, que o suporte mais elevado. Essa região contém a regra
 
 \begin{lstlisting}
-{Day=Sexta,Insulin_Difference=2}    => {Next_Glucose=4} 
-{Day=Sabado,Value_Carbs=5,Insulin_Difference=3}   => {Next_Glucose=4}
-{Day=Quarta,Value_Carbs=4,Value_Insulin=5,Insulin_Difference=4} => {Next_Glucose=4}
+{Day=Quarta,Period=2,Value_Carbs=4} => {Next_Glucose=4}
+
 \end{lstlisting}
 
-As regras são bastante intuitivas: a primeira regra, por exemplo, mostra que houve algumas sextas-feiras em que o utilizador tomou menos insulina que o recomendado pelo que nesses dia teve valores de glicemia acima do desejável.
-
-Já a segunda, mostra que aos sábados é comum o utilizador ingerir uma quantidade de hidratos de carbono e por isso ter os níveis de glicose um pouco elevados. O facto de aparecer que a insulina tomada é a calculada pode levar a crer que o utilizador se possa ter enganado nos cálculos de insulina. 
-
-Por outro lado, se quisermos descobrir regras que levem a valores baixos, temos
+Por outro lado, as regras geradas para valores baixos de glicose são
 
 \begin{lstlisting}
 {Day=Sexta,Period=1,Value_Carbs=3} => {Next_Glucose=2}
 \end{lstlisting}
 
-que mostra que à sexta-feira de manhã o utilizador tende a ter valores mais baixos que nos outros dias. Para qual
+que mostra que à sexta-feira de manhã o utilizador tende a ter valores mais baixos que nos outros dias.
+
+
 \textbf{Utilizador 2}
 
 Para o utilizador 2 é expectável que se consigam mais regras do que para o utilizador 1 visto que o utilizador 2 tinha valores de glicemia mais oscilatórios. 
 
 \begin{lstlisting}
 
-{Day=Quarta,Value_Insulin=2}     => {Next_Glucose=5}
-{Day=Quinta,Period=2,Insulin_Difference=3}     => {Next_Glucose=5}
+
+{Day=Quinta,Period=2}     => {Next_Glucose=5} 0.0499002 0.625      1.527439
+{Day=Sexta,Period=2} => {Next_Glucose=5}
 
 \end{lstlisting}
 
@@ -567,20 +565,112 @@ Enquanto que para o primeiro utilizador não se descobriram regras para valores 
 
 \textbf{Utilizador 3}
 
+Para este utilizador, para ``Next\textunderscore Glucose=5'' foram geradas 150 regras, tornando-se por isso necessário filtrar algumas, usando gráficos, uma vez mais. 
 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=75mm, height=75mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Regras.pdf}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}
+
+Como se pode ver pela figura, selecionámos a região que engloba as regras com maior suporte. Uma vez que temos poucos dados, torna-se mais difícil avaliar a importância das regras. Por exemplo, as regras com maior \textit{lift} são as regras com menor suporte, o que aumenta o risco de serem situações pontuais e não recorrentes. Por outro lado, as regras com maior suporte têm menor \textit{lift}, embora seja superior a 1. Num \textit{data set} com mais dados, talvez a escolha recaísse sobre as regras com maior \textit{lift} mas, para garantir o máximo possível que as regras correspondem a situações repetidas, optamos por mostrar algumas das regras com maior suporte, ou seja, na região mais escura. Algumas dessas regras são:
+
+\begin{lstlisting}
+{Period=2, Value_Carbs=4}       => {Next_Glucose=5} 0.07284768  0.9166667 2.162760  
+{Period=3, Value_Insulin=3}     => {Next_Glucose=5} 0.09933775  0.6521739 1.538723
+{Value_Carbs=4} => {Next_Glucose=5} 0.07947020  0.8000000 1.887500
+\end{lstlisting}
+
+Será também interessante, no entanto, ver algumas das regras com maior \textit{lift}, que são
+
+\begin{lstlisting}
+{Day=Terca,Period=2} => {Next_Glucose=5} 0.0397351 1          2.359375
+\end{lstlisting}
+
+que corresponde à parte superior do gráfico, sendo esta a regra mais à direita (ou seja, maior suporte). 
+
+Para valores de glicemia baixos, não são geradas quaisquer regras, o que seria de esperar, pois pela figura x pode-se verificar que o utilizador tem poucos valores de glicemia próximos do limite de hipoglicemia, pelo que serão ocorrências pontuais. 
 
 
 \textbf{Utilizador 4}
 
+Para este utilizador foram geradas 41 regras para valores de hiperglicemia.
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=75mm, height=75mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Regras.pdf}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}
+ A zona sombreada no gráfico corresponde às regras com maior suporte,
+ 
+
 \begin{lstlisting}
 
-{Day=Segunda,Value_Carbs=4}         => {Next_Glucose=5}
-{Day=Segunda,Period=3,Value_Carbs=3,Value_Insulin=3}   => {Next_Glucose=5}
-{Day=Sexta,Value_Carbs=3,Value_Insulin=3,Insulin_Difference=4} => {Next_Glucose=5}
+{Day=Sexta, Value_Insulin=3, Insulin_Difference=4} => {Next_Glucose=5} 0.03355705      0.625 2.217262
+
 \end{lstlisting}
 
-Como se pode perceber, o utilizador 4 tende a ingerir uma quantidade de hidratos acima do seu normal à segunda-feira, que por sua vez origina valores de glicose demasiado altos. Para esse mesmo dia mas para o período da tarde, mesmo que ingira uma quantidade normal de hidratos de carbono, os valores de glicose são demasiado altos, mesmo tomando o valor de insulina calculado. Isto pode significar que há um erro no cálculo da insulina, por exemplo, que pode ser na contagem dos hidratos. O mesmo acontece para sexta-feira. 
-Como se percebe pela figura 5.4, de facto as segundas e sextas-feiras são os dias da semana com mais valores de hiperglicemia, o que mostra que as regras estão em concordância com os gráficos. No entanto, as regras dão-nos mais conhecimento sobre o que pode causar essas hiperglicemias.
+Algumas das regras com maior \textit{lift}, embora com um suporte consideravelmente mais pequeno, são
+
+\begin{lstlisting}
+{Day=Terca, Value_Carbs=5, Insulin_Difference=2} => {Next_Glucose=5} 0.01342282          1 3.547619
+{Day=Sabado, Period=3, Value_Carbs=3}    => {Next_Glucose=5} 0.01342282          1 3.547619
+\end{lstlisting}
+
 
 
 \textbf{Utilizador 5}
+
+Também para este utilizador utilizaremos a ferramenta visual para ajudar a escolher as regras mais úteis, pois são geradas 136 regras para valores de hiperglicemia. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=75mm, height=75mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Regras.pdf}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}
+
+
+\begin{lstlisting}
+{Period=2,Value_Insulin=3} => {Next_Glucose=5} 0.09615385 0.625      1.477273 3    
+{Period=2,Value_Carbs=3} => {Next_Glucose=5} 0.09615385 0.625      1.477273 3    
+\end{lstlisting}
+
+Este utilizador tem tendência para hiperglicemias durante o período da tarde, mesmo que consuma hidratos de carbono numa quantidade normal ou tome um valor de insulina moderado. Isto pode significar que o utilizador, ao almoço por exemplo, não faz uma contagem de hidratos correta ou não adeque a insulina pelo que causa valores mais elevados durante a tarde. 
+
+\section{Redes \textit{Bayesianas}}
+
+Nesta secção iremos criar uma rede \textit{bayesiana} para cada um dos utilizadores, de forma a perceber de que forma as regras geradas na secção anterior influenciam o valor de glicemia. Por exemplo, se um dado utilizador tiver uma regra que diga que à quarta-feira à tarde costuma ter hiperglicemias, qual será, então, a probabilidade de ter uma hiperglicemia numa quarta-feira à tarde? Uma rede \textit{bayesiana} permite isto ao calcular as probabilidades de cada variável tomar um determinado valor. Portanto, uma rede feita a partir do mesmo \textit{data set} que as regras de associação, deverá estar em concordância com essas regras. Mas mais que isso, dá informação extra sobre como é que as várias variáveis influenciam a variável de interesse, que para este trabalho é o valor de glicemia.
+
+O primeiro passo nesta fase é então criar uma rede \textit{bayesiana}, recorrendo ao \textit{software} WEKA. Antes de mais, é preciso preparar o \textit{data set} para ser utilizado pelo WEKA, que será igual ao utilizado para as regras de associação mas com o detalhe que a variável ``Next\textunderscore Glucose'' terá de ser a última variável do ficheiro, ou seja, a coluna mais à direita. Isto faz com que o WEKA a considere como a variável de classe, ou seja, a variável a prever e, portanto, o \textit{data set} está pronto a ser usado pelo WEKA. Note-se que o WEKA vai ser utilizado apenas para criar a rede \textit{bayesiana}, que será analisada pelo SamIAm.
+
+O comando utilizado para criar a rede é
+
+\begin{lstlisting}
+java -cp weka.jar weka.classifiers.meta.FilteredClassifier -t dataset.csv -T dataset.csv -distribution -p 0 -threshold-label  -threshold-file datasetThreshold.arff -d weka.tan2.model -i  -W weka.classifiers.bayes.BayesNet -- -D -Q weka.classifiers.bayes.net.search.local.TAN -- -S BAYES -E weka.classifiers.bayes.net.estimate.SimpleEstimator -- -A 0.000001 
+
+
+java -cp weka.jar weka.classifiers.meta.FilteredClassifier -l weka.tan2.model -T dataset.csv -g > weka_tan2.xml
+
+\end{lstlisting}
+
+que, como se pode verificar, tem vários parâmetros.
+
+O parâmetro -t é o ficheiro de treino e -T diz respeito ao ficheiro de teste.
+-d é o ficheiro \textit{output} do modelo;
+-i dá um \textit{output} detalhado sobre informação estatística para cada classe;
+-W dá o nome completo do classificador
+-D especifica para não usar ADTree, pois não é útil para \textit{data sets} pequenos
+-Q especifica o algoritmo de procura
+-E especifica o algoritmo de estima em que \textit{SimpleEstimator} é usado para estimar as tabelas de probabilidade condicional na rede
+
+Este comando gera a rede
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Rede.png}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}

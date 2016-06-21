@@ -183,7 +183,7 @@ joaquim$Target_BG <- NULL
 
 library(arules)
 rules <- apriori(joaquim, parameter=list(confidence=0.6, support=0.01))
-rules.sub <- subset(rules, subset = rhs %in% "Next_Glucose=3")
+rules.sub <- subset(rules, subset = rhs %in% "Next_Glucose=2")
 rules3.sub <- subset(rules3, subset = rhs %in% "Value_Glucose=5")
 write(rules.sub, file="RulesPauloSa")
 

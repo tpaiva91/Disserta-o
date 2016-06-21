@@ -178,4 +178,4 @@ joaquim$Target_BG <- NULL
 library(arules)
 rules <- apriori(joaquim, parameter=list(confidence=0.6, support=0.01))
 
-rules.sub <- subset(rules, subset = rhs %in% "Next_Glucose=5")
+rules.sub <- subset(rules, subset = rhs %in% "Next_Glucose=2")
