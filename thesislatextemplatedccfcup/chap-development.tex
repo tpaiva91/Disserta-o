@@ -674,3 +674,85 @@ Este comando gera a rede
 \includegraphics[scale=0.7]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Rede.png}
 \caption{Glicemia por horas do utilizador 5}
 \end{figure}
+
+
+O SamIAm tem dois modos disponíveis: \textit{Edit mode} e \textit{Query mode} sendo que vamos utilizar o programa em \textit{Query mode}. 
+
+A figura anterior mostra a rede \textit{bayesiana} criada pelo WEKA com o SamIAm em \textit{Edit mode}. Este modo serve para alterar a estrutura da rede, como adicionar nós ou arestas, mas não é esse o nosso objetivo. O objetivo é, uma vez mais, perceber de que forma as variáveis se relacionam, ou seja, como é que a alteração de uma variável provoca alterações noutra variável. Nesse caso, torna-se útil usar o \textit{query mode}. 
+
+Este modo permite ver a probabilidade de cada variável tomar cada valor, de acordo com o \textit{data set} e permite também mudar esses valores e ver de que forma as outras variáveis mudam também. Por exemplo, uma regra possível seria ``Um utilizador tem tendência para ter valores de glicemia altos à quarta-feira à tarde''. É interessante e útil para o utilizador conhecer esta regra, por si só. Mas também pode ser interessante o processo inverso, ou seja, ``Qual a probabilidade de ter hiperglicemia, sendo que hoje é quarta-feira à tarde?''. É isso que o SamIAm permite fazer no \textit{query mode}, entre outras coisas, e que pode dar mais informação útil ao utilizador. A figura seguinte mostra a mesma rede mas em \textit{query mode}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Sam.png}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}
+
+É possível ver as tabelas de probabilidade para cada variável, sendo que cada nó tem por predefinição o valor mais frequente, como por exemplo, ``Next\textunderscore Glucose=3''. Note-se que os valores NA correspondem a registos que não usaram essas variáveis, isso é, um utilizador pode registar uma glicemia e não registar insulina ou hidratos d carbono. Estas tabelas também permitem perceber a distribuição de algumas variáveis: por exemplo, é possível verificar que, neste caso, os dias têm probabilidades muito parecidas, o que significa que têm um número parecido de registos. No entanto, tal como já mencionado, o objetivo nesta parte é tentar perceber de que forma estas variáveis afetam o valor da glicemia e também ver se estas alterações estão em concordância com as regras mostradas na secção anterior ou até ver se novos padrões surgem. Vamos, por isso, mostrar a rede \textit{bayesiana} para cada utilizador. 
+
+\textbf{Utilizador 1}
+
+Para este utilizador, a tabela de probabilidades inicial é mostrada na figura
+
+\begin{figure}[H]
+\centering
+\includegraphics{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Probs.png}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}
+
+uma das regras geradas mostrava que, às quartas-feiras à tarde e quando o utilizador ingere hidratos de carbono em valores elevados, a glicemia tomava valores elevados. Ao selecionar, então, no SamIAm, esses três parâmetros com os valores definidos na regra, verifica-se que a probabilidade de ``Next\textunderscore Value=4'' sobe para 62.68\%.
+
+Por outro lado, se colocarmos as variáveis de acordo com a regra para hipoglicemia neste utilizador, verificamos que a probabilidade de ``Next\textunderscore Glucose=2'' sobe para 34.74\%.
+
+No entanto, é possível descobrir outros padrões: por exemplo, se selecionarmos apenas o dia ``Domingo'' verificamos que a probabilidade de uma hiperglicemia, ou seja um valor de glicemia 5, sobe para 18.67\%. 
+
+Na figura seguinte pode-se ver quais os parâmetros que provocam uma probabilidade máxima de uma hiperglicemia.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Hiper.png}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}
+
+Ou seja, uma nova regra é descoberta: ao Domingo de manhã, quando o utilizador ingere uma quantidade grande de hidratos de carbono, tem maior probabilidade de ter uma hiperglicemia. 
+
+\textbf{Utilizador 2}
+
+
+A rede para o utilizador 2 é mostrada na figura seguinte
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Rede.png}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}
+
+que, como se verifica, é ligeiramente diferente da rede gerada para o utilizador 1. Uma vez mais, é interessante ver quais os valores dos vários parâmetros que maximizam o valor de glicemia. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Hiper.png}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}
+
+Como se pode observar, a probabilidade de hiperglicemia aumenta bastante aos sábados à tarde, quando o utilizador toma menos insulina que a recomendada. Esta regra não foi gerada pelo algoritmo \textit{apriori}, possivelmente por ter um valor de suporte abaixo do mínimo definido, mas ainda assim é uma regra interessante e que mostra uma utilidade desta análise. É interessante saber quais as condições em que o risco de hiperglicemia é maior, tendo em conta os dados já registados. 
+
+\textbf{Utilizador 3}
+
+A rede criada para o utilizador 3 está representada na figura
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Rede.png}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}
+
+que é diferente das redes dos utilizadores anteriores, principalmente pelo facto de este utilizador não ter qualquer registo de exercício, pelo que essa variável não foi tida em conta.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Hiper.png}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}
+
+Como se pode ver na figura anterior, este utilizador tem uma probabilidade enorme de ter hiperglicemia à terça-feira à tarde, especialmente se tomar menos insulina que a calculada. 
