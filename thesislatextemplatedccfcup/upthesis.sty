@@ -156,7 +156,20 @@
            \addcontentsline{toc}{chapter}{\listfigurename}
            \lstlistoflistings
            \addcontentsline{toc}{chapter}{\lstlistlistingname}
+
+			\prefacesection{Acr\'onimos}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{multicols}{2}
+\setlength{\columnseprule}{0.5pt}
+\makeatletter
+\columnsep 35\p@
+\makeatother
+\begin{acronym}[HTTP] % o maior acrónimo
+\input{acros.tex}
+\end{acronym}
+\end{multicols}
           \cleardoublepage
+
         \pagenumbering{arabic}
         %\pagestyle{headings}
         % See http://en.wikibooks.org/wiki/LaTeX/Page_Layout#Customizing_with_fancyhdr

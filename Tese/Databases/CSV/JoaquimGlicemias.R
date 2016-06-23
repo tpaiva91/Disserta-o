@@ -73,7 +73,7 @@ abline(h=150, col="blue")
 
 
 #por hora e dia da semana
-
+par(mfrow=c(1,1)) 
 plot(joaquim$Period[joaquim$Day=="Domingo"], joaquim$Value_Glucose[joaquim$Day=="Domingo"], xaxt="n", ylim = c(0,350), ylab="Valor de glicose", xlab="Domingo")
 axis.POSIXct(1, joaquim$Period, seq(from=as.POSIXct("2016-02-02 0:00"), to=as.POSIXct("2016-07-02 23:00"), by="hour"), format="%H:%M")
 abline(h=70, col="red")

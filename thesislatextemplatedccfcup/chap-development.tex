@@ -1,14 +1,16 @@
 \chapter{Análise de dados}\label{chap:dese}
 
-Neste capítulo será discutido o que foi feito nesta dissertação. Serão abordados requisitos para realizar o trabalho, as decisões tomadas e respetiva explicação e as dificuldades encontradas, que levaram a eventuais alterações aos objetivos inicialmente propostos. Serão ainda mostrados os vários tipos de análises efetuadas aos dados recolhidos, bem como alguns resultados daí obtidos. 
+Neste capítulo será feita uma descrição do trabalho: no que consiste, quais os requisitos para um trabalho deste tipo e as metodologias abordadas. 
+Serão feito dois tipos de análises neste trabalho: uma análise estatística básica que servirá de introdução para um outro tipo de análise, envolvendo ferramentas direcionadas para o \textit{data mining}, ainda que este último tipo de análise seja feita apenas no próximo capítulo.
+
 
 \section{Descrição do estudo}
 
 Para que este estudo pudesse ser feito, o primeiro passo era ter um conjunto de dados de pacientes diabéticos de forma a ser analisado. Este conjunto de dados tinha que ter algumas características específicas para que pudesse ser utilizado da forma pretendida: tinha que ser um conjunto de registos para cada paciente ao longo de algum tempo, sendo que idealmente, no mínimo, cada paciente teria registos correspondentes a quatro semanas. Depois de uma pesquisa, foi possível concluir que não existia, na \textit{web}, qualquer \textit{data set} com estas características.
 Para que este estudo pudesse ser feito, era necessário ter um \textit{data set} com os diferentes parâmetros que pudessem ser relevantes, como glicemia, insulina, hidratos de carbono e exercício. 
-Como já mencionado, nenhum \textit{data set} existente \textit{on-line} tinha as características desejadas pois só possuíam um registo por pessoa e/ou o seu propósito era a classificação de um paciente como diabético ou não. O único \textit{data set} encontrado que tinha vários registos por pessoa ao longo do tempo tinha o inconveniente de ter apenas dados relativos a glicemias.
+Como já mencionado, nenhum \textit{data set} existente \textit{on-line} tinha as características desejadas pois só possuíam um registo por pessoa e/ou o seu propósito era a classificação de um paciente como diabético ou não. O único \textit{data set} encontrado que tinha vários registos por pessoa ao longo do tempo tinha o inconveniente de ter apenas dados relativos a glicemias, pelo que não é suficiente. [dataset2]
 
-Face à falta de dados disponíveis, a solução encontrada foi recolher, de raíz, os dados para a criação do \textit{data set} desejável. Ao podermos construir o nosso próprio \textit{data set} tínhamos a vantagem de podermos recolher as variáveis que queríamos, e portanto, ter um conjunto de dados que torne este trabalho mais eficiente. Por outro lado, visto que a recolha dos dados seria feita através da aplicação MyDiabetes, havia a desvantagem desta ser ainda fechada ao público e, portanto, não ter doentes diabéticos a utilizá-la. Uma outra desvantagem era o tempo que a criação de um \textit{data set} com a variedade e tamanho desejáveis poderia levar. Por variedade e tamanho desejáveis entenda-se dados relativos a cerca de 20 pessoas durante algumas semanas.
+Face à falta de dados disponíveis, a solução encontrada foi recolher dados para a criação do \textit{data set} desejável. Ao podermos construir o nosso próprio \textit{data set} tínhamos a vantagem de podermos recolher as variáveis que queríamos, e portanto, ter um conjunto de dados que torne este trabalho mais eficiente. Por outro lado, visto que a recolha dos dados seria feita através da aplicação MyDiabetes, havia a desvantagem desta ser ainda fechada ao público e, portanto, não ter doentes diabéticos a utilizá-la. Uma outra desvantagem era o tempo que a criação de um \textit{data set} com a variedade e tamanho desejáveis poderia levar. Uma maior variedade de dados de diferentes de pessoas seria útil para também haver a possibilidade de uma maior variedade de rotinas diferentes e, portanto, regras diferentes. Por outro lado, a quantidade relativa a cada utilizador seria também importante para que os padrões encontrados para cada utilizador sejam mais fidedignos, isto é, um padrão encontrado em registos relativos a algumas semanas tem mais confiança que um padrão encontrado em registos de apenas alguns dias. Posto isto, o objetivo era recolher dados referentes ao máximo de utilizadores possível e durante o máximo de tempo possível, desde o início até ao fim deste trabalho, para que a variedade e quantidade disponíveis fossem maiores.
 
 Feitas as contas, apesar das desvantagens enunciadas, a solução seria mesmo recolher os dados através da aplicação, sendo que o primeiro passo seria arranjar voluntários. O processo de recolha de dados é descrito na próxima secção.
 
@@ -23,37 +25,38 @@ Se os pacientes aceitassem fazer parte do projeto, a aplicação era então inst
 Além da aplicação, eram também dadas aos voluntários as credenciais para terem acesso ao \textit{website} do projeto, para onde poderiam exportar os registos efetuados e visualizá-los através de gráficos. As credenciais garantiam assim que apenas os voluntários tinham acesso à parte privada da página, que tem tutoriais e a parte de visualização dos dados.
 
 
-\subsection{Números e \textit{feedback}}
+\subsection{Descrição da experiência e \textit{feedback} dos utilizadores}
 
-Este processo era feito duas vezes por semana, que correspondia aos dias de consultas da diabetes, durante aproximadamente três meses. Durante este tempo falámos com várias dezenas de pacientes, sendo que foi possível obter, logo à partida, uma conclusão: a esmagadora maioria dos pacientes com quem falámos estavam bastante recetivos à ideia e concordavam que podia ser uma mais-valia na melhoria da sua qualidade de vida. Muito poucos pacientes tinham a opinião de que a aplicação não teria utilidade, principalmente devido ao facto de estes utilizarem bomba, que torna o processo de controlo da glicemia muito mais reduzido e simples.
-Além da idea em si, que foi bastante bem recebida, os utilizadores também deram \textit{feedback} positivo relativamente ao \textit{design} e funcionalidades da aplicação. 
+O processo em cima referido, era feito duas vezes por semana, que correspondia aos dias de consultas da diabetes, e decorreu durante aproximadamente três meses. Durante este tempo falámos com várias dezenas de pacientes, sendo que foi possível obter, logo à partida, uma conclusão: a esmagadora maioria dos pacientes com quem falámos estavam bastante recetivos à ideia e concordavam que podia ser uma mais-valia na melhoria da sua qualidade de vida. Muito poucos pacientes tinham a opinião de que a aplicação não teria utilidade, principalmente devido ao facto de estes utilizarem bomba, que torna o processo de controlo da glicemia muito mais reduzido e simples.
+Além da ideia em si, que foi bastante bem recebida, os utilizadores também deram \textit{feedback} positivo relativamente ao \textit{design} e funcionalidades da aplicação. 
 
-Apesar de todos os pacientes acharem boa ideia ter uma aplicação como esta, nem todos se tornaram voluntários devido a diferentes razões: 1) nem todos os utilizadores tinham \textit{smartphone} e cerca de metade dos pacientes tinha outro sistema operativo que não Android e 2) alguns pacientes com idade mais avançada ou com outros problemas de saúde simplesmente não tinham tempo ou não disponibilidade para participar como voluntário. 
-No final deste período tínhamos conseguido a participação de 31 voluntários. Apesar de este número ser suficiente para o que se pretendia, pois inicialmente tinha sido definido como objetivo pelo menos 20 participantes, nem todos os voluntários enviaram, de facto, os registos. 
-Dos 31 voluntários apenas 8 enviaram registos pelo menos uma vez e apenas 5 destes enviaram registos relativamente a algumas semanas. Isto foi um dos principais problemas encontrados: para integrar um sistema de aconselhamento baseado nos dados introduzidos numa aplicação para \textit{smartphone} é fundamental saber que tipo de avisos ou conselhos se deve ou não mostrar. Por exemplo, um conselho como "Ajuste a insulina à quantidade de hidratos de carbono ingerida" é algo óbvio e que qualquer paciente diabético sabe, e portanto não seria uma grande mais valia para a alicação. Por outro lado, um aviso como "Hoje é segunda-feira e geralmente à segunda-feira tem valores de glicemia mais elevados" pode ser útil porque possivelmente é um padrão que o paciente não detetou. Neste caso, este conselho poderia fazer o utilizador controlar mais frequentemente a sua glicemia às segundas-feiras e, portanto, normalizar os valores das segundas-feiras a partir daí. 
+Apesar de todos os pacientes acharem boa ideia ter uma aplicação como esta, nem todos se tornaram voluntários devido a diferentes razões: 1) nem todos os utilizadores tinham \textit{smartphone} e cerca de metade dos pacientes tinha outro sistema operativo que não Android e 2) alguns pacientes com idade mais avançada ou com outros problemas de saúde simplesmente não tinham tempo ou disponibilidade para participar como voluntário. 
+No final deste período tínhamos conseguido a participação de 31 voluntários. Este número dava-nos alguma garantia de variedade bem como quantidade de dados mas, como mais tarde viríamos a concluir, nem todos os voluntários enviaram, de facto, os registos.
 
-Esta distinção entre avisos ou conselhos realmente úteis ou descartáveis é importante: se a aplicação mostrar demasiados conselhos intuitivos ou regras "banais" das quais os utilizadores já tenham conhecimento, estes podem acabar por achar que a aplicação não traz benefícios. Pelo contrário, se a aplicação mostrar conselhos baseados em comportamentos errados para cada utilizador, estes podem aperceber-se de que realmente têm esses comportamentos errados e usufruir verdadeiramente deste sistema de aconselhamento. 
+Dos 31 voluntários apenas 8 enviaram registos pelo menos uma vez e apenas 5 destes enviaram registos regularmente e relativamente a algumas semanas. Este foi um dos principais problemas encontrados: para integrar um sistema de aconselhamento baseado nos dados introduzidos numa aplicação para \textit{smartphone} é fundamental saber que tipo de avisos ou conselhos se deve ou não mostrar. Por exemplo, um conselho como ``Ajuste a insulina à quantidade de hidratos de carbono ingerida'' é algo óbvio e que qualquer paciente diabético sabe, e portanto não seria uma grande mais valia para a aplicação. Por outro lado, um aviso como ``Hoje é segunda-feira e geralmente à segunda-feira tem valores de glicemia mais elevados'' pode ser útil porque possivelmente é um padrão que o paciente não detetou. Neste caso, este conselho poderia fazer o utilizador controlar mais frequentemente a sua glicemia às segundas-feiras e, portanto, normalizar os valores das segundas-feiras a partir daí. 
 
-Para fazer esta distinção torna-se importante obter a maior quantidade e variedade possível de dados. Imaginemos que temos apenas um \textit{data set} de um paciente com registos de uma semana. Esta quantidade de dados não permite concluir nada sobre eventuais regras descobertas nem sequer permite descobrir vários tipos de regras; tanto a variedade de pacientes como a quantidade de registos serão demasiado reduzidas para tal. 
+Esta distinção entre avisos ou conselhos realmente úteis ou descartáveis é importante: se a aplicação mostrar demasiados conselhos intuitivos ou regras ``banais'' das quais os utilizadores já tenham conhecimento, estes podem acabar por achar que a aplicação não traz benefícios. Pelo contrário, se a aplicação mostrar conselhos baseados em comportamentos não percetíveis pelos utilizadores, estes podem ser alertados. 
 
-Da mesma forma, os registos de 5 pacientes, embora seja obviamente mais vantajoso do que o registo de apenas 1 paciente, não é suficiente para esta parte. Uma vez mais, 5 pacientes não oferecem muita quantidade nem variedade em relação a rotinas ou comportamentos errados, que se traduz na variedade de regras produzidas. 
+Por isso mesmo, e tal como explicado anteriormente, torna-se importante obter a maior quantidade e variedade possível de dados, para que tenhamos uma melhor distinção entre regras realmente importantes ou não. Imaginemos que temos apenas um \textit{data set} de um paciente com registos de uma semana. Esta quantidade de dados não permite concluir nada sobre eventuais regras descobertas nem sequer permite descobrir vários tipos de regras; tanto a variedade de pacientes como a quantidade de registos serão demasiado reduzidas para tal. 
+
+Embora a quantidade de utilizadores que usaram regularmente a aplicação tenha ficado um pouco áquem das expetativas, estes utilizadores fizeram uma quantidade de registos aceitável o que permitiu mostrar que, mesmo com esta quantidade reduzida de dados, é possível extrair diferentes padrões para diferentes utilizadores.
 
 O objetivo da aplicação é gerar os tais conselhos de forma automática e, pensado desta forma, esta parte inicial pode parecer inútil: para quê estar a gerar regras se elas não vão ser utilizadas na aplicação em si? 
 
-Esta questão prende-se, uma vez mais, com a filtragem de regras úteis ou não. Os registos de um único paciente podem gerar, por exemplo, centenas ou até milhares de regras. Obviamente que em milhares de regras muitas vão ser bastante parecidas e a esmagadora maioria vão ser regras que não têm relevância. É possível, por exemplo, que em alguns milhares de regras só se consiga aproveitar 5 ou 6. A importância de ter registos de vários pacientes prende-se com a variedade das regras geradas: dois pacientes podem gerar poucas regras cada um mas essas regras serem diferentes, ou seja, relativas a rotinas ou anomalias com efeitos ou causas diferentes. Esta análise dos dados à procura de regras servirá, então, para construir um conjunto de regras passíveis de ocorrer no dia-a-dia de um diabético que serão então integradas nesta aplicação. Assim, serão apenas detetados padrões e situações que possam ter alguma relevância e conselhos como "Adeque a insulina aos hidratos de carbono" não serão mostrados. Isto porque apesar de ser um bom conselho, também é óbvio e portanto provavelmente será tido como um conselho inútil por parte dos utilizadores. 
+Esta questão prende-se, uma vez mais, com a filtragem de regras úteis ou não. Os registos de um único paciente podem gerar, por exemplo, centenas ou até milhares de regras. Obviamente que em milhares de regras muitas vão ser bastante parecidas e, possivelmente, a maioria vão ser regras que não têm relevância. É possível, por exemplo, que em alguns milhares de regras só se consiga aproveitar 5 ou 6. ou até 0. A importância de ter registos de vários pacientes prende-se com a variedade das regras geradas: dois pacientes podem gerar poucas regras cada um mas essas regras serem diferentes, ou seja, relativas a rotinas ou anomalias com efeitos ou causas diferentes. Esta análise dos dados à procura de regras servirá, então, para construir um conjunto de regras passíveis de ocorrer no dia-a-dia de um diabético que serão então integradas nesta aplicação. Assim, serão apenas detetados padrões e situações que possam ter alguma relevância e conselhos como ``Adeque a insulina aos hidratos de carbono'' não serão mostrados. Isto porque, apesar de ser um bom conselho, também é óbvio e portanto provavelmente será tido como um conselho inútil por parte dos utilizadores. 
 
-Ao ter esta filtragem para mostrar apenas conselhos realmente importantes, não só diminuiremos a quantidade de vezes que algum conselho é mostrado, tornando assim a aplicação menos "chata" para os utilizadores, como também tornam os conselhos mais especiais, ou seja, se um conselho ou aviso é mostrado é porque o utilizador tem de facto algum comportamento errado e que pode ser corrigido.
+Ao ter esta filtragem para mostrar apenas conselhos realmente importantes, não só diminuiremos a quantidade de vezes que algum conselho é mostrado, tornando assim a aplicação menos ``chata'' para os utilizadores, como também tornam os conselhos mais especiais, ou seja, se um conselho ou aviso é mostrado é porque o utilizador tem de facto algum comportamento que pode ser corrigido.
 
-Neste sentido, a pouca quantidade de voluntários que enviaram registos foi a primeira dificuldade encontrada e que nos fez alterar a estratégia: uma vez que os dados existentes não seriam suficientes para fazer o sistema de aconselhamento de uma forma tão fidedigna quanto desejável, esse objetivo foi posto de lado. Face a estas novas circunstâncias, o objetivo passou a ser analisar os dados existentes das mais variadas formas para ver que tipo de conclusões se consegue obter. Os diferentes tipos de análises feitas vão ser descritos ainda neste capítulo.
+Neste sentido, a reduzida quantidade de voluntários que enviaram registos, embora útil para análise, não é suficiente para o desenvolvimento de um sistema de aconselhamento, pelo menos tão fidedigno como desejável. Assim, esta foi a primeira limitação encontrada, pelo que o objetivo de desenvolver o sistema de aconselhamento, que era opcional, foi posto de lado. Serão feitos então diferentes tipos de análises com os dados recolhidos, que vão ser descritas neste capítulo.
 
-Apesar de os dados serem poucos, a parte positiva é que estavam no formato pretendido e portanto o passo seguinte era começar a tratá-los.
+Já com os dados dos utilizadores, o passo seguinte era o seu tratamento para depois serem utilizados.
 
 
 \subsection{O \textit{data set}}
 
-Os registos dos utilizadores são armazenados no telemóvel numa base de dados \textit{sqlite}[sqlite] que é depois convertida para um ficheiro csv através de um \textit{script}.[script] O \textit{script} converte cada uma das tabelas num ficheiro csv e depois, os ficheiros csv que interessa manter são copiados para um único ficheiro através do comando \textit{copy}.
+Os registos dos utilizadores são armazenados no telemóvel numa base de dados \textit{sqlite}[sqlite] que é depois convertida para um ficheiro csv através de um \textit{script}.[script] O \textit{script} converte cada uma das tabelas num ficheiro csv e depois, os ficheiros csv que interessa manter, são copiados para um único ficheiro através do comando da \textit{shell}, \textit{copy}.
 
-Depois de selecionar as variáveis pretendidas e as juntar no mesmo ficheiro, o \textit{data set} fica com a estrutura a seguir apresentada:
+Depois de selecionar as variáveis pretendidas e as juntar no mesmo ficheiro, o \textit{data set} fica com a estrutura apresentada na tabela 5.1.
  
 
 \begin{table}[H]
@@ -62,25 +65,31 @@ Depois de selecionar as variáveis pretendidas e as juntar no mesmo ficheiro, o 
 \label{my-label}
 \begin{tabular}{|l|l|}
 \hline
-\textbf{Variável} & \textbf{Tipo} \\ \hline
-DateTime          & Integer       \\ \hline
-Value\_Carbs      & Integer       \\ \hline
-Value\_Glucose    & Integer       \\ \hline
-Target\_BG        & Integer       \\ \hline
-Value\_Insulin    & Double        \\ \hline
-Exercise          & Integer       \\ \hline
+\rowcolor[HTML]{C0C0C0} 
+{\color[HTML]{000000} \textbf{Variável}} & {\color[HTML]{000000} \textbf{Tipo}} \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+DateTime                                 & Integer                              \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+Value\_Carbs                             & Integer                              \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+Value\_Glucose                           & Integer                              \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+Target\_BG                               & Integer                              \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+Value\_Insulin                           & Double                               \\ \hline
+Exercise                                 & Integer                              \\ \hline
 \end{tabular}
-\caption{My caption}
+\caption{Tipo das variáveis recolhidas}
 \end{table}
 
 A variável \textbf{DateTime} diz respeito ao dia e hora exatos de cada registo;
 \textbf{Value\textunderscore Carbs} é a quantidade de hidratos de carbono;
 \textbf{Value\textunderscore Glucose} é o nível de glicemia à hora do registo;
 \textbf{Target\textunderscore BG} é o objetivo de glicemia para a hora do registo, pois o utilizador pode ter diferentes objetivos de glicemia para diferentes períodos do dia. Esta variável é importante para o cálculo da insulina a administrar.
-\textbf{Value\textunderscore Insulin} é a quantidade de insulina tomada pelo utilizador à hora do registo;
+\textbf{Value\textunderscore Insulin} é a quantidade de insulina tomada pelo utilizador à hora do registo.
 \textbf{Exercise} corresponde ao exercício feito à hora do registo.\newline
 
-Este \textit{data set} não representa, no entanto, todos os dados enviados pelos utilizadores, pois há alguns dados que não são relevantes para a análise e por isso são descartados. Alguns dos dados descartados são os dados pessoais do utilizador, que incluem, entre outros, nome, idade, peso ou altura; A forma como a aplicação funciona faz com que, a cada registo, sejam registados não só os valores dos parâmetros como outras informações: em cada registo são guardados outros dados como o ID do registo ou a "Tag", que é uma variável opcional que pode associar um registo a um evento. Por exemplo, ao registar uma refeição é possível escolher várias "Tags" como "pequeno-almoço" ou "almoço"; é também guardada uma variável "Note" que permite ao utilizador adicionar uma nota a uma medição. Por exemplo, se o utilizador fizer um registo de exercício, pode adicionar uma nota com "Corrida". Portanto, o registo de cada parâmetro faz com que estas variáveis também sejam guardadas, mesmo que o utilizador não as preencha. O facto de descartarmos estas variáveis não significam que não tenham importância: a variável "Note", por exemplo, pode ser importante se o utilizador quiser adicionar alguma informação extra que ache relevante para depois se lembrar ou até mostrar ao médico. Apenas não são relevantes para este tipo de análise: uma nota sobre uma refeição não pode ser utilizado por um algoritmo. Outras variáveis, como o ID de cada registo, também não são importantes para análise pelo que são descartadas. 
+Este \textit{data set} não representa, no entanto, todos os dados enviados pelos utilizadores, pois há alguns dados que não são relevantes para a análise e por isso são descartados. Alguns dos dados descartados são os dados pessoais do utilizador, que incluem, entre outros, nome, idade, peso ou altura. A forma como a aplicação funciona faz com que, a cada registo, sejam registados não só os valores dos parâmetros como outras informações: em cada registo são guardados outros dados como o ID do registo ou a ``Tag'', que é uma variável opcional que pode associar um registo a um evento. Por exemplo, ao registar uma refeição é possível escolher várias ``Tags'' como ``pequeno-almoço'' ou ``almoço''; é também guardada uma variável ``Note'' que permite ao utilizador adicionar uma nota a uma medição. Por exemplo, se o utilizador fizer um registo de exercício, pode adicionar uma nota com ``Corrida''. Portanto, o registo de cada parâmetro faz com que estas variáveis também sejam guardadas, mesmo que o utilizador não as preencha. O facto de descartarmos estas variáveis não significa que não tenham importância: a variável ``Note'', por exemplo, pode ser importante se o utilizador quiser adicionar alguma informação extra que ache relevante para depois se lembrar ou até mostrar ao médico. Apenas não são relevantes para este tipo de análise: uma nota sobre uma refeição não pode ser utilizada diretamente por um algoritmo. O tratamento deste tipo de dados, textual, está fora do âmbito desta dissertação, pelo que esses dados não foram considerados.
 
 Neste ponto, temos as variáveis com as quais iremos trabalhar, mas que ainda precisam de ser pré-processadas. O pré-processamento do \textit{data set} será descrito de seguida.
 
@@ -94,60 +103,60 @@ Uma parte crucial de \textit{data mining}, ainda antes de aplicar quaisquer téc
 \item Transformação dos dados
 \end{itemize}
  
-O pré-processamento dos dados é necessário para tratar inconsistências que possam existir no \textit{data set}. Estas inconsistências podem ser valores em falta ou valores errados. Por exemplo, num \textit{data set} com um campo "Idade", um valor negativo neste campo é um valor errado. Então, para chegar a um estado em que o \textit{data set} esteja pronto a ser utilizado, é preciso percorrer um ou mais dos passos acima mencionados. 
+O pré-processamento dos dados é necessário para tratar inconsistências que possam existir no \textit{data set}. Estas inconsistências podem ser valores em falta ou valores errados. Por exemplo, num \textit{data set} com um campo ``Idade'', um valor negativo neste campo é um valor errado. Então, para chegar a um estado em que o \textit{data set} esteja pronto a ser utilizado, é preciso percorrer um ou mais dos passos acima mencionados. 
 
-\textbf{Limpeza dos dados} - é o primeiro passo a fazer num conjunto de dados. Neste caso específico, o \textit{data set} vinha com alguns valores em falta ou valores errados. Apesar destes casos serem uma percentagem pequena do total, é importante que sejam resolvidos. Para valores em falta há duas opções: ou remover o registo em que um dos valores falte, ou tentar prever o falor em falta e preenchê-lo. A segunda opção pode ser feita obtendo, por exemplo, a média dessa variável e, em todos os registos com valor em falta, colocar a média. No entanto, para o caso específico da diabetes esta alternativa não parecia a mais viável. Por exemplo, se num dado registo faltar o valor da glicemia, não faz sentido encontrar a média da glicemia para todos os registos e colocar no registo em falta. A glicemia pode oscilar bastante e portanto, estar a preencher um valor em falta com um valor médio da glicemia pode estar a comprometer a veracidade da análise posterior: um registo que até podia ter um valor de hiperglicemia estaria a ser substituído com um valor de glicemia mais normal e portanto, esse registo já não seria uma exceção. Repetindo isto para todos os valores de glicemia em falta, estaria-se a normalizar situações que podiam não ser normais. Posto isto, a alternativa tomada foi a de apagar todos os registos que tivessem valores de glicemia em falta ou valores anormais. Por exemplo, alguns registos tinham valores "0" ou "7", que não são valores realistas para glicemia e portanto trata-se um erro de registo. Assim garante-se que todos os registos tenham valores e que esses valores sejam valores realistas. Esta medida foi tomada apenas para as variáveis necessárias para análise, isto é, para uma análise apenas com a glicemia, as outras variáveis não são tidas em conta e portanto não são limpas. Já para uma análise de procura de regras, como todas as variáveis são utilizadas, todas as variáveis são limpas. 
+\textbf{Limpeza dos dados} - é o primeiro passo a fazer num conjunto de dados. Neste caso específico, o \textit{data set} vinha com alguns valores em falta ou valores errados. Apesar destes casos serem uma percentagem pequena do total, é importante que sejam resolvidos. Para valores em falta há duas opções: ou remover o registo em que um dos valores falte, ou tentar prever o falor em falta e preenchê-lo. A segunda opção pode ser feita obtendo, por exemplo, a média dessa variável e, em todos os registos com valor em falta, colocar a média. No entanto, para o caso específico da diabetes esta alternativa não parecia a mais viável. Por exemplo, se num dado registo faltar o valor da glicemia, não faz sentido encontrar a média da glicemia para todos os registos e colocar no registo em falta. A glicemia pode oscilar bastante e portanto, estar a preencher um valor em falta com um valor médio da glicemia pode estar a comprometer a veracidade da análise posterior: um registo que até podia ter um valor de hiperglicemia estaria a ser substituído com um valor de glicemia mais normal e portanto, esse registo já não seria uma exceção. Repetindo isto para todos os valores de glicemia em falta, estaria-se a normalizar situações que podiam não ser normais. 
 
-Isto garante também que as regras geradas não são enviesadas: se quisermos descobrir regras que relacionem os valores de insulina e hidratos de carbono com os valores de glicemia, mas utilizarmos registos que tenham alguns valores de insulina ou hidratos de carbono a zero, então esses registos vão contribuir tanto como os outros para o resultado final, pelo que esse resultado poderá estar adulterado. Limpando um registo inteiro, qualquer que seja o valor da variável em falta ou com um valor errado, garantimos que qualquer resultado obtido numa análise será realista.
+Posto isto, a alternativa escolhida foi a de deixar todos os valores em falta assim, sendo que no R serão tratados como NA e, portanto, não terão efeito sobre a descoberta de regras. Contudo, para as médias dos valores de glicemia, valores NA não podem existir e portanto, apenas para as análises feitas utilizando algum valor média, estes valores foram removidos. Para todas as outras análises valores NA são mantidos por não provocarem qualquer efeito. Quanto a valores impossíveis, estes foram removidos. Por exemplo, alguns registos tinham valores de glicemia ``0'' ou ``7'', que não são valores possíveis para glicemia, tratando-se por isso de um erro de registo.
+Assim garante-se que todos os registos tenham valores e que esses valores sejam valores realistas. Esta medida foi tomada apenas para as variáveis necessárias para análise, isto é, para uma análise apenas com a glicemia, as outras variáveis não são tidas em conta e portanto não são limpas. Já para uma análise de procura de regras, como todas as variáveis são utilizadas, todas as variáveis são limpas. 
+
+Isto garante também que as regras geradas não são enviesadas: se quisermos descobrir regras que relacionem os valores de insulina e hidratos de carbono com os valores de glicemia, mas eliminarmos registos que eram 0, não estaríamos a usar tantos registos como os possíveis. Por exemplo, para uma dada linha, uma das variáveis pode não ter valor mas, se as outras tiverem, então essa linha pode ter a sua contribuição, sendo que as variáveis com valores poderão ser úteis. Se apagássemos as linhas que têm uma variável sem valor, estaríamos a eliminar registos, que por sua vez tornariam os padrões menos frequentes.
 
 
-\textbf{Redução dos dados} - Num \textit{data set} nem todos os dados têm a mesma relevância: uns são importantes e outros são menos importantes ou até mesmo irrelevantes. É importante perceber quais os dados que não interessa ter, pois assim vamos reduzir a quantidade de regras irrelevantes que são geradas. Por isso mesmo, o segundo passo seria analisar todos os dados recolhidos e perceber quais os que valiam a pena manter e os que se podia remover. Um exemplo que ajuda a perceber melhor este passo é olharmos para os valores de glicose, insulina e hidratos de carbono: na aplicação, cada um destes parâmetros permite registar o valor em si mas também adicionar uma nota para acompanhar o registo. Essa nota poderá ser uma breve descrição feita pelo utilizador aquando de um registo. Existe também um outro atributo chamado "Tag" que permite, por exemplo, associar uma refeição a um período do dia. Se a "Tag" 1 for "pequeno-almoço", então sempre que o utilizador regista o pequeno-almoço, pode escolher essa fase do dia, e esse registo ficará com a "Tag" 1. Como se pode perceber, atributos como "Note" ou "Tag" podem ajudar a perceber o porquê de alguma alteração nos valores de glicose mas não têm qualquer uso para a descoberta de padrões e consequente geração de regras. Portanto, atributos como estes podem ser retirados do \textit{data set} de forma a reduzir a quantidade de informação não relevante. Existem outros atributos que foram retirados por não apresentarem qualquer utilidade para o resultado pretendido, tais como, "Idade", "Nome", "Altura" ou "Sexo". 
+\textbf{Redução dos dados} - Num \textit{data set} nem todos os dados têm a mesma relevância: uns são importantes e outros são menos importantes ou até mesmo irrelevantes. É importante perceber quais os dados que não interessa ter, pois assim vamos reduzir a quantidade de regras irrelevantes que são geradas. Por isso mesmo, o segundo passo seria analisar todos os dados recolhidos e perceber quais os que valiam a pena manter e os que se podia remover. Um exemplo que ajuda a perceber melhor este passo é olharmos para os valores de glicose, insulina e hidratos de carbono: na aplicação, cada um destes parâmetros permite registar o valor em si mas também adicionar uma nota para acompanhar o registo. Essa nota poderá ser uma breve descrição feita pelo utilizador aquando de um registo. Existe também um outro atributo chamado ``Tag'' que permite, por exemplo, associar uma refeição a um período do dia. Se a ``Tag'' 1 for ``pequeno-almoço'', então sempre que o utilizador regista o pequeno-almoço, pode escolher essa fase do dia, e esse registo ficará com a ``Tag'' 1. Como se pode perceber, atributos como ``Note'' ou ``Tag'' podem ajudar a perceber o porquê de alguma alteração nos valores de glicose mas não têm qualquer uso para a descoberta de padrões e consequente geração de regras. Portanto, atributos como estes podem ser retirados do \textit{data set} de forma a reduzir a quantidade de informação não relevante. Existem outros atributos que foram retirados por não apresentarem qualquer utilidade para o resultado pretendido, tais como, ``Idade'', ``Nome'', ``Altura'' ou ``Sexo''. 
 No final deste passo, o conjunto de dados é consideravelmente mais pequeno, em termos de quantidade de variáveis, e portanto permite fazer uma análise mais objetiva, com menos informação desinteressante.
 
 \textbf{Transformação dos dados} - Por fim, este passo serve para transformar os valores existentes em valores que possam ser utilizados da forma mais conveniente. Ter uma variável "DateTime" no formato ``AAAA-MM-DD HH:MM''  não é tão útil visto que o dia e hora, que até podem ser variáveis interessantes, estão numa só variável e torna o seu uso mais difícil. Neste caso, seria mais vantajoso separar as duas variáveis e portanto, transformar "DateTime" em "Day" e "Hour". Ainda assim, ter um dia do ano e uma hora específica do dia não é exatamente o formato mais útil, pois são variáveis demasiado específicas e por isso pouco repetidas, ou até nunca repetidas, pelo que não irão contribuir para a descoberta de padrões. Para melhorar este detalhe, podia ainda fazer-se outra alteração: transformar o dia do ano em dias da semana e transformar a hora do dia em período do dia, como "manhã", "noite", ou "tarde". Assim, transformámos a variável "DateTime" em duas variáveis, "Day" e "Period".
+
 Sempre que um utilizador regista uma refeição, com base na glicemia, na glicemia que pretende atingir e nos hidratos de carbono que ingere, é calculada a insulina a tomar. Contudo, o utilizador pode optar por não seguir a dosagem recomendada e tomar mais ou menos. Tendo isto em conta, pode ser importante ver os efeitos que isto provoca e portanto criou-se uma nova variável ``Insulin\textunderscore Difference''. 
 A variável ``Insulin\textunderscore Difference'' é calculada com base na fórmula\newline\newline
 
-\begin{lstlisting}[caption=Fórmula para calcular insulina a ser tomada, label=form]
+\begin{lstlisting}
 Insulin_Difference = Value_Carbs / RH + ((Value_Glucose - OG)/FS)
 \end{lstlisting}
-
-
-em que ``RH'' é o rácio de hidratos de carbono, ``OG''  é o objetivo de glicemia e ``FS''  é o fator de sensibilidade. Estes valores são diferentes para cada utilizador e cada utilizador pode ter vários objetivos de glicemia por dia. 
+que ``RH'' é o rácio de hidratos de carbono, ``OG''  é o objetivo de glicemia e ``FS''  é o fator de sensibilidade. Estes valores são diferentes para cada utilizador e cada utilizador pode ter vários objetivos de glicemia por dia. 
 Com esta nova variável, se o utilizador optar por tomar uma quantidade de insulina diferente da sugerida com frequência, e isto tiver efeito negativo na glicemia, este padrão será detetado. 
 
-Neste momento o \textit{data set} era composto por 7 variáveis: ``Day'', ``Period'', ``Value\textunderscore Carbs'', ``Value\textunderscore Glucose'', ``Value\textunderscore Insulin'', ``Insulin\textunderscore Difference'' e ``Blood\textunderscore TG''.
+Neste momento o \textit{data set} é composto por 7 variáveis: ``Day'', ``Period'', ``Value\textunderscore Carbs'', ``Value\textunderscore Glucose'', ``Value\textunderscore Insulin'', ``Insulin\textunderscore Difference'' e ``Blood\textunderscore TG''.
 
 
 
-Relembrando que ``Day'' e ``Period'' foram transformadas através da variável original, ``DateTime''. A variável ``Day'' foi obtida aplicando a função \textit{weekdays} [weekdays] do \textit{package ``base''} do R. A variável ``Period'' tem como objetivo discretizar a hora do registo: ``Period'' não diz respeito a uma hora mas sim a um intervalo. Assim sendo, ``Period'' tem três valores possíveis:
+Relembrando que ``Day'' e ``Period'' foram transformadas através da variável original, ``DateTime''. A variável ``Day'' foi obtida aplicando a função \textit{weekdays} do \textit{package ``base''} do R. A variável ``Period'' tem como objetivo discretizar a hora do registo: ``Period'' não diz respeito a uma hora mas sim a um intervalo. Assim sendo, ``Period'' tem três valores possíveis:
 
 \begin{itemize}
 \item \textbf{1} - Manhã (06:00 - 11:59)
 \item \textbf{2} - Tarde (12:00 - 19:59)
 \item \textbf{3} - Noite (20:00 - 05:59)
 \end{itemize}
+o que garante que um dado registo vá pertencer a um dos períodos existentes. Se em vez de usar um intervalo de horas, fossem usadas as horas certas, isso faria com que fosse muito mais difícil encontrar padrões: por exemplo, um registo às 08:30 e outro às 09:30 pertencem ambos ao período 1 mas a horas diferentes. Para que haja um padrão, é necessário que haja repetição de valores. Neste exemplo, se fossem usadas as horas certas os valores seriam diferentes mas usando intervalos de tempo, ambos os registos pertencem ao mesmo período, o da ``Manhã''. Se pensarmos que um dia tem 24 horas e cada hora tem 60 minutos, usando uma variável ``Hora'' teríamos 1440 valores possíveis. Por outro lado, usando ``Period'' temos apenas 3 valores diferentes. 
 
-o que garante que um dado registo vá pertencer a um dos períodos existentes. Se em vez de usar um intervalo de horas, fossem usadas as horas certas, isso faria com que fosse muito mais difícil encontrar padrões: por exemplo, um registo às 08:30 e outro às 09:30 pertencem ambos ao período 1 mas a horas diferentes. Para que haja um padrão, é necessário que haja repetição de valores. Neste exemplo, se fossem usadas as horas certas os valores seriam diferentes mas usando intervalos de tempo, ambos os registos pertencem ao mesmo período, o da ``Manhã''. Se pensarmos que um dia tem 24 horas e cada hora tem 60 minutos, usando uma variável ``Hora" teríamos 1440 valores possíveis. Por outro lado, usando ``Period'' temos apenas 3 valores diferentes. 
-
-Quanto às variáveis ``Value\textunderscore Glucose'', ``Value\textunderscore Insulin'' e ``Value\textunderscore Carbs'', também tiveram que ser discretizadas, uma vez que se tratavam de variáveis contínuas, ainda que em diferentes intervalos. A glicemia de um paciente diabético pode osclinar entre 50 mg/dL e 300 mg/dL, por exemplo. Já a insulina e os hidratos também podem variar mas os intervalos são mais pequenos, principalmente na insulina. 
+Quanto às variáveis ``Value\textunderscore Glucose'', ``Value\textunderscore Insulin'' e ``Value\textunderscore Carbs'', também tiveram que ser discretizadas, uma vez que se tratavam de variáveis contínuas, ainda que em diferentes intervalos. A glicemia de um paciente diabético pode oscilar entre 50 mg/dL e 300 mg/dL, por exemplo. Já a insulina e os hidratos também podem variar mas os intervalos são mais pequenos, principalmente na insulina. 
 Posto isto, a solução foi discretizar estras três variáveis em intervalos, tal como no período do dia. 
-Uma solução seria divir em três partes para cada um dos atributos mas visto que se tratam de variáveis importantes, o melhor foi dividir em mais intervalos, nomeadamente 5.
+Uma solução seria dividir em três partes para cada um dos atributos mas visto que se tratam de variáveis importantes, o melhor foi dividir em mais intervalos, nomeadamente 5.
 Tome-se o exemplo da glicemia: para pessoas com diabetes, os valores recomendados de glicemia antes das refeições estão entre 70 mg/dL e 130 mg/dL e depois das refeições são entre 90 mg/dL e 160 mg/dL. [levels] Uma vez que esta doença costuma provocar oscilações na glicemia, é comum que os valores estejam no intervalo recomendado mas também estejam acima ou abaixo desse intervalo. Por vezes podem estar muito acima, tratando-se de uma hiperglicemia, ou muito abaixo, no caso de uma hipoglicemia. Sabendo apenas que um valor está acima do recomendado não dá muita informação. Depois de uma refeição, tanto 170 mg/dL como 300 mg/dL são valores acima do intervalo acima mostrado. A diferença é que o primeiro valor é um pouco acima e não é preocupante, enquanto que o segundo valor é muito mais preocupante e requer ação imediata. Isto para mostrar que, ao discretizarmos os valores de glicemia, é importante que o façamos com vários níveis: dizer que um valor está acima do recomendado não chega, é preciso diferenciar o quão acima está. Deste modo, tanto para a glicemia, como insulina e hidratos de carbono, decidiu-se discretizar os valores em cinco níveis:
 
 \begin{itemize}
-\item \textbf{1} - Valor muito abaixo do normal e possível hipoglicemia;
+\item \textbf{1} - Valor muito abaixo do normal e hipoglicemia;
 \item \textbf{2} - Valor um pouco abaixo do normal;
 \item \textbf{3} - Valor normal;
 \item \textbf{4} - Valor um pouco acima do normal;
-\item \textbf{5} - Valor muito acima do normal e possível hiperglicemia;
+\item \textbf{5} - Valor muito acima do normal e hiperglicemia;
 \end{itemize}
-
 Estes intervalos não são fixos, variando para cada utilizador. Os extremos são definidos pelo próprio utilizador, ao escolher na aplicação os limites para hipo e hiperglicemia. O valor 3 é definido tendo em conta a média de todas as glicemias do utilizador e os valores 2 e 4 são definidos através do 1º e 3º quartil de todos os valores, respetivamente. Além de ter isto em conta, é preciso também ter em conta os intervalos recomendados em cima definidos. Isto é, se a média dos valores de glicemia de um utilizador for acima do intervalo recomendado, então não fará tanto sentido definir o valor 3 como essa média. No entanto, sempre que a média das glicemias estiver dentro de um intervalo considerado normal, o valor 3 será definido como essa média.
 
 O processo de discretização para os hidratos de carbono e insulina é o mesmo: um valor 5 para hidratos de carbono mostra que o utilizador ingere uma quantidade bastante maior que a recomendada tal como um valor 5 para insulina mostra que o utilizador toma uma dose de insulina muito maior que a recomendada. Naturalmente que um extremo (1 ou 5) em qualquer variável é sempre algo indesejável: consumir demasiados hidratos de carbono pode levar a uma hiperglicemia assim como tomar demasiada insulina pode provocar uma hipoglicemia.
 
-Quanto ao valor da insulina calculada para cada registo, ``Insulin\textunderscore Difference'', o processo é ligeiramente diferente. A insulina é calculada com base na fórmula acima apresentada para calcular a insulina recomendada para cada registo, tendo em conta os valores de glicemia e hidratos de carbono desse mesmo registo. A insulina calculada é então subtraída à insulina tomada pelo utilizador e essa diferença será o valor da variável ``Insulin\textunderscore Difference''. Depois, tal como nas outras variáveis, esta é também dividida em 5 intervalos, que são:
+Quanto ao valor da insulina calculada para cada registo, ``Insulin\textunderscore Difference'', o processo é ligeiramente diferente. A insulina é calculada com base na fórmula apresentada na figura 5.1 para calcular a insulina recomendada para cada registo, tendo em conta os valores de glicemia e hidratos de carbono desse mesmo registo. A insulina calculada é então subtraída à insulina tomada pelo utilizador e essa diferença será o valor da variável ``Insulin\textunderscore Difference''. Depois, tal como nas outras variáveis, esta é também dividida em 5 intervalos, que são:
 
 \begin{itemize}
 \item \textbf{1} - O valor de insulina tomado é muito menor que o valor calculado
@@ -156,11 +165,10 @@ Quanto ao valor da insulina calculada para cada registo, ``Insulin\textunderscor
 \item \textbf{4} - O valor de insulina tomado é ligeiramente maior que o valor calculado
 \item \textbf{5} - O valor de insulina tomado é muito maior que o valor calculado
 \end{itemize}
-
 Desta forma será possível encontrar relações, se existirem, entre mudanças no valor da insulina a tomar que possam levar a valores de glicemia indesejados. 
 
 
-Depois deste processo, o \textit{data set} está num estado em que já pode ser utilizado para algumas análises. Na próxima secção serão mostradas algumas análises básicas de estatística envolvendo os dados referentes a alguns utilizadores. Noutras secções mais à frente, outro tipo de análises serão efetuadas. Algumas dessas análises requerem novas mudanças nos dados, principalmente questões técnicas associadas com algumas funções do R. Essas alterações serão descritas sempre que necessário. De notar as variáveis discretizadas serão utilizadas apenas na parte de associação, pelo que na próxima secção serão feitas análises ainda com os valores exatos de glicemia. Também é importante referir que a varíavel ``Insulin \textunderscore Difference'' é calculada tendo em conta os valores exatos de glicemia e hidratos de carbono, pelo que essa variável é calculada antes da discretização das outras variáveis. 
+Depois deste processo, o \textit{data set} está num estado em que já pode ser utilizado para algumas análises. Na próxima secção serão mostradas algumas análises básicas de estatística envolvendo os dados referentes a alguns utilizadores. Na última secção serão enumeradas outras análises efetuadas, sendo que a descrição será feita no próximo capítulo. Algumas dessas análises requerem novas mudanças nos dados, principalmente questões técnicas associadas com algumas funções do R. Essas alterações serão descritas sempre que necessário. De notar as variáveis discretizadas serão utilizadas apenas na parte de associação, pelo que na próxima secção serão feitas análises ainda com os valores numéricos de glicemia. Também é importante referir que a varíavel ``Insulin \textunderscore Difference'' é calculada tendo em conta os valores numéricos originais de glicemia e hidratos de carbono, pelo que essa variável é calculada antes da discretização das outras variáveis. 
 
 \section{Análise estatística básica}
 
@@ -169,14 +177,13 @@ Com o \textit{data set} pré-processado, estávamos em condições de começar a
 
 \subsection{Média de glicose}
 
-Uma primeira estatística poderia ser simplesmente a média de glicose para um determinado utilizador. Relembrando que o HbA1c é um parâmetro importante para verificar o controlo da diabetes num paciente visto que é possível determinar a média de glicose de algumas semanas ou meses. Portanto, de uma maneira mais ou menos semelhante, a média de glicose de um determinado paciente dá para ter uma idea do quão bem esse paciente controla a glicemia. Apresentam-se de seguida as médias de glicose para os cinco utilizadores:
+Uma primeira estatística poderia ser simplesmente a média de glicose para um determinado utilizador. Relembrando que o HbA1c é um parâmetro importante para verificar o controlo da diabetes num paciente visto que é possível determinar a média de glicose de algumas semanas ou meses. Portanto, de uma maneira mais ou menos semelhante, a média de glicose de um determinado paciente dá para ter uma ideia do quão bem esse paciente controla a glicemia. Apresentam-se de seguida as médias de glicose para os cinco utilizadores:
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.9]{/home/tiago/Tese/Tese/Databases/CSV/Data/Medias.png}
 \caption{Glicemia por horas do utilizador 1}
 \end{figure}
-
 Como mencionado anteriormente, estas médias pertencem a diferentes utilizadores e dizem respeito a registos durante pelo menos quatro semanas, e portanto, são um indicador geral do controlo da glicemia por parte de cada utilizador. Pode perceber-se que alguns utilizadores têm uma média com um valor mais normal que outros o que pode ser um indicador de um bom controlo. No entanto, isto não é necessariamente verdade. Um bom controlo da glicemia passa não só por manter os valores em intervalos normais mas também em prevenir grandes oscilações. Neste caso, uma média de glicemia de 119 mg/dL pode parecer melhor que uma média de glicemia de 170 mg/dL mas pode não ser: o primeiro utilizador pode ter 2 registos em que um seja 60 mg/dL e outro seja 180 mg/dL, o que dá uma média de 120 mg/dL; por outro lado, o terceiro utilizador pode ter ambos os valores a 170 mg/dL. Ou seja, embora a média de glicemia do primeiro utilizador seja mais baixa, não significa que os valores sejam estáveis, tal como no terceiro utilizador não significa que os valores não sejam estáveis. Medir apenas a média da glicemia é uma análise demasiado vaga: pode ser um indicativo de um bom ou mau controlo da glicemia mas não permite ter certezas. Torna-se portanto necessário fazer uma análise mais aprofundada.
 
 
@@ -188,32 +195,38 @@ Uma forma mais detalhada de tentar perceber alguns hábitos dos utilizadores é 
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
-\begin{table}[h]
-\begin{adjustbox}{max width=\textwidth}
+
+
+
+\begin{table}[H]
 \centering
+\begin{adjustbox}{max width=\textwidth}
 
 \label{my-label}
-\begin{tabular}{|
->{\columncolor[HTML]{C0C0C0}}l |l|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
 \hline
-{\color[HTML]{000000} \textbf{Dia/Utilizador}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Utilizador 1}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Utilizador 2}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Utilizador 3}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Utilizador 4}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Utilizador 5}} \\ \hline
-\textbf{Domingo}                               & 132 mg/dL                                                            & 161 mg/dL                                                            & 182 mg/dL                                                            & 149 mg/dL                                                            & 182 mg/dL                                                            \\ \hline
-\textbf{Segunda}                               & 117 mg/dL                                                            & 131 mg/dL                                                            & 162 mg/dL                                                            & 170 mg/dL                                                            & 153 mg/dL                                                            \\ \hline
-\textbf{Terça}                                 & 119 mg/dL                                                            & 154 mg/dL                                                            & 189 mg/dL                                                            & 165 mg/dL                                                            & 154 mg/dL                                                            \\ \hline
-\textbf{Quarta}                                & 127 mg/dL                                                            & 156 mg/dL                                                            & 166 mg/dL                                                            & 114 mg/dL                                                            & 150 mg/dL                                                            \\ \hline
-\textbf{Quinta}                                & 110 mg/dL                                                            & 149 mg/dL                                                            & 181 mg/dL                                                            & 142 mg/dL                                                            & 170 mg/dL                                                            \\ \hline
-\textbf{Sexta}                                 & 110 mg/dL                                                            & 148 mg/dL                                                            & 163 mg/dL                                                            & 131 mg/dL                                                            & 140 mg/dL                                                            \\ \hline
-\textbf{Sábado}                                & 115 mg/dL                                                            & 165 mg/dL                                                            & 146 mg/dL                                                            & 136 mg/dL                                                            & NR                                                                   \\ \hline
+\rowcolor[HTML]{C0C0C0} 
+{\color[HTML]{000000} \textbf{Utilizador/Dia}} & {\color[HTML]{000000} \textbf{Domingo}} & {\color[HTML]{000000} \textbf{Segunda}} & {\color[HTML]{000000} \textbf{Terça}} & {\color[HTML]{000000} \textbf{Quarta}} & {\color[HTML]{000000} \textbf{Quinta}} & {\color[HTML]{000000} \textbf{Sexta}} & {\color[HTML]{000000} \textbf{Sábado}} \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+\cellcolor[HTML]{C0C0C0}\textbf{Utilizador 1}  & 132                                     & 117                                     & 119                                   & 127                                    & 110                                    & 110                                   & 115                                    \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+\cellcolor[HTML]{C0C0C0}\textbf{Utilizador 2}  & 161                                     & 131                                     & 154                                   & 156                                    & 149                                    & 148                                   & 165                                    \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+\cellcolor[HTML]{C0C0C0}\textbf{Utilizador 3}  & 182                                     & 162                                     & 189                                   & 166                                    & 181                                    & 163                                   & 146                                    \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+\cellcolor[HTML]{C0C0C0}\textbf{Utilizador 4}  & 149                                     & 170                                     & 165                                   & 114                                    & 142                                    & 131                                   & 136                                    \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+\cellcolor[HTML]{C0C0C0}\textbf{Utilizador 5}  & 182                                     & 153                                     & 154                                   & 150                                    & 170                                    & 140                                   & NR                                     \\ \hline
 \end{tabular}
 \end{adjustbox}
+
 \caption{My caption}
 \end{table}
+Com uma análise deste tipo, embora não se possam tirar conclusões sobre a forma como a glicemia varia, podemos começar a ter algum conhecimento sobre o que podem ser rotinas dos utilizadores. Por exemplo, para 4 dos 5 utilizadores acima mostrados, o dia em que o valor médio de glicemia é mais elevado é aos Domingos. Normalmente ao fim-de-semana as pessoas tendem a ter um estilo de vida mais sedentário e relaxado, o que por sua vez pode levar a um controlo menos apertado da glicemia; mesmo que o controlo não seja afetado ao fim-de-semana, pode haver quem não tenha tanto cuidado com a alimentação, cometendo alguns excessos; pode até apenas ser o facto de as pessoas estarem menos \textit{stressadas} ao fim-de-semana. Mais importante de saber o porquê de estes valores serem mais elevados ao Domingo, o importante é o conhecimento de que isto acontece. É impossível adivinhar o porquê de os valores serem tendencialmente maiores a um determinado dia, apenas sabendo a média dos valores, mas o simples facto de descobrir esse padrão e de alertar um utilizador para o mesmo, pode fazer com que ele próprio se aperceba o que faz de diferente e que provoque a alteração, podendo assim corrigi-la. 
 
-
-Com uma análise deste tipo, embora não se possam tirar conclusões sobre a forma como a glicemia varia, podemos começar a ter algum conhecimento sobre o que podem ser rotinas dos utilizadores. Por exemplo, para 4 dos 5 utilizadores acima mostrados, o dia em que o valor médio de glicemia é mais elevado é aos Domingos. Normalmente ao fim-de-semana as pessoas tendem a ter um estilo de vida mais sedentário e relaxado, o que por sua vez pode levar a um controlo menos apertado da glicemia; mesmo que o controlo não seja afetado ao fim-de-semana, pode haver quem não tenha tanto cuidado com a comida, cometendo alguns excessos; pode até apenas ser o facto de as pessoas estarem menos \textit{stressadas} ao fim-de-semana. Mais importante de saber o porquê de estes valores serem mais elevados ao Domingo, o importante é o conhecimento de que isto acontece. É impossível adivinhar o porquê de os valores serem tendencialmente maiores a um determinado dia, apenas sabendo a média dos valores, mas o simples facto de descobrir esse facto e de alertar um utilizador para o mesmo, pode fazer com que ele próprio se aperceba o que faz de diferente e que provoce a alteração, podendo assim corrigi-la. 
 No contexto da aplicação, uma simples estatística como esta acima mostrada, podia fazer aparecer um aviso, alertando o utilizador que a um determinado dia da semana, os valores de glicemia são, em geral, mais altos. Este processo seria automático: a aplicação calcularia o valor da média para cada dia e mostraria um aviso sempre que este valor fosse mais alto que o desejado. Imaginemos que o utilizador 3 definiu o limite de hiperglicemia como 180. A aplicação ao calcular a média de glicemia para cada dia verificava que em três dias diferentes da semana os valores costumam ser acima desse limite e portanto lançaria um aviso.\newline
 
-Pode concluir-se que este tipo de estatística é mais vantajoso que o primeiro, porque pode ajudar a identificar dias em que os valores são mais anormais. Uma vez mais, a média de glicemia não permite saber cada valor exatado de cada medição, pelo que ainda não é possível verificar se os valores são estáveis ou oscilatórios. Ainda assim, se a média de um determinado dia é próxima ou até superior ao limite de hiperglicemia definido pelo utilizador, permite saber que há uma grande probabilidade de nesse dia o utilizador ter tido valores acima do limite.
+Pode concluir-se que este tipo de estatística é mais vantajoso que o primeiro, porque pode ajudar a identificar dias em que os valores são mais anormais. Uma vez mais, a média de glicemia não permite saber cada valor exato de cada medição, pelo que ainda não é possível verificar se os valores são estáveis ou oscilatórios. Ainda assim, se a média de um determinado dia é próxima ou até superior ao limite de hiperglicemia definido pelo utilizador, permite saber que há uma grande probabilidade de nesse dia o utilizador ter tido valores acima do limite.
 
 \subsection{Média de glicose por período do dia}
 
@@ -228,33 +241,34 @@ Tendo isto em conta, para a próxima estatística dividiu-se o dia em três part
 
 Os valores médios para cada utilizador em cada fase do dia são:\newline
 
-% Please add the following required packages to your document preamble:
-% \usepackage[table,xcdraw]{xcolor}
-% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
 
 
-\begin{table}[h]
+\begin{table}[H]
+\centering
 \begin{adjustbox}{max width=\textwidth}
 \centering
 
 \label{my-label}
-\begin{tabular}{|l|l|l|l|l|l|}
+\begin{tabular}{|
+>{\columncolor[HTML]{C0C0C0}}l |l|l|l|}
 \hline
-\rowcolor[HTML]{C0C0C0} 
-{\color[HTML]{000000} \textbf{Período/Utilizador}} & {\color[HTML]{000000} \textbf{Utilizador 1}} & {\color[HTML]{000000} \textbf{Utilizador 2}} & {\color[HTML]{000000} \textbf{Utilizador 3}} & {\color[HTML]{000000} \textbf{Utilizador 4}} & {\color[HTML]{000000} \textbf{Utilizador 5}} \\ \hline
-\cellcolor[HTML]{C0C0C0}\textbf{Manhã}             & 112 mg/dL                                    & 160 mg/dL                                    & 162 mg/dL                                    & 158 mg/dL                                    & 154 mg/dL                                    \\ \hline
-\cellcolor[HTML]{C0C0C0}\textbf{Tarde}             & 117 mg/dL                                    & 151 mg/dL                                    & 141 mg/dL                                    & 134 mg/dL                                    & 157 mg/dL                                    \\ \hline
-\cellcolor[HTML]{C0C0C0}\textbf{Noite}             & 128 mg/dL                                    & 138 mg/dL                                    & 199 mg/dL                                    & 146 mg/dL                                    & 153 mg/dL                                    \\ \hline
+{\color[HTML]{000000} \textbf{Utilizador/Período}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Manhã}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Tarde}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Noite}} \\ \hline
+\textbf{Utilizador 1}                              & 112 mg/dL                                                     & 117 mg/dL                                                     & 128 mg/dL                                                     \\ \hline
+\textbf{Utilizador 2}                              & 160 mg/dL                                                     & 151 mg/dL                                                     & 138 mg/dL                                                     \\ \hline
+\textbf{Utilizador 3}                              & 162 mg/dL                                                     & 141 mg/dL                                                     & 199 mg/dL                                                     \\ \hline
+\textbf{Utilizador 4}                              & 158 mg/dL                                                     & 134 mg/dL                                                     & 146 mg/dL                                                     \\ \hline
+\textbf{Utilizador 5}                              & 154 mg/dL                                                     & 157 mg/dL                                                     & 153 mg/dL                                                     \\ \hline
 \end{tabular}
 \end{adjustbox}
 \caption{My caption}
 \end{table}
+Este tipo de análise já permite ter uma ideia mais concreta das oscilações da glicemia para cada utilizador ao longo do dia. É possível verificar que alguns utilizadores conseguem manter os níveis de glicemia mais ou menos estáveis, como os utilizadores 1 e 5. É possível observar algumas oscilações mais acentuadas em alguns utilizadores: o utilizador 1 por exemplo, embora consiga manter sempre os níveis de glicemia num intervalo considerado normal, tem tendência para ter valores ligeiramente mais elevados à noite. Isto pode ser devido a menos atividade durante a noite, que normalmente é usada para relaxar. Pode ser também por não adequar a insulina em relação ao jantar, por exemplo. 
 
+Já no utilizador 2 acontece precisamente o contrário: tem valores mais elevados pela manhã, que vão diminuindo ao longo do dia. Os valores altos pela manhã podem indicar que o utilizador ingere alimentos antes de ir para a cama ou que não adequa a insulina depois do jantar, por exemplo. Uma vez mais, neste tipo de estatística é mais importante detetar comportamentos anormais do que os explicar. 
 
-Este tipo de análise já permite ter uma ideia mais concreta das oscilações da glicemia para cada utilizador ao longo do dia. É possível verificar que alguns utilizadores conseguem manter os níveis de glicemia mais ou menos estáveis, como os utilizadores 1 e 5. É possível observar algumas oscilações mais acentuadas em alguns utilizadores: o utilizador 1 por exemplo, embora consiga manter sempre os níveis de glicemia num intervalo considerado normal, tem tendência para ter valores ligeiramente mais elevados à noite. Isto pode ser devido a menos atividade durante a noite, que normalmente é usada para relaxar. Pode ser também por não adequar a insulina em relação ao jantar, por exemplo. Já no utilizador 2 acontece precisamente o contrário: tem valores mais elevados pela manhã, que vão diminuindo ao longo do dia. Os valores altos pela manhã podem indicar que o utilizador ingere alimentos antes de ir para a cama ou que não adequa a insulina depois do jantar, por exemplo. Uma vez mais, neste tipo de estatística é mais importante detetar comportamentos anormais do que os explicar. 
 Quanto ao utilizador 3 é aquele que, pelo que se pode observar apenas com estes dados, apresenta mais oscilações. Começa o dia com valores ligeiramente elevados, pelo que os consegue baixar um bocado durante o dia até que voltam a subir bastante durante a noite. Isto pode não acontecer todos os dias mas geralmente é o que acontece. O aviso nesta situação seria importante para que o utilizador tentasse evitar hiperglicemias durante a noite.
 
-É natural que os valores de glicemia oscilem durante o dia por vários fatores: o \textit{stress} do trabalho pode causar aumento no nível de glicose no sangue. Por outro lado, o esforço físico durante o dia, quando existente, pode provocar o contrário. Mesmo sem fatores externos, por vezes há situações que levam a glicemia a variar de forma natural. Uma dessas situações é conhecida por \textit{dawn phenomenon}, que causa o aumento da glicose no sangue durante a noite, devido a hormonas que o corpo produz nesse período. Isso faz com que o utilizador tenha valores mais altos de manhã. Este pode até ser o motivo para que três utilizadores tenham valores mais elevados de manhã do que nos outros períodos do dia, tal como os motivos anteriores. Independentemente do motivo, a consciência de que isto acontece é o primeiro passo para corrigir a situação.\newline
+É natural que os valores de glicemia oscilem durante o dia por vários fatores: o \textit{stress} do trabalho pode causar aumento no nível de glicose no sangue. Por outro lado, o esforço físico durante o dia, quando existente, pode provocar o contrário. Mesmo sem fatores externos, por vezes há situações que levam a glicemia a variar de forma natural. Uma dessas situações é conhecida por \textit{dawn phenomenon}, que causa o aumento da glicose no sangue durante a noite, devido a hormonas que o corpo produz nesse período. Isso faz com que o utilizador tenha valores mais altos de manhã.[dawn] Este pode até ser o motivo para que três utilizadores tenham valores mais elevados de manhã do que nos outros períodos do dia, tal como os motivos anteriores. Independentemente do motivo, a consciência de que isto acontece é o primeiro passo para corrigir a situação.\newline
 
 
 
@@ -262,27 +276,25 @@ Na próxima subsecção vamos fazer uma análise ainda mais detalhada, mostrando
 
 \subsection{Glicose por hora do dia}
 
-Os valores de glicose exatos, ao contrário da média, permitem perceber se há variações ou estabilidade na glicemia. Numa primeira análise mostraremos os valores de glicose por hora para todos os dias e posteriormente para cada dia da semana. Desta forma será possível saber a que horas do dia, e em que dias, é que o utilizador geralmente tem mais hiper ou hipoglicemias.\newpage
+Os valores de glicose numéricos originais, ao contrário da média, permitem perceber se há variações ou estabilidade na glicemia. Numa primeira análise mostraremos os valores de glicose por hora para todos os dias e posteriormente para cada dia da semana. Desta forma será possível saber a que horas do dia, e em que dias, é que o utilizador geralmente tem mais hiper ou hipoglicemias.\newpage
 
 \textbf{Utilizador 1}
 
 \begin{figure}[H]
 \centering
-\includegraphics[height=100mm, width=150mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Paulo.pdf}
+\includegraphics[scale=0.6]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Paulo.pdf}
 \caption{Glicemia por horas do utilizador 1}
 \end{figure}
-
-Como se pode perceber pelo gráfico, a esmagadora maioria dos registos são feitos entre as 08:00 e as 24:00, sendo que neste intervalo, grande parte dos registos são feitos estão divididos em três momentos, provavelmente na hora das refeições. A linha vermelha representa o limite mínimo desejável e a linha azul o máximo desejável. Estas linhas correspondem a hipo e hiperglicemia, respetivamente, e foram definidas pelo utilizador, sendo que o limite para hipoglicemia é 70 e para hiperglicemia é 180. Ao analisar o gráfico percebe-se imediatamente que quase todos os valores se encontram entre estes dois valores, o que é desejável, visto que é o intervalo definido como "normal" pelo utilizador. Percebe-se também que há algumas hiperglicemias, sendo que todas elas ocorrem entre o início da tarde e o início da madrugada. Obviamente que isto não significa que durante a madrugada não hajam valores elevados, apenas não são registados. 
+Como se pode perceber pelo gráfico, a maioria dos registos é feita entre as 08:00 e as 24:00, sendo que neste intervalo, grande parte dos registos estão divididos em três momentos, provavelmente na hora das refeições. A linha vermelha representa o limite mínimo desejável e a linha azul o máximo desejável. Estas linhas correspondem a hipo e hiperglicemia, respetivamente, e foram definidas pelo utilizador, sendo que o limite para hipoglicemia é 70 e para hiperglicemia é 180. Ao analisar o gráfico percebe-se imediatamente que quase todos os valores se encontram entre estes dois valores, o que é desejável, visto que é o intervalo definido como ``normal'' pelo utilizador. Percebe-se também que há algumas hiperglicemias, sendo que todas elas ocorrem entre o início da tarde e o início da madrugada. Obviamente que isto não significa que durante a madrugada não haja valores elevados, apenas não são registados. 
 
 
 \textbf{Utilizador 2}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Horas.png}
+\includegraphics[scale=0.6]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Joaquim.pdf}
 \caption{Glicemia por horas do utilizador 2}
 \end{figure}
-
 Ao analisar o gráfico do utilizador 2 percebe-se um dos problemas anteriormente mencionados: as médias podem ser um bom indicador geral mas também podem não o ser. E neste caso não é: a média de glicemia do utilizador 2 é de 150 mg/dL o que poderia levar a pensar que este utilizador tinha valores mais ou menos estáveis. No entanto, observando o gráfico, verifica-se que não é o que acontece: os valores oscilam entre extremos muito separados, havendo valores acima de 300 e outros abaixo de 50. Neste caso os limites definidos pelo utilizador foram de 70 para hipoglicemia e de 150 para hiperglicemia. Também é possível observar que cerca de metade dos registos efetuados encontram-se fora dos intervalos estabelecidos, o que leva a pensar que estes limites escolhidos não foram os mais corretos e talvez tenham de ser adaptados. De qualquer das formas, as medições são feitas mais frequentemente de manhã cedo e ao início da tarde, presumivelmente à hora de pequeno-almoço e almoço. 
 
 
@@ -290,12 +302,11 @@ Ao analisar o gráfico do utilizador 2 percebe-se um dos problemas anteriormente
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Horas.png}
+\includegraphics[scale=0.6]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Vitor.pdf}
 \caption{Glicemia por horas do utilizador 3}
 \end{figure}
-
-Ao observar a figura, percebe-se que os valores oscilam bastante, havendo alguns valores próximos de 50 mg/dL e outros próximos de 300 mg/dL. Os limites definidos pelo utilizador foram de 60 mg/dL para hipoglicemia e 180 mg/dL para hiperglicemia. No gráfico do utilizador anterior, haviam vários períodos do dia com hiperglicemia mas estas eram, aproximadamente, em igual número à quantidade de valores normais, isto é, pelo gráfico do utilizador 2, observa-se que no geral, para um determinado período, a quantidade de valores normais ou demasiado elevados são mais ou menos iguais. Por outro lado, neste gráfico observa-se o contrário: há períodos que notoriamente tem mais hiperglicemias que valores normais e outros períodos com mais valores normais que hiperglicemias. 
-Por exemplo, entre as 07:00 e as 10:00, que será o período do pequeno-almoço ou imediatamente depois, verifica-se que a quantidade de valores altos e valores normais são parecidas. Já no período imediatamente a seguir à hora de almoço, há poucas hiperglicemias em relação à quantidade de registos feitos. Por último, à hora de jantar ou logo a seguir, a quantidade de hiperglicemias é bastante alta em relação à quantidade das medições. Isto pode ser uma consequência da rotina do utilizador. Por exemplo, se o utilizador jantar e logo a seguir descansar, pode causar esta subida. Por outro lado, e olhando para o gráfico, uma solução poderia ser algum tipo de exercício leve depois do jantar, como uma caminhada, para conseguir baixar um pouco os valores. Outra alternativa seria ajustar a insulina depois do jantar. 
+Ao observar a figura, percebe-se que os valores oscilam bastante, havendo alguns valores próximos de 50 mg/dL e outros próximos de 300 mg/dL. Os limites definidos pelo utilizador foram de 60 mg/dL para hipoglicemia e 180 mg/dL para hiperglicemia. No gráfico do utilizador anterior, havia vários períodos do dia com hiperglicemia mas estes eram, aproximadamente, em igual número à quantidade de valores normais, isto é, pelo gráfico do utilizador 2, observa-se que no geral, para um determinado período, a quantidade de valores normais ou demasiado elevados são mais ou menos iguais. Por outro lado, neste gráfico observa-se o contrário: há períodos que notoriamente têm mais hiperglicemias que valores normais e outros períodos com mais valores normais que hiperglicemias. 
+Por exemplo, entre as 07:00 e as 10:00, que será o período do pequeno-almoço ou imediatamente depois, verifica-se que a quantidade de valores altos e valores normais é parecida. Já no período imediatamente a seguir à hora de almoço, há poucas hiperglicemias em relação à quantidade de registos feitos. Por último, à hora de jantar ou logo a seguir, a quantidade de hiperglicemias é bastante alta em relação à quantidade das medições. Isto pode ser uma consequência da rotina do utilizador. Por exemplo, se o utilizador jantar e logo a seguir descansar, pode causar esta subida. Por outro lado, e olhando para o gráfico, uma solução poderia ser algum tipo de exercício leve depois do jantar, como uma caminhada, para conseguir baixar um pouco os valores. Outra alternativa seria ajustar a insulina depois do jantar. 
 De qualquer das formas, com este tipo de análise, não se consegue descobrir qual a causa para estes valores anormais, pelo que sem um tipo de análise mais profunda, cabe ao utilizador perceber o porquê de isto acontecer.
 
 
@@ -304,22 +315,19 @@ De qualquer das formas, com este tipo de análise, não se consegue descobrir qu
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Horas.png}
+\includegraphics[scale=0.6]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Teresa.pdf}
 \caption{Glicemia por horas do utilizador 4}
 \end{figure}
-
-O utilizador 4 definiu como 60 mg/dL o limite para hipoglicemia e 150 mg/dL o limite para hiperglicemia. Tal como já aconteceu com outros utilizadores, os valores de hiperglicemia são abundantes o que pode levar a crer que o limite para hiperglicemia é demasiado baixo e poderia ser ajustado. O utilizador 3 tem geralmente hiperglicemias depois das três refeições o que significa que talvez a insulina devesse ser ajustada. Verifica-se também a presença de alguns valores demasiado altos por volta da meia noite seguidos por valores demasiados baixos durante a madrugada. 
+O utilizador 4 definiu como 60 mg/dL o limite para hipoglicemia e 150 mg/dL o limite para hiperglicemia. Tal como já aconteceu com outros utilizadores, os valores de hiperglicemia são abundantes o que pode levar a crer que o limite para hiperglicemia é demasiado baixo e poderia ser ajustado. Este utilizador tem geralmente hiperglicemias depois das três refeições o que significa que talvez a insulina devesse ser ajustada. Verifica-se também a presença de alguns valores demasiado altos por volta da meia noite seguidos por valores demasiados baixos durante a madrugada. 
 
 
 \textbf{Utilizador 5}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Horas.png}
+\includegraphics[scale=0.6]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Paulo.pdf}
 \caption{Glicemia por horas do utilizador 5}
 \end{figure}
-
-
 Tal como no utilizador passado, neste utilizador, apenas observando o gráfico não se consegue obter conclusões, isto porque não há nenhum período do dia que se destaque dos outros. O utilizador definiu um limite para hipoglicemia de 70 mg/dL e não definiu um limite para hiperglicemia, pelo que o limite utilizado foi 180 mg/dL. Conseguem-se observar alguns períodos com tendência para hiperglicemia, nomeadamente de manhã, ao início da tarde e a meio da tarde. Neste utilizador não é possível concluir nada apenas com esta análise.\newline
 
 Pelos gráficos observados de todos os utilizadores, verifica-se que em todos eles há hiperglicemias, embora nuns notoriamente mais que noutros. Embora não se consigam descobrir padrões ou detetar anomalias apenas com uma análise deste tipo, fica visível a necessidade de um melhor controlo da glicemia por parte de quase todos os utilizadores, que pode ser conseguida através de um uso de uma aplicação de registo, tal como a MyDiabetes. Embora na análise feita nesta subsecção se consigam descobrir mais detalhes do que na subsecção anterior, ainda não é descoberto o suficiente. Desta forma vamos aprofundar ainda mais e fazer uma análise por dia e por hora para cada utilizador.
@@ -332,33 +340,20 @@ Nas últimas subsecções fizemos uma análise que nos permite saber que, por ex
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Dias.png}
+\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Dias.pdf}
 \caption{Glicemia por horas do utilizador 1}
 \end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Dias2.png}
-\caption{Glicemia por horas do utilizador 1}
-\end{figure}
-
-Analisando as figuras em cima, nota-se que o utilizador mantém grande parte das vezes os valores de glicemia dentro dos intervalos normais todos os dias. No entanto, nota-se claramente que o Domingo tem mais hiperglicemias que os outros dias todos e que estas ocorrem ao final da tarde ou início da noite. Embora as estatísticas anteriores sobre este utilizador mostrem que de facto o Domingo é o dia com a média de glicemia mais elevada e que a noite é o período com média de glicemia mais elevada, tal não significa necessariamente que estas duas médias fossem verdade sempre. Ou seja, nada garantia que ao Domingo a glicemia também fosse mais elevada à noite. Contudo, com esta análise pode perceber-se que de facto isso acontece. Nos outros dias verifica-se que há um ou outro caso de hiperglicemias ou hipoglicemias mas em muito pouca quantidade. Uma análise que utilize os outros parâmetros como insulina ou hidratos de carbono talvez ajude a perceber o porquê de o Domingo ser um dia com valores de glicemia mais altos. 
+Analisando as figuras 5.6, nota-se que o utilizador mantém, grande parte das vezes, os valores de glicemia dentro dos intervalos normais todos os dias. No entanto, nota-se claramente que o Domingo tem mais hiperglicemias que os outros dias todos e que estas ocorrem ao final da tarde ou início da noite. Embora as estatísticas anteriores sobre este utilizador mostrem que de facto o Domingo é o dia com a média de glicemia mais elevada e que a noite é o período com média de glicemia mais elevada, tal não significa necessariamente que estas duas médias fossem verdade sempre. Ou seja, nada garantia que ao Domingo a glicemia também fosse mais elevada à noite. Contudo, com esta análise pode perceber-se que de facto isso acontece. Nos outros dias verifica-se que há um ou outro caso de hiperglicemias ou hipoglicemias mas em muito pouca quantidade. Uma análise que utilize os outros parâmetros como insulina ou hidratos de carbono talvez ajude a perceber o porquê de o Domingo ser um dia com valores de glicemia mais altos. 
 
 \textbf{Utilizador 2}
 
+
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Days.png}
+\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Dias.pdf}
 \caption{Glicemia por horas do utilizador 2}
 \end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Dias2.png}
-\caption{Glicemia por horas do utilizador 2}
-\end{figure}
-
-Observando as figuras verifica-se que o utilizador apresenta hiperglicemias todos os dias, maioritariamente durante a tarde. Ao Domingo apresenta menos hiperglicemias porque também tem menos registos. No resto dos dias apresenta uma distribuição semelhante entre valores normais e valores acima do limite de hiperglicemia, isto é, há mais ou menos quantidade de valores normais e valores demasiado altos. Contudo, ao Sábado o número de hiperglicemias é bastante maior em relação ao número de valores no intervalo normal.
+Observando a figura verifica-se que o utilizador apresenta hiperglicemias todos os dias, maioritariamente durante a tarde. Ao Domingo apresenta menos hiperglicemias porque também tem menos registos. No resto dos dias apresenta uma distribuição semelhante entre valores normais e valores acima do limite de hiperglicemia, isto é, há mais ou menos quantidade de valores normais e valores demasiado altos. Contudo, ao Sábado o número de hiperglicemias é bastante maior em relação ao número de valores no intervalo normal.
 
 
 
@@ -366,384 +361,29 @@ Observando as figuras verifica-se que o utilizador apresenta hiperglicemias todo
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Dias.png}
+\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Dias.pdf}
 \caption{Glicemia por horas do utilizador 3}
 \end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Dias2.png}
-\caption{Glicemia por horas do utilizador 3}
-\end{figure}
-
-
-Neste utilizador é possível ver um padrão: tem tendência para ter hiperglicemias de manhã e ao fim da tarde ou início da noite. Uma vez mais, a causa pode estar relacionado com o trabalho, por exemplo, que pode ser mais desgastante à tarde, daí fazer com que os valores não subam tanto. Esta teoria seria ainda suportada pelo gráfico de Sábado, que mostra algumas hiperglicemias também a meio da tarde, o que faria sentido se de facto a causa dos valores durante a semana fosse o trabalho. 
+Neste utilizador é possível ver um padrão: tem tendência para ter hiperglicemias de manhã e ao fim da tarde ou início da noite. Uma vez mais, a causa pode estar relacionada com o trabalho, por exemplo, que pode ser mais desgastante à tarde, daí fazer com que os valores não subam tanto. Esta teoria seria ainda suportada pelo gráfico de Sábado, que mostra algumas hiperglicemias também a meio da tarde, o que faria sentido se de facto a causa dos valores durante a semana fosse o trabalho. 
 
 \textbf{Utilizador 4}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Dias.png}
+\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Dias.pdf}
 \caption{Glicemia por horas do utilizador 4}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Dias2.png}
-\caption{Glicemia por horas do utilizador 4}
-\end{figure}
-
-
-Observando as figuras em cima, é possível observar que em todos os dias ocorrem hiperglicemias mas há três dias que se destacam: Domingo, Segunda e Terça, pois têm mais hiperglicemias em comparação com valores normais que o resto dos dias. Verifica-se também que os valores mais altos ocorrem de manhã ou ao início da noite, sendo que apenas em dois dias há mais que uma hiperglicemia a meio da tarde, o que pode significar que o utilizador possa fazer algo de diferente nestes dois dias, embora sem qualquer tipo de certeza. 
-Em vários dias da semana notam-se alguns valores muito próximos ou até abaixo do limite de hipoglicemia sendo notórios dois períodos em que eles são mais frequentes: durante a madrugada e perto da hora de almoço. Isto pode significar que o utilizador come nada antes de ir dormir, para o primeiro caso, e para o segundo caso pode significar que o utilizador não come nada entre o pequeno-almoço e o almoço, e que talvez devesse comer alguma coisa. 
+\end{figure}Observando a figura 5. em cima, é possível observar que em todos os dias ocorrem hiperglicemias mas há três dias que se destacam: Domingo, Segunda e Terça, pois têm mais hiperglicemias em comparação com valores normais que o resto dos dias. Verifica-se também que os valores mais altos ocorrem de manhã ou ao início da noite, sendo que apenas em dois dias há mais que uma hiperglicemia a meio da tarde, o que pode significar que o utilizador possa fazer algo de diferente nestes dois dias, embora sem qualquer tipo de certeza. 
+Em vários dias da semana notam-se alguns valores muito próximos ou até abaixo do limite de hipoglicemia sendo notórios dois períodos em que eles são mais frequentes: durante a madrugada e perto da hora de almoço. Isto pode significar que o utilizador não come nada antes de ir dormir, para o primeiro caso, e para o segundo caso pode significar que o utilizador não come nada entre o pequeno-almoço e o almoço, e que talvez devesse comer alguma coisa. 
 
 
 \textbf{Utilizador 5}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Dias.png}
+\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Dias.pdf}
 \caption{Glicemia por horas do utilizador 5}
 \end{figure}
-
-Para este utilizador mostramos apenas gráficos referentes a três dias já que os outros não têm registos suficientes.
-
-
-
-\section{Regras de associação}
-
-Para esta análise as funções que o R oferece não são suficientes pelo que foi necessário instalar um \textit{package} adicional, \textit{arules}, que oferece uma vasta quantidade de funções direcionadas para regras de associação. Ao contrário das secções anteriores, nesta secção usam-se os vários parâmatros com os seus valores já discretizados, para que o algoritmo utilizado seja mais eficiente. O processo de de procura de regras de associação é de fácil compreensão: o algoritmo vai percorrer o \textit{data set} e analisar cada ``transação'', que corresponde a cada linha do ficheiro csv. Dependendo da confiança e suporte escolhidos, vai gerar algumas regras que conseguir encontrar e que respeitem os limites escolhidos. As regras geradas podem ser de qualquer tipo, isto é, o consequente pode ser qualquer uma das variáveis analisadas, sendo que neste caso interessa-nos descobrir regras com a variável ``Value\textunderscore Glucose'' como consequente, ou seja, no lado direito. Contudo, o \textit{data set} ainda não está estruturado da melhor forma para a criação das regras. 
-Da forma que o \textit{data set} está feito, cada linha corresponde ao mesmo momento, ou seja, se uma linha tiver um valor de glicemia, hidratos de carbono e insulina, tudo isso corresponde a um registo feito à mesma hora. O mesmo acontece para o exercício. O tipo de conclusões que se pretende obter é de que forma estes parâmetros causam algum impacto no valor de glicemia, como por exemplo, descobrir de que forma o exercício vai alterar a quantidade de glucose no sangue ou de que forma a insulina tomada ou os hidratos de carbono vão fazer alterar este valor. Se todos esses parâmetros forem registados à mesma hora, não se consegue concluir nada: uma vez que o algoritmo Apriori vai analisar linha a linha de forma independente, no formato atual, o valor de glicemia só vai ser comparado com o valor de insulina e de hidratos de carbono registados ao mesmo tempo. No entanto, o importante é saber como é que a quantidade de hidratos de carbono ingerida e a insulina tomada vão afetar a glicemia no espaço de tempo a seguir, e não no mesmo espaço de tempo. Ou seja, como é que os valores de hidratos e de insulina num registo, vão afetar a glicemia no registo seguinte. A questão é que o valor de glicemia do registo seguinte vai pertencer a outra linha do csv e portanto não vai ser tido em conta para os valores de outra linha. Posto isto, a solução foi alterar a estrutura do ficheiro para que cada linha passe a ter o valor de glicemia seguinte, e não o atual. Assim, imaginando que a variável ``Value\textunderscore Glucose'' passe a chamar-se ``Next\textunderscore Glucose'', é possível ter uma regra como
-
-\begin{lstlisting}
-Se Value_Carbs==5 entao Next_Glucose==5
-\end{lstlisting} 
-
-ou seja, descobrir um padrão em que quando o utilizador ingere demasiados hidratos de carbono, então o valor seguinte de glicemia será demasiado elevado, mais precisamente uma hiperglicemia. Se esta alteração não fosse feita, as regras descobertas apenas dariam relações entre valores registados à mesma hora o que não tem qualquer utilidade. Embora este não seja o único tipo de regras a descobrir, certamente que é um dos tipos de conselhos que podem levar um utilizador a conseguir controlar a diabetes de forma mais eficiente. Convém relembrar que se uma regra é descoberta, é porque essa ação ocorre várias vezes, ou seja, trata-se de um padrão. Ao informar o utilizador de que este padrão existe, e que tem uma influência negativa nos seus valores de glicemia, o utilizador pode tomar a ação que achar mais apropriada de forma a evitar que aconteça. Na presença de uma regra como esta, a aplicação poderia mostrar um aviso quando o utilizador fosse fazer um registo de refeição e metesse um valor elevado de hidratos de carbono, em que o aviso poderia ser, por exemplo, ``Meteu um valor de hidratos de carbono elevado e, quando faz isso, normalmente tende a ter uma eventual hiperglicemia algum tempo depois da refeição''.
-
-Uma vez alterados os \textit{data sets} de cada utilizador, faltava ainda converter todas as variáveis para \textit{factor}. \textit{Factor} é um tipo em R que toma apenas um número limitado de valores diferentes; variáveis do tipo \textit{factor} são também chamadas de variáveis categóricas. Esta conversão é necessária para as variáveis poderem ser utilizadas no algoritmo de associação. Ainda assim, a fase de discretização feita na secção 5.2 é também necessária. Sem a discretização, as variáveis podem ser utilizadas pelo apriori desde que sejam do tipo \textit{factor} mas as regras geradas não são utilizáveis. Por exemplo, uma regra gerada sem fazer discretização das variáveis é
-
-\begin{lstlisting}
-{Value_Glucose=140,Value_Insulin=140} => {Value_Carbs=140}
-\end{lstlisting}
-
-que serve para ilustrar a ineficácia deste algoritmo para valores não discretizados. Feito então o passo de conversão das variáveis para \textit{factors}, o \textit{data set} está pronto a ser utilizado pelo apriori. De seguida apresentaremos algumas das regras mais relevantes descobertas para cada utilizador e verificaremos também se essas regras estão em concordância com os gráficos obtidos na secção anterior. Todas as regras terão uma confiança mínima de 60\%.
-Para cada utilizador interessa-nos descobrir regras que levem a alterações do valor de glicemia, sendo que o valor normal, tal como definido na secção 5.1, é 3. Portanto, interessa descobrir regras em que o valor de glicose seja 1 ou 2 para valores baixos e 4 ou 5 para valores altos.
-
-O algoritmo \textit{apriori} vai analisar linha a linha dos dados e tentar descobrir relações entre as variáveis. Para obter as regras cujo consequente diga respeito aos valores anormais de glicemias, é preciso filtrar as regras geradas. Neste caso, vamos filtrar o conjunto de regras de forma a mostrar apenas regras com ``Next\textunderscore Glucose'' com valores 1, 2, 4 ou 5. 
-
-Para todos os utilizadores definimos uma confiança mínima de 0.6 e um suporte mínimo de 0.01. O suporte tem que ser bastante baixo uma vez que vamos aplicar o algoritmo num \textit{data set} pequeno. Isto porque estamos à procura de padrões que, embora recorrentes, vão ser uma minoria dos dados. Naturalmente que num \textit{data set} com milhares de linhas esses padrões são mais óbvios, ou seja, mais frequentes, e portanto um suporte mais alto seja suficiente para encontrar. Por outro lado, para \textit{data sets} com dezenas ou poucas centenas de linhas, os padrões não são tão explícitos pelo que é necessário um suporte mais baixo para descobrir regras. Usar um suporte demasiado baixo pode fazer com que sejam descobertas regras que sejam um caso pontual, pelo que convém não usar um suporte demasiado baixo. Assim, foi escolhido o valor 0.01 que é um valor baixo mas não demasiado. 
-
-Para a confiança foi escolhido o valor mínimo de 0.6 o que significa que, para cada regra, se o antecedente acontece, então o consequente irá acontecer com 60\% de probabilidade, o que confere alguma segurança às regras. As regras que cumpram estes dois requisitos são chamadas de regras fortes.
-
-
-No R, o comando para a geração de regras através do algoritmo \textit{apriori} é
-
-\begin{lstlisting}
-rules <- apriori(dataset, parameter=list(confidence=0.6, support=0.01))
-\end{lstlisting}
-
-em que ``dataset'' é o ficheiro a ser analisado com os parâmetros confiança e suporte definidos com os valores já mencionados. Para mostrar apenas as regras com o valor de glicose pretendido, como por exemplo 5, o comando é
-
-\begin{lstlisting}
-rules.sub <- subset(rules, subset = rhs %in% "Next_Glucose=5")
-\end{lstlisting}
-
-que gerará então um subconjunto de regras em que o consequente será ``Next\textunderscore Glucose=5''.
-
-Existe um \textit{package} chamado \textit{arulesViz} que é uma ferramenta para visualizar as regras geradas. Este \textit{package} permite, por exemplo, ordenar as regras geradas por confiança ou \textit{lift} e assim filtrar quais as regras potencialmente mais úteis. Isto é feito de forma interativa: no gráfico é possível selecionar uma região com regras e todas as regras existentes nessa região serão mostradas.
-De seguida, apresentaremos algumas regras geradas para cada utilizador.
-
-\textbf{Utilizador 1}
-
-Para o utilizador foram geradas 1239 regras. Obviamente que se torna impossível de analisar todas as regras individualmente, pelo que o primeiro passo será então aplicar um filtro, de forma a ficar apenas com valores anormais de glicemia no consequente. Após este filtro, o conjunto de regras diminui bastante, para 25. Com o comando
-
-\begin{lstlisting}
-plot(rules.sub, method=NULL, measure="support", shading = "lift", interactive = TRUE, data = NULL, control = NULL)
-\end{lstlisting}
-
-obtém-se o gráfico
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=75mm, height=75mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Regras.pdf}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
-
-e escolhe-se a região no canto inferior esquerdo, que o suporte mais elevado. Essa região contém a regra
-
-\begin{lstlisting}
-{Day=Quarta,Period=2,Value_Carbs=4} => {Next_Glucose=4}
-
-\end{lstlisting}
-
-Por outro lado, as regras geradas para valores baixos de glicose são
-
-\begin{lstlisting}
-{Day=Sexta,Period=1,Value_Carbs=3} => {Next_Glucose=2}
-\end{lstlisting}
-
-que mostra que à sexta-feira de manhã o utilizador tende a ter valores mais baixos que nos outros dias.
-
-
-\textbf{Utilizador 2}
-
-Para o utilizador 2 é expectável que se consigam mais regras do que para o utilizador 1 visto que o utilizador 2 tinha valores de glicemia mais oscilatórios. 
-
-\begin{lstlisting}
-
-
-{Day=Quinta,Period=2}     => {Next_Glucose=5} 0.0499002 0.625      1.527439
-{Day=Sexta,Period=2} => {Next_Glucose=5}
-
-\end{lstlisting}
-
-Enquanto que para o primeiro utilizador não se descobriram regras para valores de glicose 5, para este já se descobriu, por exemplo, que às quartas-feiras o utilizador tende a tomar pouca insulina o que reflete um valor bastante alto de insulina. Por sua vez, às quintas-feiras durante a tarde os valores também costumam ser demasiado elevados. 
-
-
-
-
-
-
-\textbf{Utilizador 3}
-
-Para este utilizador, para ``Next\textunderscore Glucose=5'' foram geradas 150 regras, tornando-se por isso necessário filtrar algumas, usando gráficos, uma vez mais. 
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=75mm, height=75mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Regras.pdf}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
-
-Como se pode ver pela figura, selecionámos a região que engloba as regras com maior suporte. Uma vez que temos poucos dados, torna-se mais difícil avaliar a importância das regras. Por exemplo, as regras com maior \textit{lift} são as regras com menor suporte, o que aumenta o risco de serem situações pontuais e não recorrentes. Por outro lado, as regras com maior suporte têm menor \textit{lift}, embora seja superior a 1. Num \textit{data set} com mais dados, talvez a escolha recaísse sobre as regras com maior \textit{lift} mas, para garantir o máximo possível que as regras correspondem a situações repetidas, optamos por mostrar algumas das regras com maior suporte, ou seja, na região mais escura. Algumas dessas regras são:
-
-\begin{lstlisting}
-{Period=2, Value_Carbs=4}       => {Next_Glucose=5} 0.07284768  0.9166667 2.162760  
-{Period=3, Value_Insulin=3}     => {Next_Glucose=5} 0.09933775  0.6521739 1.538723
-{Value_Carbs=4} => {Next_Glucose=5} 0.07947020  0.8000000 1.887500
-\end{lstlisting}
-
-Será também interessante, no entanto, ver algumas das regras com maior \textit{lift}, que são
-
-\begin{lstlisting}
-{Day=Terca,Period=2} => {Next_Glucose=5} 0.0397351 1          2.359375
-\end{lstlisting}
-
-que corresponde à parte superior do gráfico, sendo esta a regra mais à direita (ou seja, maior suporte). 
-
-Para valores de glicemia baixos, não são geradas quaisquer regras, o que seria de esperar, pois pela figura x pode-se verificar que o utilizador tem poucos valores de glicemia próximos do limite de hipoglicemia, pelo que serão ocorrências pontuais. 
-
-
-\textbf{Utilizador 4}
-
-Para este utilizador foram geradas 41 regras para valores de hiperglicemia.
-
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=75mm, height=75mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Regras.pdf}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
- A zona sombreada no gráfico corresponde às regras com maior suporte,
- 
-
-\begin{lstlisting}
-
-{Day=Sexta, Value_Insulin=3, Insulin_Difference=4} => {Next_Glucose=5} 0.03355705      0.625 2.217262
-
-\end{lstlisting}
-
-Algumas das regras com maior \textit{lift}, embora com um suporte consideravelmente mais pequeno, são
-
-\begin{lstlisting}
-{Day=Terca, Value_Carbs=5, Insulin_Difference=2} => {Next_Glucose=5} 0.01342282          1 3.547619
-{Day=Sabado, Period=3, Value_Carbs=3}    => {Next_Glucose=5} 0.01342282          1 3.547619
-\end{lstlisting}
-
-
-
-\textbf{Utilizador 5}
-
-Também para este utilizador utilizaremos a ferramenta visual para ajudar a escolher as regras mais úteis, pois são geradas 136 regras para valores de hiperglicemia. 
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=75mm, height=75mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Regras.pdf}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
-
-
-\begin{lstlisting}
-{Period=2,Value_Insulin=3} => {Next_Glucose=5} 0.09615385 0.625      1.477273 3    
-{Period=2,Value_Carbs=3} => {Next_Glucose=5} 0.09615385 0.625      1.477273 3    
-\end{lstlisting}
-
-Este utilizador tem tendência para hiperglicemias durante o período da tarde, mesmo que consuma hidratos de carbono numa quantidade normal ou tome um valor de insulina moderado. Isto pode significar que o utilizador, ao almoço por exemplo, não faz uma contagem de hidratos correta ou não adeque a insulina pelo que causa valores mais elevados durante a tarde. 
-
-\section{Redes \textit{Bayesianas}}
-
-Nesta secção iremos criar uma rede \textit{bayesiana} para cada um dos utilizadores, de forma a perceber de que forma as regras geradas na secção anterior influenciam o valor de glicemia. Por exemplo, se um dado utilizador tiver uma regra que diga que à quarta-feira à tarde costuma ter hiperglicemias, qual será, então, a probabilidade de ter uma hiperglicemia numa quarta-feira à tarde? Uma rede \textit{bayesiana} permite isto ao calcular as probabilidades de cada variável tomar um determinado valor. Portanto, uma rede feita a partir do mesmo \textit{data set} que as regras de associação, deverá estar em concordância com essas regras. Mas mais que isso, dá informação extra sobre como é que as várias variáveis influenciam a variável de interesse, que para este trabalho é o valor de glicemia.
-
-O primeiro passo nesta fase é então criar uma rede \textit{bayesiana}, recorrendo ao \textit{software} WEKA. Antes de mais, é preciso preparar o \textit{data set} para ser utilizado pelo WEKA, que será igual ao utilizado para as regras de associação mas com o detalhe que a variável ``Next\textunderscore Glucose'' terá de ser a última variável do ficheiro, ou seja, a coluna mais à direita. Isto faz com que o WEKA a considere como a variável de classe, ou seja, a variável a prever e, portanto, o \textit{data set} está pronto a ser usado pelo WEKA. Note-se que o WEKA vai ser utilizado apenas para criar a rede \textit{bayesiana}, que será analisada pelo SamIAm.
-
-O comando utilizado para criar a rede é
-
-\begin{lstlisting}
-java -cp weka.jar weka.classifiers.meta.FilteredClassifier -t dataset.csv -T dataset.csv -distribution -p 0 -threshold-label  -threshold-file datasetThreshold.arff -d weka.tan2.model -i  -W weka.classifiers.bayes.BayesNet -- -D -Q weka.classifiers.bayes.net.search.local.TAN -- -S BAYES -E weka.classifiers.bayes.net.estimate.SimpleEstimator -- -A 0.000001 
-
-
-java -cp weka.jar weka.classifiers.meta.FilteredClassifier -l weka.tan2.model -T dataset.csv -g > weka_tan2.xml
-
-\end{lstlisting}
-
-que, como se pode verificar, tem vários parâmetros.
-
-O parâmetro -t é o ficheiro de treino e -T diz respeito ao ficheiro de teste.
--d é o ficheiro \textit{output} do modelo;
--i dá um \textit{output} detalhado sobre informação estatística para cada classe;
--W dá o nome completo do classificador
--D especifica para não usar ADTree, pois não é útil para \textit{data sets} pequenos
--Q especifica o algoritmo de procura
--E especifica o algoritmo de estima em que \textit{SimpleEstimator} é usado para estimar as tabelas de probabilidade condicional na rede
-
-Este comando gera a rede
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Rede.png}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
-
-
-O SamIAm tem dois modos disponíveis: \textit{Edit mode} e \textit{Query mode} sendo que vamos utilizar o programa em \textit{Query mode}. 
-
-A figura anterior mostra a rede \textit{bayesiana} criada pelo WEKA com o SamIAm em \textit{Edit mode}. Este modo serve para alterar a estrutura da rede, como adicionar nós ou arestas, mas não é esse o nosso objetivo. O objetivo é, uma vez mais, perceber de que forma as variáveis se relacionam, ou seja, como é que a alteração de uma variável provoca alterações noutra variável. Nesse caso, torna-se útil usar o \textit{query mode}. 
-
-Este modo permite ver a probabilidade de cada variável tomar cada valor, de acordo com o \textit{data set} e permite também mudar esses valores e ver de que forma as outras variáveis mudam também. Por exemplo, uma regra possível seria ``Um utilizador tem tendência para ter valores de glicemia altos à quarta-feira à tarde''. É interessante e útil para o utilizador conhecer esta regra, por si só. Mas também pode ser interessante o processo inverso, ou seja, ``Qual a probabilidade de ter hiperglicemia, sendo que hoje é quarta-feira à tarde?''. É isso que o SamIAm permite fazer no \textit{query mode}, entre outras coisas, e que pode dar mais informação útil ao utilizador. A figura seguinte mostra a mesma rede mas em \textit{query mode}.
-
-\begin{figure}[H]
-\centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Sam.png}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
-
-É possível ver as tabelas de probabilidade para cada variável, sendo que cada nó tem por predefinição o valor mais frequente, como por exemplo, ``Next\textunderscore Glucose=3''. Note-se que os valores NA correspondem a registos que não usaram essas variáveis, isso é, um utilizador pode registar uma glicemia e não registar insulina ou hidratos d carbono. Estas tabelas também permitem perceber a distribuição de algumas variáveis: por exemplo, é possível verificar que, neste caso, os dias têm probabilidades muito parecidas, o que significa que têm um número parecido de registos. No entanto, tal como já mencionado, o objetivo nesta parte é tentar perceber de que forma estas variáveis afetam o valor da glicemia e também ver se estas alterações estão em concordância com as regras mostradas na secção anterior ou até ver se novos padrões surgem. Vamos, por isso, mostrar a rede \textit{bayesiana} para cada utilizador. 
-
-\textbf{Utilizador 1}
-
-Para este utilizador, a tabela de probabilidades inicial é mostrada na figura
-
-\begin{figure}[H]
-\centering
-\includegraphics{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Probs.png}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
-
-uma das regras geradas mostrava que, às quartas-feiras à tarde e quando o utilizador ingere hidratos de carbono em valores elevados, a glicemia tomava valores elevados. Ao selecionar, então, no SamIAm, esses três parâmetros com os valores definidos na regra, verifica-se que a probabilidade de ``Next\textunderscore Value=4'' sobe para 62.68\%.
-
-Por outro lado, se colocarmos as variáveis de acordo com a regra para hipoglicemia neste utilizador, verificamos que a probabilidade de ``Next\textunderscore Glucose=2'' sobe para 34.74\%.
-
-No entanto, é possível descobrir outros padrões: por exemplo, se selecionarmos apenas o dia ``Domingo'' verificamos que a probabilidade de uma hiperglicemia, ou seja um valor de glicemia 5, sobe para 18.67\%. 
-
-Na figura seguinte pode-se ver quais os parâmetros que provocam uma probabilidade máxima de uma hiperglicemia.
-
-\begin{figure}[H]
-\centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Hiper.png}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
-
-Ou seja, uma nova regra é descoberta: ao Domingo de manhã, quando o utilizador ingere uma quantidade grande de hidratos de carbono, tem maior probabilidade de ter uma hiperglicemia. 
-
-\textbf{Utilizador 2}
-
-
-A rede para o utilizador 2 é mostrada na figura seguinte
-
-\begin{figure}[H]
-\centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Rede.png}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
-
-que, como se verifica, é ligeiramente diferente da rede gerada para o utilizador 1. Uma vez mais, é interessante ver quais os valores dos vários parâmetros que maximizam o valor de glicemia. 
-
-\begin{figure}[H]
-\centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Hiper.png}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
-
-Como se pode observar, a probabilidade de hiperglicemia aumenta bastante aos sábados à tarde, quando o utilizador toma menos insulina que a recomendada. Esta regra não foi gerada pelo algoritmo \textit{apriori}, possivelmente por ter um valor de suporte abaixo do mínimo definido, mas ainda assim é uma regra interessante e que mostra uma utilidade desta análise. É interessante saber quais as condições em que o risco de hiperglicemia é maior, tendo em conta os dados já registados. 
-
-\textbf{Utilizador 3}
-
-A rede criada para o utilizador 3 está representada na figura
-
-\begin{figure}[H]
-\centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Rede.png}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
-
-que é diferente das redes dos utilizadores anteriores, principalmente pelo facto de este utilizador não ter qualquer registo de exercício, pelo que essa variável não foi tida em conta.
-
-\begin{figure}[H]
-\centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Hiper.png}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
-
-Como se pode ver na figura anterior, este utilizador tem uma probabilidade enorme de ter hiperglicemia à terça-feira à tarde, especialmente se tomar menos insulina que a calculada. 
-
-\textbf{Utilizador 4}
-
-A rede \textit{bayesiana} para o utilizador 4 está representada na figura seguinte.
-
-\begin{figure}[H]
-\centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Rede.png}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
-
-e alterando alguns valores, obtém-se um exemplo em que a probabilidade de hiperglicemia é aumentada, como se pode perceber pela figura.
-
-\begin{figure}[H]
-\centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Hiper.png}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
-
-Verifica-se que a probabilidade de o utilizador ter uma hiperglicemia é consideravelmente maior à segunda-feira que a qualquer outro dia, sendo que os outros parâmetros têm, neste caso, pouca influência, ou seja, a probabilidade de ter hiperglicemia à segunda-feira é praticamente igual para todos os períodos, por exemplo.
-
-Por outro lado, verificamos que o utilizador tem uma maior probabilidade de ter um valor de hipoglicemia, isto é, ``Next\textunderscore Glucose=1'' à sexta-feira à tarde, cuja probabilidade aumenta para os 10.19\%.
-
-
-\textbf{Utilizador 5}
-
-
-Para o último utilizador, a rede gerada está representada na figura
-
-\begin{figure}[H]
-\centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Rede.png}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
-
-Uma vez mais, um exemplo de uma combinação de parâmetros que aumentam a probabilidade de hiperglicemia, representada na figura seguinte.
-
-\begin{figure}[H]
-\centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Hiper.png}
-\caption{Glicemia por horas do utilizador 5}
-\end{figure}
-
-que mostra que à segunda-feira, e quando o utilizador toma menos insulina que a recomendada, os valores de glicose aumentam. 
-
-Por outro lado, vemos que a probabilidade de ``Next\textunderscore Glucose=1'' nas manhãs em que o utilizador toma mais insulina que aquela recomendada, sendo que neste caso a probabilidade é de 20.09\%.
+Para este utilizador mostramos apenas gráficos referentes a três dias já que os outros não têm registos suficientes. É notório, contudo, que à Segunda-feira o utilizador tende a ter hiperglicemias ao fim da tarde/início da noite. 
 
 
 

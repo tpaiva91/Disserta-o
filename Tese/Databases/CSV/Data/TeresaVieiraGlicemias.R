@@ -73,6 +73,7 @@ abline(h=60, col="red")
 abline(h=150, col="blue")
 
 
+par(mfrow=c(3,3)) 
 #por hora e dia da semana
 joaquim$Period <- as.POSIXct(joaquim$Period, format="%H:%M")
 plot(joaquim$Period[joaquim$Day=="Domingo"], joaquim$Value_Glucose[joaquim$Day=="Domingo"], xaxt="n", ylim = c(0,300), ylab="Valor de glicose", xlab="Domingo")
