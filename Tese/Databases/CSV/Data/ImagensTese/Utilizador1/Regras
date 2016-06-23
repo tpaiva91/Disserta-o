@@ -1,0 +1,3 @@
+{Day=Quarta,Period=2,Value_Carbs=4} => {Next_Glucose=4}
+
+{Day=Sexta,Period=1,Value_Carbs=3} => {Next_Glucose=2}

@@ -1,0 +1,4 @@
+{Period=2, Value_Carbs=4}       => {Next_Glucose=5}
+{Period=3, Value_Insulin=3}     => {Next_Glucose=5} 
+{Value_Carbs=4} => {Next_Glucose=5} 
+{Day=Terca,Period=2} => {Next_Glucose=5} 

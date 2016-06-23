@@ -1,0 +1,2 @@
+{Period=2,Value_Insulin=3} => {Next_Glucose=5}
+{Period=2,Value_Carbs=3} => {Next_Glucose=5}

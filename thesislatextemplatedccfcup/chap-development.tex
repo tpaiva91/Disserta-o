@@ -171,14 +171,11 @@ Com o \textit{data set} pré-processado, estávamos em condições de começar a
 
 Uma primeira estatística poderia ser simplesmente a média de glicose para um determinado utilizador. Relembrando que o HbA1c é um parâmetro importante para verificar o controlo da diabetes num paciente visto que é possível determinar a média de glicose de algumas semanas ou meses. Portanto, de uma maneira mais ou menos semelhante, a média de glicose de um determinado paciente dá para ter uma idea do quão bem esse paciente controla a glicemia. Apresentam-se de seguida as médias de glicose para os cinco utilizadores:
 
-\begin{itemize}
-\item \textbf{Utilizador 1} - 119 mg/dL
-\item \textbf{Utilizador 2} - 150 mg/dL
-\item \textbf{Utilizador 3} - 170 mg/dL
-\item \textbf{Utilizador 4} - 144 mg/dL
-\item \textbf{Utilizador 5} - 154 mg/dL
-
-\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.9]{/home/tiago/Tese/Tese/Databases/CSV/Data/Medias.png}
+\caption{Glicemia por horas do utilizador 1}
+\end{figure}
 
 Como mencionado anteriormente, estas médias pertencem a diferentes utilizadores e dizem respeito a registos durante pelo menos quatro semanas, e portanto, são um indicador geral do controlo da glicemia por parte de cada utilizador. Pode perceber-se que alguns utilizadores têm uma média com um valor mais normal que outros o que pode ser um indicador de um bom controlo. No entanto, isto não é necessariamente verdade. Um bom controlo da glicemia passa não só por manter os valores em intervalos normais mas também em prevenir grandes oscilações. Neste caso, uma média de glicemia de 119 mg/dL pode parecer melhor que uma média de glicemia de 170 mg/dL mas pode não ser: o primeiro utilizador pode ter 2 registos em que um seja 60 mg/dL e outro seja 180 mg/dL, o que dá uma média de 120 mg/dL; por outro lado, o terceiro utilizador pode ter ambos os valores a 170 mg/dL. Ou seja, embora a média de glicemia do primeiro utilizador seja mais baixa, não significa que os valores sejam estáveis, tal como no terceiro utilizador não significa que os valores não sejam estáveis. Medir apenas a média da glicemia é uma análise demasiado vaga: pode ser um indicativo de um bom ou mau controlo da glicemia mas não permite ter certezas. Torna-se portanto necessário fazer uma análise mais aprofundada.
 
@@ -188,68 +185,30 @@ Como mencionado anteriormente, estas médias pertencem a diferentes utilizadores
 
 Uma forma mais detalhada de tentar perceber alguns hábitos dos utilizadores é verificar como é que a sua glicemia oscila durante a semana. Tal pode ser feito obtendo a média de glicose para cada dia. Assim, é possível saber, por exemplo, quais os dias em que a glicemia é mais elevada ou mais baixa, sem esquecer que se trata de uma média, e que por isso não é possível ter conhecimento sobre eventuais hipo ou hiperglicemias. Ainda assim, ao saber a média de glicemia por cada dia, será possível avisar o utilizador de quais os dias a ter em atenção, isto é, se a segunda-feira for um dia com uma média elevada de glicemia, então o utilizador pode ser avisado deste facto para tomar as medidas necessárias ou, pelo menos, aumentar o controlo da glicemia neste dia. Portanto, embora este tipo de estatística não permita descobrir situações em particular, pode ainda assim ser útil. Eis os valores médios de glicemia para os utilizadores:\newline
 
-\textbf{Utilizador 1}
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[h]
+\begin{adjustbox}{max width=\textwidth}
+\centering
 
-\begin{itemize}[noitemsep]
-\item \textbf{Domingo}: 132 mg/dL
-\item \textbf{Segunda}: 117 mg/dL
-\item \textbf{Terça}: 119 mg/dL
-\item \textbf{Quarta}: 127 mg/dL
-\item \textbf{Quinta}: 110 mg/dL
-\item \textbf{Sexta}: 110 mg/dL
-\item \textbf{Sábado}: 115 mg/dL
-\end{itemize}
+\label{my-label}
+\begin{tabular}{|
+>{\columncolor[HTML]{C0C0C0}}l |l|l|l|l|l|}
+\hline
+{\color[HTML]{000000} \textbf{Dia/Utilizador}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Utilizador 1}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Utilizador 2}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Utilizador 3}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Utilizador 4}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Utilizador 5}} \\ \hline
+\textbf{Domingo}                               & 132 mg/dL                                                            & 161 mg/dL                                                            & 182 mg/dL                                                            & 149 mg/dL                                                            & 182 mg/dL                                                            \\ \hline
+\textbf{Segunda}                               & 117 mg/dL                                                            & 131 mg/dL                                                            & 162 mg/dL                                                            & 170 mg/dL                                                            & 153 mg/dL                                                            \\ \hline
+\textbf{Terça}                                 & 119 mg/dL                                                            & 154 mg/dL                                                            & 189 mg/dL                                                            & 165 mg/dL                                                            & 154 mg/dL                                                            \\ \hline
+\textbf{Quarta}                                & 127 mg/dL                                                            & 156 mg/dL                                                            & 166 mg/dL                                                            & 114 mg/dL                                                            & 150 mg/dL                                                            \\ \hline
+\textbf{Quinta}                                & 110 mg/dL                                                            & 149 mg/dL                                                            & 181 mg/dL                                                            & 142 mg/dL                                                            & 170 mg/dL                                                            \\ \hline
+\textbf{Sexta}                                 & 110 mg/dL                                                            & 148 mg/dL                                                            & 163 mg/dL                                                            & 131 mg/dL                                                            & 140 mg/dL                                                            \\ \hline
+\textbf{Sábado}                                & 115 mg/dL                                                            & 165 mg/dL                                                            & 146 mg/dL                                                            & 136 mg/dL                                                            & NR                                                                   \\ \hline
+\end{tabular}
+\end{adjustbox}
+\caption{My caption}
+\end{table}
 
-
-\textbf{Utilizador 2}
-
-\begin{itemize}[noitemsep]
-\item \textbf{Domingo}: 161 mg/dL
-\item \textbf{Segunda}: 131 mg/dL
-\item \textbf{Terça}: 154 mg/dL
-\item \textbf{Quarta}: 156 mg/dL
-\item \textbf{Quinta}: 149 mg/dL
-\item \textbf{Sexta}: 14 8mg/dL
-\item \textbf{Sábado}: 165 mg/dL
-\end{itemize}
-
-\textbf{Utilizador 3}
-
-\begin{itemize}[noitemsep]
-\item \textbf{Domingo}: 182 mg/dL
-\item \textbf{Segunda}: 162 mg/dL
-\item \textbf{Terça}: 189 mg/dL
-\item \textbf{Quarta}: 166 mg/dL
-\item \textbf{Quinta}: 181 mg/dL
-\item \textbf{Sexta}: 163 mg/dL
-\item \textbf{Sábado}: 146 mg/dL
-\end{itemize}
-
-
-\textbf{Utilizador 4}
-
-\begin{itemize}[noitemsep]
-\item \textbf{Domingo}: 149 mg/dL
-\item \textbf{Segunda}: 170 mg/dL
-\item \textbf{Terça}: 165 mg/dL
-\item \textbf{Quarta}: 114 mg/dL
-\item \textbf{Quinta}: 142 mg/dL
-\item \textbf{Sexta}: 131 mg/dL
-\item \textbf{Sábado}: 136 mg/dL
-\end{itemize}
-
-
-\textbf{Utilizador 5}
-
-\begin{itemize}[noitemsep]
-\item \textbf{Domingo}: 182 mg/dL
-\item \textbf{Segunda}: 153 mg/dL
-\item \textbf{Terça}: 154 mg/dL
-\item \textbf{Quarta}: 150 mg/dL
-\item \textbf{Quinta}: 170 mg/dL
-\item \textbf{Sexta}: 140 mg/dL
-\item \textbf{Sábado}: Não registou
-\end{itemize}
 
 Com uma análise deste tipo, embora não se possam tirar conclusões sobre a forma como a glicemia varia, podemos começar a ter algum conhecimento sobre o que podem ser rotinas dos utilizadores. Por exemplo, para 4 dos 5 utilizadores acima mostrados, o dia em que o valor médio de glicemia é mais elevado é aos Domingos. Normalmente ao fim-de-semana as pessoas tendem a ter um estilo de vida mais sedentário e relaxado, o que por sua vez pode levar a um controlo menos apertado da glicemia; mesmo que o controlo não seja afetado ao fim-de-semana, pode haver quem não tenha tanto cuidado com a comida, cometendo alguns excessos; pode até apenas ser o facto de as pessoas estarem menos \textit{stressadas} ao fim-de-semana. Mais importante de saber o porquê de estes valores serem mais elevados ao Domingo, o importante é o conhecimento de que isto acontece. É impossível adivinhar o porquê de os valores serem tendencialmente maiores a um determinado dia, apenas sabendo a média dos valores, mas o simples facto de descobrir esse facto e de alertar um utilizador para o mesmo, pode fazer com que ele próprio se aperceba o que faz de diferente e que provoce a alteração, podendo assim corrigi-la. 
 No contexto da aplicação, uma simples estatística como esta acima mostrada, podia fazer aparecer um aviso, alertando o utilizador que a um determinado dia da semana, os valores de glicemia são, em geral, mais altos. Este processo seria automático: a aplicação calcularia o valor da média para cada dia e mostraria um aviso sempre que este valor fosse mais alto que o desejado. Imaginemos que o utilizador 3 definiu o limite de hiperglicemia como 180. A aplicação ao calcular a média de glicemia para cada dia verificava que em três dias diferentes da semana os valores costumam ser acima desse limite e portanto lançaria um aviso.\newline
@@ -269,45 +228,28 @@ Tendo isto em conta, para a próxima estatística dividiu-se o dia em três part
 
 Os valores médios para cada utilizador em cada fase do dia são:\newline
 
-\textbf{Utilizador 1}
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
 
-\begin{itemize}
-\item Manhã: 112 mg/dL
-\item Tarde: 117 mg/dL
-\item Noite: 128 mg/dL
-\end{itemize}
 
-\textbf{Utilizador 2}
+\begin{table}[h]
+\begin{adjustbox}{max width=\textwidth}
+\centering
 
-\begin{itemize}
-\item Manhã: 160 mg/dL
-\item Tarde: 151 mg/dL
-\item Noite: 138 mg/dL
-\end{itemize}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+{\color[HTML]{000000} \textbf{Período/Utilizador}} & {\color[HTML]{000000} \textbf{Utilizador 1}} & {\color[HTML]{000000} \textbf{Utilizador 2}} & {\color[HTML]{000000} \textbf{Utilizador 3}} & {\color[HTML]{000000} \textbf{Utilizador 4}} & {\color[HTML]{000000} \textbf{Utilizador 5}} \\ \hline
+\cellcolor[HTML]{C0C0C0}\textbf{Manhã}             & 112 mg/dL                                    & 160 mg/dL                                    & 162 mg/dL                                    & 158 mg/dL                                    & 154 mg/dL                                    \\ \hline
+\cellcolor[HTML]{C0C0C0}\textbf{Tarde}             & 117 mg/dL                                    & 151 mg/dL                                    & 141 mg/dL                                    & 134 mg/dL                                    & 157 mg/dL                                    \\ \hline
+\cellcolor[HTML]{C0C0C0}\textbf{Noite}             & 128 mg/dL                                    & 138 mg/dL                                    & 199 mg/dL                                    & 146 mg/dL                                    & 153 mg/dL                                    \\ \hline
+\end{tabular}
+\end{adjustbox}
+\caption{My caption}
+\end{table}
 
-\textbf{Utilizador 3}
-
-\begin{itemize}
-\item Manhã: 162 mg/dL
-\item Tarde: 141 mg/dL
-\item Noite: 199 mg/dL
-\end{itemize}
-
-\textbf{Utilizador 4}
-
-\begin{itemize}
-\item Manhã: 158 mg/dL
-\item Tarde: 134 mg/dL
-\item Noite: 146 mg/dL
-\end{itemize}
-
-\textbf{Utilizador 5}
-
-\begin{itemize}
-\item Manhã: 154 mg/dL
-\item Tarde: 157 mg/dL
-\item Noite: 153 mg/dL
-\end{itemize}
 
 Este tipo de análise já permite ter uma ideia mais concreta das oscilações da glicemia para cada utilizador ao longo do dia. É possível verificar que alguns utilizadores conseguem manter os níveis de glicemia mais ou menos estáveis, como os utilizadores 1 e 5. É possível observar algumas oscilações mais acentuadas em alguns utilizadores: o utilizador 1 por exemplo, embora consiga manter sempre os níveis de glicemia num intervalo considerado normal, tem tendência para ter valores ligeiramente mais elevados à noite. Isto pode ser devido a menos atividade durante a noite, que normalmente é usada para relaxar. Pode ser também por não adequar a insulina em relação ao jantar, por exemplo. Já no utilizador 2 acontece precisamente o contrário: tem valores mais elevados pela manhã, que vão diminuindo ao longo do dia. Os valores altos pela manhã podem indicar que o utilizador ingere alimentos antes de ir para a cama ou que não adequa a insulina depois do jantar, por exemplo. Uma vez mais, neste tipo de estatística é mais importante detetar comportamentos anormais do que os explicar. 
 Quanto ao utilizador 3 é aquele que, pelo que se pode observar apenas com estes dados, apresenta mais oscilações. Começa o dia com valores ligeiramente elevados, pelo que os consegue baixar um bocado durante o dia até que voltam a subir bastante durante a noite. Isto pode não acontecer todos os dias mas geralmente é o que acontece. O aviso nesta situação seria importante para que o utilizador tentasse evitar hiperglicemias durante a noite.
@@ -326,7 +268,7 @@ Os valores de glicose exatos, ao contrário da média, permitem perceber se há 
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Horas.png}
+\includegraphics[height=100mm, width=150mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Paulo.pdf}
 \caption{Glicemia por horas do utilizador 1}
 \end{figure}
 
@@ -756,3 +698,52 @@ que é diferente das redes dos utilizadores anteriores, principalmente pelo fact
 \end{figure}
 
 Como se pode ver na figura anterior, este utilizador tem uma probabilidade enorme de ter hiperglicemia à terça-feira à tarde, especialmente se tomar menos insulina que a calculada. 
+
+\textbf{Utilizador 4}
+
+A rede \textit{bayesiana} para o utilizador 4 está representada na figura seguinte.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Rede.png}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}
+
+e alterando alguns valores, obtém-se um exemplo em que a probabilidade de hiperglicemia é aumentada, como se pode perceber pela figura.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Hiper.png}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}
+
+Verifica-se que a probabilidade de o utilizador ter uma hiperglicemia é consideravelmente maior à segunda-feira que a qualquer outro dia, sendo que os outros parâmetros têm, neste caso, pouca influência, ou seja, a probabilidade de ter hiperglicemia à segunda-feira é praticamente igual para todos os períodos, por exemplo.
+
+Por outro lado, verificamos que o utilizador tem uma maior probabilidade de ter um valor de hipoglicemia, isto é, ``Next\textunderscore Glucose=1'' à sexta-feira à tarde, cuja probabilidade aumenta para os 10.19\%.
+
+
+\textbf{Utilizador 5}
+
+
+Para o último utilizador, a rede gerada está representada na figura
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Rede.png}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}
+
+Uma vez mais, um exemplo de uma combinação de parâmetros que aumentam a probabilidade de hiperglicemia, representada na figura seguinte.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Hiper.png}
+\caption{Glicemia por horas do utilizador 5}
+\end{figure}
+
+que mostra que à segunda-feira, e quando o utilizador toma menos insulina que a recomendada, os valores de glicose aumentam. 
+
+Por outro lado, vemos que a probabilidade de ``Next\textunderscore Glucose=1'' nas manhãs em que o utilizador toma mais insulina que aquela recomendada, sendo que neste caso a probabilidade é de 20.09\%.
+
+
+

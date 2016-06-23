@@ -1,0 +1,2 @@
+{Day=Quinta,Period=2}     => {Next_Glucose=5}
+{Day=Sexta,Period=2} => {Next_Glucose=5}
