@@ -123,7 +123,21 @@ O Weka, ou \textit{Waikato Environment for Knowledge Analysis} permite aplicar v
 
 O SamIAm, cuja acrónimo significa \textit{Sensivity Analysis, Modeling, Inference And More}, é uma ferramenta desenhada propositadamente para a modelagem e trabalho com redes \textit{bayesianas}. Com o SamIAm é possível fazer diversas análises mas para este trabalho interessa-nos saber como se relacionam as várias variáveis. Isto é, descobrir quais as variáveis que se relacionam mais com o valor de glicemia, por exemplo, e de que forma é que mudar uma determinada variável muda também a glicemia.
 
-Estas análises serão descritas mais pormenorizadamente no capítulo 5.
+Por fim, iremos ainda utilizar uma área de \textit{machine learning}, intitulada \textit{Inductive Logic Programming}. ILP é uma área que permite formular hipóteses (ou regras) a partir da análise de dados.[muggleton.pdf] É composta por três partes:
+\begin{itemize}
+\item \textit{background knowledge}
+\item \textit{positive evidence}
+\item \textit{negative evidence}
+\end{itemize}
+
+As hipóteses são formuladas tendo em conta estas três componentes, sendo que cada componente é um programa lógico. Ou seja, uma hipótese é obtida segundo a fórmula
+
+\begin{lstlisting}
+Exemplos positivos + exemplos negativos + background knowledge => Hipotese
+\end{lstlisting}
+Para esta análise vai ser utilizado um sistema ILP intitulado Aleph (A Learning Engine for Proposing Hypotheses).
+
+Estas análises serão descritas mais pormenorizadamente nos capítulos 5 e 6.
 
 \subsection{\textit{Data Mining} na diabetes}
 
