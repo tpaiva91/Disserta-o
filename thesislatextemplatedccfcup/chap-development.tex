@@ -8,7 +8,7 @@ Serão feito dois tipos de análises neste trabalho: uma análise estatística b
 
 Para que este estudo pudesse ser feito, o primeiro passo era ter um conjunto de dados de pacientes diabéticos de forma a ser analisado. Este conjunto de dados tinha que ter algumas características específicas para que pudesse ser utilizado da forma pretendida: tinha que ser um conjunto de registos para cada paciente ao longo de algum tempo, sendo que idealmente, no mínimo, cada paciente teria registos correspondentes a quatro semanas. Depois de uma pesquisa, foi possível concluir que não existia, na \textit{web}, qualquer \textit{data set} com estas características.
 Para que este estudo pudesse ser feito, era necessário ter um \textit{data set} com os diferentes parâmetros que pudessem ser relevantes, como glicemia, insulina, hidratos de carbono e exercício. 
-Como já mencionado, nenhum \textit{data set} existente \textit{on-line} tinha as características desejadas pois só possuíam um registo por pessoa e/ou o seu propósito era a classificação de um paciente como diabético ou não. O único \textit{data set} encontrado que tinha vários registos por pessoa ao longo do tempo tinha o inconveniente de ter apenas dados relativos a glicemias, pelo que não é suficiente. [dataset2]
+Como já mencionado, nenhum \textit{data set} existente \textit{on-line} tinha as características desejadas pois só possuíam um registo por pessoa e/ou o seu propósito era a classificação de um paciente como diabético ou não. O único \textit{data set} encontrado que tinha vários registos por pessoa ao longo do tempo tinha o inconveniente de ter apenas dados relativos a glicemias, pelo que não é suficiente~\cite{dataset2}.
 
 Face à falta de dados disponíveis, a solução encontrada foi recolher dados para a criação do \textit{data set} desejável. Ao podermos construir o nosso próprio \textit{data set} tínhamos a vantagem de podermos recolher as variáveis que queríamos, e portanto, ter um conjunto de dados que torne este trabalho mais eficiente. Por outro lado, visto que a recolha dos dados seria feita através da aplicação MyDiabetes, havia a desvantagem desta ser ainda fechada ao público e, portanto, não ter doentes diabéticos a utilizá-la. Uma outra desvantagem era o tempo que a criação de um \textit{data set} com a variedade e tamanho desejáveis poderia levar. Uma maior variedade de dados de diferentes de pessoas seria útil para também haver a possibilidade de uma maior variedade de rotinas diferentes e, portanto, regras diferentes. Por outro lado, a quantidade relativa a cada utilizador seria também importante para que os padrões encontrados para cada utilizador sejam mais fidedignos, isto é, um padrão encontrado em registos relativos a algumas semanas tem mais confiança que um padrão encontrado em registos de apenas alguns dias. Posto isto, o objetivo era recolher dados referentes ao máximo de utilizadores possível e durante o máximo de tempo possível, desde o início até ao fim deste trabalho, para que a variedade e quantidade disponíveis fossem maiores.
 
@@ -43,7 +43,7 @@ Embora a quantidade de utilizadores que usaram regularmente a aplicação tenha 
 
 O objetivo da aplicação é gerar os tais conselhos de forma automática e, pensado desta forma, esta parte inicial pode parecer inútil: para quê estar a gerar regras se elas não vão ser utilizadas na aplicação em si? 
 
-Esta questão prende-se, uma vez mais, com a filtragem de regras úteis ou não. Os registos de um único paciente podem gerar, por exemplo, centenas ou até milhares de regras. Obviamente que em milhares de regras muitas vão ser bastante parecidas e, possivelmente, a maioria vão ser regras que não têm relevância. É possível, por exemplo, que em alguns milhares de regras só se consiga aproveitar 5 ou 6. ou até 0. A importância de ter registos de vários pacientes prende-se com a variedade das regras geradas: dois pacientes podem gerar poucas regras cada um mas essas regras serem diferentes, ou seja, relativas a rotinas ou anomalias com efeitos ou causas diferentes. Esta análise dos dados à procura de regras servirá, então, para construir um conjunto de regras passíveis de ocorrer no dia-a-dia de um diabético que serão então integradas nesta aplicação. Assim, serão apenas detetados padrões e situações que possam ter alguma relevância e conselhos como ``Adeque a insulina aos hidratos de carbono'' não serão mostrados. Isto porque, apesar de ser um bom conselho, também é óbvio e portanto provavelmente será tido como um conselho inútil por parte dos utilizadores. 
+Esta questão prende-se, uma vez mais, com a filtragem de regras úteis ou não. Os registos de um único paciente podem gerar, por exemplo, centenas ou até milhares de regras. Obviamente que em milhares de regras muitas vão ser bastante parecidas e, possivelmente, a maioria vão ser regras que não têm relevância. É possível, por exemplo, que em alguns milhares de regras só se consiga aproveitar 5 ou 6, ou até 0. A importância de ter registos de vários pacientes prende-se com a variedade das regras geradas: dois pacientes podem gerar poucas regras cada um mas essas regras serem diferentes, ou seja, relativas a rotinas ou anomalias com efeitos ou causas diferentes. Esta análise dos dados à procura de regras servirá, então, para construir um conjunto de regras passíveis de ocorrer no dia-a-dia de um diabético que serão então integradas nesta aplicação. Assim, serão apenas detetados padrões e situações que possam ter alguma relevância e conselhos como ``Adeque a insulina aos hidratos de carbono'' não serão mostrados. Isto porque, apesar de ser um bom conselho, também é óbvio e portanto provavelmente será tido como um conselho inútil por parte dos utilizadores. 
 
 Ao ter esta filtragem para mostrar apenas conselhos realmente importantes, não só diminuiremos a quantidade de vezes que algum conselho é mostrado, tornando assim a aplicação menos ``chata'' para os utilizadores, como também tornam os conselhos mais especiais, ou seja, se um conselho ou aviso é mostrado é porque o utilizador tem de facto algum comportamento que pode ser corrigido.
 
@@ -54,15 +54,13 @@ Já com os dados dos utilizadores, o passo seguinte era o seu tratamento para de
 
 \subsection{O \textit{data set}}
 
-Os registos dos utilizadores são armazenados no telemóvel numa base de dados \textit{sqlite}[sqlite] que é depois convertida para um ficheiro csv através de um \textit{script}.[script] O \textit{script} converte cada uma das tabelas num ficheiro csv e depois, os ficheiros csv que interessa manter, são copiados para um único ficheiro através do comando da \textit{shell}, \textit{copy}.
+Os registos dos utilizadores são armazenados no telemóvel numa base de dados \textit{sqlite} que é depois convertida para um ficheiro csv através de um \textit{script}~\cite{script}. O \textit{script} converte cada uma das tabelas num ficheiro csv e depois, os ficheiros csv que interessa manter, são copiados para um único ficheiro através do comando da \textit{shell}, \textit{copy}.
 
-Depois de selecionar as variáveis pretendidas e as juntar no mesmo ficheiro, o \textit{data set} fica com a estrutura apresentada na tabela 5.1.
+Depois de selecionar as variáveis pretendidas e as juntar no mesmo ficheiro, o \textit{data set} fica com a estrutura apresentada na tabela~\ref{tab:tipos}
  
 
 \begin{table}[H]
 \centering
-
-\label{my-label}
 \begin{tabular}{|l|l|}
 \hline
 \rowcolor[HTML]{C0C0C0} 
@@ -79,7 +77,9 @@ Target\_BG                               & Integer                              
 Value\_Insulin                           & Double                               \\ \hline
 Exercise                                 & Integer                              \\ \hline
 \end{tabular}
+
 \caption{Tipo das variáveis recolhidas}
+\label{tab:tipos}
 \end{table}
 
 A variável \textbf{DateTime} diz respeito ao dia e hora exatos de cada registo;
@@ -116,7 +116,7 @@ Isto garante também que as regras geradas não são enviesadas: se quisermos de
 \textbf{Redução dos dados} - Num \textit{data set} nem todos os dados têm a mesma relevância: uns são importantes e outros são menos importantes ou até mesmo irrelevantes. É importante perceber quais os dados que não interessa ter, pois assim vamos reduzir a quantidade de regras irrelevantes que são geradas. Por isso mesmo, o segundo passo seria analisar todos os dados recolhidos e perceber quais os que valiam a pena manter e os que se podia remover. Um exemplo que ajuda a perceber melhor este passo é olharmos para os valores de glicose, insulina e hidratos de carbono: na aplicação, cada um destes parâmetros permite registar o valor em si mas também adicionar uma nota para acompanhar o registo. Essa nota poderá ser uma breve descrição feita pelo utilizador aquando de um registo. Existe também um outro atributo chamado ``Tag'' que permite, por exemplo, associar uma refeição a um período do dia. Se a ``Tag'' 1 for ``pequeno-almoço'', então sempre que o utilizador regista o pequeno-almoço, pode escolher essa fase do dia, e esse registo ficará com a ``Tag'' 1. Como se pode perceber, atributos como ``Note'' ou ``Tag'' podem ajudar a perceber o porquê de alguma alteração nos valores de glicose mas não têm qualquer uso para a descoberta de padrões e consequente geração de regras. Portanto, atributos como estes podem ser retirados do \textit{data set} de forma a reduzir a quantidade de informação não relevante. Existem outros atributos que foram retirados por não apresentarem qualquer utilidade para o resultado pretendido, tais como, ``Idade'', ``Nome'', ``Altura'' ou ``Sexo''. 
 No final deste passo, o conjunto de dados é consideravelmente mais pequeno, em termos de quantidade de variáveis, e portanto permite fazer uma análise mais objetiva, com menos informação desinteressante.
 
-\textbf{Transformação dos dados} - Por fim, este passo serve para transformar os valores existentes em valores que possam ser utilizados da forma mais conveniente. Ter uma variável "DateTime" no formato ``AAAA-MM-DD HH:MM''  não é tão útil visto que o dia e hora, que até podem ser variáveis interessantes, estão numa só variável e torna o seu uso mais difícil. Neste caso, seria mais vantajoso separar as duas variáveis e portanto, transformar "DateTime" em "Day" e "Hour". Ainda assim, ter um dia do ano e uma hora específica do dia não é exatamente o formato mais útil, pois são variáveis demasiado específicas e por isso pouco repetidas, ou até nunca repetidas, pelo que não irão contribuir para a descoberta de padrões. Para melhorar este detalhe, podia ainda fazer-se outra alteração: transformar o dia do ano em dias da semana e transformar a hora do dia em período do dia, como "manhã", "noite", ou "tarde". Assim, transformámos a variável "DateTime" em duas variáveis, "Day" e "Period".
+\textbf{Transformação dos dados} - Por fim, este passo serve para transformar os valores existentes em valores que possam ser utilizados da forma mais conveniente. Ter uma variável "DateTime" no formato ``AAAA-MM-DD HH:MM''  não é tão útil visto que o dia e hora, que até podem ser variáveis interessantes, estão numa só variável e torna o seu uso mais difícil. Neste caso, seria mais vantajoso separar as duas variáveis e portanto, transformar ``DateTime'' em ``Day'' e ``Hour''. Ainda assim, ter um dia do ano e uma hora específica do dia não é exatamente o formato mais útil, pois são variáveis demasiado específicas e por isso pouco repetidas, ou até nunca repetidas, pelo que não irão contribuir para a descoberta de padrões. Para melhorar este detalhe, podia ainda fazer-se outra alteração: transformar o dia do ano em dias da semana e transformar a hora do dia em período do dia, como ``manhã'', ``noite'', ou ``tarde''. Assim, transformámos a variável ``DateTime'' em duas variáveis, ``Day'' e ``Period''.
 
 Sempre que um utilizador regista uma refeição, com base na glicemia, na glicemia que pretende atingir e nos hidratos de carbono que ingere, é calculada a insulina a tomar. Contudo, o utilizador pode optar por não seguir a dosagem recomendada e tomar mais ou menos. Tendo isto em conta, pode ser importante ver os efeitos que isto provoca e portanto criou-se uma nova variável ``Insulin\textunderscore Difference''. 
 A variável ``Insulin\textunderscore Difference'' é calculada com base na fórmula\newline\newline
@@ -143,7 +143,7 @@ o que garante que um dado registo vá pertencer a um dos períodos existentes. S
 Quanto às variáveis ``Value\textunderscore Glucose'', ``Value\textunderscore Insulin'' e ``Value\textunderscore Carbs'', também tiveram que ser discretizadas, uma vez que se tratavam de variáveis contínuas, ainda que em diferentes intervalos. A glicemia de um paciente diabético pode oscilar entre 50 mg/dL e 300 mg/dL, por exemplo. Já a insulina e os hidratos também podem variar mas os intervalos são mais pequenos, principalmente na insulina. 
 Posto isto, a solução foi discretizar estras três variáveis em intervalos, tal como no período do dia. 
 Uma solução seria dividir em três partes para cada um dos atributos mas visto que se tratam de variáveis importantes, o melhor foi dividir em mais intervalos, nomeadamente 5.
-Tome-se o exemplo da glicemia: para pessoas com diabetes, os valores recomendados de glicemia antes das refeições estão entre 70 mg/dL e 130 mg/dL e depois das refeições são entre 90 mg/dL e 160 mg/dL. [levels] Uma vez que esta doença costuma provocar oscilações na glicemia, é comum que os valores estejam no intervalo recomendado mas também estejam acima ou abaixo desse intervalo. Por vezes podem estar muito acima, tratando-se de uma hiperglicemia, ou muito abaixo, no caso de uma hipoglicemia. Sabendo apenas que um valor está acima do recomendado não dá muita informação. Depois de uma refeição, tanto 170 mg/dL como 300 mg/dL são valores acima do intervalo acima mostrado. A diferença é que o primeiro valor é um pouco acima e não é preocupante, enquanto que o segundo valor é muito mais preocupante e requer ação imediata. Isto para mostrar que, ao discretizarmos os valores de glicemia, é importante que o façamos com vários níveis: dizer que um valor está acima do recomendado não chega, é preciso diferenciar o quão acima está. Deste modo, tanto para a glicemia, como insulina e hidratos de carbono, decidiu-se discretizar os valores em cinco níveis:
+Tome-se o exemplo da glicemia: para pessoas com diabetes, os valores recomendados de glicemia antes das refeições estão entre 70 mg/dL e 130 mg/dL e depois das refeições são entre 90 mg/dL e 160 mg/dL~\cite{levels}. Uma vez que esta doença costuma provocar oscilações na glicemia, é comum que os valores estejam no intervalo recomendado mas também estejam acima ou abaixo desse intervalo. Por vezes podem estar muito acima, tratando-se de uma hiperglicemia, ou muito abaixo, no caso de uma hipoglicemia. Sabendo apenas que um valor está acima do recomendado não dá muita informação. Depois de uma refeição, tanto 170 mg/dL como 300 mg/dL são valores acima do intervalo acima mostrado. A diferença é que o primeiro valor é um pouco acima e não é preocupante, enquanto que o segundo valor é muito mais preocupante e requer ação imediata. Isto para mostrar que, ao discretizarmos os valores de glicemia, é importante que o façamos com vários níveis: dizer que um valor está acima do recomendado não chega, é preciso diferenciar o quão acima está. Deste modo, tanto para a glicemia, como insulina e hidratos de carbono, decidiu-se discretizar os valores em cinco níveis:
 
 \begin{itemize}
 \item \textbf{1} - Valor muito abaixo do normal e hipoglicemia;
@@ -182,7 +182,8 @@ Uma primeira estatística poderia ser simplesmente a média de glicose para um d
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.9]{/home/tiago/Tese/Tese/Databases/CSV/Data/Medias.png}
-\caption{Glicemia por horas do utilizador 1}
+\caption{Médias de glicemias para os utilizadores}
+\label{fig:medias1}
 \end{figure}
 Como mencionado anteriormente, estas médias pertencem a diferentes utilizadores e dizem respeito a registos durante pelo menos quatro semanas, e portanto, são um indicador geral do controlo da glicemia por parte de cada utilizador. Pode perceber-se que alguns utilizadores têm uma média com um valor mais normal que outros o que pode ser um indicador de um bom controlo. No entanto, isto não é necessariamente verdade. Um bom controlo da glicemia passa não só por manter os valores em intervalos normais mas também em prevenir grandes oscilações. Neste caso, uma média de glicemia de 119 mg/dL pode parecer melhor que uma média de glicemia de 170 mg/dL mas pode não ser: o primeiro utilizador pode ter 2 registos em que um seja 60 mg/dL e outro seja 180 mg/dL, o que dá uma média de 120 mg/dL; por outro lado, o terceiro utilizador pode ter ambos os valores a 170 mg/dL. Ou seja, embora a média de glicemia do primeiro utilizador seja mais baixa, não significa que os valores sejam estáveis, tal como no terceiro utilizador não significa que os valores não sejam estáveis. Medir apenas a média da glicemia é uma análise demasiado vaga: pode ser um indicativo de um bom ou mau controlo da glicemia mas não permite ter certezas. Torna-se portanto necessário fazer uma análise mais aprofundada.
 
@@ -202,7 +203,7 @@ Uma forma mais detalhada de tentar perceber alguns hábitos dos utilizadores é 
 \centering
 \begin{adjustbox}{max width=\textwidth}
 
-\label{my-label}
+
 \begin{tabular}{|l|l|l|l|l|l|l|l|}
 \hline
 \rowcolor[HTML]{C0C0C0} 
@@ -220,7 +221,8 @@ Uma forma mais detalhada de tentar perceber alguns hábitos dos utilizadores é 
 \end{tabular}
 \end{adjustbox}
 
-\caption{My caption}
+\caption{Médias de glicemia dos utilizadores por dia da semana}
+\label{tab:dias}
 \end{table}
 Com uma análise deste tipo, embora não se possam tirar conclusões sobre a forma como a glicemia varia, podemos começar a ter algum conhecimento sobre o que podem ser rotinas dos utilizadores. Por exemplo, para 4 dos 5 utilizadores acima mostrados, o dia em que o valor médio de glicemia é mais elevado é aos Domingos. Normalmente ao fim-de-semana as pessoas tendem a ter um estilo de vida mais sedentário e relaxado, o que por sua vez pode levar a um controlo menos apertado da glicemia; mesmo que o controlo não seja afetado ao fim-de-semana, pode haver quem não tenha tanto cuidado com a alimentação, cometendo alguns excessos; pode até apenas ser o facto de as pessoas estarem menos \textit{stressadas} ao fim-de-semana. Mais importante de saber o porquê de estes valores serem mais elevados ao Domingo, o importante é o conhecimento de que isto acontece. É impossível adivinhar o porquê de os valores serem tendencialmente maiores a um determinado dia, apenas sabendo a média dos valores, mas o simples facto de descobrir esse padrão e de alertar um utilizador para o mesmo, pode fazer com que ele próprio se aperceba o que faz de diferente e que provoque a alteração, podendo assim corrigi-la. 
 
@@ -248,7 +250,7 @@ Os valores médios para cada utilizador em cada fase do dia são:\newline
 \begin{adjustbox}{max width=\textwidth}
 \centering
 
-\label{my-label}
+
 \begin{tabular}{|
 >{\columncolor[HTML]{C0C0C0}}l |l|l|l|}
 \hline
@@ -260,7 +262,8 @@ Os valores médios para cada utilizador em cada fase do dia são:\newline
 \textbf{Utilizador 5}                              & 154 mg/dL                                                     & 157 mg/dL                                                     & 153 mg/dL                                                     \\ \hline
 \end{tabular}
 \end{adjustbox}
-\caption{My caption}
+\caption{Médias de glicemia dos utilizadores por período do dia}
+\label{tab:periodo}
 \end{table}
 Este tipo de análise já permite ter uma ideia mais concreta das oscilações da glicemia para cada utilizador ao longo do dia. É possível verificar que alguns utilizadores conseguem manter os níveis de glicemia mais ou menos estáveis, como os utilizadores 1 e 5. É possível observar algumas oscilações mais acentuadas em alguns utilizadores: o utilizador 1 por exemplo, embora consiga manter sempre os níveis de glicemia num intervalo considerado normal, tem tendência para ter valores ligeiramente mais elevados à noite. Isto pode ser devido a menos atividade durante a noite, que normalmente é usada para relaxar. Pode ser também por não adequar a insulina em relação ao jantar, por exemplo. 
 
@@ -284,8 +287,9 @@ Os valores de glicose numéricos originais, ao contrário da média, permitem pe
 \centering
 \includegraphics[scale=0.6]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Paulo.pdf}
 \caption{Glicemia por horas do utilizador 1}
+\label{fig:uti1}
 \end{figure}
-Como se pode perceber pelo gráfico, a maioria dos registos é feita entre as 08:00 e as 24:00, sendo que neste intervalo, grande parte dos registos estão divididos em três momentos, provavelmente na hora das refeições. A linha vermelha representa o limite mínimo desejável e a linha azul o máximo desejável. Estas linhas correspondem a hipo e hiperglicemia, respetivamente, e foram definidas pelo utilizador, sendo que o limite para hipoglicemia é 70 e para hiperglicemia é 180. Ao analisar o gráfico percebe-se imediatamente que quase todos os valores se encontram entre estes dois valores, o que é desejável, visto que é o intervalo definido como ``normal'' pelo utilizador. Percebe-se também que há algumas hiperglicemias, sendo que todas elas ocorrem entre o início da tarde e o início da madrugada. Obviamente que isto não significa que durante a madrugada não haja valores elevados, apenas não são registados. 
+Como se pode perceber pela figura~\ref{fig:uti1}, a maioria dos registos é feita entre as 08:00 e as 24:00, sendo que neste intervalo, grande parte dos registos estão divididos em três momentos, provavelmente na hora das refeições. A linha vermelha representa o limite mínimo desejável e a linha azul o máximo desejável. Estas linhas correspondem a hipo e hiperglicemia, respetivamente, e foram definidas pelo utilizador, sendo que o limite para hipoglicemia é 70 e para hiperglicemia é 180. Ao analisar o gráfico percebe-se imediatamente que quase todos os valores se encontram entre estes dois valores, o que é desejável, visto que é o intervalo definido como ``normal'' pelo utilizador. Percebe-se também que há algumas hiperglicemias, sendo que todas elas ocorrem entre o início da tarde e o início da madrugada. Obviamente que isto não significa que durante a madrugada não haja valores elevados, apenas não são registados. 
 
 
 \textbf{Utilizador 2}
@@ -294,8 +298,9 @@ Como se pode perceber pelo gráfico, a maioria dos registos é feita entre as 08
 \centering
 \includegraphics[scale=0.6]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Joaquim.pdf}
 \caption{Glicemia por horas do utilizador 2}
+\label{fig:uti2}
 \end{figure}
-Ao analisar o gráfico do utilizador 2 percebe-se um dos problemas anteriormente mencionados: as médias podem ser um bom indicador geral mas também podem não o ser. E neste caso não é: a média de glicemia do utilizador 2 é de 150 mg/dL o que poderia levar a pensar que este utilizador tinha valores mais ou menos estáveis. No entanto, observando o gráfico, verifica-se que não é o que acontece: os valores oscilam entre extremos muito separados, havendo valores acima de 300 e outros abaixo de 50. Neste caso os limites definidos pelo utilizador foram de 70 para hipoglicemia e de 150 para hiperglicemia. Também é possível observar que cerca de metade dos registos efetuados encontram-se fora dos intervalos estabelecidos, o que leva a pensar que estes limites escolhidos não foram os mais corretos e talvez tenham de ser adaptados. De qualquer das formas, as medições são feitas mais frequentemente de manhã cedo e ao início da tarde, presumivelmente à hora de pequeno-almoço e almoço. 
+Ao analisar a figura~\ref{fig:uti2} percebe-se um dos problemas anteriormente mencionados: as médias podem ser um bom indicador geral mas também podem não o ser. E neste caso não é: a média de glicemia do utilizador 2 é de 150~mg/dL o que poderia levar a pensar que este utilizador tinha valores mais ou menos estáveis. No entanto, observando o gráfico, verifica-se que não é o que acontece: os valores oscilam entre extremos muito separados, havendo valores acima de 300~mg/dL e outros abaixo de 50. Neste caso os limites definidos pelo utilizador foram de 70~mg/dL para hipoglicemia e de 150~mg/dL para hiperglicemia. Também é possível observar que cerca de metade dos registos efetuados encontram-se fora dos intervalos estabelecidos, o que leva a pensar que estes limites escolhidos não foram os mais corretos e talvez tenham de ser adaptados. De qualquer das formas, as medições são feitas mais frequentemente de manhã cedo e ao início da tarde, presumivelmente à hora de pequeno-almoço e almoço. 
 
 
 \textbf{Utilizador 3}
@@ -304,8 +309,9 @@ Ao analisar o gráfico do utilizador 2 percebe-se um dos problemas anteriormente
 \centering
 \includegraphics[scale=0.6]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Vitor.pdf}
 \caption{Glicemia por horas do utilizador 3}
+\label{fig:uti3}
 \end{figure}
-Ao observar a figura, percebe-se que os valores oscilam bastante, havendo alguns valores próximos de 50 mg/dL e outros próximos de 300 mg/dL. Os limites definidos pelo utilizador foram de 60 mg/dL para hipoglicemia e 180 mg/dL para hiperglicemia. No gráfico do utilizador anterior, havia vários períodos do dia com hiperglicemia mas estes eram, aproximadamente, em igual número à quantidade de valores normais, isto é, pelo gráfico do utilizador 2, observa-se que no geral, para um determinado período, a quantidade de valores normais ou demasiado elevados são mais ou menos iguais. Por outro lado, neste gráfico observa-se o contrário: há períodos que notoriamente têm mais hiperglicemias que valores normais e outros períodos com mais valores normais que hiperglicemias. 
+Ao observar a figura~\ref{fig:uti3}, percebe-se que os valores oscilam bastante, havendo alguns valores próximos de 50~mg/dL e outros próximos de 300~mg/dL. Os limites definidos pelo utilizador foram de 60~mg/dL para hipoglicemia e 180~mg/dL para hiperglicemia. No gráfico do utilizador anterior, havia vários períodos do dia com hiperglicemia mas estes eram, aproximadamente, em igual número à quantidade de valores normais, isto é, pelo gráfico do utilizador 2, observa-se que no geral, para um determinado período, a quantidade de valores normais ou demasiado elevados são mais ou menos iguais. Por outro lado, neste gráfico observa-se o contrário: há períodos que notoriamente têm mais hiperglicemias que valores normais e outros períodos com mais valores normais que hiperglicemias. 
 Por exemplo, entre as 07:00 e as 10:00, que será o período do pequeno-almoço ou imediatamente depois, verifica-se que a quantidade de valores altos e valores normais é parecida. Já no período imediatamente a seguir à hora de almoço, há poucas hiperglicemias em relação à quantidade de registos feitos. Por último, à hora de jantar ou logo a seguir, a quantidade de hiperglicemias é bastante alta em relação à quantidade das medições. Isto pode ser uma consequência da rotina do utilizador. Por exemplo, se o utilizador jantar e logo a seguir descansar, pode causar esta subida. Por outro lado, e olhando para o gráfico, uma solução poderia ser algum tipo de exercício leve depois do jantar, como uma caminhada, para conseguir baixar um pouco os valores. Outra alternativa seria ajustar a insulina depois do jantar. 
 De qualquer das formas, com este tipo de análise, não se consegue descobrir qual a causa para estes valores anormais, pelo que sem um tipo de análise mais profunda, cabe ao utilizador perceber o porquê de isto acontecer.
 
@@ -317,8 +323,9 @@ De qualquer das formas, com este tipo de análise, não se consegue descobrir qu
 \centering
 \includegraphics[scale=0.6]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Teresa.pdf}
 \caption{Glicemia por horas do utilizador 4}
+\label{fig:uti4}
 \end{figure}
-O utilizador 4 definiu como 60 mg/dL o limite para hipoglicemia e 150 mg/dL o limite para hiperglicemia. Tal como já aconteceu com outros utilizadores, os valores de hiperglicemia são abundantes o que pode levar a crer que o limite para hiperglicemia é demasiado baixo e poderia ser ajustado. Este utilizador tem geralmente hiperglicemias depois das três refeições o que significa que talvez a insulina devesse ser ajustada. Verifica-se também a presença de alguns valores demasiado altos por volta da meia noite seguidos por valores demasiados baixos durante a madrugada. 
+O utilizador 4 definiu como 60~mg/dL o limite para hipoglicemia e 150~mg/dL o limite para hiperglicemia. Tal como já aconteceu com outros utilizadores, os valores de hiperglicemia são abundantes o que pode levar a crer que o limite para hiperglicemia é demasiado baixo e poderia ser ajustado. Este utilizador tem geralmente hiperglicemias depois das três refeições o que significa que talvez a insulina devesse ser ajustada. Verifica-se também a presença de alguns valores demasiado altos por volta da meia noite seguidos por valores demasiados baixos durante a madrugada. 
 
 
 \textbf{Utilizador 5}
@@ -327,8 +334,9 @@ O utilizador 4 definiu como 60 mg/dL o limite para hipoglicemia e 150 mg/dL o li
 \centering
 \includegraphics[scale=0.6]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Paulo.pdf}
 \caption{Glicemia por horas do utilizador 5}
+\label{fig:uti5}
 \end{figure}
-Tal como no utilizador passado, neste utilizador, apenas observando o gráfico não se consegue obter conclusões, isto porque não há nenhum período do dia que se destaque dos outros. O utilizador definiu um limite para hipoglicemia de 70 mg/dL e não definiu um limite para hiperglicemia, pelo que o limite utilizado foi 180 mg/dL. Conseguem-se observar alguns períodos com tendência para hiperglicemia, nomeadamente de manhã, ao início da tarde e a meio da tarde. Neste utilizador não é possível concluir nada apenas com esta análise.\newline
+Tal como no utilizador 4, neste utilizador, apenas observando o gráfico não se consegue obter conclusões, isto porque não há nenhum período do dia que se destaque dos outros. O utilizador definiu um limite para hipoglicemia de~70 mg/dL e não definiu um limite para hiperglicemia, pelo que o limite utilizado foi 180~mg/dL. Conseguem-se observar alguns períodos com tendência para hiperglicemia, nomeadamente de manhã, ao início da tarde e a meio da tarde. Neste utilizador não é possível concluir nada apenas com esta análise.\newline
 
 Pelos gráficos observados de todos os utilizadores, verifica-se que em todos eles há hiperglicemias, embora nuns notoriamente mais que noutros. Embora não se consigam descobrir padrões ou detetar anomalias apenas com uma análise deste tipo, fica visível a necessidade de um melhor controlo da glicemia por parte de quase todos os utilizadores, que pode ser conseguida através de um uso de uma aplicação de registo, tal como a MyDiabetes. Embora na análise feita nesta subsecção se consigam descobrir mais detalhes do que na subsecção anterior, ainda não é descoberto o suficiente. Desta forma vamos aprofundar ainda mais e fazer uma análise por dia e por hora para cada utilizador.
 
@@ -341,9 +349,10 @@ Nas últimas subsecções fizemos uma análise que nos permite saber que, por ex
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Dias.pdf}
-\caption{Glicemia por horas do utilizador 1}
+\caption{Glicemia do utilizador 1 por dias da semana}
+\label{fig:dias1}
 \end{figure}
-Analisando as figuras 5.6, nota-se que o utilizador mantém, grande parte das vezes, os valores de glicemia dentro dos intervalos normais todos os dias. No entanto, nota-se claramente que o Domingo tem mais hiperglicemias que os outros dias todos e que estas ocorrem ao final da tarde ou início da noite. Embora as estatísticas anteriores sobre este utilizador mostrem que de facto o Domingo é o dia com a média de glicemia mais elevada e que a noite é o período com média de glicemia mais elevada, tal não significa necessariamente que estas duas médias fossem verdade sempre. Ou seja, nada garantia que ao Domingo a glicemia também fosse mais elevada à noite. Contudo, com esta análise pode perceber-se que de facto isso acontece. Nos outros dias verifica-se que há um ou outro caso de hiperglicemias ou hipoglicemias mas em muito pouca quantidade. Uma análise que utilize os outros parâmetros como insulina ou hidratos de carbono talvez ajude a perceber o porquê de o Domingo ser um dia com valores de glicemia mais altos. 
+Analisando as figuras~\ref{dias1}, nota-se que o utilizador mantém, grande parte das vezes, os valores de glicemia dentro dos intervalos normais todos os dias. No entanto, nota-se claramente que o Domingo tem mais hiperglicemias que os outros dias todos e que estas ocorrem ao final da tarde ou início da noite. Embora as estatísticas anteriores sobre este utilizador mostrem que de facto o Domingo é o dia com a média de glicemia mais elevada e que a noite é o período com média de glicemia mais elevada, tal não significa necessariamente que estas duas médias fossem verdade sempre. Ou seja, nada garantia que ao Domingo a glicemia também fosse mais elevada à noite. Contudo, com esta análise pode perceber-se que de facto isso acontece. Nos outros dias verifica-se que há um ou outro caso de hiperglicemias ou hipoglicemias mas em muito pouca quantidade. Uma análise que utilize os outros parâmetros como insulina ou hidratos de carbono talvez ajude a perceber o porquê de o Domingo ser um dia com valores de glicemia mais altos. 
 
 \textbf{Utilizador 2}
 
@@ -351,9 +360,10 @@ Analisando as figuras 5.6, nota-se que o utilizador mantém, grande parte das ve
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Dias.pdf}
-\caption{Glicemia por horas do utilizador 2}
+\caption{Glicemia do utilizador 2 por dias da semana}
+\label{fig:dias2}
 \end{figure}
-Observando a figura verifica-se que o utilizador apresenta hiperglicemias todos os dias, maioritariamente durante a tarde. Ao Domingo apresenta menos hiperglicemias porque também tem menos registos. No resto dos dias apresenta uma distribuição semelhante entre valores normais e valores acima do limite de hiperglicemia, isto é, há mais ou menos quantidade de valores normais e valores demasiado altos. Contudo, ao Sábado o número de hiperglicemias é bastante maior em relação ao número de valores no intervalo normal.
+Observando a figura~\ref{fig:dias2} verifica-se que o utilizador apresenta hiperglicemias todos os dias, maioritariamente durante a tarde. Ao Domingo apresenta menos hiperglicemias porque também tem menos registos. No resto dos dias apresenta uma distribuição semelhante entre valores normais e valores acima do limite de hiperglicemia, isto é, há mais ou menos quantidade de valores normais e valores demasiado altos. Contudo, ao Sábado o número de hiperglicemias é bastante maior em relação ao número de valores no intervalo normal.
 
 
 
@@ -362,7 +372,8 @@ Observando a figura verifica-se que o utilizador apresenta hiperglicemias todos 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Dias.pdf}
-\caption{Glicemia por horas do utilizador 3}
+\caption{Glicemia do utilizador 3 por dias da semana}
+\label{fig:dias3}
 \end{figure}
 Neste utilizador é possível ver um padrão: tem tendência para ter hiperglicemias de manhã e ao fim da tarde ou início da noite. Uma vez mais, a causa pode estar relacionada com o trabalho, por exemplo, que pode ser mais desgastante à tarde, daí fazer com que os valores não subam tanto. Esta teoria seria ainda suportada pelo gráfico de Sábado, que mostra algumas hiperglicemias também a meio da tarde, o que faria sentido se de facto a causa dos valores durante a semana fosse o trabalho. 
 
@@ -371,8 +382,10 @@ Neste utilizador é possível ver um padrão: tem tendência para ter hiperglice
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Dias.pdf}
-\caption{Glicemia por horas do utilizador 4}
-\end{figure}Observando a figura 5. em cima, é possível observar que em todos os dias ocorrem hiperglicemias mas há três dias que se destacam: Domingo, Segunda e Terça, pois têm mais hiperglicemias em comparação com valores normais que o resto dos dias. Verifica-se também que os valores mais altos ocorrem de manhã ou ao início da noite, sendo que apenas em dois dias há mais que uma hiperglicemia a meio da tarde, o que pode significar que o utilizador possa fazer algo de diferente nestes dois dias, embora sem qualquer tipo de certeza. 
+\caption{Glicemia do utilizador 4 por dias da semana}
+\label{fig:dias4}
+\end{figure}
+Observando a figura~ref{dias4} em cima, é possível observar que em todos os dias ocorrem hiperglicemias mas há três dias que se destacam: Domingo, Segunda e Terça, pois têm mais hiperglicemias em comparação com valores normais que o resto dos dias. Verifica-se também que os valores mais altos ocorrem de manhã ou ao início da noite, sendo que apenas em dois dias há mais que uma hiperglicemia a meio da tarde, o que pode significar que o utilizador possa fazer algo de diferente nestes dois dias, embora sem qualquer tipo de certeza. 
 Em vários dias da semana notam-se alguns valores muito próximos ou até abaixo do limite de hipoglicemia sendo notórios dois períodos em que eles são mais frequentes: durante a madrugada e perto da hora de almoço. Isto pode significar que o utilizador não come nada antes de ir dormir, para o primeiro caso, e para o segundo caso pode significar que o utilizador não come nada entre o pequeno-almoço e o almoço, e que talvez devesse comer alguma coisa. 
 
 
@@ -381,7 +394,8 @@ Em vários dias da semana notam-se alguns valores muito próximos ou até abaixo
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.8]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Dias.pdf}
-\caption{Glicemia por horas do utilizador 5}
+\caption{Glicemia do utilizador 5 por dias da semana}
+\label{fig:dias5}
 \end{figure}
 Para este utilizador mostramos apenas gráficos referentes a três dias já que os outros não têm registos suficientes. É notório, contudo, que à Segunda-feira o utilizador tende a ter hiperglicemias ao fim da tarde/início da noite. 
 

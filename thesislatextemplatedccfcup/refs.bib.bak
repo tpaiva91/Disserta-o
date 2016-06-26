@@ -167,15 +167,6 @@
   note = {[Online; acedido a 17 de Junho de 2016]}
 }
 
-
-@misc{mercadomovel,
-
-  title = {{Operating system market share}},
-  Autor = {{Netmarketshare}},
-  howpublished = {\url{https://www.netmarketshare.com/operating-system-market-share.aspx?qprid=8&qpcustomd=1}},
-  note = {[Online; acedido a 17 de Junho de 2016]}
-}
-
 @Article{atlas,
   author = {Atlas, IDF Diabetes},
   title  = {International Diabetes Federation, Brussels, 2015},
@@ -187,117 +178,60 @@
   title  = {Projections of global mortality and burden of disease from 2002 to 2030},
 }
 
+@Misc{mercadomovel,
+  title        = {{Operating system market share}},
+  howpublished = {\url{https://www.netmarketshare.com/operating-system-market-share.aspx?qprid=8&qpcustomd=1}},
+  note         = {[Online; acedido a 17 de Junho de 2016]},
+  autor        = {{Netmarketshare}},
+}
+
+@Misc{mercadomovel,
+  title        = {{Operating system market share}},
+  howpublished = {\url{https://www.netmarketshare.com/operating-system-market-share.aspx?qprid=8&qpcustomd=1}},
+  note         = {[Online; acedido a 17 de Junho de 2016]},
+  autor        = {{Netmarketshare}},
+}
+
+@Misc{mercadomovel,
+  title        = {{Operating system market share}},
+  howpublished = {\url{https://www.netmarketshare.com/operating-system-market-share.aspx?qprid=8&qpcustomd=1}},
+  note         = {[Online; acedido a 17 de Junho de 2016]},
+  autor        = {{Netmarketshare}},
+}
+
+@Misc{mercadomovel,
+  title        = {{Operating system market share}},
+  howpublished = {\url{https://www.netmarketshare.com/operating-system-market-share.aspx?qprid=8&qpcustomd=1}},
+  note         = {[Online; acedido a 17 de Junho de 2016]},
+  autor        = {{Netmarketshare}},
+}
+
+@Misc{mercadomovel,
+  title        = {{Operating system market share}},
+  howpublished = {\url{https://www.netmarketshare.com/operating-system-market-share.aspx?qprid=8&qpcustomd=1}},
+  note         = {[Online; acedido a 17 de Junho de 2016]},
+  autor        = {{Netmarketshare}},
+}
+
+@Misc{mercadomovel,
+  title        = {{Operating system market share}},
+  howpublished = {\url{https://www.netmarketshare.com/operating-system-market-share.aspx?qprid=8&qpcustomd=1}},
+  note         = {[Online; acedido a 17 de Junho de 2016]},
+  autor        = {{Netmarketshare}},
+}
+
+@Misc{mercadomovel,
+  title        = {{Operating system market share}},
+  howpublished = {\url{https://www.netmarketshare.com/operating-system-market-share.aspx?qprid=8&qpcustomd=1}},
+  note         = {[Online; acedido a 17 de Junho de 2016]},
+  autor        = {{Netmarketshare}},
+}
+
+@Misc{mercadomovel,
+  title        = {{Operating system market share}},
+  howpublished = {\url{https://www.netmarketshare.com/operating-system-market-share.aspx?qprid=8&qpcustomd=1}},
+  note         = {[Online; acedido a 17 de Junho de 2016]},
+  autor        = {{Netmarketshare}},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
-
-@article{youth,
-  title={Emerging epidemic of type 2 diabetes in youth.},
-  author={Rosenbloom, Arlan L and Joe, Jennie R and Young, Robert S and Winter, William E},
-  journal={Diabetes care},
-  volume={22},
-  number={2},
-  pages={345--354},
-  year={1999},
-  publisher={Am Diabetes Assoc}
-}
-
-@article{algs,
-  title={Algorithms for association rule mining—a general survey and comparison},
-  author={Hipp, Jochen and G{\"u}ntzer, Ulrich and Nakhaeizadeh, Gholamreza},
-  journal={ACM sigkdd explorations newsletter},
-  volume={2},
-  number={1},
-  pages={58--64},
-  year={2000},
-  publisher={ACM}
-}
-
-@article{cancerpred,
-  title={Predicting malignancy from mammography findings and image--guided core biopsies},
-  author={Ferreira, Pedro and Fonseca, Nuno A and Dutra, In{\^e}s and Woods, Ryan and Burnside, Elizabeth},
-  journal={International journal of data mining and bioinformatics},
-  volume={11},
-  number={3},
-  pages={257--276},
-  year={2015},
-  publisher={Inderscience Publishers}
-}
-
-@article{edit,
-  title={Effect of prior intensive insulin treatment during the Diabetes Control and Complications Trial (DCCT) on peripheral neuropathy in type 1 diabetes during the Epidemiology of Diabetes Interventions and Complications (EDIC) Study},
-  author={Albers, James W and Herman, William H and Pop-Busui, Rodica and Feldman, Eva L and Martin, Catherine L and Cleary, Patricia A and Waberski, Barbara H and Lachin, John M and DCCT/EDIC Research Group and others},
-  journal={Diabetes Care},
-  volume={33},
-  number={5},
-  pages={1090--1096},
-  year={2010},
-  publisher={Am Diabetes Assoc}
-}
-
-@article{spd,
-	title={Definição, Diagnóstico e Classificação da Diabetes Mellitus},
-	author={Sociedade Portuguesa de Diabetologia},
-	howpublished = {\url{http://www.spd.pt/index.php/grupos-de-estudo-mainmenu-30/classificao-da-diabetes-mellitus-mainmenu-175}},
-	note = {[Online; acedido a 25 de Junho de 2016]}
-	}
-	
-@article{pancreas,
-  title={The artificial pancreas},
-  author={Radziuk, Jerry},
-  journal={Diabetes},
-  volume={61},
-  number={9},
-  pages={2221--2224},
-  year={2012},
-  publisher={Am Diabetes Assoc}
-}
-
-@book{oracle,
-  title={Data mining: concepts and techniques},
-  author={Han, Jiawei and Pei, Jian and Kamber, Micheline},
-  year={2011},
-  publisher={Elsevier}
-}
-
-@book{business,
-  title={Data mining techniques: for marketing, sales, and customer support},
-  author={Berry, Michael J and Linoff, Gordon},
-  year={1997},
-  publisher={John Wiley \& Sons, Inc.}
-}
-
-@article{ann,
-  title={Artificial neural networks},
-  author={Dayhoff, Judith E and DeLeo, James M},
-  journal={Cancer},
-  volume={91},
-  number={S8},
-  pages={1615--1635},
-  year={2001},
-  publisher={Wiley Online Library}
-}
-
-
-@misc{dataset2,
-
-  title = {Diabetes data set},
-  Autor = {{UCI Machine Learning Repository}},
-  howpublished = {\url{https://archive.ics.uci.edu/ml/datasets/Diabetes}},
-  note = {[Online; acedido a 17 de Junho de 2016]}
-}
-
-@misc{script,
-
-  title = {sqlite2csv},
-  Autor = {{Heart1010}},
-  howpublished = {\url{https://gist.github.com/Heart1010/3e2b2c528257e18e9b98}},
-  note = {[Online; acedido a 17 de Junho de 2016]}
-}
-
-@misc{levels,
-
-  title = {Blood Sugar Level Ranges},
-  Autor = {Diabetes.co.uk - the global diabetes community},
-  howpublished = {\url{http://www.diabetes.co.uk/diabetes_care/blood-sugar-level-ranges.html}},
-  note = {[Online; acedido a 17 de Junho de 2016]}
-}
-

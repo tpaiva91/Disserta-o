@@ -11,7 +11,7 @@ Até agora utilizaram-se os dados para fazer algumas análises estatísticas que
 Ao fazermos análises diferentes, vamos aumentar a probabilidade de conseguirmos obter algumas regras. Enquanto que no capítulo anterior fizemos uma análise utilizando apenas duas variáveis, dia/hora e glicemia, neste capítulo utilizamos métodos que relacionem todas as variáveis à procura de padrões.
 
 
-\section{Regras de associação}
+\section{Regras de associação}\label{sec:regras}
 
 O R não tem funções para regras de associação, de origem, pelo que foi necessário instalar um \textit{package} adicional, \textit{arules}, que oferece uma vasta quantidade de funções direcionadas para regras de associação. O processo de procura de regras de associação é de fácil compreensão: o algoritmo vai percorrer o \textit{data set} e analisar cada ``transação'', que corresponde a cada linha do ficheiro csv. Dependendo da confiança e suporte escolhidos, vão ser geradas regras, se existirem, que respeitem os limites escolhidos. As regras geradas podem ser de qualquer tipo, isto é, o consequente pode ser qualquer uma das variáveis analisadas, sendo que neste caso interessa-nos descobrir regras com a variável ``Value\textunderscore Glucose'' como consequente, ou seja, no lado direito. Contudo, o \textit{data set} ainda não está estruturado da melhor forma para a criação das regras. 
 Da forma que o \textit{data set} está feito, cada linha corresponde ao mesmo momento, ou seja, se uma linha tiver um valor de glicemia, hidratos de carbono e insulina, tudo isso corresponde a um registo feito à mesma hora. O mesmo acontece para o exercício. O tipo de conclusões que se pretende obter é de que forma estes parâmetros causam algum impacto no valor de glicemia, como por exemplo, descobrir de que forma o exercício vai alterar a quantidade de glucose no sangue ou de que forma a insulina tomada ou os hidratos de carbono vão fazer alterar este valor. Se todos esses parâmetros forem registados à mesma hora, não se consegue concluir nada: uma vez que o algoritmo Apriori vai analisar linha a linha de forma independente, no formato atual, o valor de glicemia só vai ser comparado com o valor de insulina e de hidratos de carbono registados ao mesmo tempo. No entanto, o importante é saber como é que a quantidade de hidratos de carbono ingerida e a insulina tomada vão afetar a glicemia no espaço de tempo a seguir, e não no mesmo espaço de tempo. Ou seja, como é que os valores de hidratos e de insulina num registo, vão afetar a glicemia no registo seguinte. A questão é que o valor de glicemia do registo seguinte vai pertencer a outra linha do csv e portanto não vai ser tido em conta para os valores de outra linha. Posto isto, a solução foi alterar a estrutura do ficheiro para que cada linha passe a ter o valor de glicemia seguinte, e não o atual. Assim, imaginando que a variável ``Value\textunderscore Glucose'' passe a chamar-se ``Next\textunderscore Glucose'', é possível ter uma regra como
@@ -55,7 +55,7 @@ que gera o gráfico
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Regras.pdf}
-\caption{Glicemia por horas do utilizador 5}
+\caption{Regras de associação para o utilizador 1}
 \end{figure}
 Ao escolher a região no canto inferior esquerdo, que tem o suporte mais elevado, obtém-se a seguinte regra:
 
@@ -81,7 +81,7 @@ Para este utilizador foram descobertas consideravelmente menos regras, 498. No e
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Regras.pdf}
-\caption{Glicemia por horas do utilizador 5}
+\caption{Regras de associação para o utilizador 2}
 \end{figure}
 e escolhido o grupo de regras com maior suporte, ou seja, o quadrado mais à direita. Esse grupo continha duas regras:
 
@@ -103,7 +103,7 @@ Para este utilizador, foram geradas 150 regras com o consequente ``Next\textunde
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Regras.pdf}
-\caption{Glicemia por horas do utilizador 5}
+\caption{Regras de associação para o utilizador 3}
 \end{figure}
 A região escolhida para inspecionar foi a região à direita de 0.08, ou seja, com suporte maior que 0.08. Embora o \textit{lift} seja também um parâmetro importante para a avaliação da utilidade das regras, o suporte permite ter uma ideia da frequência, e garante também que uma dada regra faz parte do padrão e não seja um caso pontual. Tendo em conta que os \textit{data set} para este trabalho não são muito grandes, vamos utilizar sempre o suporte como escolha para análise de regras. Como já mencionado, uma regra com suporte muito pequeno pode dizer respeito a um acontecimento único. Algumas das regras na região selecionada são:
 
@@ -131,7 +131,7 @@ Para este utilizador foram geradas 41 regras para valores de hiperglicemia, isto
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Regras.pdf}
-\caption{Glicemia por horas do utilizador 5}
+\caption{Regras de associação para o utilizador 4}
 \end{figure}
 Foi escolhido o grupo de regras com suporte maior que 0.03. Uma das regras nesse grupo é:
  
@@ -156,7 +156,7 @@ Por fim, para o utilizador 5 foram descobertas 136 regras para hiperglicemia e o
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Regras.pdf}
-\caption{Glicemia por horas do utilizador 5}
+\caption{Regras de associação para o utilizador 5}
 \end{figure}
 Foi escolhido o grupo com maior suporte, ou seja, o quadrado mais à direita, que contém as regras
 
@@ -171,34 +171,36 @@ De notar que a variável ``Exercise'' não apareceu em nenhuma situação nesta 
 
 \section{Redes \textit{Bayesianas}}
 
-Nesta secção vamos fazer uma análise um pouco diferente da feita na secção 6.1. As regras de associação exploram os dados e tentam encontrar relações frequentes com esses dados, para gerar regras do tipo ``Às terças-feiras normalmente tens hiperglicemia''. Esta é uma abordagem interessante e importante, mas a abordagem inversa também pode ser útil: ``Hoje é terça-feira, qual será a probabilidade de teres hiperglicemia?''. Para tal, criou-se uma rede \textit{bayesiana} para cada utilizador, de forma a perceber de que forma os vários parâmetros influenciam a glicemia, em vez de sabermos apenas que influenciam. Isto será possível porque uma rede \textit{bayesiana} consegue calcular a probabilidade de cada variável tomar um determinado valor, com base no \textit{data set}, isto é, se em todo o \textit{data set} o período mais frequente for ``Tarde'' então este será o valor mais provável para o período. 
+Nesta secção vamos fazer uma análise um pouco diferente da feita na secção~\ref{sec:regras}. As regras de associação exploram os dados e tentam encontrar relações frequentes com esses dados, para gerar regras do tipo ``Às terças-feiras normalmente tens hiperglicemia''. Esta é uma abordagem interessante e importante, mas a abordagem inversa também pode ser útil: ``Hoje é terça-feira, qual será a probabilidade de teres hiperglicemia?''. Para tal, criou-se uma rede \textit{bayesiana} para cada utilizador, de forma a perceber de que forma os vários parâmetros influenciam a glicemia, em vez de sabermos apenas que influenciam. Isto será possível porque uma rede \textit{bayesiana} consegue calcular a probabilidade de cada variável tomar um determinado valor, com base no \textit{data set}, isto é, se em todo o \textit{data set} o período mais frequente for ``Tarde'' então este será o valor mais provável para o período. 
 Assim, para cada utilizador será possível conjugar os vários parâmetros e ver com que valores é que a probabilidade de hipo ou hiperglicemia aumentam.
 
-Nesta fase, o primeiro passo é, então, criar uma rede \textit{bayesiana}. Para tal, recorremos ao \textit{software} WEKA. O WEKA cria a rede em função de uma variável de classe, que neste caso é ``Next\textunderscore Glucose'' sendo por isso necessário colocar esta variável como última coluna no \textit{data set}. Note-se que o WEKA é utilizado apenas para criar a rede, sendo que a análise será feita num outro programa, o SamIAm.
+Nesta fase, o primeiro passo é, então, criar uma rede \textit{bayesiana}. Para tal, recorremos ao \textit{software} \ac{WEKA}. O \ac{WEKA} cria a rede em função de uma variável de classe, que neste caso é ``Next\textunderscore Glucose'' sendo por isso necessário colocar esta variável como última coluna no \textit{data set}. Note-se que o~\ac{WEKA} é utilizado apenas para criar a rede, sendo que a análise será feita num outro programa, o \ac{SamIAm}.
 
-Para relembrar, uma rede \textit{baysesiana} é um grafo dirigido. Um exemplo de uma rede está representado na figura
+Para relembrar, uma rede \textit{baysesiana} é um grafo dirigido. Um exemplo de uma rede está representado na figura~\ref{fig:rede}
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Rede.png}
-\caption{Glicemia por horas do utilizador 5}
+\caption{Exemplo de uma rede \textit{bayesiana}}
+\label{fig:rede}
 \end{figure}
 
-O SamIAm tem dois modos diferentes: modo \textit{edit} e modo \textit{query}. O modo \textit{edit} serve para editar a estrutura da rede, tal como adicionar nós ou arestas, mas esse não é o objetivo visto que a rede é criada previamente. O modo \textit{query} permite perceber de que forma as variáveis se relacionam umas com as outras e perceber os efeitos que os valores de uma variável provocam nos valores de outras variáveis, sendo que é este o objetivo. Assim, vamos utilizar o programa SamIAm apenas no modo \textit{query}.
+O \ac{SamIAm} tem dois modos diferentes: modo \textit{edit} e modo \textit{query}. O modo \textit{edit} serve para editar a estrutura da rede, tal como adicionar nós ou arestas, mas esse não é o objetivo visto que a rede é criada previamente. O modo \textit{query} permite perceber de que forma as variáveis se relacionam umas com as outras e perceber os efeitos que os valores de uma variável provocam nos valores de outras variáveis, sendo que é este o objetivo. Assim, vamos utilizar o programa SamIAm apenas no modo \textit{query}.
 
-Este modo permite ver a probabilidade de cada variável tomar cada valor, de acordo com o \textit{data set} e permite também mudar esses valores e ver de que forma as outras variáveis mudam também. Por exemplo, uma regra possível seria ``Um utilizador tem tendência para ter valores de glicemia altos à quarta-feira à tarde''. É interessante e útil para o utilizador conhecer esta regra, por si só. Mas também pode ser interessante o processo inverso, ou seja, ``Qual a probabilidade de ter hiperglicemia, sendo que hoje é quarta-feira à tarde?''. É isso que o SamIAm permite fazer no \textit{query mode}, entre outras coisas, e que pode dar mais informação útil ao utilizador. A figura seguinte mostra a mesma rede mas em \textit{query mode}.
+Este modo permite ver a probabilidade de cada variável tomar cada valor, de acordo com o \textit{data set} e permite também mudar esses valores e ver de que forma as outras variáveis mudam também. Por exemplo, uma regra possível seria ``Um utilizador tem tendência para ter valores de glicemia altos à quarta-feira à tarde''. É interessante e útil para o utilizador conhecer esta regra, por si só. Mas também pode ser interessante o processo inverso, ou seja, ``Qual a probabilidade de ter hiperglicemia, sendo que hoje é quarta-feira à tarde?''. É isso que o \ac{SamIAm} permite fazer no \textit{query mode}, entre outras coisas, e que pode dar mais informação útil ao utilizador. A figura seguinte mostra a mesma rede mas em \textit{query mode}.
 
 A rede \textit{bayesiana} é feita com base nos dados de cada utlizador, sendo que será criada uma rede para cada utilizador e cada utilizador pode ter uma rede diferente. O passo seguinte é criar uma rede para cada utilizador e ver que informação adicional se consegue obter.
 
-É possível ver as tabelas de probabilidade para cada variável, sendo que cada nó tem por predefinição o valor mais frequente, como por exemplo, ``Next\textunderscore Glucose=3''. Note-se que os valores NA correspondem a registos que não usaram essas variáveis, isso é, um utilizador pode registar uma glicemia e não registar insulina ou hidratos d carbono. Estas tabelas também permitem perceber a distribuição de algumas variáveis: por exemplo, é possível verificar que, neste caso, os dias têm probabilidades muito parecidas, o que significa que têm um número parecido de registos. No entanto, tal como já mencionado, o objetivo nesta parte é tentar perceber de que forma estas variáveis afetam o valor da glicemia e também ver se estas alterações estão em concordância com as regras mostradas na secção anterior ou até ver se novos padrões surgem. Vamos, por isso, mostrar a rede \textit{bayesiana} para cada utilizador. 
+É possível ver as tabelas de probabilidade para cada variável, sendo que cada nó tem por predefinição o valor mais frequente, como por exemplo, ``Next\textunderscore Glucose=3''. Note-se que os valores \ac{NA} correspondem a registos que não usaram essas variáveis, isso é, um utilizador pode registar uma glicemia e não registar insulina ou hidratos d carbono. Estas tabelas também permitem perceber a distribuição de algumas variáveis: por exemplo, é possível verificar que, neste caso, os dias têm probabilidades muito parecidas, o que significa que têm um número parecido de registos. No entanto, tal como já mencionado, o objetivo nesta parte é tentar perceber de que forma estas variáveis afetam o valor da glicemia e também ver se estas alterações estão em concordância com as regras mostradas na secção anterior ou até ver se novos padrões surgem. Vamos, por isso, mostrar a rede \textit{bayesiana} para cada utilizador. 
 
 \textbf{Utilizador 1}
 
-A rede criada para o utilizador 1 está representada na figura 6.
+A rede criada para o utilizador 1 está representada na figura~\ref{sam1}
 
 \begin{figure}[H]
 \centering
-\includegraphics{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Sam.png}
-\caption{Glicemia por horas do utilizador 5}
+\includegraphics[scale=0.65]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Sam.png}
+\caption{Rede \textit{bayesiana} para o utilizador 1}
+\label{fig:sam1}
 \end{figure}
 Para cada variável é possível ver as tabelas de probabilidade para os seus possíveis valores: por exemplo, probabilidades parecidas para os dias da semana indicam que os dias têm uma quantidade de registos parecida. Por sua vez, o valor 3 para glicose tem maior probabilidade que os outros, mostrando que a maioria dos registos de glicemia está dentro dos valores normais.
 
@@ -209,70 +211,77 @@ Por outro lado, se colocarmos as variáveis de acordo com a regra para hipoglice
 
 No entanto, é possível descobrir outros padrões: por exemplo, se selecionarmos apenas o dia ``Domingo'' verificamos que a probabilidade de uma hiperglicemia, ou seja um valor de glicemia 5, sobe para 18.67\%. 
 
-Na figura seguinte pode-se ver quais os parâmetros que provocam uma probabilidade máxima de uma hiperglicemia.
+Na figura~\ref{fig:hiper1} pode-se ver quais os parâmetros que provocam uma probabilidade máxima de uma hiperglicemia.
 
 \begin{figure}[H]
 \centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Hiper.png}
-\caption{Glicemia por horas do utilizador 5}
+\includegraphics[scale=0.65]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador1/Hiper.png}
+\caption{Probabilidade máxima de hiperglicemia para o utilizador 1}
+\label{fig:hiper1}
 \end{figure}
 Ou seja, uma nova regra é descoberta: ao Domingo de manhã, quando o utilizador ingere uma quantidade grande de hidratos de carbono, tem maior probabilidade de ter uma hiperglicemia. 
 
 \textbf{Utilizador 2}
 
 
-A rede para o utilizador 2 é mostrada na figura 6.
+A rede para o utilizador 2 é mostrada na figura~\ref{fig:sam2}
 
 \begin{figure}[H]
 \centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Rede.png}
-\caption{Glicemia por horas do utilizador 5}
+\includegraphics[scale=0.65]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Rede.png}
+\caption{Rede \textit{bayesiana} para o utilizador 2}
+\label{fig:sam2}
 \end{figure}
 que, como se verifica, é ligeiramente diferente da rede gerada para o utilizador 1. Uma vez mais, é interessante ver quais os valores dos vários parâmetros que maximizam o valor de glicemia. 
 
 \begin{figure}[H]
 \centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Hiper.png}
-\caption{Glicemia por horas do utilizador 5}
+\includegraphics[scale=0.65]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Hiper.png}
+\caption{Probabilidade máxima de hiperglicemia para o utilizador 2}
+\label{fig:hiper2}
 \end{figure}
 Como se pode observar, a probabilidade de hiperglicemia aumenta bastante aos sábados à tarde, quando o utilizador toma menos insulina que a recomendada. Esta regra não foi gerada pelo algoritmo \textit{apriori}, possivelmente por ter um valor de suporte abaixo do mínimo definido, mas ainda assim é uma regra interessante e que mostra uma utilidade desta análise. É interessante saber quais as condições em que o risco de hiperglicemia é maior, tendo em conta os dados já registados. 
 
 \textbf{Utilizador 3}
 
-A rede criada para o utilizador 3 está representada na figura 6.
+A rede criada para o utilizador 3 está representada na figura~\ref{fig:sam3}.
 
 \begin{figure}[H]
 \centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Rede.png}
-\caption{Glicemia por horas do utilizador 5}
+\includegraphics[scale=0.65]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Rede.png}
+\caption{Rede \textit{bayesiana} para o utilizador 3}
+\label{fig:sam3}
 \end{figure}
 Esta rede é diferente das redes anteriormente apresentadas. A principal diferença que se nota logo é a falta do nó ``Exercise'' que se deve pelo facto de este utilizador não ter qualquer registo de exercício e portanto, a variável não foi tida em conta. A rede já com as probabilidades é:
 
 \begin{figure}[H]
 \centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Hiper.png}
-\caption{Glicemia por horas do utilizador 5}
+\includegraphics[scale=0.65]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Hiper.png}
+\caption{Probabilidade máxima de hiperglicemia para o utilizador 3}
+\label{fig:hiper3}
 \end{figure}
-Como se pode perceber pela figura 6., este utilizador tem uma probabilidade enorme de ter uma hiperglicemia à terça-feira à tarde, especialmente se tomar menos insulina do que a calculada. 
+Como se pode perceber pela figura~\ref{fig:hiper3}, este utilizador tem uma probabilidade enorme de ter uma hiperglicemia à terça-feira à tarde, especialmente se tomar menos insulina do que a calculada. 
 
 \textbf{Utilizador 4}
 
-A rede \textit{bayesiana} para o utilizador 4 está representada na figura seguinte, sendo que também é diferente das outras. 
+A rede \textit{bayesiana} para o utilizador 4 está representada na figura~\ref{fig:sam4}, sendo que também é diferente das outras. 
 
 \begin{figure}[H]
 \centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Rede.png}
-\caption{Glicemia por horas do utilizador 5}
+\includegraphics[scale=0.65]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Rede.png}
+\caption{Rede \textit{bayesiana} para o utilizador 4}
+\label{fig:sam4}
 \end{figure}
 Desde logo é possível notar que para a variável ``Insulin\textunderscore Difference'' os valores com probabilidades maiores são o 2 e 4, o que mostra que este utilizador, na maior parte das vezes, toma uma quantidade de insulina diferente da quantidade calculada, o que pode causar consequências nos valores da glicemia. De resto também é possível ver que o exercício é algo raro, tal como nos outros utilizadores. 
 
 
 \begin{figure}[H]
 \centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Hiper.png}
-\caption{Glicemia por horas do utilizador 5}
+\includegraphics[scale=0.65]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Hiper.png}
+\caption{Probabilidade máxima de hiperglicemia para o utilizador 4}
+\label{fig:hiper4}
 \end{figure}
-Na figura 6. é possível observar que à segunda-feira a probabilidade de ocorrer uma hiperglicemia aumenta consideravelmente, sendo que, neste caso, os outros parâmetros não influenciam muito a probabilidade de hiperglicemia, pelo menos para este dia escolhido. Por exemplo, à segunda-feira a probabilidade de hiperglicemia é parecida para qualquer período.
+Na figura~\ref{fig:hiper4} é possível observar que à segunda-feira a probabilidade de ocorrer uma hiperglicemia aumenta consideravelmente, sendo que, neste caso, os outros parâmetros não influenciam muito a probabilidade de hiperglicemia, pelo menos para este dia escolhido. Por exemplo, à segunda-feira a probabilidade de hiperglicemia é parecida para qualquer período.
 
 Por outro lado, verificamos que o utilizador tem uma maior probabilidade de ter um valor de hipoglicemia, isto é, ``Next\textunderscore Glucose=1'' à sexta-feira à tarde, cuja probabilidade aumenta para os 10.19\%.
 
@@ -280,21 +289,23 @@ Por outro lado, verificamos que o utilizador tem uma maior probabilidade de ter 
 \textbf{Utilizador 5}
 
 
-Para o último utilizador, a rede gerada está representada na figura 6.
+Para o último utilizador, a rede gerada está representada na figura~\ref{fig:sam5}.
 
 \begin{figure}[H]
 \centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Rede.png}
-\caption{Glicemia por horas do utilizador 5}
+\includegraphics[scale=0.65]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Rede.png}
+\caption{Rede \textit{bayesiana} para o utilizador 5}
+\label{fig:sam5}
 \end{figure}
-Uma vez mais, um exemplo de uma combinação de parâmetros que aumentam a probabilidade de hiperglicemia é representado na figura 6.
+Uma vez mais, um exemplo de uma combinação de parâmetros que aumentam a probabilidade de hiperglicemia é representado na figura~\ref{fig:hiper5}.
 
 \begin{figure}[H]
 \centering
-\includegraphics[height=65mm, width=130mm]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Hiper.png}
-\caption{Glicemia por horas do utilizador 5}
+\includegraphics[scale=0.65]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Hiper.png}
+\caption{Probabilidade máxima de hiperglicemia para o utilizador 5}
+\label{fig:hiper5}
 \end{figure}
-Pela figura 6. é possível notar que à segunda-feira, e quanto o utilizador toma pouca insulina, o valor de glicose no sangue aumenta, ocorrendo uma hiperglicemia. Nesta situação, um simples alerta para aumentar a dose de insulina poderia ser suficiente para corrigir esta situação e acabar com este padrão.
+É possível notar que à segunda-feira, e quanto o utilizador toma pouca insulina, o valor de glicose no sangue aumenta, ocorrendo uma hiperglicemia. Nesta situação, um simples alerta para aumentar a dose de insulina poderia ser suficiente para corrigir esta situação e acabar com este padrão.
 
 Quanto a hipoglicemias, para este utilizador, a rede mostra que a probabilidade de ``Next\textunderscore Glucose=1'' aumenta nas manhãs em que o utilizador toma mais insulina do que aquela recomendada, sendo que neste caso a probabilidade é de 20.09\%.
 
