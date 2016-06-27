@@ -64,28 +64,15 @@ O glicosímetro é o dispositivo base para qualquer diabético: permite medir os
 \textit{Data mining} é uma área de ciência de computadores que permite, através da análise de grandes quantidades de dados, descobrir padrões e regras que uma análise mais simples pode não detetar~\cite{oracle} e é uma etapa de um processo chamado \textit{Knowledge Discovery in Databases} que, como o nome indica, tem o objetivo de extrair informação analisando bases de dados.
 A área de \textit{data mining} usa diversos métodos de outras áreas tais como matemática, estatística, inteligência artificial e \textit{machine learning} para tratar, explorar e obter conclusões acerca dos dados. 
 
-\textit{Machine learning} é outra área de ciência de computadores que tem alguma influência em \textit{data mining}. O seu objetivo é conseguir analisar dados e aprender, de forma automática, para que depois possa também fazer previsões noutros dados. Esta parte de aprendizagem é uma parte importante de \textit{machine learning}, e há dois tipos de aprendizagem:
+\textit{Machine learning} é outra área de ciência de computadores que tem alguma influência em \textit{data mining}. O seu objetivo é conseguir analisar dados e aprender, de forma automática, para que depois possa também fazer previsões noutros dados. A aprendizagem é uma parte importante de \textit{machine learning}, e há dois tipos de aprendizagem:
 
 \begin{itemize}
-\item \textbf{Aprendizagem supervisionada} - Como o nome indica, significa que é feita uma aprendizagem sob os dados com algum tipo de informação. Neste caso, um algoritmo de aprendizagem supervisionada é usado para prever uma variável de classe. O algoritmo é primeiro corrido num conjunto de dados de treino em que o valor da variável de classe é conhecido, ou \textit{labeled}, para que este possa ``aprender'' como é que as variáveis influenciam a variável de classe. É então gerado um modelo, que também pode ser chamado de classificador, que será capaz de prever a variável de classe analisando outros dados no mesmo formato. Este método tem o nome de classificação.
+\item \textbf{Aprendizagem supervisionada} - Como o nome indica, significa que é feita uma aprendizagem sob os dados com algum tipo de informação. Neste caso, um algoritmo de aprendizagem supervisionada é usado para prever uma variável de classe. O algoritmo é primeiro corrido num conjunto de dados de treino em que o valor da variável de classe é conhecido, ou \textit{labeled}, para que este possa ``aprender'' como é que as variáveis influenciam a variável de classe. É então gerado um modelo, que também pode ser chamado de classificador, que será capaz de prever a variável de classe analisando outros dados no mesmo formato. Este método tem o nome de classificação~\cite{supervised}.
 
 \item \textbf{Aprendizagem não supervisionada} - Neste tipo de aprendizagem não existem variáveis com \textit{labels}, pelo que uma aprendizagem deste tipo não tem o objetivo de classificar mas sim encontrar relações entre as variáveis. Ao analisar os vários valores das diferentes variáveis, o algoritmo vai conseguir aprender alguns padrões que possam ocorrer no conjunto de dados. A isto chama-se associação.
 \end{itemize}
 
 Estes conceitos, \textbf{associação} e \textbf{classificação}, são algumas das tarefas principais de \textit{data mining} e são relevantes para este trabalho, pelo que serão descritos ainda neste capítulo.
-
-
-\begin{itemize}
-
-\item{\textbf{deteção de anomalias}} - 
-Tem como objetivo a identificação de valores anormais. Esses valores podem ser apenas erros mas também podem ser valores interessantes para uma determinada área. A deteção de anomalias pode ser utilizada para detetar fraude ou invasão de uma rede, por exemplo.
-
-\item{\textbf{associação}} - 
-Tem como objetivo encontrar relações entre variáveis e pode quantificar essas relações. Esta tarefa do \textit{data mining} é também chamada de \textit{market basket analysis} uma vez que foi utilizada a primeira vez com o objetivo de negócio.\cite{business} A associação será definida com mais detalhe e com alguns exemplos mais à frente neste capítulo, uma vez que uma parte importante deste trabalho passa por utilizar esta técnica. 
-
-\item{\textbf{classificação}} - 
-
-\end{itemize}
 
 
 A área de \textit{data mining} tem-se tornado cada vez mais popular e mais usada em variadas áreas, como economia, educação e saúde. E é fácil perceber o porquê: por exemplo, num supermercado, o conhecimento dos produtos que são mais comprados, ou de quem compra o quê, pode ser usado para maximizar as vendas, ou seja, maximizar o lucro.\cite{business} Por ser um campo da ciência de computadores que permite aumentar o conhecimento sobre tudo o que nos rodeia, pode ser também utilizada na medicina para obter mais informações sobre algumas doenças, como a diabetes, neste caso.
@@ -124,25 +111,25 @@ que relaciona o suporte das variáveis. Um \textit{lift} igual a 1 significa que
 
 
 Como mencionado, as funções nativas do R não são suficientes para gerar regras de associação. No entanto, uma das características que ajudou a tornar o R tão popular é o facto de esta linguagem ser facilmente expansível, ou seja, adicionar funções que originalmente não existem. Isto é possível através de \textit{packages}.
-O CRAN ("Comprehensive R Archive Network") tem atualmente mais de 8000 \textit{packages} disponíveis para \textit{download}, tornando o R altamente personalizável e poderoso~\cite{cran}.
+O \ac{CRAN} tem atualmente mais de 8000 \textit{packages} disponíveis para \textit{download}, tornando o R altamente personalizável e poderoso~\cite{cran}.
 Neste caso em específico em que se pretende usar algoritmos de associação, basta instalar um novo \textit{package} criado propositadamente para esse efeito e passamos a ter uma variedade de funções disponíveis. 
 
 \subsection{Classificação}
 
-Tem como objetivo estudar conjuntos de dados e gerar modelos com base nesses dados. Depois, ao observar novos dados com padrão similar, vai utilizar o modelo gerado para conseguir classificar corretamente esses dados. Esta categoria pode ser especialmente relevante na saúde. Por exemplo, imaginemos que geramos um modelo de classificação com base num conjunto de dados de pacientes com um tumor na mama, que pode ser maligno ou benigno, e cujo diagnóstico é conhecido. Com esse modelo, será possível prever o diagnóstico em novos dados com uma grande precisão~\cite{cancerpred}.
+Tem como objetivo fazer previsões sobre variáveis categóricas. Essa previsão passa por estudar conjuntos de dados e gerar modelos com base nesses dados. Depois, ao observar novos dados com padrão similar, vai utilizar o modelo gerado para conseguir classificar corretamente esses dados. Esta categoria pode ser especialmente relevante na saúde. Por exemplo, imaginemos que geramos um modelo de classificação com base num conjunto de dados de pacientes com um tumor na mama, que pode ser maligno ou benigno, e cujo diagnóstico é conhecido. Com esse modelo, será possível prever o diagnóstico em novos dados com uma grande precisão~\cite{cancerpred}.
 
 Existem diferentes algoritmos de classificação, sendo que alguns deles são:
 
 \begin{itemize}
-\item \textbf{Redes neuronais artificais} - É um algoritmo de classificação baseado no sistema nervoso central de um animal. Uma rede neuronal artificial contém nós, e as conexões entre nós têm um valor associado, chamdo de peso. Assim, quando um nó recebe um \textit{input}, esses dados vão ser transformados, por exemplo, multiplicados pelo peso, e o nó envia os dados para outro nó. Quando um determinado valor limite for ultrapassado, é então gerado o \textit{output}. Uma rede neuronal artificial tem a capacidade de fazer aprendizagem ao conseguir aprender e alterar os valores do peso das conexões. Isto é, se um determinado caminho for melhor que outro terá um peso maior~\cite{ann}.
+\item \textbf{Redes neuronais artificiais} - É um algoritmo de classificação baseado no sistema nervoso central de um animal. Uma rede neuronal artificial contém nós, e as conexões entre nós têm um valor associado, chamado de peso. Assim, quando um nó recebe um \textit{input}, esses dados vão ser transformados, por exemplo, multiplicados pelo peso, e o nó envia os dados para outro nó. Quando um determinado valor limite for ultrapassado, é então gerado o \textit{output}. Uma rede neuronal artificial tem a capacidade de fazer aprendizagem ao conseguir aprender e alterar os valores do peso das conexões. Isto é, se um determinado caminho for melhor que outro terá um peso maior~\cite{ann}.
 
 \item \textbf{Árvores de decisão} - São árvores em que cada nó de decisão contem um teste num atributo e cada ramo corresponde a um possível valor deste atributo. Cada folha corresponde a uma classe e, consequentemente, cada caminho na árvore, desde a raíz até à folha, corresponde a uma regra de classificação. 
 
 \item \textbf{Regressão logística} - É um método para classificar variáveis binárias. A regressão logística é usada para explicar a relação entre uma variável de classe, ou seja, a variável a ser classificada, e as restantes variáveis.\newline
 
-\item \textbf{Naive Bayes} - 
+\item \textbf{Redes \textit{bayesianas}} - São estruturas gráficas compostas por nós e arestas, em que cada nó representa uma variável diferente e as arestas representam relações de dependência entre os nós. Este tipo de estrutura permite uma análise causa-efeito, isto é, permite modificar o valor de algumas variáveis e ver qual o efeito que essa mudança causa sobre as outras variáveis~\cite{nets}.
 
-\item \textbf{Support Vector Machines} -
+\item \textbf{Support Vector Machines} - \textit{Support Vector Machine} é um conjunto de técnicas que têm o objetivo de descobrir padrões em dados. Dando um conjunto de treino, o algoritmo analisa, para cada \textit{input}, a que classe pertence a variável, sendo que a variável a classificar terá de ser binária. É construído um modelo que, para novos dados, classificará a variável numa das duas categorias. Este é um algoritmo \textit{black-box}, ou seja, a classificação é feita vendo-se apenas o \textit{input} e \textit{output}, sem ter qualquer tipo de conhecimento das escolhas que levaram à classificação~\cite{svmm}.
 \end{itemize}
 
 \subsection{Validação de modelos}
@@ -150,10 +137,10 @@ Existem diferentes algoritmos de classificação, sendo que alguns deles são:
 Os algoritmos de classificação vão gerar modelos de previsão para novos dados. 
 
 \subsection{Redes \textit{bayesianas}}
-Uma rede \textit{bayesiana} é um modelo que representa variáveis e as suas relações através de um grafo acíclico dirigido, ou seja, um grafo dirigido que não tem ciclos.~\cite{bayes} Uma rede deste tipo permite, por exemplo, calcular a probabilidade de uma determinada variável ter um determinado valor, tendo em conta as outras variáveis. Por exemplo, se criarmos uma rede \textit{bayesiana} com a variável ``Exercício'' e outras variáveis como ``Insulina'', ``Hidratos de carbono'' ou ``Doença'', é possível calcular a probabilidade de uma pessoa ter hiperglicemia, sabendo, por exemplo, a quantidade de hidratos de carbono ingerida e o valor de insulina tomado. Também é possível saber, através de uma rede deste tipo, quais as variáveis com mais influência na variável a classificar. Neste trabalho em concreto, uma rede deste tipo pode ser útil para perceber de que forma os vários parâmetros podem ter influência sobre os valores de glicemia.
+Uma rede \textit{bayesiana} é um modelo que representa variáveis e as suas relações através de um grafo acíclico dirigido, ou seja, um grafo dirigido que não tem ciclos~\cite{bayes}. Uma rede deste tipo permite, por exemplo, calcular a probabilidade de uma determinada variável ter um determinado valor, tendo em conta as outras variáveis. Por exemplo, se criarmos uma rede \textit{bayesiana} com a variável ``Exercício'' e outras variáveis como ``Insulina'', ``Hidratos de carbono'' ou ``Doença'', é possível calcular a probabilidade de uma pessoa ter hiperglicemia, sabendo, por exemplo, a quantidade de hidratos de carbono ingerida e o valor de insulina tomado. Também é possível saber, através de uma rede deste tipo, quais as variáveis com mais influência na variável a classificar. Neste trabalho em concreto, uma rede deste tipo pode ser útil para perceber de que forma os vários parâmetros podem ter influência sobre os valores de glicemia.
 
-Para as análises com redes \textit{bayesianas} serão utilizados dois programas: o \ac{WEKA} e o \ac{SamIAm}.
-O \ac{WEKA} permite aplicar vários algoritmos de \textit{machine learning} e é possível utilizá-lo para classificação, associação e visualização de dados, entre outros. Embora o \ac{WEKA} também tenha incorporados algoritmos de associação, nomedamente o \textit{apriori}, não é utilizado com esse intuito uma vez que as funções disponíveis pelo R são suficientes. Neste caso, o \ac{WEKA} é usado para gerar uma rede \textit{bayesiana} para cada utilizador que vai depois ser analisada por um outro \textit{software}, o \ac{SamIAm}.
+Para as análises com redes \textit{bayesianas} serão utilizados dois programas: o \ac{WEKA}~\cite{weka} e o \ac{SamIAm}~\cite{samiam}.
+O \ac{WEKA} permite aplicar vários algoritmos de \textit{machine learning} e é possível utilizá-lo para classificação, associação e visualização de dados, entre outros. Embora o \ac{WEKA} também tenha incorporados algoritmos de associação, nomedamente o \textit{apriori}, não é utilizado com esse intuito uma vez que as funções disponíveis pelo R são suficientes. Neste caso, o \ac{WEKA} é usado para gerar uma rede \textit{bayesiana} para cada utilizador que vai depois ser analisada por um outro \textit{software}, o \ac{SamIAm}. A necessidade de utilizar dois programas diferentes prende-se com as limitações de cada um deles: o \ac{WEKA} não permite fazer análise de risco, ou seja, alterar os valores das variáveis e ver como isso influencia as outras variáveis, e o \ac{SamIAm} não permite criar redes \textit{bayesianas} a partir de um \textit{data set}.
 
 O \ac{SamIAm} é uma ferramenta desenhada propositadamente para a modelagem e trabalho com redes \textit{bayesianas}. Com o \ac{SamIAm} é possível fazer diversas análises mas para este trabalho interessa-nos saber como se relacionam as várias variáveis. Isto é, descobrir quais as variáveis que se relacionam mais com o valor de glicemia, por exemplo, e de que forma é que mudar uma determinada variável muda também a glicemia.
 

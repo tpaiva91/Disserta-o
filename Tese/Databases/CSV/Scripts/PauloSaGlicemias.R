@@ -5,7 +5,7 @@ joaquim <- read.csv("PauloSa.csv")
 
 
 
-#joaquim[is.na(joaquim)] <-0
+#joaquim[is.na(joaquim)] <-NULL
 joaquim$Day <- weekdays(as.Date(joaquim$DateTime))
 joaquim$Period <- format(as.POSIXlt(joaquim$DateTime), "%H:%M:%S")
 

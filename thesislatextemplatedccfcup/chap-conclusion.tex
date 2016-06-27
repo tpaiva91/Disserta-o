@@ -1,6 +1,15 @@
-\chapter{Conclusões}\label{chap:conc}
+\chapter{Conclusões e trabalho futuro}\label{chap:conc}
 
-Ao longo desta dissertação fomos enfatizando duas coisas acerca da diabetes: é uma doença sem cura e, com tratamento adequado, os doentes diabéticos podem levar uma vida normal. Vimos também que não há um tratamento generalizado e que este tem de ser personalizado tendo em conta as características de cada doente. Assim sendo, propusemos fazer diversos tipos de análise para um conjunto de utilizadores. Estas análises foram personalizadas para cada utilizador para tentar perceber que tipo de comportamentos é que os doentes diabéticos têm que provocam alterações na glicemia.
+Ao longo desta dissertação fomos enfatizando dois pontos acerca da diabetes: é uma doença sem cura e, com tratamento adequado, os doentes diabéticos podem levar uma vida normal. Vimos também que não há um tratamento generalizado e que este tem de ser personalizado tendo em conta as características de cada doente. Relembrando os objetivos definidos na secção~\ref{sec:intro}:
+
+\begin{itemize}
+	\item Obter dados de registos glicémicos através da participação de voluntários diabéticos;
+	\item Fazer diferentes tipos de análises estatísticas sobre esses dados;
+	\item Analisar os dados para reconhecimento de padrões ou anomalias;
+	\item Criar regras a partir da análise de dados.
+
+\end{itemize}
+Conseguimos, de facto, recolher alguns dados de doentes diabéticos através da aplicação MyDiabetes o que constitui o primeiro objetivo. Fizemos também vários tipos de análises, envolvendo estatística, regras de associação e redes \textit{bayesianas}. Através das regras de associação conseguimos identificar algumas regras que evidenciam comportamentos que podem fazer parte de padrões, por parte dos utilizadores. Verifica-se assim que os outros objetivos foram também cumpridos. Diferentes análises sobre os dados permitem observar diferentes comportamentos.
 
 Numa primeira análise estatística apenas com os valores de glicemia, foi possível observar alguns padrões, nomeadamente perceber que há dias em que a glicemia é mais elevada do que outros. Na parte de regras de associação, por sua vez, foi possível aprofundar esse conhecimento e passar a ter razões para essas oscilações nos valores de glicemia. Este conhecimento é importante porque assim permite saber qual pode ser a solução. Verificou-se que cada utilizador tem a sua própria rotina o que faz com que cada utilizador tenha também diferentes regras. Note-se que as regras podem ser do mesmo tipo, como serem regras envolvendo períodos do dia, mas são diferentes, pois têm valores diferentes. Esta diferença entre regras para cada utilizador é importante, uma vez que torna esta análise personalizada. Finalmente, na parte das redes \textit{bayesianas} foi possível tentar uma abordagem diferente, ao conseguir saber quais as condições que, para cada utilizador, provocam valores mais baixos ou mais altos de glicemia. Este tipo de análise também é importante uma vez que, permite saber, por exemplo, qual é a probabilidade de uma hiperglicemia a cada momento. Se um dado momento tiver alta probabilidade de hiperglicemia então o utilizador pode ser alertado para esse facto, tomando as precauções necessárias. 
 
@@ -8,11 +17,6 @@ Como se pode perceber, esta personalização é fundamental: a análise é feita
 
 Por fim, conclui-se que é viável usar \textit{data mining} em registos de pacientes diabéticos a fim de melhor o seu tratamento: foi possível concluir alguns factos diferentes sobre um pequeno conjunto de utilizadores o que dá a ideia de que, para uma maior quantidade de utilizadores, se consiga obter ainda mais variedade de regras. Esta variedade de regras será fundamental para poder, eventualmente, integrar um sistema destes numa aplicação.
 
-
-
-
-
-\section{Trabalho Futuro}\label{sec:trab}
 
 No futuro, seria interessante integrar um sistema de aconselhamento personalizado numa aplicação de registo de diabetes, nomeadamente na aplicação MyDiabetes. O facto de uma pessoa diabética poder ter, em tempo real, aconselhamento sobre o que pode estar a fazer de errado contribuirá para um melhor tratamento e, por isso, uma melhor qualidade de vida. Também para trabalho futuro seria interessante fazer um outro tipo de análise: em vez de analisar cada utilizador individualmente, pode ser interessante utilizar todos os utilizadores de forma conjunta. Este tipo de análise mais geral pode permitir descobrir grupos de pessoas com características ou rotinas idênticas, criando grupos de pessoas diferentes. Por exemplo, poderia chegar-se à conclusão que mulheres e homens têm rotinas parecidas, dentro de cada um dos dois grupos. Esse tipo de análise permitia identificar a que grupo pertenceria cada utilizador e portanto, apresentar regras mais específicas para esse grupo. 
 
