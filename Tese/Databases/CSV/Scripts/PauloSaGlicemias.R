@@ -69,12 +69,12 @@ joaquim$DateTime <- NULL
 
 #Gráficos por hora
 joaquim$Period <- as.POSIXct(joaquim$Period, format="%H:%M")
-plot(joaquim$Period, joaquim$Value_Glucose, xaxt="n", ylim=c(0,250), ylab="Valor de glicose", xlab="Hora")
-axis.POSIXct(1, joaquim$Period, seq(from=as.POSIXct("2016-02-02 0:00"), to=as.POSIXct("2016-07-02 23:00"), by="hour"), format="%H:%M")
+plot(joaquim$Period, joaquim$Value_Glucose, xaxt="n", ylim=c(0,350), ylab="Valor de glicose", xlab="Hora")
+axis.POSIXct(1, joaquim$Period, seq(from=as.POSIXct("2016-02-02 0:00"), to=as.POSIXct("2016-08-02 23:00"), by="hour"), format="%H:%M")
 abline(h=70, col="red")
 abline(h=180, col="blue")
 
-par(mfrow=c(1,1)) 
+par(mfrow=c(2,1)) 
 #por hora e dia da semana
 joaquim$Period <- as.POSIXct(joaquim$Period, format="%H:%M")
 plot(joaquim$Period[joaquim$Day=="Domingo"], joaquim$Value_Glucose[joaquim$Day=="Domingo"], xaxt="n", ylim = c(0,250), ylab="Valor de glicose", xlab="Domingo")

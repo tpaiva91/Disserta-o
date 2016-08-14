@@ -6,6 +6,7 @@ joaquim <- read.csv("PauloAbreu.csv")
 joaquim$Day <- weekdays(as.Date(joaquim$DateTime))
 joaquim$Period <- format(as.POSIXlt(joaquim$DateTime), "%H:%M:%S")
 
+sd(joaquim$Value_Glucose, na.rm=TRUE)
 
 joaquim$DateTime <- NULL
 

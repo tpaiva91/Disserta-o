@@ -10,14 +10,17 @@ Nesta secção pretende-se abordar de que forma a área de \textit{Data Mining} 
 
 Estas técnicas podem ser utilizadas para fins diferentes: fazer aprendizagem analisando dados já existentes para que se possam criar modelos, que por sua vez irão classificar novos dados; encontrar relações entre variáveis e causas; detetar padrões.
 
-Delen, Walker e Kadam~\cite{cancer} usaram diferentes algoritmos para tentar prever a sobrevivência ao cancro da mama. Neste caso, define-se por sobrevivência o paciente estar vivo pelo menos 5 anos após o diagnóstico do cancro. Foram usados três algoritmos de classificação diferentes: redes neuronais artificiais, árvores de decisão e regressão logística. Os autores usaram um \textit{data set} já existente e, depois de todo o pré-processamento, como limpeza de dados, obtiveram um \textit{data set} com 17 variáveis (16 variáveis de previsão e 1 variável de classe, isto é, a variável a ser prevista). Gerando modelos através dos três algoritmos utilizados, conseguiram classificar, com alta percentagem de precisão, se um dado paciente teria sobrevivido ou não. Além disso, conseguiram também descobrir quais as variáveis mais importantes para a classificação, e, portanto, atribuir importâncias diferentes a diferentes variáveis. Os diferentes algoritmos conseguiram diferentes precisões: a rede neuronal teve uma precisão de 0.9121; a regressão logística teve uma precisão de 0.8920 e a árvore de decisão teve uma precisão de 0.9362. De notar que estes resultados foram obtidos usando \textit{cross-validation}. \textit{Cross-validation} é um método que divide um \textit{data set} em duas partes: treino e teste. Neste caso, foi usada \textit{10 fold cross-validation} o que significa que o \textit{data set} foi dividido em 10 partes, ou seja, nove partes são usadas para treino e gerar um modelo. Esse modelo vai ser usado na parte restante para classificação e este processo é repetido dez vezes. Em cada repetição, o conjunto de teste é diferente. A precisão obtida nestes testes foram a média das dez repetições.
+Delen, Walker e Kadam~\cite{cancer} usaram diferentes algoritmos para tentar prever a sobrevivência ao cancro da mama. Neste caso, define-se por sobrevivência o paciente estar vivo pelo menos 5 anos após o diagnóstico do cancro. Foram usados três algoritmos de classificação diferentes: redes neuronais artificiais, árvores de decisão e regressão logística. Os autores usaram um \textit{data set} já existente e, depois de todo o pré-processamento, como limpeza de dados, obtiveram um \textit{data set} com 17 variáveis (16 variáveis de previsão e 1 variável de classe, isto é, a variável a ser prevista). Gerando modelos através dos três algoritmos utilizados, conseguiram classificar, com alta percentagem de precisão, se um dado paciente teria sobrevivido ou não. Além disso, conseguiram também descobrir quais as variáveis mais importantes para a classificação, e, portanto, atribuir importâncias diferentes a diferentes variáveis. Os diferentes algoritmos conseguiram diferentes precisões: a rede neuronal teve uma precisão de 91.21\%; a regressão logística teve uma precisão de 89.2\% e a árvore de decisão teve uma precisão de 93.62\%. De notar que estes resultados foram obtidos usando \textit{cross-validation}. 
 
 Palaniappan e Awang~\cite{sota2} criaram uma aplicação \textit{web} para prever o risco de um dado paciente ter doença cardíaca. A partir de um \textit{data set} com 909 registos, com 15 variáveis, usaram três algoritmos diferentes para calcular a probabilidade de um dado paciente ter uma doença cardíaca: Árvores de Decisão, \textit{Naive Bayes} e Redes neuronais. Os registos foram dividos, em igual proporção, num conjunto de treino (455 registos) e conjunto de teste (454 registos). Obtiveram diferentes precisões para os modelos: \textit{Naive Bayes} foi o modelo com maior precisão, 86.12\%, seguido da rede neuronal com 85.68\% e Árvores de decisão com 80.4\%. Neste estudo, os autores conseguiram também encontrar relações entre variáveis. Por exemplo, conseguiram concluir que a variável ``Tipo de dor no peito'' é a mais influente relativamente a uma doença cardíaca. Conseguiram também obter algumas regras que ajudam a prever, com alta percentagem de correção, se um dado paciente tem doença cardíaca ou não. Uma das regras geradas foi 
 
 \begin{lstlisting}
 Chest Pain Type = 4 and CA = 0 and Exang = 0 and Trest Blood Pressure >= 146.362 and < 158.036
 \end{lstlisting}
-que diz que 99.61\% dos doentes cardíacos cumprem estes requisitos. 
+\textit{Chest Pain Type} é o tipo de dor que o paciente tinha, sendo que 4 corresponde a uma dor assimtomática.
+CA diz respeito ao número de vasos sanguíneos principais com problemas detetados no exame.
+Exang mostra se houve angina provocada por exercício, sendo que o valor 0 mostra que não houve dor.
+
 
 Stilou, Bamidis, Maglavers e Pappas~\cite{association} aplicaram o algoritmo \textit{apriori} num \textit{data set} com 100 registos de pacientes diabéticos, para tentar gerar regras de associação. Cada registo equivale a um paciente e tem variáveis como idade, regime de insulina, glicose objetivo, glicemia estável ou instável, entre outros. 
 Neste estudo o objetivo era obter conhecimento sobre uma base de dados de pacientes diabéticos e gerar regras com o conhecimento obtido.
@@ -26,8 +29,11 @@ Uma das regras geradas é
 IF diabetes mellitus type = 2 AND special condition = no AND target = good AND unstable diabetes = no THEN regime = 2
 \end{lstlisting}
 Neste caso, regime é a proposta de insulina por dia, sendo que ``2'' corresponde a duas injeções de insulina mista, com ação curta e intermédia, uma ao pequeno-almoço e uma à tarde. 
+\textit{Special} condition mostra se o paciente em questão tinha alguma condição especial, como gravidez, infeção ou tinha sido operado recentemente.
+\textit{Targe} mostra o controlo da glicemia pelo paciente, que pode ser \textit{fair}, \textit{good} ou \textit{very good}.
+\textit{unstable diabetes} refere-se ao facto de o paciente ter ou não valores oscilatórios de glicemia.
 
-Han, Luo, Yu, Pan e Chen~\cite{svm} usaram algoritmos de classificação para gerar um modelo de diagnóstico da diabetes. Neste caso, usam-se SVM's (\textit{support vector machines}) e um \textit{data set} com 56 variáveis que foi dividido em duas partes: 90\% para o conjunto de treino e 10\% para conjunto de teste. Foi usada \textit{10 fold cross-validation} como método de treino para obter os parâmetros ideais para os modelos. Depois deste processo, a melhor \textit{fold} é escolhida para gerar conjuntos de regras e para ser usada na classificação do conjunto de teste. Contudo, SVM's têm uma natureza \textit{black-box}, isto é, 	são capazes de classificar dados mas não são capazes de explicar o porquê dessa mesma classificação. Isto significa que, usando apenas SVM's, não é possível extrair regras. Face a este inconveniente, os autores decidiram combinar SVM's com outros dois algoritmos: \textit{Random Forests} (RF) e C4.5, um algoritmo para árvores de decisão. A combinação de SVM's com outros algoritmos \textit{white-box} já vem sendo utilizada noutros estudos.~\cite{svm1, svm2} Neste caso, conseguiram-se gerar regras que ajudam a classificar dados como pertencendo a pacientes diabéticos ou não-diabéticos. Uma das regras geradas é, por exemplo, 
+Han, Luo, Yu, Pan e Chen~\cite{svm} usaram algoritmos de classificação para gerar um modelo de diagnóstico da diabetes. Neste caso, usam-se \ac{SVM} e um \textit{data set} com 56 variáveis que foi dividido em duas partes: 90\% para o conjunto de treino e 10\% para conjunto de teste. Foi usada \textit{10 fold cross-validation} como método de treino para obter os parâmetros ideais para os modelos. Contudo, \ac{SVM} têm uma natureza \textit{black-box}, isto é, são capazes de classificar dados mas não são capazes de explicar o porquê dessa mesma classificação. Isto significa que, usando apenas \ac{SVM}, não é possível extrair regras. Face a este inconveniente, os autores decidiram combinar \ac{SVM} com outros dois algoritmos: \textit{Random Forests} (RF) e C4.5, um algoritmo para árvores de decisão. A combinação de \ac{SVM} com outros algoritmos \textit{white-box} já vem sendo utilizada noutros estudos.~\cite{svm1, svm2} Neste caso, conseguiram-se gerar regras que ajudam a classificar dados como pertencendo a pacientes diabéticos ou não-diabéticos. Uma das regras geradas é, por exemplo, 
 \begin{lstlisting}
 If HBA1C > 7.15 and HDL > 1.57 and CHOL > 5.9 and AGE>77, then diabetic
 \end{lstlisting}
@@ -37,10 +43,35 @@ e outra é
 \begin{lstlisting}
 If HBA1C > 7.25, then diabetic
 \end{lstlisting}
-Os dois algoritmos usados, SVM + RF e SVM + C4.5 conseguiram, respetivamente, 89.6\% e 86.3\% de precisão.
+HDL e CHOL são variáveis relativas ao colesterol.
+
+Esta regra pode parecer ser inútil uma vez que no capítulo~\ref{chap:concepts} foi mencionado que um \ac{HbA1c} superior a 6.5\% é um indicador de diabetes e, neste caso, a regra precisa de um \ac{HbA1c} superior e em conjunto com outros parâmetros para concluir se um paciente é diabético. Note-se que, embora seja um facto que \ac{HbA1c} superior a 6.5\% indica diabetes, um algoritmo de associação não tem esse conhecimento. Assim, pela análise dos pacientes, 7.15 foi o valor mínimo descoberto pelo algoritmo que garante que um paciente é diabético, em conjunto com as outras variáveis.
+
+Os dois algoritmos usados, \ac{SVM} + RF e \ac{SVM} + C4.5 conseguiram, respetivamente, 89.6\% e 86.3\% de precisão.
+
+
+\begin{table}[H]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+{\color[HTML]{000000} \textbf{Trabalho}}     & {\color[HTML]{000000} \textbf{Algoritmos}}                                                                            & {\color[HTML]{000000} \textbf{Tipo}} & {\color[HTML]{000000} \textbf{Domínio}} \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+\textbf{Delen, Walker e Kadam}               & \begin{tabular}[c]{@{}l@{}}- redes neuronais artificiais \\ - árvores de decisão\\ - regressão logística\end{tabular} & Classificação                        & Cancro                                  \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+\textbf{Palaniappan e Awang}                 & \begin{tabular}[c]{@{}l@{}}- Árvores de Decisão\\ - \textit{Naive Bayes}\\\ - Redes neuronais.\end{tabular}          & Classificação                        & Doença Cardíaca                         \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+\textbf{Stilou, Bamidis, Maglavers e Pappas} & - Apriori                                                                                                             & Associação                           & Diabetes                                \\ \hline
+\textbf{Han, Luo, Yu, Pan e Chen}            & - SVM                                                                                                                 & Classificação                        & Diabetes                                \\ \hline
+\end{tabular}
+\end{adjustbox}
+\caption{Sumário da revisão da literatura}
+\end{table}
 
 Após a revisão bibliográfica acerca do uso do \textit{data mining} na medicina, observa-se que a maioria dos trabalhos são para efeitos de classificação. Na pesquisa efetuada sobre o uso de \textit{data mining} só se encontrou um estudo sobre regras de associação para a diabetes, que foi o estudo acima analisado. Esse estudo, apesar de usar um algoritmo de associação para gerar regras, não faz o que é pretendido nesta dissertação. 
-O que se pretende neste trabalho é aplicar esse mesmo algoritmo mas para cada paciente de forma individual, com vários registos ao longo do tempo. Desta forma geram-se regras personalizadas para cada paciente e que, portanto, serão regras específicas para que o paciente possa ter um melhor controlo sobre a sua glicemia. Da pesquisa efetuada não foi encontrado nenhum outro trabalho com uma análise personalizada para cada paciente o que torna este, neste aspeto, diferente do que já foi feito.
+O que se pretende neste trabalho é aplicar esse mesmo algoritmo mas para cada paciente de forma individual, com vários registos ao longo do tempo. Desta forma geram-se regras personalizadas para cada paciente e que, portanto, serão regras específicas para que o paciente possa ter um melhor controlo sobre a sua glicemia. Da pesquisa efetuada não foi encontrado nenhum outro trabalho com uma análise personalizada para cada paciente o que torna este, neste aspeto, diferente do que já foi feito. A análise personalizada para cada paciente é importante porque cada paciente tem rotinas diárias diferentes que por sua vez vão originar padrões diferentes. Mas estas diferenças não se prendem só com as rotinas, pois há outros fatores que podem originar diferenças, como a idade dos pacientes ou o tempo de diabetes de cada pessoa. É de esperar que pessoas mais velhas sejam responsáveis que crianças ou adolescentes, o que pode levar a que o controlo por parte das pessoas mais velhas seja melhor. Por outro lado, a tecnologia pode ser importante no controlo da glicemia e, normalmente, os jovens estão mais adaptados às novas tecnologias, o que também pode motivar diferenças. Quanto ao tempo de diabetes de cada pessoa, naturalmente uma pessoa com diabetes diagnosticada há pouco tempo terá mais dificuldades para manter os valores de glicemia estáveis enquanto que uma pessoa com diabetes há mais tempo terá mais facilidade no controlo. Seja qual for a razão, pessoas diferentes vão ter comportamentos diferentes e, portanto, será útil uma análise personalizada. Embora não esteja no âmbito deste trabalho, um tipo de análise interessante seria \textit{clustering}, ou seja, analisar dados de diferentes pacientes diabéticos em conjunto para que se possam descobrir grupos de pacientes com similaridades (como por exemplo, padrões de glicemia para sexo, idade, etc.).
 
 
 \section{Aplicações para \textit{smartphones} Android}
