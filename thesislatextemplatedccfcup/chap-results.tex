@@ -40,7 +40,7 @@ rules.sub <- subset(rules, subset = rhs %in% "Next_Glucose=5")
 em que ``rhs'' significa \textit{right hand side}, ou seja, consequente, e portanto este comando gerará então um subconjunto de regras em que o consequente será ``Next\textunderscore Glucose=5''.
 
 É comum um conjunto de regras ter alguns milhares de regras, pelo que a análise individual de cada regra se torna impossível. A criação de um sub-conjunto de regras com o consequente pretendido ajuda nesta questão, mas ainda assim não é suficiente: um sub-conjunto pode, ainda assim, ter algumas dezenas ou centenas de regras. É, portanto, importante utilizar ferramentas que possam dar uma ajuda extra na seleção de regras úteis. Nesta parte utilizamos um \textit{package} do R, o \textit{arulesViz}~\cite{arulesviz}, que permite visualizar as regras geradas, através de gráficos. É possível, por exemplo, representar as regras num gráfico, ordenadas por suporte, confiança ou \textit{lift}. Assim torna-se mais fácil filtrar as regras potencialmente mais útil, sendo que este processo é interativo: ao selecionar uma região no gráfico, é possível mostrar todas as regras presentes nessa região. 
-Apresentamos, de seguida, algumas das regras geradas para cada utilizador.
+Apresentamos, de seguida, algumas das regras geradas para cada utilizador. Como definido anteriormente, quanto maior for o \textit{lift}, maior é a dependência entre as variáveis.
 
 \textbf{Utilizador 1}
 
@@ -63,7 +63,7 @@ Para valores de glicemia baixos, foi encontrada uma regra:
 \begin{lstlisting}
 {Day=Sexta,Period=1,Value_Carbs=3} => {Next_Glucose=2} Support:  0.01176471 Confidence: 0.6 Lift: 15.3
 \end{lstlisting}
-que mostra que à sexta-feira de manhã o utilizador tende a ter valores mais baixos que nos outros dias. Ao contrário das análises anteriores, este tipo de análise permite saber com mais detalhe o porquê destes valores ocorrerem. Neste caso, isto acontece quando o utilizador ingere uma quantidade normal de hidratos de carbono. Como o valor da glicose é ligeiramente baixo, isto pode indicar que o utilizador não fez uma contagem certa de hidratos de carbono e portanto a insulina tomada não foi a adequada.
+que mostra que à sexta-feira de manhã o utilizador tende a ter valores mais baixos que nos outros dias. Esta regra tem um \textit{lift} bastante elevado, o que indica uma forte dependência entre as variáveis. Ao contrário das análises anteriores, este tipo de análise permite saber com mais detalhe o porquê destes valores ocorrerem. Neste caso, isto acontece quando o utilizador ingere uma quantidade normal de hidratos de carbono. Como o valor da glicose é ligeiramente baixo, isto pode indicar que o utilizador não fez uma contagem certa de hidratos de carbono e portanto a insulina tomada não foi a adequada.
 
 
 \textbf{Utilizador 2}
@@ -83,7 +83,7 @@ e escolhido o grupo de regras com maior suporte, ou seja, o quadrado mais à dir
 {Day=Sexta,Period=2} => {Next_Glucose=5} Support: 0.03393214  Confidence: 0.6296296 Lift: 1.538753
 
 \end{lstlisting}   
-Neste utilizador, ao contrário do primeiro, foram descobertas regras para valores de glicose 5. As regras são bastante parecidas: em dois dias da semana o utilizador tende a ter o valor de glicose elevado algures durante a tarde. Tendo esta informação, o utilizador pode tentar perceber o que faz nestes dias que possa provocar estas alterações. O simples facto de o utilizador perceber que isto acontece pode ser o suficiente para corrigir e, consequentemente, estabilizar mais os valores de glicemia.
+Neste utilizador, ao contrário do primeiro, foram descobertas regras para valores de glicose 5. As regras são bastante parecidas: em dois dias da semana o utilizador tende a ter o valor de glicose elevado algures durante a tarde. Tendo esta informação, o utilizador pode tentar perceber o que faz nestes dias que possa provocar estas alterações. O simples facto de o utilizador perceber que isto acontece pode ser o suficiente para corrigir e, consequentemente, estabilizar mais os valores de glicemia. O valor do \textit{lift} é maior que 1 para ambas as regras, o que mostra alguma dependência entre as variáveis, mas não é um valor muito alto.
 
 
 \textbf{Utilizador 3}
@@ -129,15 +129,15 @@ Foi escolhido o grupo de regras com suporte maior que 0.03. Uma das regras nesse
 \begin{lstlisting}
 {Day=Sexta, Value_Insulin=3, Insulin_Difference=4} => {Next_Glucose=5} Support: 0.03355705  Confidence: 0.6250000 Lift: 2.217262
 \end{lstlisting}
-Como se pode verificar, a regra é parecido com as regras até aqui mostradas, mas com uma diferença: para este utilizador já foi encontrado um padrão em que existem diferenças entre a insulina tomada e a calculada. Nomeadamente, um valor 4 de ``Insulin\textunderscore Difference'' significa que o utilizador tomou mais insulina que a insulina calculada. Esta informação parece contraditória, porque insulina a mais causaria um valor baixo de glicemia e não o contrário, mas de facto é o que acontece, tendo em conta que foi descoberto numa regra. Isto pode significar que a insulina calculada tem um valor baixo por erro nas contas de contagem de hidratos e, portanto, a insulina tomada na realidade não seria maior que a insulina calculada.
+Como se pode verificar, a regra é parecido com as regras até aqui mostradas, mas com uma diferença: para este utilizador já foi encontrado um padrão em que existem diferenças entre a insulina tomada e a calculada. Nomeadamente, um valor 4 de ``Insulin\textunderscore Difference'' significa que o utilizador tomou mais insulina que a insulina calculada. Esta informação parece contraditória, porque insulina a mais causaria um valor baixo de glicemia e não o contrário, mas de facto é o que acontece, tendo em conta que foi descoberto numa regra. Isto pode significar que a insulina calculada tem um valor baixo por erro na contagem de hidratos e, portanto, a insulina tomada na realidade não seria maior que a insulina calculada.
 
-Algumas das regras com maior \textit{lift}, embora com um suporte consideravelmente mais pequeno, são:
+Algumas das regras com maior \textit{lift}, embora com um suporte consideravelmente mais pequeno, são:\newpage
 
 \begin{lstlisting}
 {Day=Terca, Value_Carbs=5, Insulin_Difference=2} => {Next_Glucose=5} Support: 0.01342282  Confidence: 1.0000000 Lift:3.547619
 {Day=Sabado, Period=3, Value_Carbs=3}    => {Next_Glucose=5} Support: 0.01342282  Confidence: 1.0000000 Lift: 3.547619
 \end{lstlisting}
-Na primeira regra aparece outra vez a variável ``Insulin\textunderscore Difference'' mas desta vez com o valor 2, que significa que o utilizador tomou menos insulina que o calculado. Aliando isso à grande quantidade de hidratos de carbono consumida, faz com que às terças-feiras o utilizador tenha tendência para ter hiperglicemia. Ao sábado o mesmo acontece, mas no período da noite.
+Na primeira regra aparece outra vez a variável ``Insulin\textunderscore Difference'' mas desta vez com o valor 2, que significa que o utilizador tomou menos insulina que o calculado. Aliando isso à grande quantidade de hidratos de carbono consumida, faz com que às terças-feiras o utilizador tenha tendência para ter hiperglicemia. Ao sábado o mesmo acontece, mas no período da noite. Verifica-se que estas duas regras têm um \textit{lift} consideravelmente maior que as anteriores o que as torna mais fortes. No entanto, como têm um suporte mais pequeno, também significa que são menos comuns.
 
 
 \textbf{Utilizador 5}
@@ -167,7 +167,7 @@ Assim, para cada utilizador será possível conjugar os vários parâmetros e ve
 
 Nesta fase, o primeiro passo é, então, criar uma rede \textit{bayesiana}. Para tal, recorremos ao \textit{software} \ac{WEKA}. O \ac{WEKA} cria a rede em função de uma variável de classe, que neste caso é ``Next\textunderscore Glucose'' sendo por isso necessário colocar esta variável como última coluna no \textit{data set}. Note-se que o~\ac{WEKA} é utilizado apenas para criar a rede, sendo que a análise será feita num outro programa, o \ac{SamIAm}.
 
-Para relembrar, uma rede \textit{baysesiana} é um grafo dirigido. Um exemplo de uma rede está representado na figura~\ref{fig:rede}
+Para relembrar, uma rede \textit{baysesiana} é um grafo dirigido. Um exemplo de uma rede está representado na figura~\ref{fig:rede}.
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Rede.png}

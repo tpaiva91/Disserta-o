@@ -117,7 +117,7 @@ Neste caso em específico em que se pretende usar algoritmos de associação, ba
 \subsection{Classificação}
 
 Embora esta parte do \textit{data mining} não seja utilizado na dissertação, serão abordados alguns conceitos para um melhor entendimento do próximo capítulo.
-Classificação tem como objetivo fazer previsões sobre variáveis categóricas. Essa previsão passa por estudar conjuntos de dados e gerar modelos com base nesses dados. Depois, ao observar novos dados com padrão similar, vai utilizar o modelo gerado para conseguir classificar corretamente esses dados. Esta categoria pode ser especialmente relevante na saúde. Por exemplo, imaginemos que geramos um modelo de classificação com base num conjunto de dados de pacientes com um tumor na mama, que pode ser maligno ou benigno, e cujo diagnóstico é conhecido. Com esse modelo, será possível prever o diagnóstico em novos dados com uma grande precisão~\cite{cancerpred}.
+Classificação tem como objetivo fazer previsões sobre variáveis categóricas. Essa previsão passa por estudar conjuntos de dados e gerar modelos com base nesses dados. Depois, ao observar novos dados com padrão similar, vai utilizar o modelo gerado para conseguir classificar corretamente esses dados. Esta categoria pode ser especialmente relevante na saúde. Por exemplo, imaginemos que geramos um modelo de classificação com base num conjunto de dados de pacientes com um tumor na mama, que pode ser maligno ou benigno, e cujo diagnóstico é conhecido. Com esse modelo, será possível prever o diagnóstico em novos dados com uma grande precisão~\cite{cancerpred}. Visto que o termo precisão é ambíguo, pois na literatura inglesa existem os termos \textit{precision} e \textit{accuracy}, que se podem traduzir ambos para precisão, ao longo da dissertação será usado antes o termo \textit{accuracy}.
 
 Existem diferentes algoritmos de classificação, sendo que alguns deles são:
 
@@ -138,11 +138,17 @@ Existem diferentes algoritmos de classificação, sendo que alguns deles são:
 Os algoritmos acima mencionados vão criar modelos de classificação. No entanto, nem todos os modelos de classificação são igualmente eficazes e portanto é necessário avaliá-los. Algumas métricas de precisão de um modelo classificador são:
 
 \begin{itemize}
-\item{\textbf{Validade}} - É a quantidade de previsões corretamente identificadas em todas as previsões;
+\item{\textbf{\textit{Accuracy}}} - É a taxa de previsões acertadas. É definida pela fórmula 
+
+\begin{align*}
+\frac{(TP + TN)}{(TP + FN + FP + TN)}
+\end{align*}
+
+em que TP significa \textit{True Positive}, TN é \textit{True Negative}, FN é \textit{False Negative} e FP significa \textit{False Positive}. Portanto, \textit{accuracy} diz respeito aos exemplos classificados corretamente entre todos os exemplos. 
 \item{\textbf{\textit{sensitivity}}} - também chamada de \textit{true positive rate}, é a proporção de valores corretamente identificados como \textit{True};
 \item{\textbf{\textit{specificity}}} - também chamada de \textit{true negative rate}, é a proproção de valores corretamente identificados como \textit{False}.
 \end{itemize}
-Existem outras métricas de avaliação tais como rapidez, robustez e simplicidade. No entanto, a precisão é tida como a métrica mais importante da avaliação da eficácia de um modelo uma vez que um modelo com uma grande precisão, mesmo com pouca robustez ou rapidez, pode ser eficaz, enquanto que um modelo com pouca precisão, por muita rapidez ou robustez que tenha, não será um modelo viável.
+Existem outras métricas de avaliação tais como rapidez, robustez e simplicidade. No entanto, a \textit{accuracy} é tida como a métrica mais importante da avaliação da eficácia de um modelo uma vez que um modelo com uma grande precisão, mesmo com pouca robustez ou rapidez, pode ser eficaz, enquanto que um modelo com pouca \textit{æccuracy}, por muita rapidez ou robustez que tenha, não será um modelo viável.
 
 Existem alguns métodos que permitem avaliar a precisão de um modelo de classificação. Alguns dos métodos são:
 

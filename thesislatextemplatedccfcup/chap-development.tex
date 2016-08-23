@@ -33,7 +33,7 @@ Além da ideia em si, que foi bastante bem recebida, os utilizadores também der
 Apesar de todos os pacientes acharem boa ideia ter uma aplicação como esta, nem todos se tornaram voluntários devido a diferentes razões: 1) nem todos os utilizadores tinham \textit{smartphone} (apesar de nós podermos emprestar \textit{smartphones} Android, nem toda a gente queria) e cerca de metade dos pacientes tinha outro sistema operativo que não Android e 2) alguns pacientes com idade mais avançada ou com outros problemas de saúde simplesmente não tinham tempo ou disponibilidade para participar como voluntário. 
 No final deste período tínhamos conseguido a participação de 31 voluntários. Este número dava-nos alguma garantia de variedade bem como quantidade de dados mas, como mais tarde viríamos a concluir, nem todos os voluntários enviaram, de facto, os registos.
 
-Dos 31 voluntários apenas 8 enviaram registos pelo menos uma vez e apenas 5 destes enviaram registos regularmente e relativamente a algumas semanas. Para integrar um sistema de aconselhamento baseado nos dados introduzidos numa aplicação para \textit{smartphone} é fundamental saber que tipo de avisos ou conselhos se deve ou não mostrar. Por exemplo, um conselho como ``Ajuste a insulina à quantidade de hidratos de carbono ingerida'' é algo óbvio e que qualquer paciente diabético sabe, e portanto não seria uma grande mais valia para a aplicação. Por outro lado, um aviso como ``Hoje é segunda-feira e geralmente à segunda-feira tem valores de glicemia mais elevados'' pode ser útil porque possivelmente é um padrão que o paciente não detetou. Neste caso, este conselho poderia fazer o utilizador controlar mais frequentemente a sua glicemia às segundas-feiras e, portanto, normalizar os valores das segundas-feiras a partir daí. 
+Dos 31 voluntários apenas 8 enviaram registos pelo menos uma vez e apenas 5 destes enviaram registos regularmente e relativamente a algumas semanas, sendo que mais à frente será especificado o número de semanas em que cada utilizador enviou registos. Para integrar um sistema de aconselhamento baseado nos dados introduzidos numa aplicação para \textit{smartphone} é fundamental saber que tipo de avisos ou conselhos se deve ou não mostrar. Por exemplo, um conselho como ``Ajuste a insulina à quantidade de hidratos de carbono ingerida'' é algo óbvio e que qualquer paciente diabético sabe, e portanto não seria uma grande mais valia para a aplicação. Por outro lado, um aviso como ``Hoje é segunda-feira e geralmente à segunda-feira tem valores de glicemia mais elevados'' pode ser útil porque possivelmente é um padrão que o paciente não detetou. Neste caso, este conselho poderia fazer o utilizador controlar mais frequentemente a sua glicemia às segundas-feiras e, portanto, normalizar os valores das segundas-feiras a partir daí. 
 
 Esta distinção entre avisos ou conselhos realmente úteis ou descartáveis é importante: se a aplicação mostrar demasiados conselhos intuitivos ou regras ``banais'' das quais os utilizadores já tenham conhecimento, estes podem acabar por achar que a aplicação não traz benefícios. Pelo contrário, se a aplicação mostrar conselhos baseados em comportamentos não percetíveis pelos utilizadores, estes podem ser alertados. 
 
@@ -151,13 +151,13 @@ Posto isto, a solução foi discretizar estras três variáveis em intervalos, t
 Uma solução seria dividir em três partes para cada um dos atributos mas visto que se tratam de variáveis importantes, o melhor foi dividir em mais intervalos, nomeadamente 5.
 Tome-se o exemplo da glicemia: para pessoas com diabetes, os valores recomendados de glicemia antes das refeições estão entre 70~mg/dL e 130~mg/dL e depois das refeições são entre 90~mg/dL e 160~mg/dL~\cite{levels}. Uma vez que esta doença costuma provocar oscilações na glicemia, é comum que os valores estejam no intervalo recomendado mas também estejam acima ou abaixo desse intervalo. Por vezes podem estar muito acima, tratando-se de uma hiperglicemia, ou muito abaixo, no caso de uma hipoglicemia. Sabendo apenas que um valor está acima do recomendado não dá muita informação. Depois de uma refeição, tanto 170~mg/dL como 300~mg/dL são valores acima do intervalo acima mostrado. A diferença é que o primeiro valor é um pouco acima e não é preocupante, enquanto que o segundo valor é muito mais preocupante e requer ação imediata. Isto para mostrar que, ao discretizarmos os valores de glicemia, é importante que o façamos com vários níveis: dizer que um valor está acima do recomendado não chega, é preciso diferenciar o quão acima está. Deste modo, tanto para a glicemia, como insulina e hidratos de carbono, decidiu-se discretizar os valores em cinco níveis:
 
-\begin{itemize}
-\item \textbf{1} - Valor muito abaixo do normal e hipoglicemia;
-\item \textbf{2} - Valor um pouco abaixo do normal;
-\item \textbf{3} - Valor normal;
-\item \textbf{4} - Valor um pouco acima do normal;
-\item \textbf{5} - Valor muito acima do normal e hiperglicemia;
-\end{itemize}
+\begin{enumerate}
+\item  - Valor muito abaixo do normal e hipoglicemia;
+\item  - Valor um pouco abaixo do normal;
+\item  - Valor normal;
+\item  - Valor um pouco acima do normal;
+\item  - Valor muito acima do normal e hiperglicemia;
+\end{enumerate}
 Estes intervalos não são fixos, variando para cada utilizador. Os extremos são definidos pelo próprio utilizador, ao escolher na aplicação os limites para hipo e hiperglicemia. O valor 3 é definido tendo em conta a média de todas as glicemias do utilizador e os valores 2 e 4 são definidos através do 1º e 3º quartil de todos os valores, respetivamente. Pode acontecer que a média de glicemia de um dado utilizador seja abaixo ou acima dos limites escolhidos, pelo que nesse caso os valores terão de ser diferentes. Isto é, se a média de glicemia de um dado utilizador for, por exemplo 170~mg/dL e o seu limite para hiperglicemia for 150~mg/dL, então o valor 4 e 5 neste caso terão de ser ajustados para valores superior ao limite escolhido como hiperglicemia. O mesmo para se a média estiver abaixo do limite de hipoglicemia.
 
 Além de ter isto em conta, é preciso também ter em conta os intervalos em cima definidos. Isto é, se a média dos valores de glicemia de um utilizador for acima ou abaixo dos limites escolhidos, então não fará tanto sentido definir o valor 3 como essa média. No entanto, sempre que a média das glicemias estiver dentro de um intervalo considerado normal, o valor 3 será definido como essa média.
@@ -167,13 +167,13 @@ O processo de discretização para os hidratos de carbono e insulina é o mesmo:
 Quanto ao valor da insulina calculada para cada registo, ``Insulin\textunderscore Difference'', o processo é ligeiramente diferente. Como já mencionado, esta variável pode tomar valores negativos, positivos ou 0 e portanto, precisa de ser discretizada.
 
 
-\begin{itemize}
-\item \textbf{1} - O valor de insulina tomado é muito menor que o valor calculado
-\item \textbf{2} - O valor de insulina tomado é ligeiramente menor que o valor calculado
-\item \textbf{3} - O valor de insulina tomado é o calculado
-\item \textbf{4} - O valor de insulina tomado é ligeiramente maior que o valor calculado
-\item \textbf{5} - O valor de insulina tomado é muito maior que o valor calculado
-\end{itemize}
+\begin{enumerate}
+\item  - O valor de insulina tomado é muito menor que o valor calculado
+\item  - O valor de insulina tomado é ligeiramente menor que o valor calculado
+\item  - O valor de insulina tomado é o calculado
+\item  - O valor de insulina tomado é ligeiramente maior que o valor calculado
+\item  - O valor de insulina tomado é muito maior que o valor calculado
+\end{enumerate}
 Desta forma será possível encontrar relações, se existirem, entre mudanças no valor da insulina a tomar que possam levar a valores de glicemia indesejados. 
 
 
@@ -181,8 +181,26 @@ Depois deste processo, o \textit{data set} está num estado em que já pode ser 
 
 \section{Análise estatística básica}
 
-Com o \textit{data set} pré-processado, estávamos em condições de começar a utilizá-lo para análise. Antes de começar a aplicar técnicas de \textit{data mining} começou-se por fazer algumas estatísticas com os valores de glicose dos utilizadores. Nas próximas subsecções vamos descrever algumas estatísticas feitas para alguns utilizadores que enviaram registos. Para fazer uma análise minimamente fidedigna é necessário ter uma quantidade considerável de dados pelo que vamos analisar os dados de utilizadores que enviaram registos referentes a quatro ou mais semanas. Começaremos com algumas análises mais simples, fazendo algumas estatísticas que possam permitir observar algumas anormalias nos valores de glicemia. Serão então feitas as diferentes análises para cinco utilizadores de forma totalmente anónima.
+Com o \textit{data set} pré-processado, estávamos em condições de começar a utilizá-lo para análise. Antes de começar a aplicar técnicas de \textit{data mining} começou-se por fazer algumas estatísticas com os valores de glicose dos utilizadores. Nas próximas subsecções vamos descrever algumas estatísticas feitas para alguns utilizadores que enviaram registos. Para fazer uma análise minimamente fidedigna é necessário ter uma quantidade considerável de dados pelo que vamos analisar os dados de utilizadores que enviaram registos referentes a quatro ou mais semanas. Começaremos com algumas análises mais simples, fazendo algumas estatísticas que possam permitir observar algumas anormalias nos valores de glicemia. Serão então feitas as diferentes análises para cinco utilizadores de forma totalmente anónima. A seguinte tabela diz respeito à quantidade de registos enviados pelos utilizadores.
 
+\begin{table}[]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+
+\begin{tabular}{|
+>{\columncolor[HTML]{C0C0C0}}l |l|l|l|l|}
+\hline
+{\color[HTML]{000000} \textbf{Utilizador / Registos}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Nº de semanas}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Registos de glicose}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Registos de insulina}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Registos de hidratos}} \\ \hline
+{\color[HTML]{000000} \textbf{Utilizador 1}}          & 6                                                                     & 235                                                                         & 188                                                                          & 194                                                                          \\ \hline
+{\color[HTML]{000000} \textbf{Utilizador 2}}          & \textgreater20                                                        & 432                                                                         & 431                                                                          & 403                                                                          \\ \hline
+{\color[HTML]{000000} \textbf{Utilizador 3}}          & 5                                                                     & 151                                                                         & 151                                                                          & 151                                                                          \\ \hline
+{\color[HTML]{000000} \textbf{Utilizador 4}}          & 4                                                                     & 142                                                                         & 136                                                                          & 125                                                                          \\ \hline
+{\color[HTML]{000000} \textbf{Utilizador 5}}          & 4                                                                     & 51                                                                          & 44                                                                           & 32                                                                           \\ \hline
+\end{tabular}
+\end{adjustbox}
+\caption{Quantidade de registos para cada utilizador}
+\label{my-label}
+\end{table}
 
 \subsection{Média de glicose}
 
@@ -211,7 +229,7 @@ Como se pode verificar, todos os utilizadores têm um desvio-padrão com valores
 
 \subsection{Média de glicose por dia}
 
-Uma forma mais detalhada de tentar perceber alguns hábitos dos utilizadores é verificar como é que a sua glicemia oscila durante a semana. Tal pode ser feito obtendo a média de glicose para cada dia. Assim, é possível saber, por exemplo, quais os dias em que a glicemia é mais elevada ou mais baixa, sem esquecer que se trata de uma média, e que por isso não é possível ter conhecimento sobre eventuais hipo ou hiperglicemias. Ainda assim, ao saber a média de glicemia por cada dia, será possível avisar o utilizador de quais os dias a ter em atenção, isto é, se a segunda-feira for um dia com uma média elevada de glicemia, então o utilizador pode ser avisado deste facto para tomar as medidas necessárias ou, pelo menos, aumentar o controlo da glicemia neste dia. Portanto, embora este tipo de estatística não permita descobrir situações em particular, pode ainda assim ser útil. Eis os valores médios de glicemia para os utilizadores:\newline
+Uma forma mais detalhada de tentar perceber alguns hábitos dos utilizadores é verificar como é que a sua glicemia oscila durante a semana. Tal pode ser feito obtendo a média de glicose para cada dia. Assim, é possível saber, por exemplo, quais os dias em que a glicemia é mais elevada ou mais baixa, sem esquecer que se trata de uma média, e que por isso não é possível ter conhecimento sobre eventuais hipo ou hiperglicemias. Ainda assim, ao saber a média de glicemia por cada dia, será possível avisar o utilizador de quais os dias a ter em atenção, isto é, se a segunda-feira for um dia com uma média elevada de glicemia, então o utilizador pode ser avisado deste facto para tomar as medidas necessárias ou, pelo menos, aumentar o controlo da glicemia neste dia. Portanto, embora este tipo de estatística não permita descobrir situações em particular, pode ainda assim ser útil. Eis os valores médios de glicemia para os utilizadores e respetivo desvio-padrão entre parêntesis:\newline
 
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
@@ -229,15 +247,15 @@ Uma forma mais detalhada de tentar perceber alguns hábitos dos utilizadores é 
 \rowcolor[HTML]{C0C0C0} 
 {\color[HTML]{000000} \textbf{Utilizador/Dia}} & {\color[HTML]{000000} \textbf{Domingo}} & {\color[HTML]{000000} \textbf{Segunda}} & {\color[HTML]{000000} \textbf{Terça}} & {\color[HTML]{000000} \textbf{Quarta}} & {\color[HTML]{000000} \textbf{Quinta}} & {\color[HTML]{000000} \textbf{Sexta}} & {\color[HTML]{000000} \textbf{Sábado}} \\ \hline
 \rowcolor[HTML]{FFFFFF} 
-\cellcolor[HTML]{C0C0C0}\textbf{Utilizador 1}  & 132                                     & 117                                     & 119                                   & 127                                    & 110                                    & 110                                   & 115                                    \\ \hline
+\cellcolor[HTML]{C0C0C0}\textbf{Utilizador 1}  & 132 (45.14)                                  & 117 (34.61)                                     & 119 (29.54)                                   & 127 (32.54)                                    & 110 (33.29)                                    & 110 (31.07)                                   & 115 (30.04)                                    \\ \hline
 \rowcolor[HTML]{FFFFFF} 
-\cellcolor[HTML]{C0C0C0}\textbf{Utilizador 2}  & 161                                     & 131                                     & 154                                   & 156                                    & 149                                    & 148                                   & 165                                    \\ \hline
+\cellcolor[HTML]{C0C0C0}\textbf{Utilizador 2}  & 161 (76.02)                                     & 131 (55.31)                                     & 154 (67.22)                                   & 156 (65.87)                                    & 149 (59.68)                                    & 148 (64.04)                                   & 165 (63.70)                                    \\ \hline
 \rowcolor[HTML]{FFFFFF} 
-\cellcolor[HTML]{C0C0C0}\textbf{Utilizador 3}  & 182                                     & 162                                     & 189                                   & 166                                    & 181                                    & 163                                   & 146                                    \\ \hline
+\cellcolor[HTML]{C0C0C0}\textbf{Utilizador 3}  & 182 (71.56)                                     & 162 (62.50)                                      & 189 (65.89)                                   & 166 (65.10)                                    & 181 (56.88)                                     & 163 (53.78)                                   & 146 (74.43)                                    \\ \hline
 \rowcolor[HTML]{FFFFFF} 
-\cellcolor[HTML]{C0C0C0}\textbf{Utilizador 4}  & 149                                     & 170                                     & 165                                   & 114                                    & 142                                    & 131                                   & 136                                    \\ \hline
+\cellcolor[HTML]{C0C0C0}\textbf{Utilizador 4}  & 149 (52.97)                                     & 170 (52.59)                                     & 165 (46.01)                                   & 114 (44.78)                                    & 142 (59.64)                                    & 131 (55.65)                                   & 136 (55.67)                                    \\ \hline
 \rowcolor[HTML]{FFFFFF} 
-\cellcolor[HTML]{C0C0C0}\textbf{Utilizador 5}  & 182                                     & 153                                     & 154                                   & 150                                    & 170                                    & 140                                   & NR                                     \\ \hline
+\cellcolor[HTML]{C0C0C0}\textbf{Utilizador 5}  & 182 (54.32)                                     & 153 (59.49)                                     & 154 (50.88)                                   & 150 (74.61)                                    & 170 (51)                                    & 140 (43.54)                                   & NR                                     \\ \hline
 \end{tabular}
 \end{adjustbox}
 
@@ -275,11 +293,11 @@ Os valores médios para cada utilizador em cada fase do dia são:\newline
 >{\columncolor[HTML]{C0C0C0}}l |l|l|l|}
 \hline
 {\color[HTML]{000000} \textbf{Utilizador/Período}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Manhã}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Tarde}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Noite}} \\ \hline
-\textbf{Utilizador 1}                              & 112                                                  & 117                                                      & 128  \\ \hline
-\textbf{Utilizador 2}                              & 160                                                     & 151                                        & 138  \\ \hline
-\textbf{Utilizador 3}                              & 162                                                     & 141                                                     & 199  \\ \hline
-\textbf{Utilizador 4}                              & 158                                                     & 134                                                 & 146  \\ \hline
-\textbf{Utilizador 5}                              & 154                                                   & 157  & 153                                        \\ \hline
+\textbf{Utilizador 1}                              & 112 (32.42)                                                  & 117 (32.27)                                                      & 128 (39.05)  \\ \hline
+\textbf{Utilizador 2}                              & 160 (64.21)                                                     & 151 (61.33)                                       & 138 (65.80)  \\ \hline
+\textbf{Utilizador 3}                              & 162 (57.75)                                                     & 141 (57.38)                                                    & 199 (63.53)  \\ \hline
+\textbf{Utilizador 4}                              & 158 (41.92)                                                     & 134 (58.03)                                                 & 146 (56.73)  \\ \hline
+\textbf{Utilizador 5}                              & 154 (59.82)                                                  & 157 (58.13)  & 153 (35.51)                                        \\ \hline
 \end{tabular}
 \end{adjustbox}
 \caption{Médias de glicemia dos utilizadores por período do dia}
@@ -303,7 +321,6 @@ Os valores de glicose numéricos originais, ao contrário da média, permitem pe
 
 \textbf{Utilizador 1}
 
-Este utilizador enviou registos referentes a 6 semanas. Estes registos incluem 235 medições de glicose, 194 medições de hidratos de carbono e 188 medições de insulina.
 
 \begin{figure}[H]
 \centering
@@ -311,24 +328,24 @@ Este utilizador enviou registos referentes a 6 semanas. Estes registos incluem 2
 \caption{Glicemia por horas do utilizador 1}
 \label{fig:uti1}
 \end{figure}
-Como se pode perceber pela figura~\ref{fig:uti1}, a maioria dos registos é feita entre as 08:00 e as 24:00, sendo que neste intervalo, grande parte dos registos estão divididos em três momentos, provavelmente na hora das refeições. A linha vermelha representa o limite mínimo desejável e a linha azul o máximo desejável. Estas linhas correspondem a hipo e hiperglicemia, respetivamente, e foram definidas pelo utilizador, sendo que o limite para hipoglicemia é 70 e para hiperglicemia é 180. Ao analisar o gráfico percebe-se imediatamente que quase todos os valores se encontram entre estes dois valores, o que é desejável, visto que é o intervalo definido como ``normal'' pelo utilizador. Percebe-se também que há algumas hiperglicemias, sendo que todas elas ocorrem entre o início da tarde e o início da madrugada. Obviamente que isto não significa que durante a madrugada não haja valores elevados, apenas não são registados. 
+Como se pode perceber pela figura~\ref{fig:uti1}, a maioria dos registos é feita entre as 08:00 e as 24:00, sendo que neste intervalo, grande parte dos registos estão divididos em três momentos, provavelmente na hora das refeições. A linha vermelha representa o limite mínimo desejável e a linha azul o máximo desejável. Estas linhas correspondem a hipo e hiperglicemia, respetivamente, e foram definidas pelo utilizador, sendo que o limite para hipoglicemia é 70 e para hiperglicemia é 180. Ao analisar o gráfico percebe-se imediatamente que quase todos os valores se encontram entre estes dois valores, o que é desejável, visto que é o intervalo definido como ``normal'' pelo utilizador. Percebe-se também que há algumas hiperglicemias, sendo que todas elas ocorrem entre o início da tarde e o início da madrugada. Obviamente que isto não significa que durante a madrugada não haja valores elevados, apenas não são registados.\newpage 
 
 
 \textbf{Utilizador 2}
 
-Este utilizador enviou registos referentes mais de 20 semanas. Estes registos incluem 432 medições de glicose, 403 medições de hidratos de carbono e 431 medições de insulina.
+
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.6]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador2/Joaquim.pdf}
 \caption{Glicemia por horas do utilizador 2}
 \label{fig:uti2}
 \end{figure}
-Ao analisar a figura~\ref{fig:uti2} percebe-se um dos problemas anteriormente mencionados: as médias podem ser um bom indicador geral mas também podem não o ser. E neste caso não é: a média de glicemia do utilizador 2 é de 150~mg/dL o que poderia levar a pensar que este utilizador tinha valores mais ou menos estáveis. No entanto, observando o gráfico, verifica-se que não é o que acontece: os valores oscilam entre extremos muito separados, havendo valores acima de 300~mg/dL e outros abaixo de 50. Neste caso os limites definidos pelo utilizador foram de 70~mg/dL para hipoglicemia e de 150~mg/dL para hiperglicemia. Também é possível observar que cerca de metade dos registos efetuados encontram-se fora dos intervalos estabelecidos, o que leva a pensar que estes limites escolhidos não foram os mais corretos e talvez tenham de ser adaptados. De qualquer das formas, as medições são feitas mais frequentemente de manhã cedo e ao início da tarde, presumivelmente à hora de pequeno-almoço e almoço. 
+Ao analisar a figura~\ref{fig:uti2} percebe-se um dos problemas anteriormente mencionados: as médias podem ser um bom indicador geral mas também podem não o ser. E neste caso não é: a média de glicemia do utilizador 2 é de 150~mg/dL o que poderia levar a pensar que este utilizador tinha valores mais ou menos estáveis. No entanto, observando o gráfico, verifica-se que não é o que acontece: os valores oscilam entre extremos muito separados, havendo valores acima de 300~mg/dL e outros abaixo de 50. Neste caso os limites definidos pelo utilizador foram de 70~mg/dL para hipoglicemia e de 150~mg/dL para hiperglicemia. Também é possível observar que cerca de metade dos registos efetuados encontram-se fora dos intervalos estabelecidos, o que leva a pensar que estes limites escolhidos não foram os mais corretos e talvez tenham de ser adaptados. De qualquer das formas, as medições são feitas mais frequentemente de manhã cedo e ao início da tarde, presumivelmente à hora de pequeno-almoço e almoço.\newpage
 
 
 \textbf{Utilizador 3}
 
-Este utilizador enviou registos referentes a 5 semanas. Estes registos incluem 151 medições de glicose, hidratos de carbono e insulina.
+
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.6]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador3/Vitor.pdf}
@@ -337,25 +354,25 @@ Este utilizador enviou registos referentes a 5 semanas. Estes registos incluem 1
 \end{figure}
 Ao observar a figura~\ref{fig:uti3}, percebe-se que os valores oscilam bastante, havendo alguns valores próximos de 50~mg/dL e outros próximos de 300~mg/dL. Os limites definidos pelo utilizador foram de 60~mg/dL para hipoglicemia e 180~mg/dL para hiperglicemia. No gráfico do utilizador anterior, havia vários períodos do dia com hiperglicemia mas estes eram, aproximadamente, em igual número à quantidade de valores normais, isto é, pelo gráfico do utilizador 2, observa-se que no geral, para um determinado período, a quantidade de valores normais ou demasiado elevados são mais ou menos iguais. Por outro lado, neste gráfico observa-se o contrário: há períodos que notoriamente têm mais hiperglicemias que valores normais e outros períodos com mais valores normais que hiperglicemias. 
 Por exemplo, entre as 07:00 e as 10:00, que será o período do pequeno-almoço ou imediatamente depois, verifica-se que a quantidade de valores altos e valores normais é parecida. Já no período imediatamente a seguir à hora de almoço, há poucas hiperglicemias em relação à quantidade de registos feitos. Por último, à hora de jantar ou logo a seguir, a quantidade de hiperglicemias é bastante alta em relação à quantidade das medições. Isto pode ser uma consequência da rotina do utilizador. Por exemplo, se o utilizador jantar e logo a seguir descansar, pode causar esta subida. Por outro lado, e olhando para o gráfico, uma solução poderia ser algum tipo de exercício leve depois do jantar, como uma caminhada, para conseguir baixar um pouco os valores. Outra alternativa seria ajustar a insulina depois do jantar. 
-De qualquer das formas, com este tipo de análise, não se consegue descobrir qual a causa para estes valores anormais, pelo que sem um tipo de análise mais profunda, cabe ao utilizador perceber o porquê de isto acontecer.
+De qualquer das formas, com este tipo de análise, não se consegue descobrir qual a causa para estes valores anormais, pelo que sem um tipo de análise mais profunda, cabe ao utilizador perceber o porquê de isto acontecer.\newpage
 
 
 
 \textbf{Utilizador 4}
 
-Este utilizador enviou registos referentes a 4 semanas. Estes registos incluem 142 medições de glicose, 125 medições de hidratos de carbono e 136 medições de insulina.
+
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.6]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador4/Teresa.pdf}
 \caption{Glicemia por horas do utilizador 4}
 \label{fig:uti4}
 \end{figure}
-O utilizador 4 definiu como 60~mg/dL o limite para hipoglicemia e 150~mg/dL o limite para hiperglicemia. Tal como já aconteceu com outros utilizadores, os valores de hiperglicemia são abundantes o que pode levar a crer que o limite para hiperglicemia é demasiado baixo e poderia ser ajustado tendo em conta o que seriam os valores definidos como padrão para hiperglicemia. Este utilizador tem geralmente hiperglicemias depois das três refeições o que significa que talvez a insulina devesse ser ajustada. Verifica-se também a presença de alguns valores demasiado altos por volta da meia noite seguidos por valores demasiados baixos durante a madrugada. 
+O utilizador 4 definiu como 60~mg/dL o limite para hipoglicemia e 150~mg/dL o limite para hiperglicemia. Tal como já aconteceu com outros utilizadores, os valores de hiperglicemia são abundantes o que pode levar a crer que o limite para hiperglicemia é demasiado baixo e poderia ser ajustado tendo em conta o que seriam os valores definidos como padrão para hiperglicemia. Este utilizador tem geralmente hiperglicemias depois das três refeições o que significa que talvez a insulina devesse ser ajustada. Verifica-se também a presença de alguns valores demasiado altos por volta da meia noite seguidos por valores demasiados baixos durante a madrugada.\newpage 
 
 
 \textbf{Utilizador 5}
 
-Este utilizador enviou registos referentes a 4 semanas. Estes registos incluem 51 medições de glicemia, 32 medições de hidratos de carbono e 44 medições de insulina.
+
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.6]{/home/tiago/Tese/Tese/Databases/CSV/Data/ImagensTese/Utilizador5/Paulo.pdf}
@@ -411,7 +428,7 @@ Neste utilizador é possível ver um padrão: tem tendência para ter hiperglice
 \caption{Glicemia do utilizador 4 por dias da semana}
 \label{fig:dias4}
 \end{figure}
-Observando a figura~\ref{dias4} é possível observar que em todos os dias ocorrem hiperglicemias mas há três dias que se destacam: Domingo, Segunda e Terça, pois têm mais hiperglicemias em comparação com valores normais que o resto dos dias. Verifica-se também que os valores mais altos ocorrem de manhã ou ao início da noite, sendo que apenas em dois dias há mais que uma hiperglicemia a meio da tarde, o que pode significar que o utilizador possa fazer algo de diferente nestes dois dias, embora sem qualquer tipo de certeza. 
+Observando a figura~\ref{fig:dias4} é possível observar que em todos os dias ocorrem hiperglicemias mas há três dias que se destacam: Domingo, Segunda e Terça, pois têm mais hiperglicemias em comparação com valores normais que o resto dos dias. Verifica-se também que os valores mais altos ocorrem de manhã ou ao início da noite, sendo que apenas em dois dias há mais que uma hiperglicemia a meio da tarde, o que pode significar que o utilizador possa fazer algo de diferente nestes dois dias, embora sem qualquer tipo de certeza. 
 Em vários dias da semana notam-se alguns valores muito próximos ou até abaixo do limite de hipoglicemia sendo notórios dois períodos em que eles são mais frequentes: durante a madrugada e perto da hora de almoço. Isto pode significar que o utilizador não come nada antes de ir dormir, para o primeiro caso, e para o segundo caso pode significar que o utilizador não come nada entre o pequeno-almoço e o almoço, e que talvez devesse comer alguma coisa.\newpage
 
 
